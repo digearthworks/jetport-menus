@@ -23,27 +23,36 @@
 <body class="font-sans antialiased">
     <x-jet-banner />
 
-    <div class="min-h-screen bg-gray-100">
-        @livewire('navigation-menu')
+    <div x-data="{ open:false, sidebarOpen: false }" class="flex overflow-x-hidden min-h-screen bg-gray-100">
+        <aside class="flex-shrink-0 w-52 flex flex-col border-r transition-all duration-300" x-show="sidebarOpen"
+            {{-- :class="{ '-ml-40': !sidebarOpen }" --}}
+            >
 
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endif
+            <nav class="flex-1 flex flex-col bg-white border-l border-gray-100">
+                <a href="#" class="p-2">Nav Link 1</a>
+                <a href="#" class="p-2">Nav Link 2</a>
+                <a href="#" class="p-2">Nav Link 3</a>
+            </nav>
+        </aside>
+        <div class="flex-1">
+            @livewire('navigation-menu')
+            {{-- @include('navigation-menu') --}}
 
-        <!-- Page Content -->
-        <main>
-            <div class="flex min-h-screen">
-                <div class="flex w-1/12 bg-gray-200 min-h-full"></div>
-                <div class="flex flex-1 bg-blue-50">
-                    {{ $slot }}
-                </div>
-            </div>
-        </main>
+            <!-- Page Heading -->
+            @if (isset($header))
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
+
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+
+            </main>
+        </div>
     </div>
     @stack('modals')
 
