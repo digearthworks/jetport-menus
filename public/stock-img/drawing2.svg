@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1385.7195mm"
+   height="755.73883mm"
+   viewBox="0 0 1385.7196 755.73883"
+   version="1.1"
+   id="svg50"
+   inkscape:version=""
+   sodipodi:docname="drawing2.svg">
+  <defs
+     id="defs44">
+    <filter
+       inkscape:menu-tooltip="In and out glow with a possible offset and colorizable flood"
+       inkscape:menu="Shadows and Glows"
+       inkscape:label="Cutout Glow"
+       style="color-interpolation-filters:sRGB"
+       id="filter74">
+      <feOffset
+         dy="3"
+         dx="3"
+         id="feOffset64" />
+      <feGaussianBlur
+         stdDeviation="3"
+         result="blur"
+         id="feGaussianBlur66" />
+      <feFlood
+         flood-color="rgb(0,0,0)"
+         flood-opacity="1"
+         result="flood"
+         id="feFlood68" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite"
+         id="feComposite70" />
+      <feBlend
+         in="blur"
+         in2="composite"
+         mode="normal"
+         id="feBlend72" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.24748737"
+     inkscape:cx="3050.4685"
+     inkscape:cy="1301.9133"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1920"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:snap-nodes="false"
+     inkscape:snap-others="false" />
+  <metadata
+     id="metadata47">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(264.04454,309.13618)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot52"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;line-height:1.25;font-family:'monofur for Powerline';-inkscape-font-specification:'monofur for Powerline, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"><flowRegion
+         id="flowRegion54"
+         style="font-size:192px"><rect
+           id="rect56"
+           width="382.85715"
+           height="320"
+           x="185.71428"
+           y="262.51968"
+           style="font-size:192px" /></flowRegion><flowPara
+         id="flowPara58" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:50.79999924px;line-height:1.25;font-family:'Ubuntu Mono derivative Powerline';-inkscape-font-specification:'Ubuntu Mono derivative Powerline Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:3.41841698px;word-spacing:0.7567082px;writing-mode:lr-tb;baseline-shift:baseline;text-anchor:start;fill:#6c6753;fill-opacity:1;stroke:none;stroke-width:0.26458332;filter:url(#filter74)"
+       x="90.714287"
+       y="108.0119"
+       id="text62"
+       transform="matrix(10.657764,0,0,14.331084,-1157.6097,-1288.0665)"><tspan
+         sodipodi:role="line"
+         id="tspan60"
+         x="90.714287"
+         y="108.0119"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:50.79999924px;font-family:'Ubuntu Mono derivative Powerline';-inkscape-font-specification:'Ubuntu Mono derivative Powerline Bold Italic';letter-spacing:3.41841698px;word-spacing:0.7567082px;baseline-shift:baseline;fill:#6c6753;stroke-width:0.26458332"
+         dx="0 0 0 0"
+         rotate="0 0 0 0"
+         dy="0 0 0.2000009">&lt;Q/&gt;</tspan></text>
+  </g>
+</svg>
