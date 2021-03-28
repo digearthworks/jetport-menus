@@ -90,3 +90,5 @@ php artisan test
 - https://laravel.com/docs/8.x/sail
 - https://jetstream.laravel.com/2.x/introduction.html
 - https://laravel.com/docs/8.x/passport
+- https://github.com/laravel/passport/pull/1352
+- https://github.com/laravel/passport/tree/4e53f1b237a9e51ac10f0b30c6ebedd68f6848ab/resources
