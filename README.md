@@ -36,7 +36,7 @@ edit .env
 + DB_PASSWORD=your_password
 ```
 
-local (Requires php ^7.3|^8.0)
+>local (Requires php ^7.3|^8.0)
 
 ### Dependencies:
 
