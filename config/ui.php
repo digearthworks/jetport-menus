@@ -5,13 +5,9 @@ return [
 
     'internal_iframe_prefix' => env('INTERNAL_IFRAME_PREFIX', 'iframes'),
 
-    'navbar_bootstrap4_classes' => env('NAVBAR_BOOTSTRAP4_CLASSES', 'bg-dark'),
-
     'external_iframe_prefix' =>  env('EXTERNAL_IFRAME_PREFIX', 'extras'),
 
     'fake_passwd' => '123456',
-
-    'hotlink_tab_bootstrap4_classes' =>  env('HOTLINK_TAB_BOOTSTRAP4_CLASSES', 'ml-1 p-1'),
 
     'splash_page' => env('SPLASH_PAGE', 'qwo'),
 
