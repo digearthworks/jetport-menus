@@ -16,5 +16,9 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         $this->call(AuthSeeder::class);
+
+        if(config('domains.posts.active')){
+            $this->call(PostSeeder::class);
+        }
     }
 }
