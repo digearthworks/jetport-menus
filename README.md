@@ -1,6 +1,10 @@
 
 # well-begun-is-half-done
 
+### We have a Badge!
+
+![Tests](https://github.com/digearthworks/well-begun-is-half-done/workflows/Tests/badge.svg?branch=master)
+
 ### Getting started
 
 ```
