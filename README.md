@@ -3,7 +3,7 @@
 
 ### We have a Badge!
 
-![Tests](https://github.com/digearthworks/well-begun-is-half-done/workflows/Tests/badge.svg?branch=master)
+![Tests](https://github.com/digearthworks/well-begun-is-half-done/workflows/Tests/badge.svg?branch=main)
 
 ### Getting started
 
