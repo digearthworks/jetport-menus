@@ -51,8 +51,8 @@ jobs:
       - name: Generate Key
         run: php artisan key:generate
 
-      - name: Install Passport
-        run: php artisan passport:install
+      - name: Generate Keys for Passport
+        run: php artisan passport:keys
 
 
       - name: Execute tests
