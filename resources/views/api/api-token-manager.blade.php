@@ -69,9 +69,9 @@
                                 </div>
 
                                 <div class="flex items-center">
-                                    @if ($token->last_used_at)
+                                    @if ($token->expires_at)
                                         <div class="text-sm text-gray-400">
-                                            {{ __('Last used') }} {{ $token->last_used_at->diffForHumans() }}
+                                            {{ __('Expires') }} {{ $token->expires_at->diffForHumans() }}
                                         </div>
                                     @endif
 

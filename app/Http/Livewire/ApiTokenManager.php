@@ -4,11 +4,11 @@ namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Jetstream\Http\Livewire\ApiTokenManager as JetstreamTokenManager;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Passport\TokenRepository;
+use Livewire\Component;
 
-class ApiTokenManager extends JetstreamTokenManager
+class ApiTokenManager extends Component
 {
     /**
      * The create API token form state.
@@ -46,7 +46,7 @@ class ApiTokenManager extends JetstreamTokenManager
      *
      * @var Laravel\Passport\Token|null
      */
-    public $managingPermissionsFor;
+    public $managingPermissionsForId;
 
     /**
      * The update API token form state.
@@ -98,7 +98,6 @@ class ApiTokenManager extends JetstreamTokenManager
 
         $this->displayTokenValue(($this->user->createToken(
             $this->createApiTokenForm['name'],
-            // 'authToken',
             Jetstream::validPermissions($this->createApiTokenForm['scopes'])
         )->accessToken));
 
@@ -111,7 +110,7 @@ class ApiTokenManager extends JetstreamTokenManager
     /**
      * Display the token value to the user.
      *
-     * @param  \Laravel\Sanctum\NewAccessToken  $token
+     * @param  \Laravel\Passport\Token  $token
      * @return void
      */
     protected function displayTokenValue($token)
@@ -133,12 +132,13 @@ class ApiTokenManager extends JetstreamTokenManager
     {
         $this->managingApiTokenPermissions = true;
 
-        $this->managingPermissionsFor = $this->user->tokens()->where(
+        $token = $this->user->tokens()->where(
             'id', $tokenId
         )->firstOrFail();
 
-        $this->updateApiTokenForm['scopes'] = $this->managingPermissionsFor->scopes;
-        // dd( $this->updateApiTokenForm);
+        $this->managingPermissionsForId = $token->id;
+
+        $this->updateApiTokenForm['scopes'] = $token->scopes;
     }
 
     /**
@@ -148,10 +148,13 @@ class ApiTokenManager extends JetstreamTokenManager
      */
     public function updateApiToken()
     {
-        // dd($this->updateApiTokenForm['scopes']);
-        $this->managingPermissionsFor->update([
+        $token = $this->user->tokens()->where(
+            'id', $this->managingPermissionsForId
+        )->firstOrFail();
+
+        $token->forceFill([
             'scopes' => Jetstream::validPermissions($this->updateApiTokenForm['scopes']),
-        ]);
+        ])->save();
 
         $this->managingApiTokenPermissions = false;
     }
@@ -182,7 +185,7 @@ class ApiTokenManager extends JetstreamTokenManager
 
         $this->confirmingApiTokenDeletion = false;
 
-        $this->managingPermissionsFor = null;
+        $this->managingPermissionsForId = null;
     }
 
     /**

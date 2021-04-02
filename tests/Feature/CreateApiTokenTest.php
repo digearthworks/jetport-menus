@@ -2,10 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Http\Livewire\ApiTokenManager;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Artisan;
 use Laravel\Jetstream\Features;
-use Laravel\Jetstream\Http\Livewire\ApiTokenManager;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -15,6 +16,8 @@ class CreateApiTokenTest extends TestCase
 
     public function test_api_tokens_can_be_created()
     {
+        Artisan::call('passport:client', ['--personal' => true, '--name' => 'Laravel Personal Access Client']);
+
         if (! Features::hasApiFeatures()) {
             return $this->markTestSkipped('API support is not enabled.');
         }
@@ -28,7 +31,7 @@ class CreateApiTokenTest extends TestCase
         Livewire::test(ApiTokenManager::class)
                     ->set(['createApiTokenForm' => [
                         'name' => 'Test Token',
-                        'permissions' => [
+                        'scopes' => [
                             'read',
                             'update',
                         ],
