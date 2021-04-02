@@ -79,10 +79,10 @@ php artisan serve
 ./vendor/bin/sail up
 ```
 
-### Test
+### Testing
 
 ```
-php artisan test
+composer test
 ```
 > Sail
 ```
