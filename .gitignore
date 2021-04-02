@@ -14,3 +14,4 @@ yarn-error.log
 supervisord.log
 supervisord.pid
 .php_cs.cache
+.phpstorm.meta.php
