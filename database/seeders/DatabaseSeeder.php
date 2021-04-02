@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(AuthSeeder::class);
 
-        if(config('domains.posts.active')){
+        if (config('domains.posts.active')) {
             $this->call(PostSeeder::class);
         }
     }

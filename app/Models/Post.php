@@ -10,6 +10,7 @@ class Post extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
     /**
      * Create a new factory instance for the model.
      *
@@ -19,5 +20,4 @@ class Post extends Model
     {
         return PostFactory::new();
     }
-
 }

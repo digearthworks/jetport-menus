@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\Jetstream;
-use Laravel\Passport\TokenRepository;
 use Livewire\Component;
 
 class ApiTokenManager extends Component
@@ -133,7 +132,8 @@ class ApiTokenManager extends Component
         $this->managingApiTokenPermissions = true;
 
         $token = $this->user->tokens()->where(
-            'id', $tokenId
+            'id',
+            $tokenId
         )->firstOrFail();
 
         $this->managingPermissionsForId = $token->id;
@@ -149,7 +149,8 @@ class ApiTokenManager extends Component
     public function updateApiToken()
     {
         $token = $this->user->tokens()->where(
-            'id', $this->managingPermissionsForId
+            'id',
+            $this->managingPermissionsForId
         )->firstOrFail();
 
         $token->forceFill([

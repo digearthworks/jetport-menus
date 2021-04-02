@@ -23,7 +23,7 @@ return [
 
     'iframe_main_width' =>  env('IFRAME_MAIN_WIDTH', '100%'),
 
-    'banking_date_from' => env('BANKING_DATE_FROM', NULL),
+    'banking_date_from' => env('BANKING_DATE_FROM', null),
 
     'gitreports' => env('GIT_REPORTS', 'https://gitreports.com'),
 

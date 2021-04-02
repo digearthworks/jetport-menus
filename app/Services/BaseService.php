@@ -329,7 +329,7 @@ abstract class BaseService
             $this->query->orderBy($orders['column'], $orders['direction']);
         }
 
-        if (isset($this->take) and !is_null($this->take)) {
+        if (isset($this->take) and ! is_null($this->take)) {
             $this->query->take($this->take);
         }
 
@@ -367,12 +367,11 @@ abstract class BaseService
 
     public function getTableName()
     {
-
-        return $this->model->getConnectionName() .
-            '.' .
-            config('database.connections.' .
-                $this->model->getConnectionName() .
-                '.prefix') .
+        return $this->model->getConnectionName().
+            '.'.
+            config('database.connections.'.
+                $this->model->getConnectionName().
+                '.prefix').
             $this->model->getTable();
     }
 }

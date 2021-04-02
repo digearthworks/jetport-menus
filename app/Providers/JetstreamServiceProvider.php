@@ -5,10 +5,10 @@ namespace App\Providers;
 use App\Actions\Jetstream\DeleteUser;
 use App\Http\Livewire\ApiTokenManager;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Compilers\BladeCompiler;
 use Laravel\Jetstream\Features;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Passport\Passport;
-use Illuminate\View\Compilers\BladeCompiler;
 // use App\Http\Livewire\DeleteUserForm;
 // use App\Http\Livewire\LogoutOtherBrowserSessionsForm;
 // use App\Http\Livewire\NavigationDropdown;
@@ -68,7 +68,6 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     protected function configurePermissions()
     {
-
         Jetstream::defaultApiTokenPermissions(['read']);
 
         Jetstream::permissions(Passport::scopeIds());

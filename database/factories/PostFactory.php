@@ -24,7 +24,7 @@ class PostFactory extends Factory
     {
         return [
             'body' => $this->faker->sentence,
-            'user_id' => $this->faker->randomElement(array_merge(User::all()->pluck('id')->toArray()??[null],[null]))
+            'user_id' => $this->faker->randomElement(array_merge(User::all()->pluck('id')->toArray() ?? [null], [null])),
         ];
     }
 }
