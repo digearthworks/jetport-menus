@@ -96,10 +96,11 @@ class ApiTokenManager extends JetstreamTokenManager
             'name' => ['required', 'string', 'max:255'],
         ])->validateWithBag('createApiToken');
 
-        $this->displayTokenValue($this->user->createToken(
+        $this->displayTokenValue(($this->user->createToken(
             $this->createApiTokenForm['name'],
+            // 'authToken',
             Jetstream::validPermissions($this->createApiTokenForm['scopes'])
-        ));
+        )->accessToken));
 
         $this->createApiTokenForm['name'] = '';
         $this->createApiTokenForm['scopes'] = Jetstream::$defaultPermissions;
@@ -117,7 +118,7 @@ class ApiTokenManager extends JetstreamTokenManager
     {
         $this->displayingToken = true;
 
-        $this->plainTextToken = $token->accessToken;
+        $this->plainTextToken = $token;
 
         $this->dispatchBrowserEvent('showing-token-modal');
     }

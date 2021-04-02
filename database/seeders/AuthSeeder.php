@@ -24,8 +24,8 @@ class AuthSeeder extends Seeder
         ]);
         Artisan::call('passport:client', ['--personal' => true, '--name' => 'Laravel Personal Access Client']);
 
-        if (app()->environment(['local', 'testing'])) {
-            Artisan::call('passport:keys');
-        }
+        // if (app()->environment(['local', 'testing'])) {
+        //     Artisan::call('passport:keys', ['--force' => true]);
+        // }
     }
 }
