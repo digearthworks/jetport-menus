@@ -67,10 +67,17 @@
                         @foreach ($this->user->tokens->sortBy('name') as $token)
                             <div class="flex items-center justify-between">
                                 <div>
-                                    {{ $token->name }}
+                                    {{ $token->name ?? $token->client->name }}
                                 </div>
 
                                 <div class="flex items-center">
+
+                                    @if(app()->environment(['local', 'testing']))
+                                        <div class="text-xs mr-2 text-gray-400">
+                                            {{ $token->client_id }}
+                                        </div>
+                                    @endif
+
                                     @if ($token->expires_at)
                                         <div class="text-sm text-gray-400">
                                             {{ __('Expires') }} {{ $token->expires_at->diffForHumans() }}

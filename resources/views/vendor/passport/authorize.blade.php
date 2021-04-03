@@ -1,1 +1,1 @@
-@include('auth.authorize')
+@include('api.authorize')

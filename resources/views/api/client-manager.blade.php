@@ -1,11 +1,11 @@
 <div>
     <x-jet-form-section submit="createClient">
         <x-slot name="title">
-            {{ __('Create a Confidential Client') }}
+            {{ __('Create a new OAuth2 Application') }}
         </x-slot>
 
         <x-slot name="description">
-            {{ __('Requires the client to authenticate with a secret. Confidential Clients can hold credentails is a secure way without exposing them to unauthorized parties. Public applications, such as native destop or Javascript SPA applications, are unable to hold secrets securely.') }}
+            {{ __('OAuth2 Applications gives your third-party application access to user accounts on this instance.') }}
         </x-slot>
 
         <x-slot name="form">
@@ -45,11 +45,11 @@
         <div class="mt-10 sm:mt-0">
             <x-jet-action-section>
                 <x-slot name="title">
-                    {{ __('Manage Confidential Clients') }}
+                    {{ __('Authorized OAuth2 Applications') }}
                 </x-slot>
 
                 <x-slot name="description">
-                    {{ __('You may delete any of your existing clients if they are no longer needed.') }}
+                    {{ __('You have granted access to your personal account to these third party applications. Please revoke access for applications no longer needed.') }}
                 </x-slot>
 
                 <!-- API Token List -->
@@ -64,9 +64,15 @@
 
                                     <div class="flex items-center">
 
-                                        <div class="text-sm text-red-400">
-                                            {{ $client->secret }}
+                                        <div class="text-sm text-gray-400">
+                                            {{ $client->id }}
                                         </div>
+
+                                        @if(app()->environment(['local', 'testing']))
+                                            <div class="text-xs ml-2 text-gray-400">
+                                                {{ $client->secret }}
+                                            </div>
+                                        @endif
 
                                         <button class="cursor-pointer ml-6 text-sm text-gray-400 underline"
                                             wire:click="manageClient({{ '"' . $client->id . '"' }})">
@@ -95,13 +101,24 @@
 
         <x-slot name="content">
             <div>
-                {{ __('You will need to use this secret in your app to gain access.') }}
+                {{ __('Please copy your new secret. For your security, it won\'t be shown again.') }}
             </div>
 
-            <x-jet-input x-ref="clientSecret" type="text" readonly :value="$clientSecret"
-                class="mt-4 bg-gray-100 px-4 py-2 rounded font-mono text-sm text-gray-500 w-full" autofocus
+
+
+
+            <x-jet-input class="mt-2" id="newClientId" type="text" readonly :value="$clientId"
+                class="mt-4 bg-gray-100 px-6 py-2 rounded font-mono text-sm text-gray-500 w-full" autofocus
+                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <x-form-help-text value="{{ __('Client Id') }}" />
+
+
+            <x-jet-input class="mt-2" id="newClientSecret" x-ref="clientSecret" type="text" readonly :value="$clientSecret"
+                class="mt-4 bg-gray-100 px-6 py-2 rounded font-mono text-sm text-gray-500 w-full" autofocus
                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                @showing-token-modal.window="setTimeout(() => $refs.clientSecret.select(), 250)" />
+                @showing-secret-modal.window="setTimeout(() => $refs.clientSecret.select(), 250)" />
+            <x-form-help-text value="{{ __('Client secret. Please store this somewhere safe. Your application will need it for access') }}" />
+
         </x-slot>
 
         <x-slot name="footer">

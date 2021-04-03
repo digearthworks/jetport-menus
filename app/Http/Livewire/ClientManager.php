@@ -28,6 +28,13 @@ class ClientManager extends Component
     public $managingClientId;
 
     /**
+     * The the id of the client currently being managed.
+     *
+     * @var string
+     */
+    public $clientId;
+
+    /**
      * The update form state.
      *
      * @var array
@@ -85,11 +92,13 @@ class ClientManager extends Component
 
         Validator::make([
             'name' => $this->createForm['name'],
+            'redirect' => $this->createForm['redirect'],
         ], [
             'name' => ['required', 'string', 'max:255'],
+            'redirect' => ['required', 'string', 'max:255'],
         ])->validateWithBag('createClient');
 
-        $this->displaySecretValue($clients->create(
+        $client = $clients->create(
             $this->user->id,
             $this->createForm['name'],
             $this->createForm['redirect'],
@@ -97,7 +106,9 @@ class ClientManager extends Component
             false,
             false,
             $this->createForm['confidential']
-        )->secret);
+        );
+
+        $this->displaySecretValue($client->secret, $client->id);
 
         $this->createForm['name'] = '';
         $this->createForm['redirect'] = '';
@@ -112,11 +123,12 @@ class ClientManager extends Component
      * @param  \Laravel\Passport\Token  $token
      * @return void
      */
-    protected function displaySecretValue($clientSecret)
+    protected function displaySecretValue($clientSecret, $clientId)
     {
         $this->displayingSecret = true;
 
         $this->clientSecret = $clientSecret;
+        $this->clientId = $clientId;
 
         $this->dispatchBrowserEvent('showing-secret-modal');
     }
