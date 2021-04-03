@@ -66,7 +66,7 @@ class ApiTokenManager extends Component
     /**
      * The ID of the API token being deleted.
      *
-     * @var int
+     * @var string
      */
     public $apiTokenIdBeingDeleted;
 

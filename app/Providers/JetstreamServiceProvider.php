@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Actions\Jetstream\DeleteUser;
 use App\Http\Livewire\ApiTokenManager;
+use App\Http\Livewire\ClientManager;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Laravel\Jetstream\Features;
@@ -37,6 +38,7 @@ class JetstreamServiceProvider extends ServiceProvider
 
                 if (Features::hasApiFeatures()) {
                     Livewire::component('api.api-token-manager', ApiTokenManager::class);
+                    Livewire::component('api.client-manager', ClientManager::class);
                 }
 
                 // if (Features::hasTeamFeatures()) {
