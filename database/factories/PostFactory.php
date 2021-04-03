@@ -23,6 +23,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
+            'title' => $this->faker->word,
             'body' => $this->faker->sentence,
             'user_id' => $this->faker->randomElement(array_merge(User::all()->pluck('id')->toArray() ?? [null], [null])),
         ];

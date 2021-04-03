@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+if (app()->environment(['local', 'testing'])) {
+    if (config('domains.posts.active')) {
+        Route::get('/posts', function (Request $request) {
+            return Post::all();
+        })->middleware('auth:api');
+    }
+}

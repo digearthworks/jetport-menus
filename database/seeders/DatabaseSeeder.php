@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Examples\ClientSeederExample;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,12 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Model::unguard();
 
         $this->call(AuthSeeder::class);
 
-        if (config('domains.posts.active')) {
-            $this->call(PostSeeder::class);
+        if (app()->environment(['local', 'testing'])) {
+            $this->call(ClientSeederExample::class);
+            if (config('domains.posts.active')) {
+                $this->call(PostSeeder::class);
+            }
         }
+
+        Model::reguard();
     }
 }

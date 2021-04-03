@@ -13,12 +13,15 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->text('body');
-            $table->bigInteger('user_id')->nullable();
-            $table->timestamps();
-        });
+        if(config('domains.posts.active')){
+            Schema::create('posts', function (Blueprint $table) {
+                $table->id();
+                $table->string('title');
+                $table->text('body');
+                $table->bigInteger('user_id')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
