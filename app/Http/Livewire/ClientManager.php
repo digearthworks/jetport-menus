@@ -175,11 +175,11 @@ class ClientManager extends Component
      * @param  string  $clientId
      * @return void
      */
-    public function confirmDeletion($clientId)
+    public function confirmDeletion($clientIdBeingDeleted)
     {
         $this->confirmingDeletion = true;
 
-        $this->clientIdBeingDeleted = $clientId;
+        $this->clientIdBeingDeleted = $clientIdBeingDeleted;
     }
 
     /**
