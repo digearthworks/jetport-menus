@@ -104,10 +104,7 @@
                 {{ __('Please copy your new secret. For your security, it won\'t be shown again.') }}
             </div>
 
-
-
-
-            <x-jet-input class="mt-2" id="newClientId" type="text" readonly :value="$clientId"
+            <x-jet-input class="mt-2" id="newClientId" type="text" readonly :value="$newClientId"
                 class="mt-4 bg-gray-100 px-6 py-2 rounded font-mono text-sm text-gray-500 w-full" autofocus
                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
             <x-form-help-text value="{{ __('Client Id') }}" />

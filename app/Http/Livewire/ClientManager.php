@@ -28,11 +28,11 @@ class ClientManager extends Component
     public $managingClientId;
 
     /**
-     * The the id of the client currently being managed.
+     * The the id of the newly created client.
      *
      * @var string
      */
-    public $clientId;
+    public $newClientId;
 
     /**
      * The update form state.
@@ -118,17 +118,18 @@ class ClientManager extends Component
     }
 
     /**
-     * Display the token value to the user.
+     * Display the client id and secret to the user.
      *
-     * @param  \Laravel\Passport\Token  $token
+     * @param  string  $clientSecret
+     * @param  string  $newClientId
      * @return void
      */
-    protected function displaySecretValue($clientSecret, $clientId)
+    protected function displaySecretValue($clientSecret, $newClientId)
     {
         $this->displayingSecret = true;
 
         $this->clientSecret = $clientSecret;
-        $this->clientId = $clientId;
+        $this->newClientId = $newClientId;
 
         $this->dispatchBrowserEvent('showing-secret-modal');
     }
@@ -136,7 +137,8 @@ class ClientManager extends Component
     /**
      * Allow the given Client to be managed.
      *
-     * @param  int  $tokenId
+     * @param  string  $clientId
+     * @param  Laravel\Passport\ClientRepository  $clients
      * @return void
      */
     public function manageClient($clientId, ClientRepository $clients)
@@ -154,8 +156,9 @@ class ClientManager extends Component
     }
 
     /**
-     * Update the API token's permissions.
+     * Update the Client.
      *
+     * @param  Laravel\Passport\ClientRepository  $clients
      * @return void
      */
     public function updateClient(ClientRepository $clients)
@@ -169,7 +172,7 @@ class ClientManager extends Component
     /**
      * Confirm that the given API token should be deleted.
      *
-     * @param  int  $tokenId
+     * @param  string  $clientId
      * @return void
      */
     public function confirmDeletion($clientId)
@@ -180,8 +183,9 @@ class ClientManager extends Component
     }
 
     /**
-     * Delete the API token.
+     * Delete the Client.
      *
+     * @param  Laravel\Passport\ClientRepository  $clients
      * @return void
      */
     public function deleteClient(ClientRepository $clients)
