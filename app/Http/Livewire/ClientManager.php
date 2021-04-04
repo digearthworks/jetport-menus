@@ -141,14 +141,13 @@ class ClientManager extends Component
      * @param  Laravel\Passport\ClientRepository  $clients
      * @return void
      */
-    public function manageClient($clientId, ClientRepository $clients)
+    public function manageClient($managingClientId, ClientRepository $clients)
     {
         $this->managingClient = true;
 
-        $client = $clients->findForUser($clientId, $this->user->id);
-        // dd($client);
+        $client = $clients->findForUser($managingClientId, $this->user->id);
 
-        $this->managingClientId = $clientId;
+        $this->managingClientId = $client->id;
 
         $this->updateForm['name'] = $client->name;
         $this->updateForm['redirect'] = $client->redirect;
