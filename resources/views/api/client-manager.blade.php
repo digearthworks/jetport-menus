@@ -41,7 +41,7 @@
 
         <x-jet-section-border />
 
-        <!-- Manage API Tokens -->
+        <!-- Manage Clients -->
         <div class="mt-10 sm:mt-0">
             <x-jet-action-section>
                 <x-slot name="title">
@@ -52,7 +52,7 @@
                     {{ __('You have granted access to your personal account to these third party applications. Please revoke access for applications no longer needed.') }}
                 </x-slot>
 
-                <!-- API Token List -->
+                <!-- clients List -->
                 <x-slot name="content">
                     <div class="space-y-6">
                         @foreach ($this->user->clients->sortBy('name') as $client)
@@ -166,11 +166,11 @@
     <!-- Delete Token Confirmation Modal -->
     <x-jet-confirmation-modal wire:model="confirmingDeletion">
         <x-slot name="title">
-            {{ __('Delete API Token') }}
+            {{ __('Revoke OAuth2 Client') }}
         </x-slot>
 
         <x-slot name="content">
-            {{ __('Are you sure you would like to delete this API token?') }}
+            {{ __('Are you sure you would like to revoke this Client?') }} Apps using this client will lose access.
         </x-slot>
 
         <x-slot name="footer">
