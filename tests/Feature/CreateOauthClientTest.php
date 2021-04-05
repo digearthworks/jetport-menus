@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Http\Livewire\ClientManager;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Jetstream\Features;
 use Livewire;
 use Tests\TestCase;
@@ -16,7 +15,6 @@ class CreateOauthClientTest extends TestCase
 
     public function test_oath_clients_can_be_created()
     {
-
         if (! Features::hasApiFeatures()) {
             return $this->markTestSkipped('API support is not enabled.');
         }

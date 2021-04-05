@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Http\Livewire\ClientManager;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Jetstream\Features;
 use Laravel\Passport\ClientRepository;
 use Livewire;
@@ -17,7 +16,6 @@ class DeleteOauthClientTest extends TestCase
 
     public function test_oauth_clients_can_be_deleted()
     {
-
         if (! Features::hasApiFeatures()) {
             return $this->markTestSkipped('API support is not enabled.');
         }
