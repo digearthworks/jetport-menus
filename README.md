@@ -85,7 +85,14 @@ php artisan serve
 composer test
 ```
 
-### Links
+### Contributing
+
+```
+composer format
+```
+[contributing](https://github.com/digearthworks/laravel-jetport/blob/main/.github/CONTRIBUTING.md)
+
+### Useful Links
 
 - https://laravel.com/docs/8.x/sail
 - https://jetstream.laravel.com/2.x/introduction.html
