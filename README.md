@@ -90,7 +90,7 @@ composer test
 ```
 composer format
 ```
-[contributing](https://github.com/digearthworks/laravel-jetport/blob/main/.github/CONTRIBUTING.md)
+[Contributing](https://github.com/digearthworks/laravel-jetport/blob/main/.github/CONTRIBUTING.md)
 
 ### Useful Links
 
