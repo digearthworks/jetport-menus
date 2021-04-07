@@ -1,7 +1,7 @@
 
 # Laravel-Jetport
 
- - Laravel Jetstream with Livewire
+ - [Laravel Jetstream](https://jetstream.laravel.com/2.x/introduction.html) with [Livewire](https://github.com/livewire/livewire)
  - Full Freatured [Laravel Passport](https://github.com/laravel/passport) api in place of of [Laravel Sanctum](https://github.com/laravel/sanctum)
  - A full OAuth2 server, complete with [Tailwind](https://tailwindcss.com/) Based Client and Token Management UI in minutes!
 
