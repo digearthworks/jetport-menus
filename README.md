@@ -1,5 +1,9 @@
 
-# well-begun-is-half-done
+# Laravel-Jetport
+
+ - Laravel Jetstream with Livewire
+ - Full Freatured [Laravel Passport](https://github.com/laravel/passport) api in place of of [Laravel Sanctum](https://github.com/laravel/sanctum)
+ - A full OAuth2 server, complete with [Tailwind](https://tailwindcss.com/) Based Client and Token Management UI in minutes!
 
 ### We have a Badge!
 
@@ -75,55 +79,10 @@ php artisan serve
 **email** `admin@admin.com`
 **password** `secret`
 
-
-```php
-namespace Database\Seeders;
-
-use App\Models\User;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Artisan;
-
-class AuthSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        // Add the master administrator, user id of 1
-        User::create([
-            'name' => config('domains.auth.default_webmaster_name'),
-            'email' => config('domains.auth.default_webmaster_email'), // admin@admin.com
-            'password' => config('domains.auth.default_webmaster_password'), //secret
-            'email_verified_at' => now(),
-        ]);
-        Artisan::call('passport:client', ['--personal' => true, '--name' => 'Laravel Personal Access Client']);
-
-        // if (app()->environment(['local', 'testing'])) {
-        //     Artisan::call('passport:keys', ['--force' => true]);
-        // }
-    }
-}
-```
-
-
-
-
-> Sail (Requires Docker and Docker Compose)
-```
-./vendor/bin/sail up
-```
-
 ### Testing
 
 ```
 composer test
-```
-> Sail
-```
-./vendor/bin/sail artisan test
 ```
 
 ### Links
