@@ -11,7 +11,7 @@
 
 ### Demo 
 
-https://jetport.turbooffice.net
+http://laravel-jetport.com
 
 **email** `admin@admin.com` **password** `secret`
 
