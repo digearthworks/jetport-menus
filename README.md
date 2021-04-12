@@ -21,10 +21,11 @@ git clone https://github.com/digearthworks/jetport-menus
 cd jetport-menus
 ```
 ```
-edit .env
-```
-```
 composer install
+```
+
+```
+edit .env
 ```
 
 ```
