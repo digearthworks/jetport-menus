@@ -1,4 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/icons/font-awesome/LICENSE.txt": "/css/icons/font-awesome/LICENSE.txt",
+    "/css/icons/font-awesome/attribution.js": "/css/icons/font-awesome/attribution.js",
+    "/css/icons/font-awesome/package.json": "/css/icons/font-awesome/package.json"
 }
