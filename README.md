@@ -64,7 +64,11 @@
 
 [![Tests](https://github.com/digearthworks/jetport-menus/workflows/Tests/badge.svg?branch=main)](https://github.com/digearthworks/jetport-menus/actions/workflows/main.yml)
 
+### Development Demo 
 
+http://laravel-jetport.com
+
+**email** `admin@admin.com` **password** `secret`
 
 ### Dev Deploy Script
 ```bash
@@ -92,9 +96,6 @@ if [ -f artisan ]; then
    php artisan up
 fi
 ```
-
-
-**email** `admin@admin.com` **password** `secret`
 
 ### Getting started
 
