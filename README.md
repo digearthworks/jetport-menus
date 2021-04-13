@@ -1,5 +1,17 @@
 # Road Map
 
+### First Steps
+
+- [ ] Improve This List
+- [ ] Improve this README
+- [ ] Create Detailed issues for each item on Alpha list
+    * Put a link to the issue next to each item
+    * Include Screenshots and Gifs of examples when available
+    * Incude code snippents from and links to examples when available
+    * Reference [Boilerplate](https://github.com/digearthworks/laravel-ui-boilerplate) when applicable
+      
+- [ ] Begin Documentation 
+
 ### Alpha. *Menus*
 
 - [x] OAuth2 Server
@@ -10,7 +22,7 @@
 - [ ] Alpha Docs
 
 ### Beta. *Jetport*
-- [ ] Must first complete https://github.com/digearthworks/jetport-menus/milestone/1
+- [ ] Must first complete Alpha Checklist
 - [ ] Implement openapi documentation for OAuth server with swagger frontend.
 - [ ] Restful API for key resources.
 - [ ] Create Docmentation Guidlines, and support libraries for extending API
@@ -18,9 +30,24 @@
 - [ ] Create Docmentated Guidlines and Support Libraries for extending Client
 
 ### RC. *Going Silver*
-- [ ] Must first complete https://github.com/digearthworks/jetport-menus/milestone/2
+- [ ] Must first complete Beta Checklist
 - [ ] Working equivelent of all current features in production app **not listed here**
-- [ ] Ability to share and consume "*key resourses*" to and from instances  
+- [ ] Ability to share and consume "*key resourses*" to and from instances
+- [ ] Implement SSO with an open source email client
+- [ ] Implement ability to manage auth for Nexcloud server (Supports OAuth2)  
+
+
+### Release. *Prod 1*
+- [ ] Must first complete RC Checklist
+- [ ] Unit Tests for equivelent of all current features in production app **not listed here**
+- [ ] Deployment Pipelines
+- [ ] Openid connect 
+
+### Perpetual Beta *Rolling Release*
+
+- Perfect Documentation, tutorials, and internal wikis
+- Maintain, Implement and Test inflow of new features
+- Build and implement in-house, in-app integrated bug reporter
 
 
 
