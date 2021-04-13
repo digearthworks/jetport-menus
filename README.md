@@ -43,11 +43,11 @@
 - [ ] Deployment Pipelines
 - [ ] Openid connect 
 
-### Perpetual Beta *Rolling Release*
+### Perpetual Beta. *Rolling Release*
 
 - Perfect Documentation, tutorials, and internal wikis
 - Maintain, Implement and Test inflow of new features
-- Build and implement in-house, in-app integrated bug reporter
+- Build and implement in-house, in-app, integrated bug reporter
 
 
 
