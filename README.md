@@ -15,7 +15,7 @@
 - [ ] Restful API for key resources.
 - [ ] Create Docmentation Guidlines, and support libraries for extending API
 - [ ] Build a Service or Client library for consuming API
-- [ ] Create Docmentation Guidlines, and support libraries for extending Client
+- [ ] Create Docmentated Guidlines and Support Libraries for extending Client
 
 ### RC. *Going Silver*
 - [ ] Must first complete https://github.com/digearthworks/jetport-menus/milestone/2
