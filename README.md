@@ -121,7 +121,7 @@ composer format
 - https://github.com/laravel/passport/tree/4e53f1b237a9e51ac10f0b30c6ebedd68f6848ab/resources
 
 ### Deploy Script
-```
+```bash
 cd /home/forge/jetport.turbooffice.net
 
 if [ -f artisan ]; then
