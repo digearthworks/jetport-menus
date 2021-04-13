@@ -1,6 +1,6 @@
 # Road Map
 
-## Alpha. *Menus*
+### Alpha. *Menus*
 
 - [x] OAuth2 Server
 - [ ] Permissions Role User with Livewire Datatable Frontend.
@@ -9,7 +9,7 @@
 - [ ] Assignable Menus for Each User
 - [ ] Alpha Docs
 
-# Beta. *Jetport*
+### Beta. *Jetport*
 - [ ] Must first complete https://github.com/digearthworks/jetport-menus/milestone/1
 - [ ] Implement openapi documentation for OAuth server with swagger frontend.
 - [ ] Restful API for key resources.
@@ -17,7 +17,7 @@
 - [ ] Build a Service or Client library for consuming API
 - [ ] Create Docmentation Guidlines, and support libraries for extending Client
 
-# RC. *Going Silver*
+### RC. *Going Silver*
 - [ ] Must first complete https://github.com/digearthworks/jetport-menus/milestone/2
 - [ ] Working equivelent of all current features in production app **not listed here**
 - [ ] Ability to share and consume "*key resourses*" to and from instances  
