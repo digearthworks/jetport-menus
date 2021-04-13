@@ -112,10 +112,38 @@ composer format
 ```
 [Contributing](https://github.com/digearthworks/laravel-jetport/blob/main/.github/CONTRIBUTING.md)
 
-### Useful Links
+### Reference
 - https://laravel.com/docs/8.x/envoy
 - https://laravel.com/docs/8.x/sail
 - https://jetstream.laravel.com/2.x/introduction.html
 - https://laravel.com/docs/8.x/passport
 - https://github.com/laravel/passport/pull/1352
 - https://github.com/laravel/passport/tree/4e53f1b237a9e51ac10f0b30c6ebedd68f6848ab/resources
+
+### Deploy Script
+```
+cd /home/forge/jetport.turbooffice.net
+
+if [ -f artisan ]; then
+php artisan down
+fi
+
+rm -rf ./vendor
+
+BRANCH=development 
+
+git fetch --all; git reset --hard origin/$BRANCH; git pull origin $BRANCH
+
+$FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader
+
+( flock -w 10 9 || exit 1
+    echo 'Restarting FPM...'; sudo -S service $FORGE_PHP_FPM reload ) 9>/tmp/fpmlock
+
+if [ -f artisan ]; then
+   # $FORGE_PHP artisan migrate:refresh --seed
+   #  $FORGE_PHP artisan up
+   ./vendor/bin/envoy run dev
+   php artisan up
+fi
+```
+
