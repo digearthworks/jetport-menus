@@ -66,7 +66,7 @@
 
 ### Development Demo 
 
-http://laravel-jetport.com
+https://jetport.turbooffice.net
 
 **email** `admin@admin.com` **password** `secret`
 
