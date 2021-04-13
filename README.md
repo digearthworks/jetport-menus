@@ -75,10 +75,12 @@ http://laravel-jetport.com
 cd /home/forge/jetport.turbooffice.net
 
 if [ -f artisan ]; then
-php artisan down
+    php artisan down
 fi
 
-rm -rf ./vendor
+if [ -d ./vendor ]; then
+    rm -rf ./vendor
+fi
 
 BRANCH=development 
 
@@ -91,7 +93,7 @@ $FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader
 
 if [ -f artisan ]; then
    # $FORGE_PHP artisan migrate:refresh --seed
-   #  $FORGE_PHP artisan up
+   # $FORGE_PHP artisan up
    ./vendor/bin/envoy run dev
    php artisan up
 fi
