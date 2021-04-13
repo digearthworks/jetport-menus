@@ -2,7 +2,7 @@
 
 
 ### First Steps. *Create Tasks*
-- [ ] Improve This Roadmap
+- [X] Improve This Roadmap
 - [ ] Improve this README
 - [ ] Create Detailed issues for each item on Alpha list
  * Put a link to the issue next to each item
