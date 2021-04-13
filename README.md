@@ -5,11 +5,11 @@
 - [ ] Improve This List
 - [ ] Improve this README
 - [ ] Create Detailed issues for each item on Alpha list
-* Put a link to the issue next to each item
-* Include Screenshots and Gifs of examples when available
-* Incude code snippents from and links to examples when available
-* Reference [Boilerplate](https://github.com/digearthworks/laravel-ui-boilerplate) when applicable
-      
+ * Put a link to the issue next to each item
+ * Link The Project [Jetport Menus](https://github.com/orgs/digearthworks/projects/2) to create automated To Do
+ * Include Screenshots and Gifs of examples when available
+ * Incude code snippents from and links to examples when available
+ * Reference [Boilerplate](https://github.com/digearthworks/laravel-ui-boilerplate) when applicable      
 - [ ] Begin Documentation 
 
 ### Alpha. *Menus*
