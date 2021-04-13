@@ -1,3 +1,59 @@
+# Road Map
+
+
+### First Steps. *Create Tasks*
+- [ ] Improve This Roadmap
+- [ ] Improve this README
+- [ ] Create Detailed issues for each item on Alpha list
+ * Put a link to the issue next to each item
+ * Link The Project [Jetport Menus](https://github.com/orgs/digearthworks/projects/2) to create automated To Do (You will see it on the right next under assignees and labels)
+ * If you see an item here without an issue from @inmanturbo describing how it needs to be done
+   1. Create an issue asking for the information you need
+   2. Include any suggestions or ideas you might have on how to implement the feature
+ * Include Screenshots and Gifs of examples when available
+ * Include code snippents from and links to examples when available
+ * Reference [Boilerplate](https://github.com/digearthworks/laravel-ui-boilerplate) when applicable      
+- [ ] Begin Documentation 
+
+### Alpha. *Menus*
+
+- [x] OAuth2 Server
+- [ ] Permissions Role User with Livewire Datatable Frontend.
+- [ ] Admin Impersonation of Users
+- [ ] Menu Management Crud
+- [ ] Assignable Menus for Each User
+- [ ] Alpha Docs
+
+### Beta. *Jetport*
+- [ ] Must first complete Alpha Checklist
+- [ ] Implement openapi documentation for OAuth server with swagger frontend.
+- [ ] Restful API for key resources.
+- [ ] Create Docmentation Guidlines, and support libraries for extending API
+- [ ] Build a Service or Client library for consuming API
+- [ ] Create Docmentated Guidlines and Support Libraries for extending Client
+
+### RC. *Going Silver*
+- [ ] Must first complete Beta Checklist
+- [ ] Working equivelent of all current features in production app **not listed here**
+- [ ] Ability to share and consume "*key resourses*" to and from instances
+- [ ] Implement SSO with an open source email client
+- [ ] Implement ability to manage auth for Nexcloud server (Supports OAuth2)  
+
+
+### Release. *Prod 1*
+- [ ] Must first complete RC Checklist
+- [ ] Unit Tests for equivelent of all current features in production app **not listed here**
+- [ ] Deployment Pipelines
+- [ ] Openid connect 
+
+### Perpetual Beta. *Rolling Release*
+
+- Perfect Documentation, tutorials, and internal wikis
+- Maintain, Implement and Test inflow of new features
+- Build and implement in-house, in-app, integrated bug reporter
+
+
+
 
 
 # Laravel Jetport
