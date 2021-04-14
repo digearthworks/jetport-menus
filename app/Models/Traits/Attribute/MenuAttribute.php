@@ -2,8 +2,6 @@
 
 namespace App\Models\Traits\Attribute;
 
-use RuntimeException;
-
 trait MenuAttribute
 {
     /**
@@ -163,20 +161,20 @@ trait MenuAttribute
 
     public function setMenuIdAttribute($menuId)
     {
-        if ($this->id == $menuId) {
-            throw new RuntimeException("Menu can not be attached to itself!");
-            // $this->attributes['menu_id'] = null;
+        if (!$this->where('id', 'menu_id')->first() || $this->id == $menuId) {
+            $this->attributes['menu_id'] = null;
+            return;
+        }
+
+        /**
+         * If there is already a parent
+         * just attach it to the parent
+         */
+        if ($this->where('id', 'menu_id')->first()->menu_id) {
+            $this->attributes['menu_id'] = $this->where('id', 'menu_id')->get()->menu_id;
+            return;
         }
 
         $this->attributes['menu_id'] = $menuId;
-    }
-
-    public function setParentIdAttribute($parentId)
-    {
-        if ($this->parent_id) {
-            throw new RuntimeException("Menus can not be nested (!_!)");
-        }
-
-        $this->attributes['parent_id'] = $parentId;
     }
 }
