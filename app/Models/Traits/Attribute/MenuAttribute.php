@@ -161,7 +161,7 @@ trait MenuAttribute
 
     public function setMenuIdAttribute($menuId)
     {
-        if (!$this->where('id', 'menu_id')->first() || $this->id == $menuId) {
+        if (!$this->where('id', $menuId)->first() || $this->id == $menuId) {
             $this->attributes['menu_id'] = null;
             return;
         }
@@ -170,7 +170,7 @@ trait MenuAttribute
          * If there is already a parent
          * just attach it to the parent
          */
-        if ($this->where('id', 'menu_id')->first()->menu_id) {
+        if (isset($this->where('id', 'menu_id')->first()->menu_id)) {
             $this->attributes['menu_id'] = $this->where('id', 'menu_id')->get()->menu_id;
             return;
         }
