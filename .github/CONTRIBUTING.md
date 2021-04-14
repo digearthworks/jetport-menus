@@ -29,6 +29,8 @@ Before submitting a pull request:
 
 - Check the codebase to ensure that your feature doesn't already exist.
 - Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
+- If you you are working on a feature which may confict with another, checkout a branch for the feature. (e.g. feature/featurname)
+- Pre Beta PR's will be merged into Development Branch, or in some cases a feature branch will be made to avoid conflicts
 
 ## Requirements
 
