@@ -70,5 +70,4 @@ class Menu extends Model
 
         return (Icon::where('title', $icon)->first())->id;
     }
-
 }

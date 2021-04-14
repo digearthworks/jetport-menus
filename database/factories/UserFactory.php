@@ -25,7 +25,6 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-
         return [
             'type' => $this->faker->randomElement([User::TYPE_ADMIN, User::TYPE_USER]),
             'name' => $this->faker->name,

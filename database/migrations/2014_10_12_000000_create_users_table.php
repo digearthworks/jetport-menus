@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->enum('type', [User::TYPE_ADMIN, User::TYPE_USER])->default(User::TYPE_USER);
             $table->string('name');
             $table->string('first_name')->nullable();
-			$table->string('last_name')->nullable();
-			$table->string('middle_initail')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('middle_initail')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -34,8 +34,8 @@ class CreateUsersTable extends Migration
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
             $table->integer('created_by')->nullable();
-			$table->integer('updated_by')->nullable();
-			$table->integer('deleted_by')->nullable();
+            $table->integer('updated_by')->nullable();
+            $table->integer('deleted_by')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
@@ -51,5 +51,4 @@ class CreateUsersTable extends Migration
     {
         Schema::connection(config('domains.auth.database_connection'))->dropIfExists('users');
     }
-
 }

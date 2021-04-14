@@ -68,6 +68,4 @@ trait MenuRelationship
     {
         return $this->morphedByMany(User::class, 'menuable');
     }
-
-
 }

@@ -24,8 +24,8 @@ class CreatePermissionTables extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->integer('created_by')->nullable();
-			$table->integer('updated_by')->nullable();
-			$table->integer('deleted_by')->nullable();
+            $table->integer('updated_by')->nullable();
+            $table->integer('deleted_by')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->tinyInteger('sort')->default(1);
             $table->timestamps();
@@ -42,8 +42,8 @@ class CreatePermissionTables extends Migration
             $table->string('name');
             $table->string('guard_name');
             $table->integer('created_by')->nullable();
-			$table->integer('updated_by')->nullable();
-			$table->integer('deleted_by')->nullable();
+            $table->integer('updated_by')->nullable();
+            $table->integer('deleted_by')->nullable();
             $table->timestamps();
         });
 
@@ -59,8 +59,10 @@ class CreatePermissionTables extends Migration
                 ->on($tableNames['permissions'])
                 ->onDelete('cascade');
 
-            $table->primary(['permission_id', $columnNames['model_morph_key'], 'model_type'],
-                    'model_has_permissions_permission_model_type_primary');
+            $table->primary(
+                ['permission_id', $columnNames['model_morph_key'], 'model_type'],
+                'model_has_permissions_permission_model_type_primary'
+            );
         });
 
         Schema::connection(config('domains.auth.database_connection'))->create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames) {
@@ -75,14 +77,16 @@ class CreatePermissionTables extends Migration
                 ->on($tableNames['roles'])
                 ->onDelete('cascade');
 
-            $table->primary(['role_id', $columnNames['model_morph_key'], 'model_type'],
-                    'model_has_roles_role_model_type_primary');
+            $table->primary(
+                ['role_id', $columnNames['model_morph_key'], 'model_type'],
+                'model_has_roles_role_model_type_primary'
+            );
         });
 
         Schema::connection(config('domains.auth.database_connection'))->create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
             $table->integer('created_by')->nullable();
-			$table->integer('updated_by')->nullable();
-			$table->integer('deleted_by')->nullable();
+            $table->integer('updated_by')->nullable();
+            $table->integer('deleted_by')->nullable();
             $table->unsignedBigInteger('permission_id');
             $table->unsignedBigInteger('role_id');
 

@@ -15,10 +15,10 @@ class CreateMenuablesTable extends Migration
     {
         Schema::connection(config('domains.auth.database_connection'))->create('menuables', function (Blueprint $table) {
             $table->integer('menu_id');
-			$table->integer('menuable_id');
-			$table->string('menuable_type');
-			$table->string('menuable_group')->nullable();
-			$table->string('checked')->nullable();
+            $table->integer('menuable_id');
+            $table->string('menuable_type');
+            $table->string('menuable_group')->nullable();
+            $table->string('checked')->nullable();
             $table->timestamps();
         });
     }

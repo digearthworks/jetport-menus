@@ -4,7 +4,6 @@ namespace App\Models\Traits\Attribute;
 
 trait MenuAttribute
 {
-
     public function getLabelAttribute($value)
     {
         return ucfirst($value);
@@ -137,5 +136,4 @@ trait MenuAttribute
     {
         $this->attributes['icon_id'] = $this->getIconId($icon);
     }
-
 }

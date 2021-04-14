@@ -2,13 +2,11 @@
 
 namespace App\Models\Traits\Method;
 
-
 /**
  * Trait MenuMethod.
  */
 trait MenuMethod
 {
-
     public function activate()
     {
         $this->update(['active' => 1]);
