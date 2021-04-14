@@ -2,6 +2,8 @@
 
 namespace App\Models\Traits\Attribute;
 
+use RuntimeException;
+
 trait MenuAttribute
 {
     /**
@@ -121,7 +123,7 @@ trait MenuAttribute
             $collection = collect($this->all());
             $rowCount = $count / 7;
             $chunks = [];
-            for ($i = 0 ; $i < $rowCount; $i++) {
+            for ($i = 0; $i < $rowCount; $i++) {
                 $chunks[] = $collection->splice(7, 7);
             }
             $rows = array_merge($chunks, [$collection]);
@@ -157,5 +159,24 @@ trait MenuAttribute
     public function setIconIdAttribute($icon)
     {
         $this->attributes['icon_id'] = $this->getIconId($icon);
+    }
+
+    public function setMenuIdAttribute($menuId)
+    {
+        if ($this->id == $menuId) {
+            throw new RuntimeException("Menu can not be attached to itself!");
+            // $this->attributes['menu_id'] = null;
+        }
+
+        $this->attributes['menu_id'] = $menuId;
+    }
+
+    public function setParentIdAttribute($parentId)
+    {
+        if ($this->parent_id) {
+            throw new RuntimeException("Menus can not be nested (!_!)");
+        }
+
+        $this->attributes['parent_id'] = $parentId;
     }
 }
