@@ -46,6 +46,7 @@ class UpdatePasswordTest extends TestCase
 
     public function test_new_passwords_must_match()
     {
+        $this->withoutExceptionHandling();
         $this->actingAs($user = User::factory()->create());
 
         Livewire::test(UpdatePasswordForm::class)
