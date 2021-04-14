@@ -10,14 +10,6 @@ use App\Models\PasswordHistory;
  */
 trait UserRelationship
 {
-    /**
-     * @return mixed
-     */
-    public function passwordHistories()
-    {
-        return $this->morphMany(PasswordHistory::class, 'model');
-    }
-
 
     public function bookmarks()
     {

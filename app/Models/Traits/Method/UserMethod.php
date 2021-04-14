@@ -53,14 +53,6 @@ trait UserMethod
     }
 
     /**
-     * @return mixed
-     */
-    public function canChangeEmail(): bool
-    {
-        return config('boilerplate.access.user.change_email');
-    }
-
-    /**
      * @return bool
      */
     public function isActive(): bool
@@ -91,18 +83,6 @@ trait UserMethod
     {
         return $this->permissions->pluck('description');
     }
-
-    /**
-     * @param  bool  $size
-     *
-     * @return mixed|string
-     * @throws \Creativeorange\Gravatar\Exceptions\InvalidEmailException
-     */
-    public function getAvatar($size = null)
-    {
-        return 'https://gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=' . config('boilerplate.avatar.size', $size) . '&d=mp';
-    }
-
 
     /**
      * Remove all current menus and set the given ones.
