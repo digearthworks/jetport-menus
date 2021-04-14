@@ -3,14 +3,12 @@
 namespace App\Models\Traits\Relationship;
 
 use App\Models\Menu;
-use App\Models\PasswordHistory;
 
 /**
  * Class UserRelationship.
  */
 trait UserRelationship
 {
-
     public function bookmarks()
     {
         return $this->morphToMany(Menu::class, 'menuable')->withTimestamps()->wherePivot('menuable_group', 'bookmarks')->with('children', 'icons')->orderBy('sort');
