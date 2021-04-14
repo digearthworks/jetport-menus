@@ -170,8 +170,8 @@ trait MenuAttribute
          * If there is already a parent
          * just attach it to the parent
          */
-        if ($this->where('id', 'menu_id')->first()->menu_id) {
-            $this->attributes['menu_id'] = $this->where('id', 'menu_id')->get()->menu_id;
+        if ($this->where('id', $menuId)->first()->menu_id) {
+            $this->attributes['menu_id'] = $this->where('id', $menuId)->first()->menu_id;
             return;
         }
 
