@@ -2,7 +2,7 @@
 
 return [
 
-    'database_connection' => env('AUTH_DB_CONNECTION'),
+    'database_connection' => env('AUTH_DB_CONNECTION', 'mysql'),
     'default_webmaster_name' => env('DEFAULT_SUPER_ADMIN_NAME', 'Super Admin'),
     'default_webmaster_email' => env('DEFAULT_SUPER_ADMIN_EMAIL', 'admin@admin.com'),
     'default_webmaster_password' => env('DEFAULT_SUPER_ADMIN_PASSWORD', '$2y$10$w3lz8ysxcYAwN8TECDdcp.6.QHPsmTNkOSajMOyFIv3xprID94Lre'),
