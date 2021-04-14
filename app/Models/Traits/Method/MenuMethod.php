@@ -27,7 +27,7 @@ trait MenuMethod
         $this->update(['iframe' => 0]);
     }
 
-    public function getGroupMetaForItems()
+    public function getGroupMetaForItems(): array
     {
         if ($this->menu_id === null) {
             return ['group' => 'main', 'menu_id' => $this->id];

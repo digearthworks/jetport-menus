@@ -9,7 +9,7 @@ trait AuthConnection
      *
      * @return string
      */
-    public function getConnectionName()
+    public function getConnectionName(): string
     {
         return config('domains.auth.database_connection');
     }

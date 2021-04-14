@@ -53,5 +53,7 @@ class AuthSeeder extends Seeder
         $this->call(UserMenuSeeder::class);
 
         $this->enableForeignKeys($this->connection);
+
+        Artisan::call('passport:client', ['--personal' => true, '--name' => 'Laravel Personal Access Client']);
     }
 }

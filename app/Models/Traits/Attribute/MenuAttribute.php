@@ -4,7 +4,11 @@ namespace App\Models\Traits\Attribute;
 
 trait MenuAttribute
 {
-    public function getLabelAttribute($value)
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getLabelAttribute($value): string
     {
         return ucfirst($value);
     }
@@ -48,7 +52,10 @@ trait MenuAttribute
         return $value;
     }
 
-    public function getInternalIframeAttribute()
+    /**
+     * @return string
+     */
+    public function getInternalIframeAttribute(): string
     {
         $prefix = config('ui.internal_iframe_prefix');
         $link = $this->attributes['link'];
@@ -56,7 +63,10 @@ trait MenuAttribute
         return '/' . $prefix . '/' . $this->cleanSlug($link);
     }
 
-    public function getExternalIframeAttribute()
+    /**
+     * @return string
+     */
+    public function getExternalIframeAttribute(): string
     {
         $prefix = config('ui.external_iframe_prefix');
         $link = $this->attributes['link'];
@@ -64,17 +74,26 @@ trait MenuAttribute
         return '/' . $prefix . '?externallink=' . $this->cleanSlug($link);
     }
 
-    public function getInternalLinkAttribute()
+    /**
+     * @return string
+     */
+    public function getInternalLinkAttribute(): string
     {
         return '/' . $this->cleanSlug($this->attributes['link']);
     }
 
-    public function getDisabledLinkAttribute()
+    /**
+     * @return string
+     */
+    public function getDisabledLinkAttribute(): string
     {
         return '#disabled_link#' . $this->cleanSlug($this->attributes['link']);
     }
 
-    public function getIsActiveAttribute()
+    /**
+     * @return bool
+     */
+    public function getIsActiveAttribute(): bool
     {
         if (isset($this->attributes['active']) && $this->attributes['active'] == 1) {
             return true;
@@ -83,7 +102,10 @@ trait MenuAttribute
         return false;
     }
 
-    public function getIsIFrameAttribute()
+    /**
+     * @return bool
+     */
+    public function getIsIFrameAttribute(): bool
     {
         if (isset($this->attributes['iframe']) && $this->attributes['iframe'] == 1) {
             return true;
