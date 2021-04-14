@@ -26,4 +26,32 @@ return [
     'default_supervisor_name' => env('DEFAULT_SUPERVISOR_NAME', 'Supervisor'),
     'default_supervisor_email' => env('DEFAULT_SUPERVISOR_EMAIL', 'supervisor@example.com'),
     'default_supervisor_password' => env('DEFAULT_SUPERVISOR_PASSWORD', '$2y$10$w3lz8ysxcYAwN8TECDdcp.6.QHPsmTNkOSajMOyFIv3xprID94Lre'), // Hash::make('secret')
+    'access' => [
+
+        'user' => [
+
+            /*
+             * Whether or not the register route and view are active
+             */
+            'registration' => env('ENABLE_REGISTRATION', true),
+
+            /*
+             * When active, a user can only have one session active at a time
+             * That is all other sessions for that user will be deleted when they log in
+             * (They can only be logged into one place at a time, all others will be logged out)
+             * AuthenticateSession middleware must be enabled
+             */
+            'single_login' => env('SINGLE_LOGIN', false),
+        ],
+
+        'role' => [
+
+            /*
+             * The name of the administrator role
+             * Should be Administrator by design and unable to change from the backend
+             * It is not recommended to change
+             */
+            'admin' => 'Administrator',
+        ],
+    ],
 ];
