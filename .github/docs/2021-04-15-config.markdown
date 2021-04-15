@@ -11,7 +11,7 @@ For instance configurations related to **Authentication** and **Authorization** 
 
 Configuration keys often reference environment variables, which can be set in your application's `.env` file. The current defaults and their corresponding `.env` keys will be listed below:
 
-|   Key         | Env           | Default  | Description |
+|   Key         | Env           | Default Value  | Description |
 | :------------- |:-------------| :-----| :---------|
 | jetport.auth.database_connection | AUTH_DB_CONNECTION | `mysql` | Database connection for the `Auth` related models  `Menu`, `Permission`, `Role`, and `User` as set in `App\Traits\Connection\AuthConnection.php`|
 | jetport.auth.default_webmaster_name | DEFAULT_SUPER_ADMIN_NAME     |  `Super Admin` | |
