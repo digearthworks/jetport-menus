@@ -6,9 +6,6 @@ use App\Models\Icon;
 use App\Models\Permission;
 use App\Models\User;
 
-/**
- * Class PermissionRelationship.
- */
 trait MenuRelationship
 {
     public function icon()
@@ -21,44 +18,43 @@ trait MenuRelationship
         return $this->belongsTo(Permission::class);
     }
 
-    /**
-     * @return mixed
-     */
     public function parent()
     {
         return $this->belongsTo(__CLASS__, 'menu_id')->with('icon', 'parent');
     }
 
-    /**
-     * @return mixed
-     */
+    public function isMenuIndex()
+    {
+        return $this->label === 'Menu Index';
+    }
+
+    public function isParentMenu()
+    {
+        return $this->menu_id === null;
+    }
+
     public function children()
     {
-        if ($this->label === 'Menu Index') {
-            return $this->whereNotNull('id');
-        }
+        return $this->isMenuIndex() ? $this->whereNotNull('id') : $this->getChildrenQuery();
+    }
 
+    public function getChildrenQuery()
+    {
         return $this->hasMany(__CLASS__, 'menu_id')->with('icon', 'children');
     }
 
-    /**
-     * @return mixed
-     */
     public function hotlinks()
     {
-        if ($this->label === 'Menu Index') {
-            $this->hasMany(__CLASS__, 'menu_id')->with('icon', 'children')->whereNull('id');
-        }
+        $q = $this->getChildrenQuery();
 
-        return $this->hasMany(__CLASS__, 'menu_id')->with('icon', 'children')->where('group', 'hotlinks');
+        $isIndex = $this->isMenuIndex();
+
+        return $isIndex ? $q->whereNull('id') : $q->where('group', 'hotlinks');
     }
 
-    /**
-     * @return mixed
-     */
     public function items()
     {
-        return $this->hasMany(__CLASS__, 'menu_id')->with('icon', 'children')->where('group', '!=', 'hotlink');
+        return $this->getChildrenQuery()->where('group', '!=', 'hotlink');
     }
 
     /**

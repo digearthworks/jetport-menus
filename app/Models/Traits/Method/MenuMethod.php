@@ -2,9 +2,6 @@
 
 namespace App\Models\Traits\Method;
 
-/**
- * Trait MenuMethod.
- */
 trait MenuMethod
 {
     public function activate()
@@ -27,12 +24,8 @@ trait MenuMethod
         $this->update(['iframe' => 0]);
     }
 
-    public function getGroupMetaForItems(): array
+    public function getGroupMetaForItems()
     {
-        if ($this->menu_id === null) {
-            return ['group' => 'main', 'menu_id' => $this->id];
-        }
-
-        return [];
+        return $this->isParentMenu() ? ['group' => 'main', 'menu_id' => $this->id] : [];
     }
 }

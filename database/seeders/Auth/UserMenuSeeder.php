@@ -18,7 +18,7 @@ class UserMenuSeeder extends Seeder
 
     public function __construct()
     {
-        $this->connection = config('domains.auth.database_connection');
+        $this->connection = config('jetport.auth.database_connection');
     }
 
     /**

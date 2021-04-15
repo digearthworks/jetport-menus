@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 
         if (app()->environment(['local', 'testing'])) {
             $this->call(ClientSeederExample::class);
-            if (config('domains.posts.active')) {
+            if (config('jetport.posts.active')) {
                 $this->call(PostSeeder::class);
             }
         }

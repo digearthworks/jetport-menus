@@ -170,9 +170,6 @@ class ClientManager extends Component
 
     /**
      * Confirm that the given API token should be deleted.
-     *
-     * @param  string  $clientId
-     * @return void
      */
     public function confirmDeletion($clientIdBeingDeleted)
     {
@@ -210,11 +207,6 @@ class ClientManager extends Component
         return Auth::user();
     }
 
-    /**
-     * Render the component.
-     *
-     * @return \Illuminate\View\View
-     */
     public function render()
     {
         return view('api.client-manager');

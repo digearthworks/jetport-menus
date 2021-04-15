@@ -10,36 +10,24 @@ use Illuminate\Support\Collection;
  */
 trait UserMethod
 {
-    /**
-     * @return bool
-     */
     public function isMasterAdmin(): bool
     {
         return $this->id === 1;
     }
 
-    /**
-     * @return mixed
-     */
     public function isAdmin(): bool
     {
         return $this->type === self::TYPE_ADMIN;
     }
 
-    /**
-     * @return mixed
-     */
     public function isUser(): bool
     {
         return $this->type === self::TYPE_USER;
     }
 
-    /**
-     * @return mixed
-     */
     public function hasAllAccess(): bool
     {
-        return $this->isAdmin() && $this->hasRole(config('domains.auth.access.role.admin'));
+        return $this->isAdmin() && $this->hasRole(config('jetport.auth.access.role.admin'));
     }
 
     /**
@@ -52,25 +40,16 @@ trait UserMethod
         return $this->type === $type;
     }
 
-    /**
-     * @return bool
-     */
     public function isActive(): bool
     {
         return $this->active;
     }
 
-    /**
-     * @return bool
-     */
     public function isVerified(): bool
     {
         return $this->email_verified_at !== null;
     }
 
-    /**
-     * @return bool
-     */
     public function isSocial(): bool
     {
         return $this->provider && $this->provider_id;
@@ -161,7 +140,7 @@ trait UserMethod
 
     public function checkIfMenuIsPermitted(Menu $menu)
     {
-        if (isset($menu->permission) && config('domains.auth.check_permissions_on_menu_assignment')) {
+        if (isset($menu->permission) && config('jetport.auth.check_permissions_on_menu_assignment')) {
             if (! in_array($menu->permission->name, $this->getPermissionNames()->toArray())) {
 
                 // throw new GeneralException(__('This user does not have permission to access this menu.'));

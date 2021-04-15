@@ -13,7 +13,7 @@ class CreateIconsTable extends Migration
      */
     public function up()
     {
-        Schema::connection(config('domains.auth.database_connection'))->create('icons', function (Blueprint $table) {
+        Schema::connection(config('jetport.auth.database_connection'))->create('icons', function (Blueprint $table) {
             $table->id();
             $table->integer('favorite')->nullable();
             $table->string('source')->nullable();
@@ -41,6 +41,6 @@ class CreateIconsTable extends Migration
      */
     public function down()
     {
-        Schema::connection(config('domains.auth.database_connection'))->dropIfExists('icons');
+        Schema::connection(config('jetport.auth.database_connection'))->dropIfExists('icons');
     }
 }

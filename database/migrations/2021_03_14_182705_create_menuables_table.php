@@ -13,7 +13,7 @@ class CreateMenuablesTable extends Migration
      */
     public function up()
     {
-        Schema::connection(config('domains.auth.database_connection'))->create('menuables', function (Blueprint $table) {
+        Schema::connection(config('jetport.auth.database_connection'))->create('menuables', function (Blueprint $table) {
             $table->integer('menu_id');
             $table->integer('menuable_id');
             $table->string('menuable_type');
@@ -30,6 +30,6 @@ class CreateMenuablesTable extends Migration
      */
     public function down()
     {
-        Schema::connection(config('domains.auth.database_connection'))->dropIfExists('menuables');
+        Schema::connection(config('jetport.auth.database_connection'))->dropIfExists('menuables');
     }
 }

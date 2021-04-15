@@ -38,6 +38,7 @@ class User extends Authenticatable
         Userstamps;
 
     public const TYPE_ADMIN = 'admin';
+
     public const TYPE_USER = 'user';
 
     /**

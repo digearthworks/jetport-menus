@@ -17,7 +17,7 @@ class CreatePermissionTables extends Migration
         $tableNames = config('permission.table_names');
         $columnNames = config('permission.column_names');
 
-        Schema::connection(config('domains.auth.database_connection'))->create($tableNames['permissions'], function (Blueprint $table) use ($tableNames) {
+        Schema::connection(config('jetport.auth.database_connection'))->create($tableNames['permissions'], function (Blueprint $table) use ($tableNames) {
             $table->bigIncrements('id');
             $table->enum('type', [User::TYPE_ADMIN, User::TYPE_USER]);
             $table->string('guard_name');
@@ -36,7 +36,7 @@ class CreatePermissionTables extends Migration
                 ->onDelete('cascade');
         });
 
-        Schema::connection(config('domains.auth.database_connection'))->create($tableNames['roles'], function (Blueprint $table) {
+        Schema::connection(config('jetport.auth.database_connection'))->create($tableNames['roles'], function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('type', [User::TYPE_ADMIN, User::TYPE_USER]);
             $table->string('name');
@@ -47,7 +47,7 @@ class CreatePermissionTables extends Migration
             $table->timestamps();
         });
 
-        Schema::connection(config('domains.auth.database_connection'))->create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
+        Schema::connection(config('jetport.auth.database_connection'))->create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
             $table->unsignedBigInteger('permission_id');
 
             $table->string('model_type');
@@ -65,7 +65,7 @@ class CreatePermissionTables extends Migration
             );
         });
 
-        Schema::connection(config('domains.auth.database_connection'))->create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames) {
+        Schema::connection(config('jetport.auth.database_connection'))->create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames) {
             $table->unsignedBigInteger('role_id');
 
             $table->string('model_type');
@@ -83,7 +83,7 @@ class CreatePermissionTables extends Migration
             );
         });
 
-        Schema::connection(config('domains.auth.database_connection'))->create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
+        Schema::connection(config('jetport.auth.database_connection'))->create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->integer('deleted_by')->nullable();
@@ -117,10 +117,10 @@ class CreatePermissionTables extends Migration
     {
         $tableNames = config('permission.table_names');
 
-        Schema::connection(config('domains.auth.database_connection'))->drop($tableNames['role_has_permissions']);
-        Schema::connection(config('domains.auth.database_connection'))->drop($tableNames['model_has_roles']);
-        Schema::connection(config('domains.auth.database_connection'))->drop($tableNames['model_has_permissions']);
-        Schema::connection(config('domains.auth.database_connection'))->drop($tableNames['roles']);
-        Schema::connection(config('domains.auth.database_connection'))->drop($tableNames['permissions']);
+        Schema::connection(config('jetport.auth.database_connection'))->drop($tableNames['role_has_permissions']);
+        Schema::connection(config('jetport.auth.database_connection'))->drop($tableNames['model_has_roles']);
+        Schema::connection(config('jetport.auth.database_connection'))->drop($tableNames['model_has_permissions']);
+        Schema::connection(config('jetport.auth.database_connection'))->drop($tableNames['roles']);
+        Schema::connection(config('jetport.auth.database_connection'))->drop($tableNames['permissions']);
     }
 }

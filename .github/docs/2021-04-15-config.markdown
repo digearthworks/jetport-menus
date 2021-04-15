@@ -1,0 +1,31 @@
+---
+layout: post
+title:  "Config"
+date:   2021-04-15 9:44:53 -0400
+categories: jekyll update
+---
+#### Jetport Configuration
+
+Jetport related configs can be found under `config/jetport/`, and can be accesses with `config('jetport.{filename}.{key}')`, using the standar laravel  **dot syntax** ([Laravel Docs](https://laravel.com/docs/8.x/configuration)).
+For instance configurations related to **Authentication** and **Authorization** can be found in `config/jetport/auth.php` and can be accessed with `config('jetport.auth.{key}')` **not to be confused with** `config/auth.php`.
+
+Configuration keys often reference environment variables, which can be set in your application's `.env` file. The current defaults and their corresponding `.env` keys will be listed below:
+
+|   Key         | Env           | Default Value  | Description |
+| :------------- |:-------------| :-----| :---------|
+| jetport.auth.database_connection | AUTH_DB_CONNECTION | `mysql` | Database connection for the `Auth` related models  `Menu`, `Permission`, `Role`, and `User` as set in `App\Traits\Connection\AuthConnection.php`|
+| jetport.auth.default_webmaster_name | DEFAULT_SUPER_ADMIN_NAME     |  `Super Admin` | |
+| jetport.auth.default_webmaster_email | DEFAULT_SUPER_ADMIN_EMAIL |`admin@admin.com` |  |
+| jetport.authdefault_webmaster_password | DEFAULT_SUPER_ADMIN_PASSWORD |`secret` | |
+| jetport.auth.default_site_owner_name | DEFAULT_SUPER_ADMIN_EMAIL |`admin@admin.com` | |
+| jetport.auth.default_site_owner_email | DEFAULT_OWNER_EMAIL |`owner@admin.com` | |
+| jetport.auth.default_site_owner_password | DEFAULT_OWNER_PASSWORD |`secret` | |
+| jetport.auth.default_auditor_name | DEFAULT_AUDITOR_NAME |`Auditor` | |
+| jetport.auth.default_auditor_email | DEFAULT_AUDITOR_EMAIL |`auditor@admin.com` | |
+| jetport.auth.default_auditor_password |DEFAULT_AUDITOR_PASSWORD |`secret` | |
+| jetport.auth.default_officer_name | DEFAULT_OFFICER_NAME |`Client` | |
+| jetport.auth.default_officer_email | DEFAULT_OFFICER_EMAIL |`client@example.com` | |
+| jetport.auth.default_officer_password | DEFAULT_OFFICER_EMAIL |`secret` | |
+| jetport.auth.default_supervisor_name | DEFAULT_SUPERVISOR_NAME |`Supervisor` | |
+| jetport.auth.default_supervisor_email | DEFAULT_SUPERVISOR_EMAIL |`supervisor@example.com` | |
+| jetport.auth.default_supervisor_password | DEFAULT_SUPERVISOR_PASSWORD |`secret` | |

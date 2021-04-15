@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::connection(config('domains.auth.database_connection'))->create('users', function (Blueprint $table) {
+        Schema::connection(config('jetport.auth.database_connection'))->create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('type', [User::TYPE_ADMIN, User::TYPE_USER])->default(User::TYPE_USER);
             $table->string('name');
@@ -49,6 +49,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::connection(config('domains.auth.database_connection'))->dropIfExists('users');
+        Schema::connection(config('jetport.auth.database_connection'))->dropIfExists('users');
     }
 }
