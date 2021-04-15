@@ -21,7 +21,7 @@ Configuration keys often reference environment variables, which can be set in yo
 | jetport.auth.default_site_owner_email | DEFAULT_OWNER_EMAIL |`owner@admin.com` |
 | jetport.auth.default_site_owner_password | DEFAULT_OWNER_PASSWORD |`secret` |
 | jetport.auth.default_auditor_name | DEFAULT_AUDITOR_NAME |`Auditor` |
-| jetport.auth.default_auditor_email | DEFAULT_AUDITOR_EMAI |`auditor@admin.com` |
+| jetport.auth.default_auditor_email | DEFAULT_AUDITOR_EMAIL |`auditor@admin.com` |
 | jetport.auth.default_auditor_password |DEFAULT_AUDITOR_PASSWORD |`secret` |
 | jetport.auth.default_officer_name | DEFAULT_OFFICER_NAME |`Client` |
 | jetport.auth.default_officer_email | DEFAULT_OFFICER_EMAIL |`client@example.com` |
