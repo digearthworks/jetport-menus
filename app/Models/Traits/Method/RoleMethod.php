@@ -11,9 +11,6 @@ trait RoleMethod
         return $this->name === config('jetport.auth.access.role.admin');
     }
 
-    /**
-     * @return Collection
-     */
     public function getPermissionDescriptions(): Collection
     {
         return $this->permissions->pluck('description');

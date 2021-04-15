@@ -11,12 +11,12 @@ class Sidebar extends Component
      *
      * @var array
      */
-    public $navItems;
+    public $navItems = [];
 
     public function mount($navItems = [])
     {
-        if (!count($navItems) > 0) {
-            $this->navItems = explode(' ', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.');
+        if (! $navItems) {
+            $this->navItems = $this->randomItems();
         }
     }
 
@@ -25,5 +25,10 @@ class Sidebar extends Component
         return view('sidebar', [
             'navItems' => $this->navItems,
         ]);
+    }
+
+    private function randomItems()
+    {
+        return explode(' ', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.');
     }
 }
