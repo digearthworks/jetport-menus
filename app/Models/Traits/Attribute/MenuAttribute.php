@@ -78,7 +78,7 @@ trait MenuAttribute
 
     public function getIsActiveAttribute(): bool
     {
-         return ($this->attributes['active'] ?? 0) == 1;
+        return ($this->attributes['active'] ?? 0) == 1;
     }
 
     public function getIsIFrameAttribute(): bool
