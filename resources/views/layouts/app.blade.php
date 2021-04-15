@@ -33,7 +33,7 @@
 
     <x-jet-banner />
 
-    <div x-data="{ open:false, sidebarOpen: false }" class="flex overflow-x-hidden min-h-screen bg-gray-100">
+    <div x-data="{ open:false, sidebarOpen: true }" class="flex overflow-x-hidden min-h-screen bg-gray-100">
 
         @livewire('sidebar')
 
