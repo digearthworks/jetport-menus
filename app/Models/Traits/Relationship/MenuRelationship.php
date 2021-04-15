@@ -25,6 +25,7 @@ trait MenuRelationship
     {
         return $this->belongsTo(__CLASS__, 'menu_id')->with('icon', 'parent');
     }
+
     public function isMenuIndex()
     {
         return $this->label === 'Menu Index';
@@ -32,7 +33,7 @@ trait MenuRelationship
 
     public function children()
     {
-        return $this->isMenuIndex() ? $this->whereNotNull('id') : $this->childrenQuery();
+        return $this->isMenuIndex() ? $this->whereNotNull('id') : $this->getChildrenQuery();
     }
 
     public function getChildrenQuery()
@@ -42,7 +43,7 @@ trait MenuRelationship
 
     public function hotlinks()
     {
-        $q = $this->childrenQuery();
+        $q = $this->getChildrenQuery();
 
         $isIndex = $this->isMenuIndex();
 

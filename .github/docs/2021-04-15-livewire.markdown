@@ -1,4 +1,11 @@
-##### Where to find Livewire Components 
+---
+layout: post
+title:  "Livewire"
+date:   2021-04-15 2:44:53 -0400
+categories: jekyll update
+---
+
+##### Where to find Livewire Components
 
 Livewire components are Registered in App\Providers\LivewireServiceProvider.php
 

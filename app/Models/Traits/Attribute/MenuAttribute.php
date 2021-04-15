@@ -145,9 +145,7 @@ trait MenuAttribute
          * If there is already a parent
          * just attach it to the parent
          */
-        $pId = $this->where('id', $menuId)->value('menu_id');
-
-        $this->attributes['menu_id'] = ($pId ?: $menuId);
+        $this->attributes['menu_id'] = ($this->where('id', $menuId)->value('menu_id') ?: $menuId);
     }
 
     private function getRowsForMenuIndex()
