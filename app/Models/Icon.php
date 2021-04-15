@@ -15,10 +15,6 @@ class Icon extends Model
 
     protected $guarded = [];
 
-    /**RELATIONS */
-    /**
-     * Get all of the menus that are assigned this icon.
-     */
     public function menus()
     {
         return $this->hasMany(Menu::class);

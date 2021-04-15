@@ -6,9 +6,6 @@ use App\Models\Icon;
 use App\Models\Permission;
 use App\Models\User;
 
-/**
- * Class PermissionRelationship.
- */
 trait MenuRelationship
 {
     public function icon()
@@ -29,6 +26,11 @@ trait MenuRelationship
     public function isMenuIndex()
     {
         return $this->label === 'Menu Index';
+    }
+
+    public function isParentMenu()
+    {
+        return $this->menu_id === null;
     }
 
     public function children()

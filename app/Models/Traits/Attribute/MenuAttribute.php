@@ -88,7 +88,7 @@ trait MenuAttribute
 
     public function getGridAttribute()
     {
-        if ($this->label === 'Menu Index') {
+        if ($this->isMenuIndex()) {
             return [
                 'menu' => $this->reloadWithChildren(),
                 'itemsGroupMeta' => $this->getGroupMetaForItems(),
@@ -96,7 +96,7 @@ trait MenuAttribute
             ];
         }
 
-        if ($this->menu_id === null) {
+        if ($this->isParentMenu()) {
             return [
                 'menu' => $this->reloadWithChildren(),
                 'itemsGroupMeta' => $this->getGroupMetaForItems(),

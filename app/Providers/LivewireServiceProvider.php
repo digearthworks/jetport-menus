@@ -8,21 +8,11 @@ use Livewire\Livewire;
 
 class LivewireServiceProvider extends ServiceProvider
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
     public function register()
     {
         Livewire::component('sidebar', Sidebar::class);
     }
 
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
     public function boot()
     {
         //
