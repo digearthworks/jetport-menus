@@ -52,101 +52,74 @@ trait MenuAttribute
         return $value;
     }
 
-    /**
-     * @return string
-     */
     public function getInternalIframeAttribute(): string
     {
         $prefix = config('ui.internal_iframe_prefix');
-        $link = $this->attributes['link'];
 
-        return '/' . $prefix . '/' . $this->cleanSlug($link);
+        return '/' . $prefix . $this->getInternalLinkAttribute();
     }
 
-    /**
-     * @return string
-     */
     public function getExternalIframeAttribute(): string
     {
         $prefix = config('ui.external_iframe_prefix');
-        $link = $this->attributes['link'];
 
-        return '/' . $prefix . '?externallink=' . $this->cleanSlug($link);
+        return '/' . $prefix . '?externallink=' . $this->getCleanSlug();
     }
 
-    /**
-     * @return string
-     */
     public function getInternalLinkAttribute(): string
     {
-        return '/' . $this->cleanSlug($this->attributes['link']);
+        return '/' . $this->getCleanSlug();
     }
 
-    /**
-     * @return string
-     */
     public function getDisabledLinkAttribute(): string
     {
-        return '#disabled_link#' . $this->cleanSlug($this->attributes['link']);
+        return '#disabled_link#' . $this->getCleanSlug();
     }
 
-    /**
-     * @return bool
-     */
     public function getIsActiveAttribute(): bool
     {
-        if (isset($this->attributes['active']) && $this->attributes['active'] == 1) {
-            return true;
-        }
-
-        return false;
+         return ($this->attributes['active'] ?? 0) == 1;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsIFrameAttribute(): bool
     {
-        if (isset($this->attributes['iframe']) && $this->attributes['iframe'] == 1) {
-            return true;
-        }
-
-        return false;
+        return ($this->attributes['iframe'] ?? 0) == 1;
     }
 
     public function getGridAttribute()
     {
         if ($this->label === 'Menu Index') {
-            $count = $this->whereNotNull('id')->count();
-            $collection = collect($this->all());
-            $rowCount = $count / 7;
-            $chunks = [];
-            for ($i = 0; $i < $rowCount; $i++) {
-                $chunks[] = $collection->splice(7, 7);
-            }
-            $rows = array_merge($chunks, [$collection]);
-
             return [
-                'menu' => $this->with('children', 'icon')->where('id', $this->id)->first(),
+                'menu' => $this->reloadWithChildren(),
                 'itemsGroupMeta' => $this->getGroupMetaForItems(),
-                'rows' => $rows,
+                'rows' => $this->getRowsForMenuIndex(),
             ];
         }
 
         if ($this->menu_id === null) {
             return [
-                'menu' => $this->with('children', 'icon')->where('id', $this->id)->first(),
+                'menu' => $this->reloadWithChildren(),
                 'itemsGroupMeta' => $this->getGroupMetaForItems(),
                 'rows' => [
-                    $this->children()->where('row', 1)->with('icon')->get(),
-                    $this->children()->where('row', 2)->with('icon')->get(),
-                    $this->children()->where('row', 3)->with('icon')->get(),
-                    $this->children()->where('row', 4)->with('icon')->get(),
+                    $this->getChildrenOfRow(1),
+                    $this->getChildrenOfRow(2),
+                    $this->getChildrenOfRow(3),
+                    $this->getChildrenOfRow(4),
                 ],
             ];
         }
 
         return $this->parent->grid;
+    }
+
+    private function getChildrenOfRow($int)
+    {
+        return $this->children()->where('row', $int)->with('icon')->get();
+    }
+
+    private function reloadWithChildren()
+    {
+        return $this->with('children', 'icon')->where('id', $this->id)->first();
     }
 
     public function setLinkAttribute($link)
@@ -161,8 +134,10 @@ trait MenuAttribute
 
     public function setMenuIdAttribute($menuId)
     {
-        if (!$this->where('id', $menuId)->first() || $this->id == $menuId) {
+        // Safety Guard:
+        if (!$this->find($menuId) || $this->id == $menuId) {
             $this->attributes['menu_id'] = null;
+
             return;
         }
 
@@ -170,11 +145,26 @@ trait MenuAttribute
          * If there is already a parent
          * just attach it to the parent
          */
-        if (isset($this->where('id', $menuId)->first()->menu_id)) {
-            $this->attributes['menu_id'] = $this->where('id', $menuId)->get()->menu_id;
-            return;
+        $pId = $this->where('id', $menuId)->value('menu_id');
+
+        $this->attributes['menu_id'] = ($pId ?: $menuId);
+    }
+
+    private function getRowsForMenuIndex()
+    {
+        $count = $this->whereNotNull('id')->count();
+        $collection = collect($this->all());
+        $rowCount = $count / 7;
+        $chunks = [];
+        for ($i = 0; $i < $rowCount; $i++) {
+            $chunks[] = $collection->splice(7, 7);
         }
 
-        $this->attributes['menu_id'] = $menuId;
+        return array_merge($chunks, [$collection]);
+    }
+
+    private function getCleanSlug()
+    {
+        return $this->cleanSlug($this->attributes['link']);
     }
 }

@@ -25,9 +25,13 @@ class Menu extends Model
         Userstamps;
 
     protected $cascadeDeletes = ['children'];
-    protected $dates = ['created_at, updated_at, deleted_at'];
+
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
     protected $guarded = [];
+
     protected $appends = ['grid'];
+
     protected $with = 'icon';
 
 
@@ -57,17 +61,21 @@ class Menu extends Model
     protected function getIconId($icon)
     {
         if (is_int($icon)) {
-            return isset(Icon::find($icon)->id) ? Icon::find($icon)->id : null;
+            return Icon::query()->find($icon) ? $icon : null;
         }
 
-        if (count(Icon::where('title', $icon)->get()) < 1) {
-            return (Icon::create([
-                'title' => $icon,
-                'source' => 'FontAwesome',
-                'version' => '5',
-            ]))->id;
+        $id = Icon::query()->where('title', $icon)->value('id');
+
+        if ($id) {
+            return $id;
         }
 
-        return (Icon::where('title', $icon)->first())->id;
+        $icon = Icon::create([
+            'title' => $icon,
+            'source' => 'FontAwesome',
+            'version' => '5',
+        ]);
+
+        return $icon->id;
     }
 }

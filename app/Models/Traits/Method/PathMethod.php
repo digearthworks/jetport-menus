@@ -4,9 +4,6 @@ namespace App\Models\Traits\Method;
 
 use Illuminate\Support\Str;
 
-/**
- * Trait HasPathMethod.
- */
 trait PathMethod
 {
     /**

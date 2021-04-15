@@ -7,9 +7,6 @@ use App\Models\Traits\Relationship\PermissionRelationship;
 use App\Models\Traits\Scope\PermissionScope;
 use Spatie\Permission\Models\Permission as SpatiePermission;
 
-/**
- * Class Permission.
- */
 class Permission extends SpatiePermission
 {
     use PermissionRelationship,
