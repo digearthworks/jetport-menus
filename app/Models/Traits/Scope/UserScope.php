@@ -46,7 +46,7 @@ trait UserScope
     public function scopeAllAccess($query)
     {
         return $query->whereHas('roles', function ($query) {
-            $query->where('name', config('domains.auth.access.role.admin'));
+            $query->where('name', config('jetport.auth.access.role.admin'));
         });
     }
 

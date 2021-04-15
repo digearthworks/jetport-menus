@@ -39,7 +39,7 @@ trait UserMethod
      */
     public function hasAllAccess(): bool
     {
-        return $this->isAdmin() && $this->hasRole(config('domains.auth.access.role.admin'));
+        return $this->isAdmin() && $this->hasRole(config('jetport.auth.access.role.admin'));
     }
 
     /**
@@ -161,7 +161,7 @@ trait UserMethod
 
     public function checkIfMenuIsPermitted(Menu $menu)
     {
-        if (isset($menu->permission) && config('domains.auth.check_permissions_on_menu_assignment')) {
+        if (isset($menu->permission) && config('jetport.auth.check_permissions_on_menu_assignment')) {
             if (! in_array($menu->permission->name, $this->getPermissionNames()->toArray())) {
 
                 // throw new GeneralException(__('This user does not have permission to access this menu.'));

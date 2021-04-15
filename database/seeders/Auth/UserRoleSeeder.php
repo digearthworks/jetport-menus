@@ -17,7 +17,7 @@ class UserRoleSeeder extends Seeder
 
     public function __construct()
     {
-        $this->connection = config('domains.auth.database_connection');
+        $this->connection = config('jetport.auth.database_connection');
     }
 
     /**
@@ -27,8 +27,8 @@ class UserRoleSeeder extends Seeder
     {
         $this->disableForeignKeys($this->connection);
 
-        User::find(1)->assignRole(config('domains.auth.access.role.admin'));
-        User::find(2)->assignRole(config('domains.auth.access.role.admin'));
+        User::find(1)->assignRole(config('jetport.auth.access.role.admin'));
+        User::find(2)->assignRole(config('jetport.auth.access.role.admin'));
         User::find(3)->assignRole('Auditor');
         User::find(4)->assignRole('Supervisor');
 

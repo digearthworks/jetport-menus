@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
 
     public function __construct()
     {
-        $this->connection = config('domains.auth.database_connection');
+        $this->connection = config('jetport.auth.database_connection');
     }
 
     /**
@@ -30,9 +30,9 @@ class UserSeeder extends Seeder
         // Add the master administrator, user id of 1
         User::create([
             'type' => User::TYPE_ADMIN,
-            'name' => config('domains.auth.default_webmaster_name'),
-            'email' => config('domains.auth.default_webmaster_email'),
-            'password' => config('domains.auth.default_webmaster_password'),
+            'name' => config('jetport.auth.default_webmaster_name'),
+            'email' => config('jetport.auth.default_webmaster_email'),
+            'password' => config('jetport.auth.default_webmaster_password'),
             'email_verified_at' => now(),
             'active' => true,
         ]);
@@ -40,9 +40,9 @@ class UserSeeder extends Seeder
         // Add the owner
         User::create([
             'type' => User::TYPE_ADMIN,
-            'name' => config('domains.auth.default_site_owner_name'),
-            'email' => config('domains.auth.default_site_owner_email'),
-            'password' => config('domains.auth.default_site_owner_password'),
+            'name' => config('jetport.auth.default_site_owner_name'),
+            'email' => config('jetport.auth.default_site_owner_email'),
+            'password' => config('jetport.auth.default_site_owner_password'),
             'email_verified_at' => now(),
             'active' => true,
         ]);
@@ -50,9 +50,9 @@ class UserSeeder extends Seeder
         // Add auditor
         User::create([
             'type' => User::TYPE_ADMIN,
-            'name' => config('domains.auth.default_auditor_name'),
-            'email' => config('domains.auth.default_auditor_email'),
-            'password' => config('domains.auth.default_auditor_password'),
+            'name' => config('jetport.auth.default_auditor_name'),
+            'email' => config('jetport.auth.default_auditor_email'),
+            'password' => config('jetport.auth.default_auditor_password'),
             'email_verified_at' => now(),
             'active' => true,
         ]);
@@ -60,9 +60,9 @@ class UserSeeder extends Seeder
         // Add SUPERVISOR
         User::create([
             'type' => User::TYPE_USER,
-            'name' => config('domains.auth.default_supervisor_name'),
-            'email' => config('domains.auth.default_supervisor_email'),
-            'password' => config('domains.auth.default_supervisor_password'),
+            'name' => config('jetport.auth.default_supervisor_name'),
+            'email' => config('jetport.auth.default_supervisor_email'),
+            'password' => config('jetport.auth.default_supervisor_password'),
             'email_verified_at' => now(),
             'active' => true,
         ]);
@@ -73,9 +73,9 @@ class UserSeeder extends Seeder
                         // Add officer
             User::create([
                 'type' => User::TYPE_USER,
-                'name' => config('domains.auth.default_officer_name'),
-                'email' => config('domains.auth.default_officer_email'),
-                'password' => config('domains.auth.officer_password'),
+                'name' => config('jetport.auth.default_officer_name'),
+                'email' => config('jetport.auth.default_officer_email'),
+                'password' => config('jetport.auth.officer_password'),
                 'email_verified_at' => now(),
                 'active' => true,
             ]);
