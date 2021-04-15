@@ -2,7 +2,7 @@
 
     <div class="flex justify-between h-16 bg-white border-b border-gray-100">
         <div class="flex">
-            <div class="flex-shrink-0 flex items-center">
+            <div class="flex-shrink-0 flex mx-16 items-center">
                 <a href="{{ route('dashboard') }}">
                     <x-jet-application-mark class="block h-9 w-auto" />
                 </a>
