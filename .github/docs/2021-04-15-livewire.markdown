@@ -35,6 +35,6 @@ class LivewireServiceProvider extends ServiceProvider
 
 }
 ```
-In this example the frontend `component` is under `views/sidebar.blade.php`, and the php logic can be found in `App\Http\Livewire\Sidebar.php`
+Here the frontend `component` is under `views/sidebar.blade.php`, and the php logic can be found in `App\Http\Livewire\Sidebar.php`
 
 ###### [Livewire Docs](https://laravel-livewire.com/docs/2.x/quickstart)

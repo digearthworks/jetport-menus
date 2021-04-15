@@ -4,9 +4,12 @@ title:  "Config"
 date:   2021-04-15 9:44:53 -0400
 categories: jekyll update
 ---
-##### Jetport Configuration
+#### Jetport Configuration
 
-Jetport related configs can be found under `config/jetport/`, and can be accesses with `config('jetport.{filename}.{key}')`, using the standar laravel  *dot syntax* ([Laravel Docs](https://laravel.com/docs/8.x/configuration)). For instance configurations related to *Authentication* and *Authorization* can be found in `config/jetport/auth.php` and can be accessed with `config('jetport.auth.{key}')` *not to be confused with* `config/auth.php`. Configuration keys often reference environment variables, which can be set in your application's `.env` file. The current defaults and their corresponding `.env` keys will be listed below:
+Jetport related configs can be found under `config/jetport/`, and can be accesses with `config('jetport.{filename}.{key}')`, using the standar laravel  **dot syntax** ([Laravel Docs](https://laravel.com/docs/8.x/configuration)).
+For instance configurations related to **Authentication** and **Authorization** can be found in `config/jetport/auth.php` and can be accessed with `config('jetport.auth.{key}')` **not to be confused with** `config/auth.php`.
+
+Configuration keys often reference environment variables, which can be set in your application's `.env` file. The current defaults and their corresponding `.env` keys will be listed below:
 
 |   Key         | Env           | Default  |
 | :------------- |:-------------:| -----:|
