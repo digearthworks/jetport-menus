@@ -29,6 +29,6 @@ class Sidebar extends Component
 
     private function randomItems()
     {
-        return explode(' ', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores eaque vel quod possimus assumenda officia reiciendis, animi nemo impedit molestiae. Nobis assumenda eum quos doloremque nostrum maxime ratione ab modi.');
+        return explode(' ', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.');
     }
 }
