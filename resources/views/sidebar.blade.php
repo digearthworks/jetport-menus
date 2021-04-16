@@ -12,7 +12,7 @@
 
     <nav class="pt-8 flex-1 flex flex-col bg-white border-l border-gray-100">
 
-        <div x-data="{ open: true }">
+        <div x-data="{ open: false }">
             <button @click="open = !open"
                 class="w-full flex justify-between items-center py-3 px-6 text-gray-600 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
                 <span class="flex items-center">
@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <div x-data="{ open: true }">
+        <div x-data="{ open: false }">
             <button @click="open = !open"
                 class="w-full flex justify-between items-center py-3 px-6 text-gray-600 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
                 <span class="flex items-center">
