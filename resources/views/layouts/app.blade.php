@@ -52,6 +52,8 @@
                 </header>
             @endif
 
+            @include('includes.partials.logged-in-as')
+
             <!-- Page Content -->
             <main>
 
