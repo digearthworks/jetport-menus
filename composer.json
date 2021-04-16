@@ -9,16 +9,21 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "darkghosthunter/laraguard": "^3.0",
+        "dyrynda/laravel-cascade-soft-deletes": "^4.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "lab404/laravel-impersonate": "^1.7",
         "laravel/framework": "^8.12",
         "laravel/jetstream": "^2.x-dev",
         "laravel/passport": "^10.1",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
-        "mediconesystems/livewire-datatables": "^0.4.3"
+        "mediconesystems/livewire-datatables": "^0.4.3",
+        "spatie/laravel-permission": "^4.0",
+        "wildside/userstamps": "^2.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

@@ -17,17 +17,18 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function ($view) {
-
             $app_logo = config('ui.logo');
 
-            if(app()->environment(['testing', 'local'])){
-
+            if (app()->environment(['testing', 'local'])) {
                 $app_logo = '/stock-img/' . Storage::disk('stock-img')->files()[
                     rand(0, (count(Storage::disk('stock-img')->files()) - 1))
                 ];
             }
 
-            $view->with('app_logo', $app_logo);
+            $view->with([
+                'app_logo' => $app_logo,
+                'logged_in_user' => auth()->user()
+            ]);
         });
     }
 }
