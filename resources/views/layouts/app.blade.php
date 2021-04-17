@@ -52,7 +52,7 @@
                 </header>
             @endif
 
-            @include('includes.partials.logged-in-as')
+            @include('includes.logged-in-as')
 
             <!-- Page Content -->
             <main>

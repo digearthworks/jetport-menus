@@ -13,5 +13,5 @@
         </div>
     </div>
 @else
-    <span class="px-2 rounded-sm bg-red-500 text-white cursor-pointer shadow">@lang('No')</span>
+    <x-danger-badge value="{{ __('No') }}" />
 @endif

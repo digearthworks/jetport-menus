@@ -17,7 +17,7 @@ class CreateIconsTable extends Migration
             $table->id();
             $table->integer('favorite')->nullable();
             $table->string('source')->nullable();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('version')->nullable();
             $table->text('svg')->nullable();
             $table->string('unicode')->nullable();
