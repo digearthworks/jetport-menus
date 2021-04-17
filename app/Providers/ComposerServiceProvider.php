@@ -25,7 +25,10 @@ class ComposerServiceProvider extends ServiceProvider
                 ];
             }
 
-            $view->with('app_logo', $app_logo);
+            $view->with([
+                'app_logo' => $app_logo,
+                'logged_in_user' => auth()->user()
+            ]);
         });
     }
 }

@@ -28,6 +28,11 @@ return [
     'default_supervisor_password' => env('DEFAULT_SUPERVISOR_PASSWORD', '$2y$10$w3lz8ysxcYAwN8TECDdcp.6.QHPsmTNkOSajMOyFIv3xprID94Lre'), // Hash::make('secret')
     'access' => [
 
+        'middleware' => [
+            'confirm' => 'password.confirm',
+            'verified' => 'verified',
+        ],
+
         'user' => [
 
             /*
