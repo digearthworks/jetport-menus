@@ -20,11 +20,6 @@ use Livewire\Livewire;
 
 class JetstreamServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
     public function register()
     {
         $this->app->afterResolving(BladeCompiler::class, function () {
@@ -51,11 +46,6 @@ class JetstreamServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot()
     {
         $this->configurePermissions();
