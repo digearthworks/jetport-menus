@@ -178,6 +178,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
 
+        App\MenuSystem\MenusServiceProvider::class,
     ],
 
     /*

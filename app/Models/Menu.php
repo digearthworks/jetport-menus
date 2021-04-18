@@ -34,8 +34,6 @@ class Menu extends Model
 
     protected $with = 'icon';
 
-
-
     private function cleanSlug($slug)
     {
         $dirty = [
@@ -48,11 +46,6 @@ class Menu extends Model
         return ltrim(str_replace($dirty, '', $slug), '/');
     }
 
-    /**
-     * Create a new factory instance for the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */
     protected static function newFactory()
     {
         return MenuFactory::new();
@@ -70,7 +63,7 @@ class Menu extends Model
             return $id;
         }
 
-        $icon = Icon::create([
+        $icon = Icon::query()->create([
             'title' => $icon,
             'source' => 'FontAwesome',
             'version' => '5',
