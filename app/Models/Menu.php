@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\Attribute\MenuAttribute;
 use App\Models\Traits\Connection\AuthConnection;
 use App\Models\Traits\Method\MenuMethod;
+use App\Models\Traits\Method\PathMethod;
 use App\Models\Traits\Relationship\MenuRelationship;
 use Database\Factories\MenuFactory;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
@@ -21,6 +22,7 @@ class Menu extends Model
         MenuAttribute,
         MenuMethod,
         MenuRelationship,
+        PathMethod,
         SoftDeletes,
         Userstamps;
 
@@ -34,6 +36,8 @@ class Menu extends Model
 
     protected $with = 'icon';
 
+
+
     private function cleanSlug($slug)
     {
         $dirty = [
@@ -46,6 +50,11 @@ class Menu extends Model
         return ltrim(str_replace($dirty, '', $slug), '/');
     }
 
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
     protected static function newFactory()
     {
         return MenuFactory::new();
@@ -53,21 +62,33 @@ class Menu extends Model
 
     protected function getIconId($icon)
     {
+
+        // Leave early if there is no icon
+        if (!$icon) {
+            return null;
+        }
+
         if (is_int($icon)) {
             return Icon::query()->find($icon) ? $icon : null;
         }
 
-        $id = Icon::query()->where('title', $icon)->value('id');
+        $id = (strlen($icon) > 21) ? Icon::query()->where('svg', $icon)->value('id') : Icon::query()->where('title', $icon)->value('id');
 
         if ($id) {
             return $id;
         }
 
-        $icon = Icon::query()->create([
+        $iconAttributes = (strlen($icon) > 21) ? [
+            'svg' => $icon,
+            'source' => 'svg',
+        ] : [
             'title' => $icon,
             'source' => 'FontAwesome',
             'version' => '5',
-        ]);
+        ];
+
+
+        $icon = Icon::create($iconAttributes);
 
         return $icon->id;
     }
