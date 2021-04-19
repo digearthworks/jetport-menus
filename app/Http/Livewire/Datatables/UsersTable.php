@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Datatables;
 use App\Models\Menu;
 use App\Models\Role;
 use App\Models\User;
-use App\Services\UserService;
 use App\Support\Concerns\InteractsWithBanner;
 use Mediconesystems\LivewireDatatables\Column;
 
