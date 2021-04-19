@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
@@ -13,12 +16,13 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "lab404/laravel-impersonate": "^1.7",
         "laravel/framework": "^8.12",
-        "laravel/jetstream": "^2.x-dev",
+        "laravel/jetstream": "^2.3.2",
         "laravel/passport": "^10.1",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
-        "rappasoft/laravel-livewire-tables": "0.3.3",
+        "mediconesystems/livewire-datatables": "^0.4.3",
+        "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-permission": "^4.0",
         "wildside/userstamps": "^2.1"
     },
@@ -95,5 +99,11 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/digearthworks/livewire-datatables"
+        }
+    ]
 }

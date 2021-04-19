@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Menu;
 use Livewire\Component;
 
 class Sidebar extends Component
@@ -11,24 +12,25 @@ class Sidebar extends Component
      *
      * @var array
      */
-    public $navItems = [];
+    public $officeItems;
+    public $adminItems;
 
     public function mount($navItems = [])
     {
-        if (! $navItems) {
-            $this->navItems = $this->randomItems();
-        }
+        $this->adminItems =  Menu::query()->where('group', 'admin')->get();
+        $this->officeItems = Menu::query()->where('group', 'office')->get();
     }
 
     public function render()
     {
         return view('sidebar', [
-            'navItems' => $this->navItems,
+            'adminItems' => $this->adminItems,
+            'officeItems' => $this->officeItems,
         ]);
     }
 
     private function randomItems()
     {
-        return explode(' ', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores eaque vel quod possimus assumenda officia reiciendis, animi nemo impedit molestiae. Nobis assumenda eum quos doloremque nostrum maxime ratione ab modi.');
+        return explode(' ', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.');
     }
 }

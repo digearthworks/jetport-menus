@@ -21,17 +21,8 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
+
     <body class="font-sans antialiased">
-
-        <x-jet-banner />
-
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
-</head>
-
-<body class="font-sans antialiased">
-
-    <x-jet-banner />
 
     <div x-data="{ open:false, sidebarOpen: false }" class="flex overflow-x-hidden min-h-screen bg-gray-100">
 
@@ -51,6 +42,10 @@
 
                 </header>
             @endif
+
+            @include('includes.logged-in-as')
+
+            <x-jet-banner />
 
             <!-- Page Content -->
             <main>

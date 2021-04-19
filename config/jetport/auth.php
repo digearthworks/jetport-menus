@@ -28,12 +28,24 @@ return [
     'default_supervisor_password' => env('DEFAULT_SUPERVISOR_PASSWORD', '$2y$10$w3lz8ysxcYAwN8TECDdcp.6.QHPsmTNkOSajMOyFIv3xprID94Lre'), // Hash::make('secret')
     'access' => [
 
+        'middleware' => [
+            'confirm' => 'password.confirm',
+            'verified' => 'verified',
+        ],
+
         'user' => [
 
             /*
              * Whether or not the register route and view are active
              */
             'registration' => env('ENABLE_REGISTRATION', true),
+
+            /*
+             * Whether or not a user can be permanently deleted from the system via the backend
+             * The regular delete button will still exist, and will soft delete the user
+             * but the permanently deleted button on the 'deleted users' screen will be hidden.
+             */
+            'permanently_delete' => false,
 
             /*
              * When active, a user can only have one session active at a time
