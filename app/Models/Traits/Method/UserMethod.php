@@ -66,7 +66,7 @@ trait UserMethod
     /**
      * Remove all current menus and set the given ones.
      *
-     * @param  array|\App\Domains\Auth\Models\Menu ...$menus
+     * @param  array|\App\Models\Menu ...$menus
      *
      * @return $this
      */
@@ -80,7 +80,7 @@ trait UserMethod
     /**
      * Assign the given menu to the model.
      *
-     * @param array|string|\App\Domains\Auth\Models\Menu ...$menus
+     * @param array|string|\App\Models\Menu ...$menus
      *
      * @return $this
      */

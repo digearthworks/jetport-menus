@@ -59,7 +59,7 @@
                             class="text-sm text-gray-600">{{ $menu->label }}</span>
                     </label>
 
-                    @if ($menu->children->count())
+                    @if ($menu->children()->count())
                         <blockquote class="ml-3 text-gray-700">
                             @foreach ($menu->children as $link)
                                 <i class="fa fa-check-circle"></i> {!! $link->icon->art !!} {{ $link->link }}
