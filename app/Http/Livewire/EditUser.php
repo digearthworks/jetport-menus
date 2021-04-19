@@ -3,10 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use App\Services\UserService;
+use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
 class EditUser extends Component
 {
+    use InteractsWithBanner;
+
     public $userId;
 
     public $editingUser;
@@ -46,6 +50,13 @@ class EditUser extends Component
         $this->updateUserForm['active'] = $user->active;
         $this->updateUserForm['menus'] = $user->menus()->pluck('id');
         $this->updateUserForm['roles'] = $user->roles()->pluck('id');
+    }
+
+    public function updateUser(UserService $users)
+    {
+        $users->update($this->getUser($this->userId), $this->updateUserForm);
+        $this->banner('Successfully saved!');
+        $this->editingUser = false;
     }
 
     public function render()

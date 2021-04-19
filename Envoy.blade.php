@@ -6,6 +6,7 @@
     npm install && npm run dev
     php artisan storage:link
     php artisan passport:keys
+    php artisan db:wipe
     php artisan migrate:refresh --seed
     {{isset($test) ? 'php artisan test' : ''}}
 @endtask

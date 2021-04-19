@@ -22,6 +22,7 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
         "mediconesystems/livewire-datatables": "^0.4.3",
+        "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-permission": "^4.0",
         "wildside/userstamps": "^2.1"
     },
