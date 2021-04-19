@@ -1,20 +1,20 @@
 @inject('model', '\App\Models\User')
 
-<x-jet-dialog-modal wire:model="editingUser">
+<x-dialog-modal maxWidth="2xl" wire:model="editingUser">
 
     <x-slot name="title">
 
     </x-slot>
 
     <x-slot name="content">
-        <div x-data="{userType : '{{ $user->type }}'}">
+        <div x-data="{userType : '{{ $user->type ?? '' }}'}">
             <div class="col-span-6 sm:col-span-4">
 
                 <div>
                     <x-jet-label for="name" value="{{ __('Name') }}" />
-                    <x-jet-input type="text" name="name" class="mb-1 block w-full" placeholder="{{ __('Name') }}"
-                        value="{{ old('name') ?? $user->name }}" maxlength="100" wire:model.defer="updateUserForm.name"
-                        required />
+                    <x-jet-input type="text" name="name" class="block w-full mb-1" placeholder="{{ __('Name') }}"
+                        value="{{ old('name') ?? ($user->name ?? '') }}" maxlength="100"
+                        wire:model.defer="updateUserForm.name" required />
                 </div>
             </div>
             <!--form-group-->
@@ -23,21 +23,22 @@
 
                 <div>
                     <x-jet-label for="email" value="{{ __('Email') }}" />
-                    <x-jet-input class="mb-1 block w-full" type="email" name="email" :value="old('email') ?? $user->email"
-                        wire:model.defer="updateUserForm.email" required autofocus />
+                    <x-jet-input class="block w-full mb-1" type="email" name="email"
+                        :value="old('email') ?? ($user->email ?? '' )" wire:model.defer="updateUserForm.email" required
+                        autofocus />
                 </div>
             </div>
             <!--form-group-->
 
-            @if (!$user->isMasterAdmin())
+            @if (isset($user) && !$user->isMasterAdmin())
                 <div class="col-span-6 sm:col-span-4">
                     <x-jet-label for="updatingName" value="{{ __('Type') }}" />
 
                     <div class="col-span-6 sm:col-span-4">
                         <select name="type"
-                            class="mb-2 form-select block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                            x-on:change="userType = $event.target.value"
-                            wire:model.defer="updateUserForm.type" required>
+                            class="block w-full mb-2 border-gray-300 rounded-md shadow-sm form-select focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                            x-on:change="userType = $event.target.value" wire:model.defer="updateUserForm.type"
+                            required>
                             <option value="{{ $model::TYPE_USER }}">@lang('User')</option>
                             <option value="{{ $model::TYPE_ADMIN }}">@lang('Administrator')</option>
                         </select>
@@ -78,16 +79,16 @@
                 @endforeach
             </div>
 
-            @if (!$user->isMasterAdmin())
+            @if (isset($user) && !$user->isMasterAdmin())
                 <!-- Only shows if type is admin -->
-                <div x-show="userType === '{{ $model::TYPE_ADMIN }}'" >
+                <div x-show="userType === '{{ $model::TYPE_ADMIN }}'">
 
                     <div class="col-span-6 sm:col-span-4">
                         <x-jet-label class="underline" for="updatingRoles" value="{{ __('Roles') }}" />
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2">
-                        @foreach ($roles->where('type',  $model::TYPE_ADMIN) as $role)
+                        @foreach ($roles->where('type', $model::TYPE_ADMIN) as $role)
                             <div
                                 class="border-gray-300 p-1 m-0.5 rounded-md border hover:border-blue-300 hover:shadow-outline-blue">
                                 <label class="flex items-center">
@@ -116,14 +117,14 @@
                 </div>
 
                 <!-- Only shows if type is user -->
-                <div x-show="userType === '{{ $model::TYPE_USER }}'" >
+                <div x-show="userType === '{{ $model::TYPE_USER }}'">
 
                     <div class="col-span-6 sm:col-span-4">
                         <x-jet-label class="underline" for="updatingRoles" value="{{ __('Roles') }}" />
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2">
-                        @foreach ($roles->where('type',  $model::TYPE_USER) as $role)
+                        @foreach ($roles->where('type', $model::TYPE_USER) as $role)
                             <div
                                 class="border-gray-300 p-1 m-0.5 rounded-md border hover:border-blue-300 hover:shadow-outline-blue">
                                 <label class="flex items-center">
@@ -151,13 +152,12 @@
 
                 </div>
 
-
             @endif
         </div>
     </x-slot>
 
     <x-slot name="footer">
-        <x-jet-secondary-button wire:click="$set('editingUser', false)" wire:loading.attr="disabled">
+        <x-jet-secondary-button wire:click="$toggle('editingUser')" wire:loading.attr="disabled">
             {{ __('Cancel') }}
         </x-jet-secondary-button>
 
@@ -166,4 +166,4 @@
         </x-jet-button>
     </x-slot>
 
-</x-jet-dialog-modal>
+</x-dialog-modal>

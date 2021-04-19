@@ -1,7 +1,16 @@
-<div x-data="{
+<div
+{{-- x-data="{
     userId : 0,
     editingUser : false
-}">
+}"
+
+x-init="() => {
+    window.livewire.on('closeTheEditor', () => {
+        editingUser = false
+    })
+}" --}}
+
+>
     @inject('model', '\App\Models\User')
 
     @if ($user->trashed() && $logged_in_user->hasAllAccess())
@@ -18,8 +27,8 @@
 
     @else
         @if ($logged_in_user->hasAllAccess())
-            <x-edit-button x-on:click="editingUser = true; userId = {{ $user->id }}"
-                id="editUserButton_{{ $user->id }}" wire:click="editUser({{ $user->id }})">
+            <x-edit-button wire:click="openEditorForUser({{ $user->id }})"
+                id="editUserButton_{{ $user->id }}">
             </x-edit-button>
         @endif
 
@@ -67,7 +76,7 @@
         </x-slot>
     </x-jet-confirmation-modal> --}}
 
-    <div x-show="editingUser === true && userId === {{ $user->id }}">
-        <livewire:edit-user :userId="$user->id" :key="$user->id" />
-    </div>
+    {{-- <div x-show="editingUser === true && userId === {{ $user->id }}">
+        <livewire:edit-user :userId="$user->id" :key="'child-component-' . now() . $user->id" />
+    </div> --}}
 </div>

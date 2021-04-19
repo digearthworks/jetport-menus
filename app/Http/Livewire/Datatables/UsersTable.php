@@ -6,10 +6,13 @@ use App\Models\Menu;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\UserService;
+use App\Support\Concerns\InteractsWithBanner;
 use Mediconesystems\LivewireDatatables\Column;
 
 class UsersTable extends BaseTable
 {
+    use InteractsWithBanner;
+
     public $model = User::class;
 
     /**
@@ -61,43 +64,18 @@ class UsersTable extends BaseTable
      */
     public $userIdBeingPermanentlyDeleted;
 
-    /**
-     * The update form state.
-     *
-     * @var array
-     */
-    public $updateUserForm = [
-        'type' => '',
-        'name' => '',
-        'first_name' => '',
-        'last_name' => '',
-        'middle_initial' => '',
-        'email' => '',
-        'password' => '',
-        'active' => '',
-        'menus' => [],
-        'roles' => [],
-        'permisions' => [],
-    ];
+    protected $listeners = ['userUpdated', 'refreshLivewireDatatable'];
 
-    /**
-     * The create form state.
-     *
-     * @var array
-     */
-    public $createUserForm = [
-        'type' => '',
-        'name' => '',
-        'first_name' => '',
-        'last_name' => '',
-        'middle_initial' => '',
-        'email' => '',
-        'password' => '',
-        'active' => '',
-        'menus' => [],
-        'roles' => [],
-        'permissions' => [],
-    ];
+    public function userUpdated()
+    {
+        $this->emit('refreshLivewireDatatable');
+        $this->banner('Successfully saved!');
+    }
+
+    public function openEditorForUser($userId)
+    {
+        $this->emit('openEditorForUser', $userId);
+    }
 
     /**
      * Confirm that the given user should be restored.
@@ -116,30 +94,6 @@ class UsersTable extends BaseTable
     {
         dd($userType);
         $this->userType = $userType;
-    }
-
-    /**
-     * Confirm that the given user should be restored.
-     */
-    public function editUser(UserService $users, $userIdBeingEdited)
-    {
-        $this->editingUser = true;
-
-        $this->userIdBeingEdited = $userIdBeingEdited;
-
-        $user = $users->getById($userIdBeingEdited);
-
-        $this->updateUserForm['type'] = $user->type;
-        $this->userType = $user->type;
-        $this->updateUserForm['name'] = $user->name;
-        $this->updateUserForm['first_name'] = $user->first_name;
-        $this->updateUserForm['last_name'] = $user->last_name;
-        $this->updateUserForm['middle_initial'] = $user->middle_initail;
-        $this->updateUserForm['email'] = $user->email;
-        $this->updateUserForm['password'] = $user->password;
-        $this->updateUserForm['active'] = $user->active;
-        $this->updateUserForm['menus'] = $user->menus()->pluck('id');
-        $this->updateUserForm['roles'] = $user->roles()->pluck('id');
     }
 
     /**

@@ -13,7 +13,7 @@ class EditUser extends Component
 
     public $userId;
 
-    public $editingUser;
+    public $editingUser = false;
 
     /**
      * The update form state.
@@ -31,11 +31,12 @@ class EditUser extends Component
         'active' => '',
         'menus' => [],
         'roles' => [],
-        'permisions' => [],
+        'permissions' => [],
     ];
 
+    public $listeners = ['openEditorForUser'];
 
-    public function mount($userId = null)
+    public function openEditorForUser($userId)
     {
         $this->editingUser = true;
         $this->userId = $userId;
@@ -55,7 +56,7 @@ class EditUser extends Component
     public function updateUser(UserService $users)
     {
         $users->update($this->getUser($this->userId), $this->updateUserForm);
-        $this->banner('Successfully saved!');
+        $this->emit('userUpdated');
         $this->editingUser = false;
     }
 
