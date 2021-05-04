@@ -21,11 +21,13 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
-        "mediconesystems/livewire-datatables": "^0.4.3",
+        "mediconesystems/livewire-datatables": "dev-master",
+        "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-permission": "^4.0",
         "wildside/userstamps": "^2.1"
     },
     "require-dev": {
+        "imanghafoori/laravel-microscope": "^1.0",
         "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.9",
         "codedungeon/phpunit-result-printer": "^0.30.1",

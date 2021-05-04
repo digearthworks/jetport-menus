@@ -37,15 +37,9 @@
                     </svg>
                 </span>
             </button>
-{{-- {{ $adminItems}} --}}
             <div x-show="open" class="ml-4">
                 @foreach($adminItems as $adminItem)
-                    @isset($adminItem->icon->svg)
-                    <a class="py-2 px-4 flex items-center text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $adminItem->link }}"><span class="pr-1">{!!$adminItem->icon->svg!!}</span> {{$adminItem->label}}</a>
-
-                    @else
-                        <a class="py-2 px-4 flex items-center text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $adminItem->link }}"><span class="{{ $adminItem->icon->title }} pr-1"></span> {{ $adminItem->label }}</a>
-                    @endisset
+                    <a class="py-2 px-4 flex items-center text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $adminItem->link }}"><span class="pr-1">{!! $adminItem->icon->art !!}</span>{{$adminItem->label}}</a>
                 @endforeach
             </div>
         </div>
@@ -76,7 +70,7 @@
 
             <div x-show="open" class="ml-8">
                 @foreach ($officeItems as $officeItem)
-                    <a class="py-2 px-4 block text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $officeItem->link }}">{{ $officeItem }}</a>
+                    <a class="py-2 px-4 flex items-center text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $adminItem->link }}"><span class="pr-1">{!! $adminItem->icon->art !!}</span>{{$adminItem->label}}</a>
                 @endforeach
             </div>
         </div>

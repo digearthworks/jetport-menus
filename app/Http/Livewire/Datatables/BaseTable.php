@@ -12,4 +12,6 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 abstract class BaseTable extends LivewireDatatable
 {
     use HtmlComponents;
+
+    public $editsUsers = false;
 }

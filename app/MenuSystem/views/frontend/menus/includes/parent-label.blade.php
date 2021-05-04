@@ -1,0 +1,1 @@
+{{$menu->parent->label??'Main'}}
