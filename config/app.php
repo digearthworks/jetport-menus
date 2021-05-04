@@ -180,8 +180,6 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         App\Providers\UserManagementServiceProvider::class,
-
-        App\MenuSystem\MenusServiceProvider::class,
     ],
 
     /*
