@@ -1,1 +1,0 @@
-{{$menu->active?'yes':'no'}}
