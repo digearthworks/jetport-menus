@@ -1,5 +1,6 @@
 <x-7xl header="Users">
-    <livewire:datatables.users-table/>
+    <livewire:datatables.users-table />
 </x-index>
 
-<livewire:edit-user />
+<livewire:edits-user />
+<livewire:deletes-user />

@@ -14,4 +14,5 @@ abstract class BaseTable extends LivewireDatatable
     use HtmlComponents;
 
     public $editsUsers = false;
+    public $overflowXWrap = true;
 }

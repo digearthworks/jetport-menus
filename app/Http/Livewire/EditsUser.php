@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\User;
+use App\Http\Livewire\GetsUser;
 use App\Services\UserService;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
-class EditUser extends Component
+class EditsUser extends Component
 {
-    use InteractsWithBanner;
+    use GetsUser,
+        InteractsWithBanner;
 
     public $userId;
 
@@ -64,12 +65,6 @@ class EditUser extends Component
     {
         return view('admin.user.edit', [
             'user' => $this->getUser($this->userId),
-            'type' => 'user',
         ]);
-    }
-
-    public function getUser($userId = null)
-    {
-        return User::query()->find($userId);
     }
 }

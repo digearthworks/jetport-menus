@@ -12,7 +12,9 @@ class UsersTable extends BaseTable
 {
     use InteractsWithBanner;
 
-    public $model = User::class;
+    public $status;
+
+    public $overflowXWrap = false;
 
     /**
      * Indicates if the application is confirming if a user should be restored.
@@ -50,6 +52,13 @@ class UsersTable extends BaseTable
     public $userIdBeingEdited;
 
     /**
+     * The ID of the user being Deleted.
+     *
+     * @var string
+     */
+    public $userIdBeingDeleted;
+
+    /**
      * The ID of the user being restored.
      *
      * @var string
@@ -63,7 +72,7 @@ class UsersTable extends BaseTable
      */
     public $userIdBeingPermanentlyDeleted;
 
-    protected $listeners = ['userUpdated', 'refreshLivewireDatatable'];
+    protected $listeners = ['userUpdated', 'userDeleted', 'userRestored', 'refreshLivewireDatatable'];
 
     public function userUpdated()
     {
@@ -71,28 +80,43 @@ class UsersTable extends BaseTable
         $this->banner('Successfully saved!');
     }
 
+    public function userDeleted()
+    {
+        $this->emit('refreshLivewireDatatable');
+        $this->banner('Successfully Deleted User!');
+        return redirect('/admin/auth/users/deleted');
+    }
+
+    public function userRestored()
+    {
+        $this->emit('refreshLivewireDatatable');
+        $this->banner('Successfully Restored User!');
+        return redirect('/admin/auth/users');
+    }
+
     public function openEditorForUser($userId)
     {
         $this->emit('openEditorForUser', $userId);
     }
 
-    /**
-     * Confirm that the given user should be restored.
-     */
-    public function confirmUserRestore($userIdBeingRestored)
+    public function confirmDeleteUser($userId)
     {
-        $this->confirmingUserRestore = true;
-
-        $this->userIdBeingRestored = $userIdBeingRestored;
+        $this->emit('confirmDeleteUser', $userId);
     }
 
-    /**
-     * Confirm that the given user should be restored.
-     */
-    public function setUserType($userType)
+    public function confirmRestoreUser($userId)
     {
-        dd($userType);
-        $this->userType = $userType;
+        $this->emit('confirmRestoreUser', $userId);
+    }
+
+    public function confirmDeactivateUser($userId)
+    {
+        $this->emit('confirmDeactivateUser', $userId);
+    }
+
+    public function changePasswordForUser($userId)
+    {
+        $this->emit('changePasswordForUser', $userId);
     }
 
     /**
@@ -103,6 +127,21 @@ class UsersTable extends BaseTable
         $this->confirmingPermanentDelete = true;
 
         $this->$userIdBeingPermanentlyDeleted = $userIdBeingPermanentlyDeleted;
+    }
+
+
+    public function builder()
+    {
+        $query = User::with('roles');
+
+        if ($this->status === 'deleted') {
+            $query = $query->onlyTrashed();
+        } elseif ($this->status === 'deactivated') {
+            $query = $query->onlyDeactivated();
+        } else {
+            $query = $query->onlyActive();
+        }
+        return $query;
     }
 
     public function columns()
@@ -127,25 +166,26 @@ class UsersTable extends BaseTable
                 // ->filterable()
                 ->searchable(),
 
-            Column::name('email_verified_at')
-                ->label(__('Verified'))
-                ->searchable()
-                // ->filterable()
-                ->view('tables.user.verified'),
+            Column::callback(['email_verified_at', 'id'], function ($emailVerifiedAt, $id) {
+                return view('tables.user.verified', [
+                    'user' => $this->builder()->where('id', $id)->first(),
+                    'value' => $emailVerifiedAt,
+                ]);
+            })->label(__('Verified'))
+                ->searchable(),
 
-            Column::name('two_factor_secret')
-                ->label(__('2FA'))
-                ->searchable()
-                // ->filterable()
-                ->view('tables.user.2fa'),
+            Column::callback(['two_factor_secret', 'id'], function ($twoFactorAuth, $id) {
+                return view('tables.user.2fa', [
+                    'user' => $this->builder()->where('id', $id)->first(),
+                ]);
+            })->label(__('2FA')),
 
             Column::name('roles.name')
                 ->label(__('Role')),
 
             Column::callback('id', function ($id) {
                 return view('tables.user.actions', [
-                    // 'menus' => Menu::query()->where('menu_id', null)->with('children')->get(),
-                    'user' => User::query()->find($id),
+                    'user' => $this->builder()->where('id', $id)->first(),
                     // 'roles' => Role::with('permissions')->get(),
                     'userType' => $this->userType,
                 ]);
