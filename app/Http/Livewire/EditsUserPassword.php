@@ -27,6 +27,7 @@ class EditsUserPassword extends Component
     {
         $this->editingUserPassword = true;
         $this->userId = $userId;
+        $this->dispatchBrowserEvent('showing-edit-user-password-modal');
     }
 
     public function updateUserPassword(UserService $users)

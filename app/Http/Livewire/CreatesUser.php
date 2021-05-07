@@ -40,6 +40,7 @@ class CreatesUser extends Component
     public function openCreateDialog()
     {
         $this->creatingUser = true;
+        $this->dispatchBrowserEvent('showing-create-user-modal');
     }
 
     public function closeCreateDialog()

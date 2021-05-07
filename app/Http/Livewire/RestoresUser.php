@@ -21,6 +21,7 @@ class RestoresUser extends Component
     {
         $this->confirmingRestoreUser  = true;
         $this->userId = $userId;
+        $this->dispatchBrowserEvent('showing-confirm-restore-user-modal');
     }
 
     public function restoreUser(UserService $users)

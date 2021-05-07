@@ -21,6 +21,7 @@ class ClearsSessions extends Component
     {
         $this->confirmingClearSessions  = true;
         $this->userId = $userId;
+        $this->dispatchBrowserEvent('showing-clear-sessions-modal');
     }
 
     public function clearSessions(UserService $users)

@@ -52,6 +52,7 @@ class EditsUser extends Component
         $this->updateUserForm['active'] = $user->active;
         $this->updateUserForm['menus'] = array_map('strVal', $user->menus()->pluck('id')->toArray());
         $this->updateUserForm['roles'] = array_map('strVal', $user->roles()->pluck('id')->toArray());
+        $this->dispatchBrowserEvent('showing-edit-user-modal');
     }
 
     public function updateUser(UserService $users)

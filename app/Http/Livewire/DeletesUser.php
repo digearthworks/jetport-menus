@@ -21,6 +21,7 @@ class DeletesUser extends Component
     {
         $this->confirmingDeleteUser  = true;
         $this->userId = $userId;
+        $this->dispatchBrowserEvent('showing-confirm-delete-user-modal');
     }
 
     public function deleteUser(UserService $users)

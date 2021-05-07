@@ -21,6 +21,7 @@ class DeactivatesUser extends Component
     {
         $this->confirmingDeactivateUser  = true;
         $this->userId = $userId;
+        $this->dispatchBrowserEvent('showing-confirm-deactivate-user-modal');
     }
 
     public function deactivateUser(UserService $users)

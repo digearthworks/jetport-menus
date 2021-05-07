@@ -21,6 +21,7 @@ class ReactivatesUser extends Component
     {
         $this->confirmingReactivateUser  = true;
         $this->userId = $userId;
+        $this->dispatchBrowserEvent('showing-confirm-reactivate-user-modal');
     }
 
     public function reactivateUser(UserService $users)
