@@ -14,7 +14,11 @@ class AddMenusPermissionIdForeignToMenusTable extends Migration
     public function up()
     {
         Schema::table('menus', function (Blueprint $table) {
-            //
+
+            $table->foreign('permission_id')
+            ->references('id')
+            ->on('permissions')
+            ->onDelete('cascade');
         });
     }
 
@@ -26,7 +30,7 @@ class AddMenusPermissionIdForeignToMenusTable extends Migration
     public function down()
     {
         Schema::table('menus', function (Blueprint $table) {
-            //
+
         });
     }
 }
