@@ -203,16 +203,13 @@ class UsersTable extends BaseTable
                 ->label(__('Type'))
                 ->defaultSort('asc')
                 ->searchable()
-                // ->filterable()
                 ->view('tables.user.type'),
 
             Column::name('name')
-                // ->filterable()
                 ->searchable(),
 
             Column::callback(['email'], fn ($email) => $this->mailto($email))
                 ->label(__('E-mail'))
-                // ->filterable()
                 ->searchable(),
 
             Column::callback(['email_verified_at', 'id'], function ($emailVerifiedAt, $id) {
@@ -235,7 +232,6 @@ class UsersTable extends BaseTable
             Column::callback('id', function ($id) {
                 return view('tables.user.actions', [
                     'user' => $this->builder()->where('id', $id)->first(),
-                    // 'roles' => Role::with('permissions')->get(),
                     'userType' => $this->userType,
                 ]);
             })->label(__('Actions'))
