@@ -49,8 +49,8 @@ class EditsUser extends Component
         $this->updateUserForm['email'] = $user->email;
         $this->updateUserForm['password'] = $user->password;
         $this->updateUserForm['active'] = $user->active;
-        $this->updateUserForm['menus'] = array_map( 'strVal',$user->menus()->pluck('id')->toArray());
-        $this->updateUserForm['roles'] = array_map( 'strVal', $user->roles()->pluck('id')->toArray());
+        $this->updateUserForm['menus'] = array_map('strVal', $user->menus()->pluck('id')->toArray());
+        $this->updateUserForm['roles'] = array_map('strVal', $user->roles()->pluck('id')->toArray());
     }
 
     public function updateUser(UserService $users)

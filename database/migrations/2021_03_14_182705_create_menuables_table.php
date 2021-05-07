@@ -26,8 +26,6 @@ class CreateMenuablesTable extends Migration
             ->on('menus')
             ->onDelete('cascade');
         });
-
-
     }
 
     /**
