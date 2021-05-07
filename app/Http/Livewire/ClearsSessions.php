@@ -33,7 +33,7 @@ class ClearsSessions extends Component
 
     public function render()
     {
-        return view('admin.user.clears-sessions', [
+        return view('admin.users.clears-sessions', [
             'user' => $this->getUser($this->userId),
         ]);
     }

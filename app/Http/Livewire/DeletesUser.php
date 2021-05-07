@@ -33,7 +33,7 @@ class DeletesUser extends Component
 
     public function render()
     {
-        return view('admin.user.delete', [
+        return view('admin.users.delete', [
             'user' => $this->getUser($this->userId),
         ]);
     }

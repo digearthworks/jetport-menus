@@ -33,7 +33,7 @@ class DeactivatesUser extends Component
 
     public function render()
     {
-        return view('admin.user.deactivate', [
+        return view('admin.users.deactivate', [
             'user' => $this->getUser($this->userId, true),
         ]);
     }

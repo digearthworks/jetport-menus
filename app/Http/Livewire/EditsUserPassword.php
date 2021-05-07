@@ -43,7 +43,7 @@ class EditsUserPassword extends Component
 
     public function render()
     {
-        return view('admin.user.change-password', [
+        return view('admin.users.change-password', [
             'user' => $this->getUser($this->userId),
         ]);
     }

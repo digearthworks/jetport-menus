@@ -33,7 +33,7 @@ class ReactivatesUser extends Component
 
     public function render()
     {
-        return view('admin.user.reactivate', [
+        return view('admin.users.reactivate', [
             'user' => $this->getUser($this->userId, true),
         ]);
     }

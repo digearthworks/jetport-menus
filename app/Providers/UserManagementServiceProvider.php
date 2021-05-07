@@ -26,7 +26,7 @@ class UserManagementServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['admin.user.edit', 'admin.user.create'], function ($view) {
+        View::composer(['admin.users.edit', 'admin.users.create'], function ($view) {
             $view->with([
                 'menus' => Menu::query()->where('menu_id', null)->with('children')->get(),
                 'roles' => Role::with('permissions')->get(),

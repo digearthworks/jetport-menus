@@ -19,14 +19,14 @@ class LivewireServiceProvider extends ServiceProvider
     public function register()
     {
         Livewire::component('sidebar', Sidebar::class);
-        Livewire::component('admin.user.edit', EditsUser::class);
-        Livewire::component('admin.user.includes.partials.create-user-button', CreateUserButton::class);
-        Livewire::component('admin.user.create', CreatesUser::class);
-        Livewire::component('admin.user.delete', DeletesUser::class);
-        Livewire::component('admin.user.restore', RestoresUser::class);
-        Livewire::component('admin.user.deactivate', DeactivatesUser::class);
-        Livewire::component('admin.user.change-password', EditsUserPassword::class);
-        Livewire::component('admin.user.clears-sessions', ClearsSessions::class);
-        Livewire::component('admin.user.reactivate', ReactivatesUser::class);
+        Livewire::component('admin.users.edit', EditsUser::class);
+        Livewire::component('admin.users.includes.partials.create-user-button', CreateUserButton::class);
+        Livewire::component('admin.users.create', CreatesUser::class);
+        Livewire::component('admin.users.delete', DeletesUser::class);
+        Livewire::component('admin.users.restore', RestoresUser::class);
+        Livewire::component('admin.users.deactivate', DeactivatesUser::class);
+        Livewire::component('admin.users.change-password', EditsUserPassword::class);
+        Livewire::component('admin.users.clears-sessions', ClearsSessions::class);
+        Livewire::component('admin.users.reactivate', ReactivatesUser::class);
     }
 }

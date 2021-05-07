@@ -33,7 +33,7 @@ class RestoresUser extends Component
 
     public function render()
     {
-        return view('admin.user.restore', [
+        return view('admin.users.restore', [
             'user' => $this->getUser($this->userId, true),
         ]);
     }

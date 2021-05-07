@@ -67,6 +67,6 @@ class CreatesUser extends Component
 
     public function render()
     {
-        return view('admin.user.create');
+        return view('admin.users.create');
     }
 }

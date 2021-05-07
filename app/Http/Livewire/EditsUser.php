@@ -70,7 +70,7 @@ class EditsUser extends Component
 
     public function render()
     {
-        return view('admin.user.edit', [
+        return view('admin.users.edit', [
             'user' => $this->getUser($this->userId),
         ]);
     }

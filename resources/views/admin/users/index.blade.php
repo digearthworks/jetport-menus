@@ -1,4 +1,4 @@
-<x-7xl header="Users" navigationMenu="admin.user.includes.navigation-menu">
+<x-7xl header="Users" navigationMenu="admin.users.includes.navigation-menu">
     <livewire:datatables.users-table />
 </x-index>
 

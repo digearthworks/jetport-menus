@@ -23,6 +23,6 @@ class CreateUserButton extends Component
 
     public function render()
     {
-        return view('admin.user.includes.partials.create-user-button');
+        return view('admin.users.includes.partials.create-user-button');
     }
 }
