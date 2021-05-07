@@ -33,43 +33,43 @@ class PermissionRoleSeeder extends Seeder
         // Users category
         $users = Permission::create([
             'type' => User::TYPE_ADMIN,
-            'name' => 'admin.access.user',
+            'name' => 'admin.access.users',
             'description' => 'All User Permissions',
         ]);
 
         $users->children()->saveMany([
             new Permission([
                 'type' => User::TYPE_ADMIN,
-                'name' => 'admin.access.user.list',
+                'name' => 'admin.access.users.list',
                 'description' => 'View Users',
             ]),
             new Permission([
                 'type' => User::TYPE_ADMIN,
-                'name' => 'admin.access.user.deactivate',
+                'name' => 'admin.access.users.deactivate',
                 'description' => 'Deactivate Users',
                 'sort' => 2,
             ]),
             new Permission([
                 'type' => User::TYPE_ADMIN,
-                'name' => 'admin.access.user.reactivate',
+                'name' => 'admin.access.users.reactivate',
                 'description' => 'Reactivate Users',
                 'sort' => 3,
             ]),
             new Permission([
                 'type' => User::TYPE_ADMIN,
-                'name' => 'admin.access.user.clear-session',
+                'name' => 'admin.access.users.clear-session',
                 'description' => 'Clear User Sessions',
                 'sort' => 4,
             ]),
             new Permission([
                 'type' => User::TYPE_ADMIN,
-                'name' => 'admin.access.user.impersonate',
+                'name' => 'admin.access.users.impersonate',
                 'description' => 'Impersonate Users',
                 'sort' => 5,
             ]),
             new Permission([
                 'type' => User::TYPE_ADMIN,
-                'name' => 'admin.access.user.change-password',
+                'name' => 'admin.access.users.change-password',
                 'description' => 'Change User Passwords',
                 'sort' => 6,
             ]),
@@ -441,7 +441,7 @@ class PermissionRoleSeeder extends Seeder
             'name' => 'Auditor',
         ]);
 
-        $auditor->givePermissionTo('admin.access.user');
+        $auditor->givePermissionTo('admin.access.users');
         $auditor->givePermissionTo('user.access.financial');
         $auditor->givePermissionTo('user.access.workforce');
         $auditor->givePermissionTo('user.access.timetracking');

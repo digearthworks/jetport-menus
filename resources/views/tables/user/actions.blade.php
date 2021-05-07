@@ -42,10 +42,10 @@
                         $user->id !== $logged_in_user->id && // It's not the person logged in
                         // Any they have at lease one of the abilities in this dropdown
                         (
-                            $logged_in_user->can('admin.access.user.change-password') ||
-                            $logged_in_user->can('admin.access.user.clear-session') ||
-                            $logged_in_user->can('admin.access.user.impersonate') ||
-                            $logged_in_user->can('admin.access.user.deactivate')
+                            $logged_in_user->can('admin.access.users.change-password') ||
+                            $logged_in_user->can('admin.access.users.clear-session') ||
+                            $logged_in_user->can('admin.access.users.impersonate') ||
+                            $logged_in_user->can('admin.access.users.deactivate')
                         )
                     )
                 <x-jet-dropdown align="left" width="48" dropdownClasses="z-50">

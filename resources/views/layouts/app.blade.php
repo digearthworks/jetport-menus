@@ -26,8 +26,9 @@
 
     <div x-data="{ open:false, sidebarOpen: false }" class="flex min-h-screen overflow-x-hidden bg-gray-100">
 
-        @livewire('sidebar')
-
+        @if($logged_in_user->isAdmin())
+            @livewire('sidebar')
+        @endif
         <div class="flex-1">
 
             @livewire('navigation-menu')

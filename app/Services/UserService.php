@@ -135,10 +135,6 @@ class UserService extends BaseService
 
             $user->syncRoles($data['roles'] ?? []);
 
-            if (! config('boilerplate.access.user.only_roles')) {
-                $user->syncPermissions($data['permissions'] ?? []);
-            }
-
             $user->syncMenus($data['menus'] ?? []);
         } catch (Exception $e) {
             // dd($e);
@@ -181,10 +177,6 @@ class UserService extends BaseService
             if (! $user->isMasterAdmin()) {
                 // Replace selected roles/permissions
                 $user->syncRoles($data['roles'] ?? []);
-
-                if (! config('boilerplate.access.user.only_roles')) {
-                    $user->syncPermissions($data['permissions'] ?? []);
-                }
             }
             $user->syncMenus($data['menus'] ?? []);
         } catch (Exception $e) {
