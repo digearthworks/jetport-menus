@@ -2,22 +2,22 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
 use Closure;
-use Illuminate\Http\Request;
 
-class AdminCheck
+/**
+ * Class SuperAdminCheck.
+ */
+class SuperAdminCheck
 {
     /**
-     * Handle an incoming request.
+     * @param $request
+     * @param  Closure  $next
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
-        if ($request->user() && $request->user()->isType(User::TYPE_ADMIN)) {
+        if ($request->user() && $request->user()->hasAllAccess()) {
             return $next($request);
         }
 

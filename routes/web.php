@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->name('frontend.index');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
