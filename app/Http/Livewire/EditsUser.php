@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Livewire\GetsUser;
 use App\Services\UserService;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
@@ -50,8 +49,8 @@ class EditsUser extends Component
         $this->updateUserForm['email'] = $user->email;
         $this->updateUserForm['password'] = $user->password;
         $this->updateUserForm['active'] = $user->active;
-        $this->updateUserForm['menus'] = $user->menus()->pluck('id');
-        $this->updateUserForm['roles'] = $user->roles()->pluck('id');
+        $this->updateUserForm['menus'] = array_map( 'strVal',$user->menus()->pluck('id')->toArray());
+        $this->updateUserForm['roles'] = array_map( 'strVal', $user->roles()->pluck('id')->toArray());
     }
 
     public function updateUser(UserService $users)

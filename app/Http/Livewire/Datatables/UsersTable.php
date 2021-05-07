@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire\Datatables;
 
-use App\Models\Menu;
-use App\Models\Role;
 use App\Models\User;
 use App\Support\Concerns\InteractsWithBanner;
 use Mediconesystems\LivewireDatatables\Column;
@@ -72,12 +70,39 @@ class UsersTable extends BaseTable
      */
     public $userIdBeingPermanentlyDeleted;
 
-    protected $listeners = ['userUpdated', 'userDeleted', 'userRestored', 'refreshLivewireDatatable'];
+    protected $listeners = [
+        'userCreated',
+        'userUpdated',
+        'userSessionsCleared',
+        'userPasswordUpdated',
+        'userDeleted',
+        'userRestored',
+        'userDeactivated',
+        'userReactivated',
+        'refreshLivewireDatatable'
+    ];
+
+    public function userCreated()
+    {
+        $this->emit('refreshLivewireDatatable');
+        $this->banner('Successfully saved!');
+    }
 
     public function userUpdated()
     {
         $this->emit('refreshLivewireDatatable');
         $this->banner('Successfully saved!');
+    }
+
+    public function userSessionsCleared()
+    {
+        $this->emit('refreshLivewireDatatable');
+        $this->banner('Successfully Cleared Sessions!');
+    }
+
+    public function userPasswordUpdated()
+    {
+        $this->banner('Successfully updated password!');
     }
 
     public function userDeleted()
@@ -91,6 +116,20 @@ class UsersTable extends BaseTable
     {
         $this->emit('refreshLivewireDatatable');
         $this->banner('Successfully Restored User!');
+        return redirect('/admin/auth/users');
+    }
+
+    public function userDeactivated()
+    {
+        $this->emit('refreshLivewireDatatable');
+        $this->banner('Successfully Deactivated User!');
+        return redirect('/admin/auth/users/deactivated');
+    }
+
+    public function userReactivated()
+    {
+        $this->emit('refreshLivewireDatatable');
+        $this->banner('Successfully Deactivated User!');
         return redirect('/admin/auth/users');
     }
 
@@ -109,14 +148,24 @@ class UsersTable extends BaseTable
         $this->emit('confirmRestoreUser', $userId);
     }
 
+    public function confirmClearSessions($userId)
+    {
+        $this->emit('confirmClearSessions', $userId);
+    }
+
     public function confirmDeactivateUser($userId)
     {
         $this->emit('confirmDeactivateUser', $userId);
     }
 
-    public function changePasswordForUser($userId)
+    public function confirmReactivateUser($userId)
     {
-        $this->emit('changePasswordForUser', $userId);
+        $this->emit('confirmReactivateUser', $userId);
+    }
+
+    public function openEditorForUserPassword($userId)
+    {
+        $this->emit('openEditorForUserPassword', $userId);
     }
 
     /**

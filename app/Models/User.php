@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\Attribute\UserAttribute;
 use App\Models\Traits\Connection\AuthConnection;
+use App\Models\Traits\HasMenus;
 use App\Models\Traits\Method\UserMethod;
 use App\Models\Traits\Relationship\UserRelationship;
 use App\Models\Traits\Scope\UserScope;
@@ -24,6 +25,7 @@ class User extends Authenticatable
     use AuthConnection,
         HasApiTokens,
         HasFactory,
+        HasMenus,
         HasProfilePhoto,
         HasRoles,
         Impersonate,
@@ -71,6 +73,9 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'active' => 'boolean',
+        'last_login_at' => 'datetime',
+        'to_be_logged_out' => 'boolean',
     ];
 
     /**

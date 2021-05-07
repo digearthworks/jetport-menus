@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Livewire\GetsUser;
 use App\Services\UserService;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
@@ -37,5 +36,4 @@ class DeletesUser extends Component
             'user' => $this->getUser($this->userId),
         ]);
     }
-
 }

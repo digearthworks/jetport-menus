@@ -24,7 +24,7 @@
 
     <body class="font-sans antialiased">
 
-    <div x-data="{ open:false, sidebarOpen: false }" class="flex overflow-x-hidden min-h-screen bg-gray-100">
+    <div x-data="{ open:false, sidebarOpen: false }" class="flex min-h-screen overflow-x-hidden bg-gray-100">
 
         @livewire('sidebar')
 
@@ -36,7 +36,7 @@
             @if (isset($header))
                 <header class="bg-white shadow">
 
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
 
@@ -45,7 +45,7 @@
 
             @include('includes.logged-in-as')
 
-            <x-jet-banner />
+            <x-banner/>
 
             <!-- Page Content -->
             <main>

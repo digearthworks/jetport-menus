@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Livewire\GetsUser;
 use App\Services\UserService;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
@@ -20,14 +19,14 @@ class DeactivatesUser extends Component
 
     public function confirmDeactivateUser($userId)
     {
-        $this->confirmingDeacivateUser  = true;
+        $this->confirmingDeactivateUser  = true;
         $this->userId = $userId;
     }
 
-    public function DeactivateUser(UserService $users)
+    public function deactivateUser(UserService $users)
     {
         $users->mark($this->getUser($this->userId), (int) 0);
-        $this->emit('userDeactived');
+        $this->emit('userDeactivated');
         $this->confirmingDeactivateUser = false;
     }
 
@@ -37,5 +36,4 @@ class DeactivatesUser extends Component
             'user' => $this->getUser($this->userId, true),
         ]);
     }
-
 }

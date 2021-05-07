@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\Attribute\RoleAttribute;
 use App\Models\Traits\Connection\AuthConnection;
+use App\Models\Traits\HasUuid;
 use App\Models\Traits\Method\RoleMethod;
 use Database\Factories\RoleFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,6 +17,7 @@ use Wildside\Userstamps\Userstamps;
 class Role extends SpatieRole
 {
     use HasFactory,
+        HasUuid,
         AuthConnection,
         RoleAttribute,
         RoleMethod,

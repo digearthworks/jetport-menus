@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\Attribute\MenuAttribute;
 use App\Models\Traits\Connection\AuthConnection;
+use App\Models\Traits\HasUuid;
 use App\Models\Traits\Method\MenuMethod;
 use App\Models\Traits\Method\PathMethod;
 use App\Models\Traits\Relationship\MenuRelationship;
@@ -24,7 +25,8 @@ class Menu extends Model
         MenuRelationship,
         PathMethod,
         SoftDeletes,
-        Userstamps;
+        Userstamps,
+        HasUuid;
 
     protected $cascadeDeletes = ['children'];
 
@@ -35,8 +37,6 @@ class Menu extends Model
     protected $appends = ['grid'];
 
     protected $with = 'icon';
-
-
 
     private function cleanSlug($slug)
     {

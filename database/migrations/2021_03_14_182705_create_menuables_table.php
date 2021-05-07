@@ -14,13 +14,20 @@ class CreateMenuablesTable extends Migration
     public function up()
     {
         Schema::connection(config('jetport.auth.database_connection'))->create('menuables', function (Blueprint $table) {
-            $table->integer('menu_id');
+            $table->unsignedBigInteger('menu_id');
             $table->integer('menuable_id');
             $table->string('menuable_type');
             $table->string('menuable_group')->nullable();
             $table->string('checked')->nullable();
             $table->timestamps();
+
+            $table->foreign('menu_id')
+            ->references('id')
+            ->on('menus')
+            ->onDelete('cascade');
         });
+
+
     }
 
     /**

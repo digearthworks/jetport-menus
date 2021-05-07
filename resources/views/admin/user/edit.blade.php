@@ -56,13 +56,13 @@
                     <div
                         class="border-gray-300 p-1 m-0.5 rounded-md border hover:border-blue-300 hover:shadow-outline-blue">
                         <label class="flex items-center">
-                            <x-jet-checkbox wire:model.defer="updateUserForm.menus" :value="$menu->id" />
+                            <x-jet-checkbox wire:model="updateUserForm.menus" :value="$menu->id" />
                             <span class="px-1 text-gray-600">{!! $menu->icon->art !!}</span><span
                                 class="text-sm text-gray-600">{{ $menu->label }}</span>
                         </label>
 
                         @if ($menu->children()->count())
-                            <blockquote class="ml-3 text-gray-700">
+                            <blockquote class="ml-3 text-sm text-gray-700">
                                 @foreach ($menu->children as $link)
                                     <i class="fa fa-check-circle"></i> {!! $link->icon->art !!} {{ $link->link }}
                                     @if (isset($link->title))
@@ -71,7 +71,7 @@
                                 @endforeach
                             </blockquote>
                         @else
-                            <blockquote class="ml-3 text-gray-700">
+                            <blockquote class="ml-3 text-sm text-gray-700">
                                 <i class="fa fa-minus-circle"></i> @lang('No Items')
                             </blockquote>
                         @endif
@@ -100,13 +100,13 @@
                                     <i class="fa fa-check-circle"></i> @lang('All Permissions')<br />
                                 @elseif ($role->permissions->count())
 
-                                    <blockquote class="ml-3 text-gray-700">
+                                    <blockquote class="ml-3 text-sm text-gray-700">
                                         @foreach ($role->permissions as $permission)
                                             <i class="fa fa-check-circle"></i> {{ $permission->description }}<br />
                                         @endforeach
                                     </blockquote>
                                 @else
-                                    <blockquote class="ml-3 text-gray-700">
+                                    <blockquote class="ml-3 text-sm text-gray-700">
                                         <i class="fa fa-minus-circle"></i> @lang('No Items')
                                     </blockquote>
                                 @endif
@@ -133,16 +133,18 @@
                                 </label>
 
                                 @if ($role->name === 'Administrator')
-                                    <i class="fa fa-check-circle"></i> @lang('All Permissions')<br />
+                                    <blockquote class="ml-3 text-sm text-gray-700">
+                                        <i class="fa fa-check-circle"></i> @lang('All Permissions')<br />
+                                    </blockquote>
                                 @elseif ($role->permissions->count())
 
-                                    <blockquote class="ml-3 text-gray-700">
+                                    <blockquote class="ml-3 text-sm text-gray-700">
                                         @foreach ($role->permissions as $permission)
                                             <i class="fa fa-check-circle"></i> {{ $permission->description }}<br />
                                         @endforeach
                                     </blockquote>
                                 @else
-                                    <blockquote class="ml-3 text-gray-700">
+                                    <blockquote class="ml-3 text-sm text-gray-700">
                                         <i class="fa fa-minus-circle"></i> @lang('No Items')
                                     </blockquote>
                                 @endif

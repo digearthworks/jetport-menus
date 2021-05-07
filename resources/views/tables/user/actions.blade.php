@@ -31,7 +31,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-jet-dropdown-link href="#">
+                        <x-jet-dropdown-link href="#" wire:click="openEditorForUserPassword({{ $user->id }})">
                             {{__('Change Password')}}
                         </x-jet-dropdown-link>
                     </x-slot>
@@ -57,13 +57,13 @@
 
                     <x-slot name="content">
 
-                        <x-jet-dropdown-link href="#" wire:click="changePasswordForUser({{ $user->id }})">
+                        <x-jet-dropdown-link href="#" wire:click="openEditorForUserPassword({{ $user->id }})">
                             {{__('Change Password')}}
                         </x-jet-dropdown-link>
 
                         @if ($user->id !== $logged_in_user->id && !$user->isMasterAdmin())
-                            <x-jet-dropdown-link href="#">
-                                    {{__('Clear Session')}}
+                            <x-jet-dropdown-link href="#" wire:click="confirmClearSessions({{ $user->id }})">
+                                    {{__('Clear Sessions')}}
                             </x-jet-dropdown-link>
 
                             @canBeImpersonated($user)
@@ -72,7 +72,7 @@
                                 </x-jet-dropdown-link>
                             @endCanBeImpersonated
 
-                            <x-jet-dropdown-link href="#">
+                            <x-jet-dropdown-link href="#" wire:click="confirmDeactivateUser({{ $user->id }})">
                                 {{__('Deactivate')}}
                             </x-jet-dropdown-link>
 

@@ -205,6 +205,38 @@ class UserService extends BaseService
      * @param  array  $data
      *
      * @return User
+     * @throws \Throwable
+     */
+    public function clearSessions(User $user): User
+    {
+        DB::beginTransaction();
+
+        try {
+            $user->update([
+                'to_be_logged_out' => true,
+            ]);
+
+            DB::connection(config('session.connection'))->table(config('session.table', 'sessions'))
+            ->where('user_id', $user->id)
+            ->delete();
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            throw new GeneralException(__('There was a problem updating this user. Please try again.'));
+        }
+
+        event(new UserUpdated($user));
+
+        DB::commit();
+
+        return $user;
+    }
+
+    /**
+     * @param  User  $user
+     * @param  array  $data
+     *
+     * @return User
      */
     public function updateProfile(User $user, array $data = []): User
     {
@@ -244,6 +276,7 @@ class UserService extends BaseService
 
         $user->password = $data['password'];
 
+        event(new UserUpdated($user));
         return tap($user)->update();
     }
 
