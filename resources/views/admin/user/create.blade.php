@@ -21,6 +21,7 @@
                         <x-jet-input type="text" name="name" class="block w-full mb-1" placeholder="{{ __('Name') }}"
                             maxlength="100"
                             wire:model.defer="createUserForm.name" required />
+                        <x-input-error for="name" class="mt-2" />
                     </div>
                 </div>
                 <!--form-group-->
@@ -32,6 +33,7 @@
                         <x-jet-input class="block w-full mb-1" type="email" name="email"
                             wire:model.defer="createUserForm.email" required
                             autofocus />
+                        <x-input-error for="email" class="mt-2" />
                     </div>
                 </div>
 
@@ -41,6 +43,7 @@
                         <x-jet-label for="password" value="{{ __('Password') }}" />
 
                         <x-password-input class="w-full" wire:model.defer="createUserForm.password" name="password" required />
+                        <x-input-error for="password" class="mt-2" />
                     </div>
                 </div>
                 <!--form-group-->

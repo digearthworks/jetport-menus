@@ -91,7 +91,7 @@ class UsersTable extends BaseTable
     public function userUpdated()
     {
         $this->emit('refreshLivewireDatatable');
-        $this->banner('Successfully saved!');
+        $this->dangerBanner('Successfully saved!');
     }
 
     public function userSessionsCleared()

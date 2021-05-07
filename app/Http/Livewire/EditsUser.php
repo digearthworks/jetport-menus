@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Services\UserService;
+use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
@@ -55,7 +56,13 @@ class EditsUser extends Component
 
     public function updateUser(UserService $users)
     {
-        $users->update($this->getUser($this->userId), $this->updateUserForm);
+        $this->resetErrorBag();
+
+        $validator = Validator::make($this->updateUserForm, [
+            'name' => 'required',
+            'email' => 'required'
+        ]);
+        $users->update($this->getUser($this->userId), $validator->validateWithBag('updatedUserForm'));
         $this->emit('userUpdated');
         $this->editingUser = false;
     }

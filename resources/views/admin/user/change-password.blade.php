@@ -12,6 +12,7 @@
                     <x-jet-input type="text" name="password" class="block w-full mb-1" placeholder="{{ __('password') }}"
                         value="" maxlength="100"
                         wire:model.defer="updateUserPasswordForm.password" required />
+                    <x-input-error for="password" class="mt-2" />
                 </div>
             </div>
             <div class="col-span-6 sm:col-span-4">
@@ -21,6 +22,7 @@
                     <x-jet-input type="text" name="password_confirmation" class="block w-full mb-1" placeholder="{{ __('password confirmation') }}"
                         value="" maxlength="100"
                         wire:model.defer="updateUserPasswordForm.password_confirmation" required />
+                    <x-input-error for="password" class="mt-2" />
                 </div>
             </div>
     </x-slot>

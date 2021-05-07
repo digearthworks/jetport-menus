@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Services\UserService;
+use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
@@ -30,12 +31,11 @@ class EditsUserPassword extends Component
 
     public function updateUserPassword(UserService $users)
     {
-        if ($this->updateUserPasswordForm['password'] != $this->updateUserPasswordForm['password_confirmation']) {
-            $this->dangerBanner(__('The Password Confirmation Does Not match'));
-            $this->editingUserPassword = false;
-            return;
-        }
-        $users->updatePassword($this->getUser($this->userId), $this->updateUserPasswordForm);
+        $this->resetErrorBag();
+        $validator = Validator::make($this->updateUserPasswordForm, [
+            'password' => 'confirmed',
+        ]);
+        $users->updatePassword($this->getUser($this->userId), $validator->validateWithBag('updatePasswordForm'));
         $this->emit('userPasswordUpdated');
         $this->editingUserPassword = false;
     }

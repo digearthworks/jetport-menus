@@ -15,6 +15,7 @@
                     <x-jet-input type="text" name="name" class="block w-full mb-1" placeholder="{{ __('Name') }}"
                         value="{{ old('name') ?? ($user->name ?? '') }}" maxlength="100"
                         wire:model.defer="updateUserForm.name" required />
+                    <x-input-error for="name" class="mt-2" />
                 </div>
             </div>
             <!--form-group-->
@@ -26,6 +27,7 @@
                     <x-jet-input class="block w-full mb-1" type="email" name="email"
                         :value="old('email') ?? ($user->email ?? '' )" wire:model.defer="updateUserForm.email" required
                         autofocus />
+                    <x-input-error for="email" class="mt-2" />
                 </div>
             </div>
             <!--form-group-->

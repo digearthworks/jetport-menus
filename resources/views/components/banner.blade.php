@@ -1,7 +1,7 @@
 @props(['style' => session('flash.bannerStyle', 'success'), 'message' => session('flash.banner')])
 
 <div x-data="{{ json_encode(['show' => true, 'style' => $style, 'message' => $message]) }}"
-            :class="{ 'border-green-400 border-l-4 text-green-400': style == 'success', 'text-red-700 border-l-4 border-red-700': style == 'danger' }"
+            :class="{ 'border-green-400 bg-green-100 border-l-4 text-green-400': style == 'success', 'text-red-700 bg-red-300 border-l-4 border-red-700': style == 'danger' }"
             style="display: none;"
             x-show="show && message"
             x-init="
@@ -20,7 +20,11 @@
                     </svg>
                 </span>
 
-                <p :class="{ 'ml-3 font-medium text-sm text-green-400 truncate' : style == 'success', 'ml-3 font-medium text-sm text-red-700 truncate' : style == 'danger' }" x-text="message"></p>
+                @isset($custom)
+                    {{ $custom }}
+                @else
+                    <p :class="{ 'ml-3 font-medium text-sm text-green-400 truncate' : style == 'success', 'ml-3 font-medium text-sm text-red-700 truncate' : style == 'danger' }" x-text="message"></p>
+                @endisset
             </div>
 
             <div class="flex-shrink-0 sm:ml-3">

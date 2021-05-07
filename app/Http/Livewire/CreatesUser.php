@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Services\UserService;
+use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
@@ -41,8 +42,15 @@ class CreatesUser extends Component
 
     public function createUser(UserService $users)
     {
-        // dd($this->createUserForm);
-        $users->store($this->createUserForm);
+        $this->resetErrorBag();
+
+        $validator = Validator::make($this->createUserForm, [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $users->store($validator->validateWithBag('creatUserForm'));
         $this->emit('userCreated');
         $this->creatingUser = false;
     }
