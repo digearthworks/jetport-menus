@@ -2,6 +2,7 @@
     <livewire:datatables.users-table />
 </x-index>
 
+<livewire:creates-user />
 <livewire:edits-user />
 <livewire:edits-user-password />
 <livewire:clears-sessions />

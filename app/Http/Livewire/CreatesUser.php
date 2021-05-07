@@ -35,9 +35,17 @@ class CreatesUser extends Component
         'permissions' => [],
     ];
 
+    public $listeners = ['openCreateDialog'];
+
     public function openCreateDialog()
     {
         $this->creatingUser = true;
+    }
+
+    public function closeCreateDialog()
+    {
+        $this->creatingUser = false;
+        $this->emit('closeCreateDialog');
     }
 
     public function createUser(UserService $users)
@@ -51,6 +59,7 @@ class CreatesUser extends Component
         ]);
 
         $users->store($validator->validateWithBag('creatUserForm'));
+        $this->emit('closeCreateDialog');
         $this->emit('userCreated');
         $this->creatingUser = false;
     }

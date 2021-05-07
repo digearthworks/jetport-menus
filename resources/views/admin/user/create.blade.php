@@ -2,10 +2,6 @@
 
 @inject('model', '\App\Models\User')
 <div>
-<x-jet-nav-link href="#" :active="$creatingUser" wire:click="openCreateDialog">
-    {{__('New')}}
-</x-jet-nav-link>
-
     <x-dialog-modal maxWidth="2xl" wire:model="creatingUser">
 
         <x-slot name="title">
@@ -174,7 +170,7 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('creatingUser')" wire:loading.attr="disabled">
+            <x-jet-secondary-button wire:click="closeCreateDialog" wire:loading.attr="disabled">
                 {{ __('Cancel') }}
             </x-jet-secondary-button>
 
