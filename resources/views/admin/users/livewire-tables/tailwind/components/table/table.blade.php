@@ -1,4 +1,4 @@
-<div class="align-middle min-w-full overflow-x-auto shadow overflow-hidden rounded-none md:rounded-lg">
+<div class="min-w-full align-middle rounded-none md:rounded-lg">
     <table class="min-w-full divide-y divide-gray-200">
         <thead>
             <tr>

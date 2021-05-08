@@ -12,7 +12,7 @@
             <!-- Client Name -->
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="clientName" value="{{ __('Name') }}" />
-                <x-jet-input id="clientName" type="text" class="mt-1 block w-full" wire:model.defer="createForm.name"
+                <x-jet-input id="clientName" type="text" class="block w-full mt-1" wire:model.defer="createForm.name"
                     autofocus />
                 <x-jet-input-error for="clientName" class="mt-2" />
                 <x-form-help-text class="mt-2" value="{{ __('Something your users will recognize and trust.') }}" />
@@ -20,7 +20,7 @@
             <!-- Redirect Url -->
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="redirect" value="{{ __('Redirect URL') }}" />
-                <x-jet-input id="redirect" type="text" class="mt-1 block w-full" wire:model.defer="createForm.redirect"
+                <x-jet-input id="redirect" type="text" class="block w-full mt-1" wire:model.defer="createForm.redirect"
                     autofocus />
                 <x-jet-input-error for="redirect" class="mt-2" />
                 <x-form-help-text class="mt-2" value="Your application's authorization callback url." />
@@ -58,28 +58,28 @@
                         @foreach ($this->user->clients->sortBy('name') as $client)
                             @if (!$client->revoked)
                                 <div class="flex items-center justify-between">
-                                    <div>
+                                    <div class="text-sm">
                                         {{ $client->name }}
                                     </div>
 
                                     <div class="flex items-center">
 
-                                        <div class="text-sm text-gray-400">
+                                        {{-- <div class="text-xs text-gray-400">
                                             {{ $client->id }}
-                                        </div>
+                                        </div> --}}
 
                                         @if(app()->environment(['local', 'testing']))
-                                            <div class="text-xs ml-2 text-gray-400">
+                                            <div class="ml-2 text-xs text-gray-400">
                                                 {{ $client->secret }}
                                             </div>
                                         @endif
 
-                                        <button class="cursor-pointer ml-6 text-sm text-gray-400 underline"
+                                        <button class="ml-6 text-sm text-gray-400 underline cursor-pointer"
                                             wire:click="manageClient({{ '"' . $client->id . '"' }})">
                                             {{ __('Edit') }}
                                         </button>
 
-                                        <button class="cursor-pointer ml-6 text-sm text-red-500"
+                                        <button class="ml-6 text-sm text-red-500 cursor-pointer"
                                             wire:click="confirmDeletion({{ '"' . $client->id . '"' }})">
                                             {{ __('Delete') }}
                                         </button>
@@ -105,12 +105,12 @@
             </div>
 
             <x-jet-input class="mt-2" id="newClientId" type="text" readonly :value="$newClientId"
-                class="mt-4 bg-gray-100 px-6 py-2 rounded font-mono text-sm text-gray-500 w-full" autofocus
+                class="w-full px-6 py-2 mt-4 font-mono text-sm text-gray-500 bg-gray-100 rounded" autofocus
                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
             <x-form-help-text value="{{ __('Client Id') }}" />
 
             <x-jet-input class="mt-2" id="newClientSecret" x-ref="clientSecret" type="text" readonly :value="$clientSecret"
-                class="mt-4 bg-gray-100 px-6 py-2 rounded font-mono text-sm text-gray-500 w-full" autofocus
+                class="w-full px-6 py-2 mt-4 font-mono text-sm text-gray-500 bg-gray-100 rounded" autofocus
                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                 @showing-secret-modal.window="setTimeout(() => $refs.clientSecret.select(), 250)" />
             <x-form-help-text value="{{ __('Client secret. Please store this somewhere safe. Your application will need it for access') }}" />
@@ -136,15 +136,22 @@
             <!-- Client Name -->
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="updatingClientName" value="{{ __('Name') }}" />
-                <x-jet-input id="updatingClientName" type="text" class="mt-1 block w-full"
+                <x-jet-input id="updatingClientName" type="text" class="block w-full mt-1"
                     wire:model.defer="updateForm.name" autofocus />
                 <x-jet-input-error for="updatingClientName" class="mt-2" />
                 <x-form-help-text class="mt-2" value="{{ __('Something your users will recognize and trust.') }}" />
             </div>
+            <!-- Cient ID -->
+            <div class="col-span-6 sm:col-span-4">
+                <x-jet-label for="managingClientId" value="{{ __('Client ID') }}" />
+                <x-jet-input id="managingClientId" x-ref="managingClientId" type="text" class="block w-full text-xs"
+                    value="{{$managingClientId}}" readonly
+                    @showing-manage-client-modal.window="setTimeout(() => $refs.managingClientId.select(), 250)" />
+            </div>
             <!-- Redirect Url -->
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="updatingClientRedirect" value="{{ __('Redirect URL') }}" />
-                <x-jet-input id="updatingClientRedirect" type="text" class="mt-1 block w-full"
+                <x-jet-input id="updatingClientRedirect" type="text" class="block w-full mt-1"
                     wire:model.defer="updateForm.redirect" autofocus />
                 <x-jet-input-error for="updatingClientRedirect" class="mt-2" />
                 <x-form-help-text class="mt-2" value="Your application's authorization callback url." />

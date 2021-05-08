@@ -14,7 +14,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
  */
 class UsersTable extends DataTableComponent
 {
-
     use InteractsWithBanner;
 
     /**
@@ -58,7 +57,7 @@ class UsersTable extends DataTableComponent
     public function userUpdated()
     {
         $this->emit('refreshDatatable');
-        $this->dangerBanner('Successfully saved!');
+        $this->banner('Successfully saved!');
     }
 
     public function userSessionsCleared()
@@ -222,12 +221,11 @@ class UsersTable extends DataTableComponent
         return 'admin.users.includes.row';
     }
 
-        /**
+    /**
      * @return mixed
      */
     public function render()
     {
-
         return view('admin.users.livewire-tables.'. config('livewire-tables.theme').'.datatable')
             ->with([
                 'columns' => $this->columns(),
@@ -237,5 +235,4 @@ class UsersTable extends DataTableComponent
                 'rows' => $this->rows,
             ]);
     }
-
 }

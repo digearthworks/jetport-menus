@@ -22,7 +22,6 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
-        "mediconesystems/livewire-datatables": "dev-master",
         "rappasoft/laravel-livewire-tables": "^1.6",
         "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-permission": "^4.0",
@@ -100,11 +99,5 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/digearthworks/livewire-datatables"
-        }
-    ]
+    "prefer-stable": true
 }
