@@ -1,5 +1,5 @@
 <x-7xl header="Users" navigationMenu="admin.users.includes.navigation-menu">
-    <livewire:datatables.users-table />
+    <livewire:users-table />
 </x-index>
 
 <livewire:creates-user />
