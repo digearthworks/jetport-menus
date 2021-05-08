@@ -29,6 +29,7 @@
         @if($logged_in_user->isAdmin())
             @livewire('sidebar')
         @endif
+
         <div class="flex-1">
 
             @livewire('navigation-menu')
