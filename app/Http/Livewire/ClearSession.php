@@ -6,7 +6,7 @@ use App\Services\UserService;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
-class ClearSessionComponent extends Component
+class ClearSession extends Component
 {
     use GetsUser,
         InteractsWithBanner;
