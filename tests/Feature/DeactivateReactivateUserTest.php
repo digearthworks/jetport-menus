@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Events\User\UserStatusChanged;
-use App\Http\Livewire\DeactivatesUser;
+use App\Http\Livewire\DeactivateUser;
 use App\Http\Livewire\ReactivatesUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
@@ -57,7 +57,7 @@ class DeactivateReactivateUserTest extends TestCase
             'active' => true,
         ]);
 
-        Livewire::test(DeactivatesUser::class)
+        Livewire::test(DeactivateUser::class)
             ->set('userId', $activeUser->id)
             ->call('deactivateUser');
 
@@ -81,7 +81,7 @@ class DeactivateReactivateUserTest extends TestCase
             'active' => true,
         ]);
 
-        Livewire::test(DeactivatesUser::class)
+        Livewire::test(DeactivateUser::class)
             ->set('userId', $activeUser->id)
             ->call('deactivateUser');
 

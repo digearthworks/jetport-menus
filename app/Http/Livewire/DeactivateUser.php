@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
-class DeactivatesUser extends Component
+class DeactivateUser extends Component
 {
     use AuthorizesRequests,
         GetsUser,

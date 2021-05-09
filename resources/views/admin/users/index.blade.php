@@ -7,5 +7,5 @@
 <livewire:edits-user-password />
 <livewire:admin.users.clear-sessions />
 <livewire:deletes-user />
-<livewire:deactivates-user />
+<livewire:admin.users.deactivate />
 
