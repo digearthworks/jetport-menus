@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Passport\ClientRepository;
 use Livewire\Component;
 
-class ClientManagerComponent extends Component
+class ClientManager extends Component
 {
     /**
      * The create form state.
