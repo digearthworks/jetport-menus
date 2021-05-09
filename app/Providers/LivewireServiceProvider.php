@@ -12,6 +12,7 @@ use App\Http\Livewire\EditUserPassword;
 use App\Http\Livewire\ReactivateUser;
 use App\Http\Livewire\RestoreUser;
 use App\Http\Livewire\Sidebar;
+use App\Http\Livewire\SidebarToggler;
 use App\Http\Livewire\UsersTable;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -21,6 +22,7 @@ class LivewireServiceProvider extends ServiceProvider
     public function register()
     {
         Livewire::component('sidebar', Sidebar::class);
+        Livewire::component('includes.sidebar-toggler', SidebarToggler::class);
 
         Livewire::component('admin.users.livewire-datatable.datatable', UsersTable::class);
         Livewire::component('admin.users.includes.partials.create-user-button', CreateUserButton::class);

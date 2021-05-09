@@ -12,8 +12,8 @@
 
     <nav class="flex flex-col flex-1 pt-8 bg-white">
 
-        <div class="ml-0" x-data="{ open: false }">
-            <button @click="open = !open"
+        <div class="ml-0" x-data="{ open: '{{ $adminOpen ?? 'false' }}' }">
+            <button @click="open = !open" wire:click="toggleAdminOpen"
                 class="flex items-center justify-between w-full px-2 py-3 text-gray-600 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
                 <span class="flex items-center">
                     <svg class="h-6 pl-0 ml-0w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -44,8 +44,8 @@
             </div>
         </div>
 
-        <div x-data="{ open: false }">
-            <button @click="open = !open"
+        <div x-data="{ open: '{{ $officeOpen ?? 'false' }}' }">
+            <button @click="open = !open" wire:click="toggleOfficeOpen"
                 class="flex items-center justify-between w-full px-2 py-3 text-gray-600 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
                 <span class="flex items-center">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -76,8 +76,8 @@
         </div>
 
         @if($logged_in_user->isMasterAdmin())
-            <div x-data="{ open: false }">
-                <button @click="open = !open"
+            <div x-data="{ open: '{{ $logsOpen ?? 'false' }}' }">
+                <button @click="open = !open" wire:click="toggleLogsOpen"
                     class="flex items-center justify-between w-full px-2 py-3 text-gray-600 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
                     <span class="flex items-center">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>

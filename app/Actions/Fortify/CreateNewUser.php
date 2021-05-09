@@ -4,7 +4,6 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
@@ -37,5 +36,4 @@ class CreateNewUser implements CreatesNewUsers
 
         return $this->userService->registerUser($input);
     }
-
 }

@@ -24,7 +24,7 @@
 
     <body class="font-sans antialiased">
 
-    <div x-data="{ open:false, sidebarOpen: false }" class="flex min-h-screen overflow-x-hidden bg-gray-100">
+    <div x-data="{ open:false, sidebarOpen: '{{ session('sidebarOpen', false) }}' }" class="flex min-h-screen overflow-x-hidden bg-gray-100">
 
         @if($logged_in_user->isAdmin())
             @livewire('sidebar')
