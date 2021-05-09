@@ -384,4 +384,22 @@ class UserService extends BaseService
     {
         return $this->getById(Auth::user()->id);
     }
+
+    /**
+     * Delete the specified model record from the database.
+     *
+     * @param $id
+     *
+     * @return bool|null
+     * @throws \Exception
+     */
+    public function deleteById($id)
+    {
+        $this->unsetClauses();
+
+        $this->getById($id)->deleteProfilePhoto();
+        $this->getById($id)->tokens->each->delete();
+
+        return $this->getById($id)->delete();
+    }
 }
