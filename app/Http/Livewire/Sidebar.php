@@ -15,7 +15,7 @@ class Sidebar extends Component
     public $officeItems;
     public $adminItems;
 
-    public function mount($navItems = [])
+    public function mount()
     {
         $this->adminItems =  Menu::query()->where('group', 'admin')->get();
         $this->officeItems = Menu::query()->where('group', 'office')->get();
@@ -29,8 +29,4 @@ class Sidebar extends Component
         ]);
     }
 
-    private function randomItems()
-    {
-        return explode(' ', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.');
-    }
 }
