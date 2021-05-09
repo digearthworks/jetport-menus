@@ -10,6 +10,7 @@ use App\Http\Livewire\DeleteUser;
 use App\Http\Livewire\EditUser;
 use App\Http\Livewire\EditUserPassword;
 use App\Http\Livewire\ReactivateUser;
+use App\Http\Livewire\RestoreUser;
 use App\Http\Livewire\Sidebar;
 use App\Http\Livewire\UsersTable;
 use Illuminate\Support\ServiceProvider;
@@ -26,7 +27,7 @@ class LivewireServiceProvider extends ServiceProvider
         Livewire::component('admin.users.create', CreateUser::class);
         Livewire::component('admin.users.edit', EditUser::class);
         Livewire::component('admin.users.delete', DeleteUser::class);
-        Livewire::component('admin.users.restore', RestoresUser::class);
+        Livewire::component('admin.users.restore', RestoreUser::class);
         Livewire::component('admin.users.deactivate', DeactivateUser::class);
         Livewire::component('admin.users.change-password', EditUserPassword::class);
         Livewire::component('admin.users.clear-sessions', ClearSession::class);

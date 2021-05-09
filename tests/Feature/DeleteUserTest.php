@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Events\User\UserDeleted;
 use App\Http\Livewire\DeleteUser;
-use App\Http\Livewire\RestoresUser;
+use App\Http\Livewire\RestoreUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Livewire;
@@ -12,6 +12,17 @@ use Tests\TestCase;
 
 class DeleteUserTest extends TestCase
 {
+    /** @test */
+    public function an_admin_can_access_the_deleted_users_page()
+    {
+        $this->withoutExceptionHandling();
+        $this->loginAsAdmin();
+
+        $response = $this->get('/admin/auth/users/deleted');
+
+        $response->assertOk();
+    }
+
     /** @test */
     public function a_user_can_be_deleted()
     {
@@ -39,7 +50,7 @@ class DeleteUserTest extends TestCase
 
         $this->assertSoftDeleted('users', ['id' => $user->id]);
 
-        Livewire::test(RestoresUser::class)
+        Livewire::test(RestoreUser::class)
             ->set('userId', $user->id)
             ->call('restoreUser');
 

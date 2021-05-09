@@ -2,4 +2,4 @@
     <livewire:users-table status="deleted" />
 </x-index>
 
-<livewire:restores-user />
+<livewire:admin.users.restore />
