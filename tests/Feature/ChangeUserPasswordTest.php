@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Livewire\EditsUserPassword;
+use App\Http\Livewire\EditUserPassword;
 use App\Models\User;
 use Hash;
 use Livewire;
@@ -17,7 +17,7 @@ class ChangeUserPasswordTest extends TestCase
 
         $user = User::factory()->create();
 
-        Livewire::test(EditsUserPassword::class)
+        Livewire::test(EditUserPassword::class)
             ->set('userId', $user->id)
             ->set('updateUserPasswordForm.password', '1234567')
             ->set('updateUserPasswordForm.password_confirmation', '1234567')
@@ -33,7 +33,7 @@ class ChangeUserPasswordTest extends TestCase
 
         $user = User::factory()->create();
 
-        Livewire::test(EditsUserPassword::class)
+        Livewire::test(EditUserPassword::class)
             ->set('updateUserPasswordForm.password', '1234567')
             ->set('updateUserPasswordForm.password_confirmation', '123456')
             ->call('updateUserPassword')

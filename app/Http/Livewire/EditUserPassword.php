@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
-class EditsUserPassword extends Component
+class EditUserPassword extends Component
 {
     use AuthorizesRequests,
         GetsUser,

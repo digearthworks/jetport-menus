@@ -7,8 +7,8 @@ use App\Http\Livewire\CreateUser;
 use App\Http\Livewire\CreateUserButton;
 use App\Http\Livewire\DeactivateUser;
 use App\Http\Livewire\DeleteUser;
-use App\Http\Livewire\EditsUser;
-use App\Http\Livewire\EditsUserPassword;
+use App\Http\Livewire\EditUser;
+use App\Http\Livewire\EditUserPassword;
 use App\Http\Livewire\ReactivatesUser;
 use App\Http\Livewire\Sidebar;
 use App\Http\Livewire\UsersTable;
@@ -24,11 +24,11 @@ class LivewireServiceProvider extends ServiceProvider
         Livewire::component('admin.users.livewire-datatable.datatable', UsersTable::class);
         Livewire::component('admin.users.includes.partials.create-user-button', CreateUserButton::class);
         Livewire::component('admin.users.create', CreateUser::class);
-        Livewire::component('admin.users.edit', EditsUser::class);
+        Livewire::component('admin.users.edit', EditUser::class);
         Livewire::component('admin.users.delete', DeleteUser::class);
         Livewire::component('admin.users.restore', RestoresUser::class);
         Livewire::component('admin.users.deactivate', DeactivateUser::class);
-        Livewire::component('admin.users.change-password', EditsUserPassword::class);
+        Livewire::component('admin.users.change-password', EditUserPassword::class);
         Livewire::component('admin.users.clear-sessions', ClearSession::class);
         Livewire::component('admin.users.reactivate', ReactivatesUser::class);
     }

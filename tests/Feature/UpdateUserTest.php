@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Events\User\UserUpdated;
-use App\Http\Livewire\EditsUser;
+use App\Http\Livewire\EditUser;
 use App\Models\Menu;
 use App\Models\Role;
 use App\Models\User;
@@ -31,7 +31,7 @@ class UpdateUserTest extends TestCase
             'email' => 'john@example.com',
         ]);
 
-        Livewire::test(EditsUser::class)
+        Livewire::test(EditUser::class)
             ->set('userId', $user->id)
             ->set(['updateUserForm' => [
                 'type' => User::TYPE_ADMIN,
