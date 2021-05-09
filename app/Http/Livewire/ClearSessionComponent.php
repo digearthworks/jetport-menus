@@ -6,7 +6,7 @@ use App\Services\UserService;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
-class ClearsSessions extends Component
+class ClearSessionComponent extends Component
 {
     use GetsUser,
         InteractsWithBanner;
@@ -33,7 +33,7 @@ class ClearsSessions extends Component
 
     public function render()
     {
-        return view('admin.users.clears-sessions', [
+        return view('admin.users.clear-sessions', [
             'user' => $this->getUser($this->userId),
         ]);
     }

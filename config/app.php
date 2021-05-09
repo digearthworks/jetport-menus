@@ -176,6 +176,7 @@ return [
         App\Providers\ComposerServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
+        App\Providers\LivewireServiceProvider::class,
         App\Providers\LocaleServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,

@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Actions\Jetstream\DeletesUser;
-use App\Http\Livewire\ClearsSessions;
+use App\Http\Livewire\ClearSessionComponent;
 use App\Http\Livewire\CreatesUser;
 use App\Http\Livewire\CreateUserButton;
 use App\Http\Livewire\DeactivatesUser;
@@ -29,7 +29,7 @@ class LivewireServiceProvider extends ServiceProvider
         Livewire::component('admin.users.restore', RestoresUser::class);
         Livewire::component('admin.users.deactivate', DeactivatesUser::class);
         Livewire::component('admin.users.change-password', EditsUserPassword::class);
-        Livewire::component('admin.users.clears-sessions', ClearsSessions::class);
+        Livewire::component('admin.users.clear-sessions', ClearSessionComponent::class);
         Livewire::component('admin.users.reactivate', ReactivatesUser::class);
     }
 }
