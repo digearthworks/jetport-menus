@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Services\UserService;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
@@ -33,6 +34,8 @@ class CreatesUser extends Component
         'menus' => [],
         'roles' => [],
         'permissions' => [],
+        'send_confirmation_email' => '0',
+        'email_verified' => '1',
     ];
 
     public $listeners = ['openCreateDialog'];
@@ -54,9 +57,16 @@ class CreatesUser extends Component
         $this->resetErrorBag();
 
         $validator = Validator::make($this->createUserForm, [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'type' => ['string'],
+            'name' => ['required'],
+            'email' => ['required','email', 'max:255', Rule::unique($users->getTableName())],
+            'password' => ['required'],
+            'active' => ['integer'],
+            'roles' => ['array'],
+            'permissions' => ['array'],
+            'menus' => ['array'],
+            'send_confirmation_email' => ['integer'],
+            'email_verified' => ['integer'],
         ]);
 
         $users->store($validator->validateWithBag('creatUserForm'));

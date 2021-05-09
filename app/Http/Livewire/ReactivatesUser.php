@@ -3,12 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Services\UserService;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
 class ReactivatesUser extends Component
 {
-    use GetsUser,
+    use AuthorizesRequests,
+        GetsUser,
         InteractsWithBanner;
 
     public $userId;
@@ -26,6 +28,7 @@ class ReactivatesUser extends Component
 
     public function reactivateUser(UserService $users)
     {
+        $this->authorize('admin.access.users.reactivate');
         $users->mark($this->getUser($this->userId), (int) 1);
         $this->emit('userReactivated');
         $this->confirmingReactivateUser = false;

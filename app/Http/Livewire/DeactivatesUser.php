@@ -3,12 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Services\UserService;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
 class DeactivatesUser extends Component
 {
-    use GetsUser,
+    use AuthorizesRequests,
+        GetsUser,
         InteractsWithBanner;
 
     public $userId;
@@ -26,6 +28,7 @@ class DeactivatesUser extends Component
 
     public function deactivateUser(UserService $users)
     {
+        $this->authorize('admin.access.users.deactivate');
         $users->mark($this->getUser($this->userId), (int) 0);
         $this->emit('userDeactivated');
         $this->confirmingDeactivateUser = false;

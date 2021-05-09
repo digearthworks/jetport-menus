@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Services\UserService;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
@@ -60,8 +61,15 @@ class EditsUser extends Component
         $this->resetErrorBag();
 
         $validator = Validator::make($this->updateUserForm, [
-            'name' => 'required',
-            'email' => 'required'
+            'type' => ['string'],
+            'name' => ['required'],
+            'email' => ['required','email', 'max:255'],
+            'active' => ['integer'],
+            'roles' => ['array'],
+            'permissions' => ['array'],
+            'menus' => ['array'],
+            'send_confirmation_email' => ['integer'],
+            'email_verified' => ['integer'],
         ]);
         $users->update($this->getUser($this->userId), $validator->validateWithBag('updatedUserForm'));
         $this->emit('userUpdated');

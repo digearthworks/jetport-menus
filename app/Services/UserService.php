@@ -124,7 +124,7 @@ class UserService extends BaseService
                 'banking_date_to' => '',
             ];
             $user = $this->createUser([
-                'type' => $data['type'],
+                'type' => $data['type'] ?? 'user',
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => $data['password'],
