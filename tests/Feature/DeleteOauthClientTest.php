@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Livewire\ClientManager;
+use App\Http\Livewire\ClientManagerComponent;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Jetstream\Features;
@@ -38,7 +38,7 @@ class DeleteOauthClientTest extends TestCase
             true
         );
 
-        Livewire::test(ClientManager::class)
+        Livewire::test(ClientManagerComponent::class)
                     ->set(['clientIdBeingDeleted' => $client->id])
                     ->call('deleteClient');
 
