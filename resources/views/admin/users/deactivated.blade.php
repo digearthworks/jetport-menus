@@ -2,4 +2,4 @@
     <livewire:users-table status="deactivated" />
 </x-index>
 
-<livewire:reactivates-user />
+<livewire:admin.users.deactivate />

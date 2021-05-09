@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Events\User\UserStatusChanged;
 use App\Http\Livewire\DeactivateUser;
-use App\Http\Livewire\ReactivatesUser;
+use App\Http\Livewire\ReactivateUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Livewire;
@@ -12,6 +12,18 @@ use Tests\TestCase;
 
 class DeactivateReactivateUserTest extends TestCase
 {
+
+    /** @test */
+    public function an_admin_can_access_the_deactivated_users_page()
+    {
+        $this->withoutExceptionHandling();
+        $this->loginAsAdmin();
+
+        $response = $this->get('/admin/auth/users/deactivated');
+
+        $response->assertOk();
+    }
+
     /** @test */
     public function a_user_with_the_correct_permissions_can_reactivate_a_user()
     {
@@ -29,7 +41,7 @@ class DeactivateReactivateUserTest extends TestCase
             'active' => false,
         ]);
 
-        Livewire::test(ReactivatesUser::class)
+        Livewire::test(ReactivateUser::class)
             ->set('userId', $deactivatedUser->id)
             ->call('reactivateUser');
 
@@ -103,7 +115,7 @@ class DeactivateReactivateUserTest extends TestCase
             'active' => false,
         ]);
 
-        Livewire::test(ReactivatesUser::class)
+        Livewire::test(ReactivateUser::class)
             ->set('userId', $deactivatedUser->id)
             ->call('reactivateUser');
 
