@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Events\User\UserCreated;
-use App\Http\Livewire\CreatesUser;
+use App\Http\Livewire\CreateUserComponent;
 use App\Models\Menu;
 use App\Models\Role;
 use App\Models\User;
@@ -29,7 +29,7 @@ class CreateUserTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        Livewire::test(CreatesUser::class)
+        Livewire::test(CreateUserComponent::class)
             ->call('createUser')
             ->assertHasErrors(['name', 'email']);
     }
@@ -41,7 +41,7 @@ class CreateUserTest extends TestCase
 
         User::factory()->create(['email' => 'john@example.com']);
 
-        Livewire::test(CreatesUser::class)
+        Livewire::test(CreateUserComponent::class)
             ->set('createUserForm.email', 'john@example.com')
             ->call('createUser')
             ->assertHasErrors(['email']);
@@ -56,7 +56,7 @@ class CreateUserTest extends TestCase
 
         $menu = Menu::factory()->create();
 
-        Livewire::test(CreatesUser::class)
+        Livewire::test(CreateUserComponent::class)
             ->set(['createUserForm' => [
                 'type' => User::TYPE_ADMIN,
                 'name' => 'John Doe',

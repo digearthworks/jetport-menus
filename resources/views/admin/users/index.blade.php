@@ -2,7 +2,7 @@
     <livewire:users-table />
 </x-index>
 
-<livewire:creates-user />
+<livewire:admin.users.create />
 <livewire:edits-user />
 <livewire:edits-user-password />
 <livewire:admin.users.clear-sessions />

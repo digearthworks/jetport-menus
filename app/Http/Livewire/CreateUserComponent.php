@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
-class CreatesUser extends Component
+class CreateUserComponent extends Component
 {
     use AuthorizesRequests,
         GetsUser,
