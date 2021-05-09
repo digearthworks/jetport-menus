@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Traits\Attribute\MenuAttribute;
-use App\Models\Traits\Connection\AuthConnection;
-use App\Models\Traits\HasUuid;
-use App\Models\Traits\Method\MenuMethod;
-use App\Models\Traits\Method\PathMethod;
-use App\Models\Traits\Relationship\MenuRelationship;
+use App\Models\Concerns\Attribute\MenuAttribute;
+use App\Models\Concerns\Connection\AuthConnection;
+use App\Models\Concerns\HasUuid;
+use App\Models\Concerns\Method\MenuMethod;
+use App\Models\Concerns\Method\PathMethod;
+use App\Models\Concerns\Relationship\MenuRelationship;
 use Database\Factories\MenuFactory;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

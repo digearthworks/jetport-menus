@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits\Scope;
+namespace App\Models\Concerns\Scope;
 
 /**
  * Class PermissionScope.

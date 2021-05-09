@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Traits\Attribute\UserAttribute;
-use App\Models\Traits\Connection\AuthConnection;
-use App\Models\Traits\HasMenus;
-use App\Models\Traits\Method\UserMethod;
-use App\Models\Traits\Relationship\UserRelationship;
-use App\Models\Traits\Scope\UserScope;
+use App\Models\Concerns\Attribute\UserAttribute;
+use App\Models\Concerns\Connection\AuthConnection;
+use App\Models\Concerns\HasMenus;
+use App\Models\Concerns\HasUuid;
+use App\Models\Concerns\Method\UserMethod;
+use App\Models\Concerns\Scope\UserScope;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -28,6 +28,7 @@ class User extends Authenticatable
         HasMenus,
         HasProfilePhoto,
         HasRoles,
+        HasUuid,
         Impersonate,
         Notifiable,
         MustVerifyEmail,
@@ -35,7 +36,6 @@ class User extends Authenticatable
         TwoFactorAuthenticatable,
         UserAttribute,
         UserMethod,
-        UserRelationship,
         UserScope,
         Userstamps;
 

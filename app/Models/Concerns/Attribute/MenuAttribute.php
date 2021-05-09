@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits\Attribute;
+namespace App\Models\Concerns\Attribute;
 
 trait MenuAttribute
 {

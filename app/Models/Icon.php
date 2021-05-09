@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Traits\Attribute\IconAttribute;
-use App\Models\Traits\Connection\AuthConnection;
-use App\Models\Traits\HasUuid;
+use App\Models\Concerns\Attribute\IconAttribute;
+use App\Models\Concerns\Connection\AuthConnection;
+use App\Models\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Wildside\Userstamps\Userstamps;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits\Connection;
+namespace App\Models\Concerns\Connection;
 
 trait AuthConnection
 {

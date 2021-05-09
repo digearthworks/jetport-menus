@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits\Method;
+namespace App\Models\Concerns\Method;
 
 trait MenuMethod
 {

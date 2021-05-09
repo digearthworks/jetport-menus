@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits\Relationship;
+namespace App\Models\Concerns\Relationship;
 
 use App\Models\Icon;
 use App\Models\Permission;

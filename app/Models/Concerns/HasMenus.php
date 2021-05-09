@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits;
+namespace App\Models\Concerns;
 
 use App\Models\Menu;
 
@@ -92,5 +92,25 @@ trait HasMenus
         }
 
         return true;
+    }
+
+    public function bookmarks()
+    {
+        return $this->morphedMenuable()->withTimestamps()->wherePivot('menuable_group', 'bookmarks');
+    }
+
+    public function menus()
+    {
+        return $this->morphedMenuable()->withTimestamps();
+    }
+
+    public function hotlinks()
+    {
+        return $this->morphedMenuable()->where('group', 'hotlinks');
+    }
+
+    private function morphedMenuable()
+    {
+        return $this->morphToMany(Menu::class, 'menuable')->orderBy('sort')->with('children', 'icon');
     }
 }

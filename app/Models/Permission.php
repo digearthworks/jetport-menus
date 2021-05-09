@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Traits\Connection\AuthConnection;
-use App\Models\Traits\HasUuid;
-use App\Models\Traits\Relationship\PermissionRelationship;
-use App\Models\Traits\Scope\PermissionScope;
+use App\Models\Concerns\Connection\AuthConnection;
+use App\Models\Concerns\HasUuid;
+use App\Models\Concerns\Relationship\PermissionRelationship;
+use App\Models\Concerns\Scope\PermissionScope;
 use Spatie\Permission\Models\Permission as SpatiePermission;
 
 class Permission extends SpatiePermission

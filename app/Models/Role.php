@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Traits\Attribute\RoleAttribute;
-use App\Models\Traits\Connection\AuthConnection;
-use App\Models\Traits\HasUuid;
-use App\Models\Traits\Method\RoleMethod;
+use App\Models\Concerns\Attribute\RoleAttribute;
+use App\Models\Concerns\Connection\AuthConnection;
+use App\Models\Concerns\HasUuid;
+use App\Models\Concerns\Method\RoleMethod;
 use Database\Factories\RoleFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Models\Role as SpatieRole;
