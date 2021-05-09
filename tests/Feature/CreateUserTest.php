@@ -8,7 +8,6 @@ use App\Models\Menu;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Notification;
 use Livewire;
 use Tests\TestCase;
 
