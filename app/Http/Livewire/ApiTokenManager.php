@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\Jetstream;
 use Livewire\Component;
 
-class ApiTokenManagerComponent extends Component
+class ApiTokenManager extends Component
 {
     /**
      * The create API token form state.

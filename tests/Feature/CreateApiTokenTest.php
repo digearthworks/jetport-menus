@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Livewire\ApiTokenManagerComponent;
+use App\Http\Livewire\ApiTokenManager;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
@@ -28,7 +28,7 @@ class CreateApiTokenTest extends TestCase
             $this->actingAs($user = User::factory()->create());
         }
 
-        Livewire::test(ApiTokenManagerComponent::class)
+        Livewire::test(ApiTokenManager::class)
                     ->set(['createApiTokenForm' => [
                         'name' => 'Test Token',
                         'scopes' => [

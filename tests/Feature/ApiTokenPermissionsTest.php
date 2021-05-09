@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Livewire\ApiTokenManagerComponent;
+use App\Http\Livewire\ApiTokenManager;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
@@ -30,7 +30,7 @@ class ApiTokenPermissionsTest extends TestCase
 
         $token = $user->createToken('Test Token', ['create', 'read'])->token;
 
-        Livewire::test(ApiTokenManagerComponent::class)
+        Livewire::test(ApiTokenManager::class)
                     ->set(['managingPermissionsForId' => $token->id])
                     ->set(['updateApiTokenForm' => [
                         'scopes' => [
