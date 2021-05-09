@@ -3,12 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Services\UserService;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
 class DeletesUser extends Component
 {
-    use GetsUser,
+    use AuthorizesRequests,
+        GetsUser,
         InteractsWithBanner;
 
     public $userId;
@@ -26,6 +28,8 @@ class DeletesUser extends Component
 
     public function deleteUser(UserService $users)
     {
+        $this->authorize('admin.access.users');
+
         $users->delete($this->getUser($this->userId));
         $this->emit('userDeleted');
         $this->confirmingDeleteUser = false;

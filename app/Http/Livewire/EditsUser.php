@@ -3,13 +3,15 @@
 namespace App\Http\Livewire;
 
 use App\Services\UserService;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
 class EditsUser extends Component
 {
-    use GetsUser,
+    use AuthorizesRequests,
+        GetsUser,
         InteractsWithBanner;
 
     public $userId;
@@ -57,6 +59,8 @@ class EditsUser extends Component
 
     public function updateUser(UserService $users)
     {
+        $this->authorize('admin.access.users');
+
         $this->resetErrorBag();
 
         $validator = Validator::make($this->updateUserForm, [

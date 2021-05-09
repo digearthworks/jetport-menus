@@ -29,6 +29,7 @@ class DeactivatesUser extends Component
     public function deactivateUser(UserService $users)
     {
         $this->authorize('admin.access.users.deactivate');
+
         $users->mark($this->getUser($this->userId), (int) 0);
         $this->emit('userDeactivated');
         $this->confirmingDeactivateUser = false;

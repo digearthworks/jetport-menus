@@ -3,12 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Services\UserService;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
 class RestoresUser extends Component
 {
-    use GetsUser,
+    use AuthorizesRequests,
+        GetsUser,
         InteractsWithBanner;
 
     public $userId;
@@ -26,6 +28,8 @@ class RestoresUser extends Component
 
     public function restoreUser(UserService $users)
     {
+        $this->authorize('admin.access.users');
+
         $users->restore($this->getUser($this->userId, true));
         $this->emit('userRestored');
         $this->confirmingRestoreUser = false;

@@ -3,13 +3,15 @@
 namespace App\Http\Livewire;
 
 use App\Services\UserService;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
 class EditsUserPassword extends Component
 {
-    use GetsUser,
+    use AuthorizesRequests,
+        GetsUser,
         InteractsWithBanner;
 
     public $userId;
@@ -32,6 +34,8 @@ class EditsUserPassword extends Component
 
     public function updateUserPassword(UserService $users)
     {
+        $this->authorize('admin.access.users.change-password');
+
         $this->resetErrorBag();
         $validator = Validator::make($this->updateUserPasswordForm, [
             'password' => 'confirmed',

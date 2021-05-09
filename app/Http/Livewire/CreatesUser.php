@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Services\UserService;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Jetstream\InteractsWithBanner;
@@ -10,7 +11,8 @@ use Livewire\Component;
 
 class CreatesUser extends Component
 {
-    use GetsUser,
+    use AuthorizesRequests,
+        GetsUser,
         InteractsWithBanner;
 
     public $userId;
@@ -54,6 +56,8 @@ class CreatesUser extends Component
 
     public function createUser(UserService $users)
     {
+        $this->authorize('admin.access.users');
+
         $this->resetErrorBag();
 
         $validator = Validator::make($this->createUserForm, [

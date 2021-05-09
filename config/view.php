@@ -14,7 +14,6 @@ return [
     */
 
     'paths' => [
-        app_path('MenuSystem/views'),
         resource_path('views'),
     ],
 

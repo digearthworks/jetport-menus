@@ -29,6 +29,7 @@ class ReactivatesUser extends Component
     public function reactivateUser(UserService $users)
     {
         $this->authorize('admin.access.users.reactivate');
+
         $users->mark($this->getUser($this->userId), (int) 1);
         $this->emit('userReactivated');
         $this->confirmingReactivateUser = false;
