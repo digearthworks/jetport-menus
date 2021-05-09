@@ -2,6 +2,7 @@
 
 namespace App\Actions\Jetstream;
 
+use App\Events\User\UserDeleted;
 use Laravel\Jetstream\Contracts\DeletesUsers;
 
 class DeleteUser implements DeletesUsers
@@ -17,5 +18,7 @@ class DeleteUser implements DeletesUsers
         $user->deleteProfilePhoto();
         $user->tokens->each->delete();
         $user->delete();
+
+        event(new UserDeleted($user));
     }
 }
