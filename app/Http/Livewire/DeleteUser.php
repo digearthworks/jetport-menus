@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
-class DeletesUser extends Component
+class DeleteUser extends Component
 {
     use AuthorizesRequests,
         GetsUser,
@@ -26,7 +26,7 @@ class DeletesUser extends Component
         $this->dispatchBrowserEvent('showing-confirm-delete-user-modal');
     }
 
-    public function deleteUser(UserService $users)
+    public function DeleteUser(UserService $users)
     {
         $this->authorize('admin.access.users');
 

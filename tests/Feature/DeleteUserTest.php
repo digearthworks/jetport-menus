@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Events\User\UserDeleted;
-use App\Http\Livewire\DeletesUser;
+use App\Http\Livewire\DeleteUser;
 use App\Http\Livewire\RestoresUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
@@ -21,9 +21,9 @@ class DeleteUserTest extends TestCase
 
         $user = User::factory()->create();
 
-        Livewire::test(DeletesUser::class)
+        Livewire::test(DeleteUser::class)
             ->set('userId', $user->id)
-            ->call('deleteUser');
+            ->call('DeleteUser');
 
         $this->assertSoftDeleted('users', ['id' => $user->id]);
 
