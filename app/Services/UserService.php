@@ -397,9 +397,6 @@ class UserService extends BaseService
     {
         $this->unsetClauses();
 
-        $this->getById($id)->deleteProfilePhoto();
-        $this->getById($id)->tokens->each->delete();
-
         return $this->getById($id)->delete();
     }
 }
