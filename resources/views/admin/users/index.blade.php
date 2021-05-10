@@ -1,6 +1,14 @@
-<x-7xl header="Users" navigationMenu="admin.users.includes.navigation-menu">
+<x-7xl>
+    <x-slot name="header">
+        {{__('Users')}}
+    </x-slot>
+
+    <x-slot name="headerActions">
+        @include('admin.users.includes.header-actions')
+    </x-slot>
+
     <livewire:users-table />
-</x-index>
+</x-7xl>
 
 <livewire:admin.users.create />
 <livewire:admin.users.edit />

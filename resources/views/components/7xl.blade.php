@@ -3,10 +3,10 @@
     @isset($header)
         <x-slot name="header">
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                @lang($header)
-                @isset($navigationMenu)
+                {{ $header }}
+                @isset($headerActions)
                     <div class="flex items-center float-right">
-                        @includeIf($navigationMenu)
+                        {{ $headerActions }}
                     </div>
                 @endisset
             </h2>
