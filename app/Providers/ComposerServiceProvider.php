@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Menu;
+use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -28,6 +31,19 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with([
                 'app_logo' => $app_logo,
                 'logged_in_user' => auth()->user()
+            ]);
+        });
+
+        View::composer(['admin.users.edit', 'admin.users.create'], function ($view) {
+            $view->with([
+                'menus' => Menu::query()->where('menu_id', null)->with('children')->get(),
+                'roles' => Role::with('permissions')->get(),
+            ]);
+        });
+
+        View::composer(['admin.roles.edit', 'admin.roles.create'], function ($view) {
+            $view->with([
+                'permissions' => Permission::query()->with('children')->get(),
             ]);
         });
     }

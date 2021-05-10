@@ -84,7 +84,7 @@ class MenuSeeder extends Seeder
         $adminRoleManager = Menu::create([
             'group' => 'admin',
             'label' => 'Role Management',
-            'link' => '/admin/auth/role',
+            'link' => '/admin/auth/roles',
             'type' => 'internal_link',
             'title' => 'Link to the Role Manager',
             'active' => 1,

@@ -30,6 +30,7 @@ class CreatePermissionTables extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->tinyInteger('sort')->default(1);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('parent_id')
                 ->references('id')
@@ -47,6 +48,7 @@ class CreatePermissionTables extends Migration
             $table->integer('updated_by')->nullable();
             $table->integer('deleted_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::connection(config('jetport.auth.database_connection'))->create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
@@ -86,9 +88,6 @@ class CreatePermissionTables extends Migration
         });
 
         Schema::connection(config('jetport.auth.database_connection'))->create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
-            $table->integer('created_by')->nullable();
-            $table->integer('updated_by')->nullable();
-            $table->integer('deleted_by')->nullable();
             $table->unsignedBigInteger('permission_id');
             $table->unsignedBigInteger('role_id');
 
