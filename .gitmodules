@@ -1,3 +1,4 @@
 [submodule "database/seeders/AuthSeeders"]
 	path = database/seeders/AuthSeeders
 	url = https://github.com/digearthworks/AuthSeeders.git
+    branch = development
