@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\Auth\MenuSeeder;
-use Database\Seeders\Auth\PermissionRoleSeeder;
-use Database\Seeders\Auth\UserMenuSeeder;
-use Database\Seeders\Auth\UserRoleSeeder;
-use Database\Seeders\Auth\UserSeeder;
+use Database\Seeders\AuthSeeders\MenuSeeder;
+use Database\Seeders\AuthSeeders\PermissionRoleSeeder;
+use Database\Seeders\AuthSeeders\UserMenuSeeder;
+use Database\Seeders\AuthSeeders\UserRoleSeeder;
+use Database\Seeders\AuthSeeders\UserSeeder;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Database\Seeders\Traits\TruncateTable;
 use Illuminate\Database\Seeder;
