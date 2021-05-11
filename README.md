@@ -84,7 +84,7 @@ fi
 
 BRANCH=development 
 
-git fetch --all; git reset --hard origin/$BRANCH; git pull origin $BRANCH
+git fetch --all; git reset --hard origin/$BRANCH; git pull origin $BRANCH ; git submodule init; git submodule update;
 
 $FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader
 
