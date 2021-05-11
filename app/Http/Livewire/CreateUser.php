@@ -60,7 +60,7 @@ class CreateUser extends Component
 
         $this->resetErrorBag();
 
-        $validator = Validator::make($this->createUserForm, [
+        Validator::make($this->createUserForm, [
             'type' => ['string'],
             'name' => ['required'],
             'email' => ['required','email', 'max:255', Rule::unique($users->getTableName())],
@@ -71,9 +71,9 @@ class CreateUser extends Component
             'menus' => ['array'],
             'send_confirmation_email' => ['integer'],
             'email_verified' => ['integer'],
-        ]);
+        ])->validateWithBag('creatUserForm');
 
-        $users->store($validator->validateWithBag('creatUserForm'));
+        $users->store($this->createUserForm);
         $this->emit('closeCreateDialog');
         $this->emit('userCreated');
         $this->creatingUser = false;

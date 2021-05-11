@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Services\UserService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
@@ -54,6 +55,7 @@ class EditUser extends Component
         $this->updateUserForm['active'] = $user->active;
         $this->updateUserForm['menus'] = array_map('strVal', $user->menus()->pluck('id')->toArray());
         $this->updateUserForm['roles'] = array_map('strVal', $user->roles()->pluck('id')->toArray());
+        $this->updateUserForm['permissions'] = array_map('strVal', $user->getDirectPermissions()->pluck('id')->toArray());
         $this->dispatchBrowserEvent('showing-edit-user-modal');
     }
 
@@ -63,18 +65,19 @@ class EditUser extends Component
 
         $this->resetErrorBag();
 
-        $validator = Validator::make($this->updateUserForm, [
+        Validator::make($this->updateUserForm, [
             'type' => ['string'],
             'name' => ['required'],
-            'email' => ['required','email', 'max:255'],
+            'email' => ['required','email', 'max:255', Rule::unique($users->getTableName())->ignore($this->userId)],
             'active' => ['integer'],
             'roles' => ['array'],
             'permissions' => ['array'],
             'menus' => ['array'],
             'send_confirmation_email' => ['integer'],
             'email_verified' => ['integer'],
-        ]);
-        $users->update($this->getUser($this->userId), $validator->validateWithBag('updatedUserForm'));
+        ])->validateWithBag('updatedUserForm');
+
+        $users->update($this->getUser($this->userId), $this->updateUserForm);
         $this->emit('userUpdated');
         $this->editingUser = false;
     }

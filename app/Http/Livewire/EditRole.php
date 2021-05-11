@@ -51,12 +51,13 @@ class EditRole extends Component
 
         $this->resetErrorBag();
 
-        $validator = Validator::make($this->updateRoleForm, [
+        Validator::make($this->updateRoleForm, [
             'type' => ['string'],
-            'name' => ['required', Rule::unique($roles->getTableName())],
+            'name' => ['required', Rule::unique($roles->getTableName())->ignore($this->roleId)],
             'permissions' => ['array'],
-        ]);
-        $roles->update($this->getRole($this->roleId), $validator->validateWithBag('editRoleForm'));
+        ])->validateWithBag('updateRoleForm');
+
+        $roles->update($this->getRole($this->roleId), $this->updateRoleForm);
         $this->emit('roleUpdated');
         $this->editingRole = false;
     }

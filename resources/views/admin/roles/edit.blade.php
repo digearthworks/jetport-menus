@@ -38,12 +38,32 @@
 
             <!-- Only shows if type is admin -->
             <div x-show="userType === '{{ $model::TYPE_ADMIN }}'">
-                @include('admin.roles.includes.partials.permission-type', [ 'type' => $model::TYPE_ADMIN ])
+                <x-checklist-index
+                    formIndex="permissions"
+                    label="description"
+                    childrenLabel="description"
+                    relation="children"
+                    :form="$updateRoleForm ?? []"
+                    formElement="updateRoleForm.permissions"
+                    :categories="$permissionCategories->where('type', $model::TYPE_ADMIN) ?? []"
+                    :general="$generalPermissions->where('type', $model::TYPE_ADMIN) ?? []"
+                    header="Permissions"
+                />
             </div>
 
             <!-- Only shows if type is user -->
             <div x-show="userType === '{{ $model::TYPE_USER }}'">
-                @include('admin.roles.includes.partials.permission-type', [ 'type' => $model::TYPE_USER ])
+                <x-checklist-index
+                    formIndex="permissions"
+                    label="description"
+                    childrenLabel="description"
+                    relation="children"
+                    :form="$updateRoleForm ?? []"
+                    formElement="updateRoleForm.permissions"
+                    :categories="$permissionCategories->where('type', $model::TYPE_USER) ?? []"
+                    :general="$generalPermissions->where('type', $model::TYPE_USER) ?? []"
+                    header="Permissions"
+                />
             </div>
 
         </div>

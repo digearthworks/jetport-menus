@@ -177,6 +177,7 @@ class UserService extends BaseService
             if (! $user->isMasterAdmin()) {
                 // Replace selected roles/permissions
                 $user->syncRoles($data['roles'] ?? []);
+                $user->syncPermissions($data['permissions'] ?? []);
             }
             $user->syncMenus($data['menus'] ?? []);
         } catch (Exception $e) {

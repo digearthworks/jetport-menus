@@ -69,6 +69,7 @@ class CreateUserTest extends TestCase
                 'menus' => [
                     $menu->id,
                 ],
+                'permissions' => [],
             ]])
             ->call('createUser');
 

@@ -43,6 +43,7 @@ class UpdateUserTest extends TestCase
                 'menus' => [
                     $menu->id,
                 ],
+                'permissions' => [],
             ]])
             ->call('updateUser');
 

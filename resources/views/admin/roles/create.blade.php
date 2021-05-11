@@ -20,7 +20,6 @@
             </div>
             <!--form-group-->
 
-
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="updatingName" value="{{ __('Type') }}" />
 
@@ -38,83 +37,33 @@
 
             <!-- Only shows if type is admin -->
             <div x-show="userType === '{{ $model::TYPE_ADMIN }}'">
-                <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label class="underline" for="updatingRoles" value="{{ __('Permission Categories') }}" />
-                </div>
 
-                @if ($permissions->where('type', $model::TYPE_ADMIN )->whereNull('parent_id')->count())
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        @foreach ($permissions->where('type', $model::TYPE_ADMIN )->whereNull('parent_id') as $permission)
-                            <div
-                                class="border-gray-300 p-1 m-0.5 rounded-md border hover:border-blue-300 hover:shadow-outline-blue">
-                                <label class="flex items-center">
-                                    <x-jet-checkbox wire:model="createRoleForm.permissions" :value="$permission->id" />
-                                    <span class="ml-1 text-sm text-gray-600">{{ $permission->description ?? $permission->name }}</span>
-                                </label>
-
-                                @if ($permission->children->count())
-                                <li class="ml-4 list-none">
-                                    @foreach($permission->children as $permissionChild)
-                                    <ul>
-
-                                        <label class="flex items-center">
-                                            @if( in_array((string) $permission->id, $createRoleForm['permissions']))
-                                                <svg class="w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>  <span class="ml-1 text-sm text-gray-600">{{ $permissionChild->description ?? $permissionChild->name }}</span>
-                                            @else
-                                                <x-jet-checkbox wire:model="createRoleForm.permissions" :value="$permissionChild->id" />
-                                                <span class="ml-1 text-sm text-gray-600">{{ $permissionChild->description ?? $permissionChild->name }}</span>
-                                            @endif
-                                        </label>
-
-                                    </ul>
-                                    @endforeach
-                                </li>
-                                @endif
-                            </div>
-                        @endforeach
-                    </div>
-                @endif
-
+                <x-checklist-index
+                    formIndex="permissions"
+                    label="description"
+                    childrenLabel="description"
+                    relation="children"
+                    :form="$createRoleForm ?? []"
+                    formElement="createRoleForm.permissions"
+                    :categories="$permissionCategories->where('type', $model::TYPE_ADMIN) ?? []"
+                    :general="$generalPermissions->where('type', $model::TYPE_ADMIN) ?? []"
+                    header="Permissions"
+                />
             </div>
 
             <!-- Only shows if type is user -->
             <div x-show="userType === '{{ $model::TYPE_USER }}'">
-                <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label class="underline" for="updatingRoles" value="{{ __('Permission Categories') }}" />
-                </div>
-
-                @if ($permissions->where('type', $model::TYPE_USER )->whereNull('parent_id')->count())
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        @foreach ($permissions->where('type', $model::TYPE_USER )->whereNull('parent_id') as $permission)
-                            <div
-                                class="border-gray-300 p-1 m-0.5 rounded-md border hover:border-blue-300 hover:shadow-outline-blue">
-                                <label class="flex items-center">
-                                    <x-jet-checkbox wire:model="createRoleForm.permissions" :value="$permission->id" />
-                                    <span class="ml-1 text-sm text-gray-600">{{ $permission->description ?? $permission->name }}</span>
-                                </label>
-
-                                @if ($permission->children->count())
-                                <li class="ml-4 list-none">
-                                    @foreach($permission->children as $permissionChild)
-                                    <ul>
-
-                                        <label class="flex items-center">
-                                            @if( in_array((string) $permission->id, $createRoleForm['permissions']))
-                                                <svg class="w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>  <span class="ml-1 text-sm text-gray-600">{{ $permissionChild->description ?? $permissionChild->name }}</span>
-                                            @else
-                                                <x-jet-checkbox wire:model="createRoleForm.permissions" :value="$permissionChild->id" />
-                                                <span class="ml-1 text-sm text-gray-600">{{ $permissionChild->description ?? $permissionChild->name }}</span>
-                                            @endif
-                                        </label>
-
-                                    </ul>
-                                    @endforeach
-                                </li>
-                                @endif
-                            </div>
-                        @endforeach
-                    </div>
-                @endif
+                <x-checklist-index
+                    formIndex="permissions"
+                    label="description"
+                    childrenLabel="description"
+                    relation="children"
+                    :form="$createRoleForm ?? []"
+                    formElement="createRoleForm.permissions"
+                    :categories="$permissionCategories->where('type', $model::TYPE_USER) ?? []"
+                    :general="$generalPermissions->where('type', $model::TYPE_USER) ?? []"
+                    header="Permissions"
+                />
             </div>
 
         </div>

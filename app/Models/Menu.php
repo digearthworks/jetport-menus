@@ -34,7 +34,7 @@ class Menu extends Model
 
     protected $guarded = [];
 
-    protected $appends = ['grid'];
+    // protected $appends = ['grid'];
 
     protected $with = 'icon';
 

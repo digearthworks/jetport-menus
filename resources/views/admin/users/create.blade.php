@@ -44,128 +44,90 @@
                 </div>
                 <!--form-group-->
 
-                    <div class="col-span-6 sm:col-span-4">
-                        <x-jet-label for="creatingName" value="{{ __('Type') }}" />
+                <div class="col-span-6 sm:col-span-4">
+                    <x-jet-label for="creatingName" value="{{ __('Type') }}" />
 
-                        <div class="col-span-6 sm:col-span-4">
-                            <select name="type"
-                                class="block w-full mb-2 border-gray-300 rounded-md shadow-sm form-select focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                x-on:change="userType = $event.target.value" wire:model.defer="createUserForm.type"
-                                required>
-                                <option value="{{ $model::TYPE_USER }}">@lang('User')</option>
-                                <option value="{{ $model::TYPE_ADMIN }}">@lang('Administrator')</option>
-                            </select>
-                        </div>
+                    <div class="col-span-6 sm:col-span-4">
+                        <select name="type"
+                            class="block w-full mb-2 border-gray-300 rounded-md shadow-sm form-select focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                            x-on:change="userType = $event.target.value" wire:model.defer="createUserForm.type"
+                            required>
+                            <option value="{{ $model::TYPE_USER }}">@lang('User')</option>
+                            <option value="{{ $model::TYPE_ADMIN }}">@lang('Administrator')</option>
+                        </select>
                     </div>
+                </div>
                     <!--form-group-->
 
-                <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label class="underline" for="creatingMenus" value="{{ __('Menus') }}" />
+                <x-checklist-index
+                    formIndex="menus"
+                    label="label_with_art"
+                    childrenLabel="link_with_art"
+                    relation="children"
+                    :form="$createUserForm ?? []"
+                    formElement="createUserForm.menus"
+                    :categories="$menus"
+                    header="Menus"
+                    disableChildren="true"
+                />
+
+                <!-- Only shows if type is admin -->
+                <div x-show="userType === '{{ $model::TYPE_ADMIN }}'">
+
+                    <x-checklist-index
+                        formIndex="roles"
+                        label="name"
+                        childrenLabel="description"
+                        relation="permissions"
+                        :form="$createUserForm ?? []"
+                        formElement="createUserForm.roles"
+                        :categories="$roles->where('type', $model::TYPE_ADMIN) ?? []"
+                        header="Roles"
+                        disableChildren="true"
+                    />
+
+                    <x-checklist-index
+                        formIndex="permissions"
+                        label="description"
+                        childrenLabel="description"
+                        relation="children"
+                        :form="$createUserForm ?? []"
+                        formElement="createUserForm.permissions"
+                        :categories="$permissionCategories->where('type', $model::TYPE_ADMIN) ?? []"
+                        :general="$generalPermissions->where('type', $model::TYPE_ADMIN) ?? []"
+                        header="Additional Permissions by Category"
+                    />
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2">
-                    @foreach ($menus as $menu)
-                        <div
-                            class="border-gray-300 p-1 m-0.5 rounded-md border hover:border-blue-300 hover:shadow-outline-blue">
-                            <label class="flex items-center">
-                                <x-jet-checkbox wire:model.defer="createUserForm.menus" :value="$menu->id" />
-                                <span class="px-1 text-gray-600">{!! $menu->icon->art !!}</span><span
-                                    class="text-sm text-gray-600">{{ $menu->label }}</span>
-                            </label>
+                <!-- Only shows if type is user -->
+                <div x-show="userType === '{{ $model::TYPE_USER }}'">
 
-                            @if ($menu->children()->count())
-                                <blockquote class="ml-3 text-sm text-gray-700">
-                                    @foreach ($menu->children as $link)
-                                        <i class="fa fa-check-circle"></i> {!! $link->icon->art !!} {{ $link->link }}
-                                        @if (isset($link->title))
-                                            <small>{{ $link->title }}</small>
-                                        @endif<br />
-                                    @endforeach
-                                </blockquote>
-                            @else
-                                <blockquote class="ml-3 text-sm text-gray-700">
-                                    <i class="fa fa-minus-circle"></i> @lang('No Items')
-                                </blockquote>
-                            @endif
-                        </div>
-                    @endforeach
+                    <div class="col-span-6 sm:col-span-4">
+                        <x-checklist-index
+                            formIndex="roles"
+                            label="name"
+                            childrenLabel="description"
+                            relation="permissions"
+                            :form="$createUserForm ?? []"
+                            formElement="createUserForm.roles"
+                            :categories="$roles->where('type', $model::TYPE_USER) ?? []"
+                            header="Roles"
+                            disableChildren="true"
+                        />
+                    </div>
+
+                    <x-checklist-index
+                        formIndex="permissions"
+                        label="description"
+                        childrenLabel="description"
+                        relation="children"
+                        :form="$createUserForm ?? []"
+                        formElement="createUserForm.permissions"
+                        :categories="$permissionCategories->where('type', $model::TYPE_USER) ?? []"
+                        :general="$generalPermissions->where('type', $model::TYPE_USER) ?? []"
+                        header="Additional Permissions by Category"
+                    />
                 </div>
-
-                    <!-- Only shows if type is admin -->
-                    <div x-show="userType === '{{ $model::TYPE_ADMIN }}'">
-
-                        <div class="col-span-6 sm:col-span-4">
-                            <x-jet-label class="underline" for="creatingRoles" value="{{ __('Admin Roles') }}" />
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2">
-                            @foreach ($roles->where('type', $model::TYPE_ADMIN) as $role)
-                                <div
-                                    class="border-gray-300 p-1 m-0.5 rounded-md border hover:border-blue-300 hover:shadow-outline-blue">
-                                    <label class="flex items-center">
-                                        <x-jet-checkbox wire:model.defer="createUserForm.roles" :value="$role->id" />
-                                        <span class="text-sm text-gray-600">{{ $role->name }}</span>
-                                    </label>
-
-                                    @if ($role->name === 'Administrator')
-                                        <blockquote class="ml-3 text-sm text-gray-700">
-                                            <i class="fa fa-check-circle"></i> @lang('All Permissions')<br />
-                                        </blockquote>
-                                    @elseif ($role->permissions->count())
-
-                                        <blockquote class="ml-3 text-sm text-gray-700">
-                                            @foreach ($role->permissions as $permission)
-                                                <i class="fa fa-check-circle"></i> {{ $permission->description }}<br />
-                                            @endforeach
-                                        </blockquote>
-                                    @else
-                                        <blockquote class="ml-3 text-sm text-gray-700">
-                                            <i class="fa fa-minus-circle"></i> @lang('No Items')
-                                        </blockquote>
-                                    @endif
-                                </div>
-                            @endforeach
-                        </div>
-
-                    </div>
-
-                    <!-- Only shows if type is user -->
-                    <div x-show="userType === '{{ $model::TYPE_USER }}'">
-
-                        <div class="col-span-6 sm:col-span-4">
-                            <x-jet-label class="underline" for="creatingRoles" value="{{ __('User Roles') }}" />
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2">
-                            @foreach ($roles->where('type', $model::TYPE_USER) as $role)
-                                <div
-                                    class="border-gray-300 p-1 m-0.5 rounded-md border hover:border-blue-300 hover:shadow-outline-blue">
-                                    <label class="flex items-center">
-                                        <x-jet-checkbox wire:model.defer="createUserForm.roles" :value="$role->id" />
-                                        <span class="text-sm text-gray-600">{{ $role->name }}</span>
-                                    </label>
-
-                                    @if ($role->name === 'Administrator')
-                                        <blockquote class="ml-3 text-sm text-gray-700">
-                                            <i class="fa fa-check-circle"></i> @lang('All Permissions')<br />
-                                        </blockquote>
-                                    @elseif ($role->permissions->count())
-
-                                        <blockquote class="ml-3 text-sm text-gray-700">
-                                            @foreach ($role->permissions as $permission)
-                                                <i class="fa fa-check-circle"></i> {{ $permission->description }}<br />
-                                            @endforeach
-                                        </blockquote>
-                                    @else
-                                        <blockquote class="ml-3 text-sm text-gray-700">
-                                            <i class="fa fa-minus-circle"></i> @lang('No Items')
-                                        </blockquote>
-                                    @endif
-                                </div>
-                            @endforeach
-                        </div>
-
-                    </div>
             </div>
         </x-slot>
 

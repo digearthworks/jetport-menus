@@ -13,6 +13,24 @@ trait MenuAttribute
         return ucfirst($value);
     }
 
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getLabelWithArtAttribute(): string
+    {
+        return "{$this->icon->art} {$this->label}" ;
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getLinkWithArtAttribute(): string
+    {
+        return "{$this->icon->art} {$this->link}" ;
+    }
+
     public function getPathAttribute()
     {
         return $this->path();

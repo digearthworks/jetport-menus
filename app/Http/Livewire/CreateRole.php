@@ -42,12 +42,13 @@ class CreateRole extends Component
     {
         $this->resetErrorBag();
 
-        $validator = Validator::make($this->createRoleForm, [
+        Validator::make($this->createRoleForm, [
             'type' => ['string'],
             'name' => ['required', Rule::unique($roles->getTableName())],
             'permissions' => ['array'],
-        ]);
-        $roles->store($validator->validateWithBag('createdRoleForm'));
+        ])->validateWithBag('createdRoleForm');
+
+        $roles->store($this->createRoleForm);
         $this->emit('roleCreated');
         $this->emit('closeCreateDialog');
         $this->creatingRole = false;
