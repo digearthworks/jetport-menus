@@ -14,7 +14,8 @@ class CreateMenusTable extends Migration
     public function up()
     {
         Schema::connection(config('jetport.auth.database_connection'))->create('menus', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->uuid('uuid')->nullable()->unique();
             $table->string('group')->nullable();
             $table->string('label');
             $table->string('link')->nullable();
@@ -24,14 +25,19 @@ class CreateMenusTable extends Migration
             $table->integer('iframe')->nullable();
             $table->integer('sort')->nullable();
             $table->integer('row')->nullable();
-            $table->integer('menu_id')->nullable();
-            $table->bigInteger('permission_id')->nullable();
+            $table->unsignedBigInteger('menu_id')->nullable();
+            $table->unsignedBigInteger('permission_id')->nullable();
             $table->integer('icon_id')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->integer('deleted_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('menu_id')
+            ->references('id')
+            ->on('menus')
+            ->onDelete('cascade');
         });
     }
 

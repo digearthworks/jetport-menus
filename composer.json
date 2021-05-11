@@ -9,26 +9,28 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "arcanedev/log-viewer": "^8.1",
         "darkghosthunter/laraguard": "^3.0",
         "dyrynda/laravel-cascade-soft-deletes": "^4.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "lab404/laravel-impersonate": "^1.7",
-        "laravel/framework": "^8.12",
+        "langleyfoxall/laravel-nist-password-rules": "^5.0",
+        "laravel/framework": "^8.24",
         "laravel/jetstream": "^2.3.2",
         "laravel/passport": "^10.1",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
-        "mediconesystems/livewire-datatables": "^0.4.3",
+        "rappasoft/laravel-livewire-tables": "^1.6",
+        "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-permission": "^4.0",
         "wildside/userstamps": "^2.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.9",
-        "codedungeon/phpunit-result-printer": "^0.30.1",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "friendsofphp/php-cs-fixer": "^2.18",
@@ -82,7 +84,7 @@
             "composer clear-all",
             "composer cache-all"
         ],
-        "test": "vendor/bin/phpunit",
+        "test": "@php artisan test",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
         "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     },
@@ -97,11 +99,5 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/digearthworks/livewire-datatables"
-        }
-    ]
+    "prefer-stable": true
 }

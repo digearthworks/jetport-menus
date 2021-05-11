@@ -7,18 +7,48 @@ use Livewire\Component;
 
 class Sidebar extends Component
 {
-    /**
-     * The items in the sidebar.
-     *
-     * @var array
-     */
     public $officeItems;
+
     public $adminItems;
 
-    public function mount($navItems = [])
+    public $adminOpen;
+
+    public $officeOpen;
+
+    public $logsOpen;
+
+    public $sidebarOpen;
+
+    public function mount()
     {
+        $this->adminOpen = session('adminOpen', false);
+        $this->officeOpen = session('officeOpen', false);
+        $this->logsOpen = session('logsOpen', false);
+        $this->sidebarOpen = session('sidebarOpen', false);
+
         $this->adminItems =  Menu::query()->where('group', 'admin')->get();
         $this->officeItems = Menu::query()->where('group', 'office')->get();
+    }
+
+    public function toggleAdminOpen()
+    {
+        $adminOpen = session('adminOpen', false);
+
+        session()->put('adminOpen', !$adminOpen);
+    }
+
+    public function toggleOfficeOpen()
+    {
+        $officeOpen = session('officeOpen', false);
+
+        session()->put('officeOpen', !$officeOpen);
+    }
+
+    public function toggleLogsOpen()
+    {
+        $logsOpen = session('logsOpen', false);
+
+        session()->put('logsOpen', !$logsOpen);
     }
 
     public function render()
@@ -27,10 +57,5 @@ class Sidebar extends Component
             'adminItems' => $this->adminItems,
             'officeItems' => $this->officeItems,
         ]);
-    }
-
-    private function randomItems()
-    {
-        return explode(' ', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.');
     }
 }

@@ -69,7 +69,7 @@ class MenuSeeder extends Seeder
         $adminUserManager = Menu::create([
             'group' => 'admin',
             'label' => 'User Management',
-            'link' => '/admin/auth/user',
+            'link' => '/admin/auth/users',
             'type' => 'internal_link',
             'title' => 'Link to the User Manager',
             'active' => 1,
@@ -84,7 +84,7 @@ class MenuSeeder extends Seeder
         $adminRoleManager = Menu::create([
             'group' => 'admin',
             'label' => 'Role Management',
-            'link' => '/admin/auth/role',
+            'link' => '/admin/auth/roles',
             'type' => 'internal_link',
             'title' => 'Link to the Role Manager',
             'active' => 1,

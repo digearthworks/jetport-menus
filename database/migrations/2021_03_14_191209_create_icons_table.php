@@ -15,6 +15,7 @@ class CreateIconsTable extends Migration
     {
         Schema::connection(config('jetport.auth.database_connection'))->create('icons', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->nullable()->unique();
             $table->integer('favorite')->nullable();
             $table->string('source')->nullable();
             $table->string('title')->nullable();

@@ -21,6 +21,9 @@ class AdminCheck
             return $next($request);
         }
 
-        return redirect()->route('index')->withFlashDanger(__('You do not have access to do that.'));
+        return redirect()
+            ->route('dashboard')
+            ->with('flash.banner', 'You do not have access to do that.')
+            ->with('flash.bannerStyle', 'danger');
     }
 }

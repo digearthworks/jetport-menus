@@ -21,21 +21,14 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
+
     <body class="font-sans antialiased">
 
-        <x-jet-banner />
+    <div x-data="{ open:false, sidebarOpen: '{{ session('sidebarOpen', false) }}' }" class="flex min-h-screen overflow-x-hidden bg-gray-100">
 
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
-</head>
-
-<body class="font-sans antialiased">
-
-    <x-jet-banner />
-
-    <div x-data="{ open:false, sidebarOpen: false }" class="flex overflow-x-hidden min-h-screen bg-gray-100">
-
-        @livewire('sidebar')
+        @if($logged_in_user->isAdmin())
+            @livewire('sidebar')
+        @endif
 
         <div class="flex-1">
 
@@ -45,7 +38,7 @@
             @if (isset($header))
                 <header class="bg-white shadow">
 
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
 
@@ -53,6 +46,8 @@
             @endif
 
             @include('includes.logged-in-as')
+
+            <x-banner/>
 
             <!-- Page Content -->
             <main>
@@ -65,8 +60,6 @@
     </div>
 
     @stack('modals')
-
-        @stack('modals')
 
         @livewireScripts
     </body>

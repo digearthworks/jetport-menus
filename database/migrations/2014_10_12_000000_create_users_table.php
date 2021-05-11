@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
     {
         Schema::connection(config('jetport.auth.database_connection'))->create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid')->nullable()->unique();
             $table->enum('type', [User::TYPE_ADMIN, User::TYPE_USER])->default(User::TYPE_USER);
             $table->string('name');
             $table->string('first_name')->nullable();

@@ -152,6 +152,8 @@ class ClientManager extends Component
         $this->updateForm['name'] = $client->name;
         $this->updateForm['redirect'] = $client->redirect;
         $this->updateForm['confidential'] = true;
+
+        $this->dispatchBrowserEvent('showing-manage-client-modal');
     }
 
     /**
