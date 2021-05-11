@@ -18,10 +18,10 @@
 ### Alpha. *Menus*
 
 - [x] OAuth2 Server
-- [ ] Permissions Role User with Livewire Datatable Frontend.
-- [ ] Admin Impersonation of Users
+- [x] Permissions Role User with Livewire Datatable Frontend.
+- [x] Admin Impersonation of Users
 - [ ] Menu Management Crud
-- [ ] Assignable Menus for Each User
+- [x] Assignable Menus for Each User
 - [ ] Alpha Docs
 
 ### Beta. *Jetport*
