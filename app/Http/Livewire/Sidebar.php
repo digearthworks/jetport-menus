@@ -3,59 +3,51 @@
 namespace App\Http\Livewire;
 
 use App\Models\Menu;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 
 class Sidebar extends Component
 {
-    public $officeItems;
+    /**
+     * @var Collection|EloquentCollection
+     */
+    public $appMenuItems;
 
-    public $adminItems;
+    /**
+     * @var Collection|EloquentCollection
+     */
+    public $adminMenuItems;
 
-    public $adminOpen;
+    public bool $adminMenuOpen;
 
-    public $officeOpen;
+    public bool $appMenuOpen;
 
-    public $logsOpen;
+    public bool $logsMenuOpen;
 
-    public $sidebarOpen;
+    public bool $sidebarOpen;
 
     public function mount()
     {
-        $this->adminOpen = session('adminOpen', false);
-        $this->officeOpen = session('officeOpen', false);
-        $this->logsOpen = session('logsOpen', false);
+        $this->adminMenuOpen = session('adminMenuOpen', false);
+        $this->appMenuOpen = session('appMenuOpen', false);
+        $this->logsMenuOpen = session('logsMenuOpen', false);
         $this->sidebarOpen = session('sidebarOpen', false);
 
-        $this->adminItems =  Menu::query()->where('group', 'admin')->get();
-        $this->officeItems = Menu::query()->where('group', 'office')->get();
+        $this->adminMenuItems =  Menu::query()->where('group', 'admin')->get();
+        $this->appMenuItems = Menu::query()->where('group', 'app')->get();
     }
 
-    public function toggleAdminOpen()
+    public function toggleMenuOpen($sessionKey)
     {
-        $adminOpen = session('adminOpen', false);
-
-        session()->put('adminOpen', !$adminOpen);
-    }
-
-    public function toggleOfficeOpen()
-    {
-        $officeOpen = session('officeOpen', false);
-
-        session()->put('officeOpen', !$officeOpen);
-    }
-
-    public function toggleLogsOpen()
-    {
-        $logsOpen = session('logsOpen', false);
-
-        session()->put('logsOpen', !$logsOpen);
+        session()->put($sessionKey, !session($sessionKey, false));
     }
 
     public function render()
     {
         return view('sidebar', [
-            'adminItems' => $this->adminItems,
-            'officeItems' => $this->officeItems,
+            'adminMenuItems' => $this->adminMenuItems,
+            'appMenuItems' => $this->appMenuItems,
         ]);
     }
 }
