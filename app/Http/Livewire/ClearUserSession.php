@@ -3,15 +3,11 @@
 namespace App\Http\Livewire;
 
 use App\Services\UserService;
-use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
-class ClearSession extends Component
+class ClearUserSession extends Component
 {
-    use GetsUser,
-        InteractsWithBanner;
-
-    public $userId;
+    use HasUser;
 
     public $confirmingClearSessions = false;
 
@@ -26,7 +22,7 @@ class ClearSession extends Component
 
     public function clearSessions(UserService $users)
     {
-        $users->clearSessions($this->getUser($this->userId));
+        $users->clearSessions($this->user);
         $this->emit('userSessionsCleared');
         $this->confirmingClearSessions = false;
     }
@@ -34,7 +30,7 @@ class ClearSession extends Component
     public function render()
     {
         return view('admin.users.clear-sessions', [
-            'user' => $this->getUser($this->userId),
+            'user' => $this->user,
         ]);
     }
 }

@@ -12,10 +12,8 @@ use Livewire\Component;
 class EditUser extends Component
 {
     use AuthorizesRequests,
-        GetsUser,
+        HasUser,
         InteractsWithBanner;
-
-    public $userId;
 
     public $editingUser = false;
 
@@ -44,18 +42,17 @@ class EditUser extends Component
     {
         $this->editingUser = true;
         $this->userId = $userId;
-        $user  = $this->getUser($userId);
-        $this->updateUserForm['type'] = $user->type;
-        $this->updateUserForm['name'] = $user->name;
-        $this->updateUserForm['first_name'] = $user->first_name;
-        $this->updateUserForm['last_name'] = $user->last_name;
-        $this->updateUserForm['middle_initial'] = $user->middle_initail;
-        $this->updateUserForm['email'] = $user->email;
-        $this->updateUserForm['password'] = $user->password;
-        $this->updateUserForm['active'] = $user->active;
-        $this->updateUserForm['menus'] = array_map('strVal', $user->menus()->pluck('id')->toArray());
-        $this->updateUserForm['roles'] = array_map('strVal', $user->roles()->pluck('id')->toArray());
-        $this->updateUserForm['permissions'] = array_map('strVal', $user->getDirectPermissions()->pluck('id')->toArray());
+        $this->updateUserForm['type'] = $this->user->type;
+        $this->updateUserForm['name'] = $this->user->name;
+        $this->updateUserForm['first_name'] = $this->user->first_name;
+        $this->updateUserForm['last_name'] = $this->user->last_name;
+        $this->updateUserForm['middle_initial'] = $this->user->middle_initail;
+        $this->updateUserForm['email'] = $this->user->email;
+        $this->updateUserForm['password'] = $this->user->password;
+        $this->updateUserForm['active'] = $this->user->active;
+        $this->updateUserForm['menus'] = array_map('strVal', $this->user->menus()->pluck('id')->toArray());
+        $this->updateUserForm['roles'] = array_map('strVal', $this->user->roles()->pluck('id')->toArray());
+        $this->updateUserForm['permissions'] = array_map('strVal', $this->user->getDirectPermissions()->pluck('id')->toArray());
         $this->dispatchBrowserEvent('showing-edit-user-modal');
     }
 
@@ -77,7 +74,7 @@ class EditUser extends Component
             'email_verified' => ['integer'],
         ])->validateWithBag('updatedUserForm');
 
-        $users->update($this->getUser($this->userId), $this->updateUserForm);
+        $users->update($this->user, $this->updateUserForm);
         $this->emit('userUpdated');
         $this->editingUser = false;
     }
@@ -85,7 +82,7 @@ class EditUser extends Component
     public function render()
     {
         return view('admin.users.edit', [
-            'user' => $this->getUser($this->userId),
+            'user' => $this->user,
         ]);
     }
 }
