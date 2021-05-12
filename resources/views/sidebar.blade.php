@@ -12,8 +12,8 @@
 
     <nav class="flex flex-col flex-1 pt-8 bg-white">
 
-        <div class="ml-0" x-data="{ open: '{{ $adminOpen ?? 'false' }}' }">
-            <button @click="open = !open" wire:click="toggleAdminOpen"
+        <div class="ml-0" x-data="{ open: '{{ $adminMenuOpen ?? 'false' }}' }">
+            <button @click="open = !open" wire:click="toggleMenuOpen('adminMenuOpen')"
                 class="flex items-center justify-between w-full px-2 py-3 text-gray-600 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
                 <span class="flex items-center">
                     <svg class="h-6 pl-0 ml-0w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -38,24 +38,18 @@
                 </span>
             </button>
             <div x-show="open" class="ml-4">
-                @foreach($adminItems as $adminItem)
-                    <a class="flex items-center px-4 py-2 text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $adminItem->link }}"><span class="pr-1">{!! $adminItem->icon->art !!}</span>{{$adminItem->label}}</a>
+                @foreach($adminMenuItems as $adminMenuItem)
+                    <a class="flex items-center px-4 py-2 text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $adminMenuItem->link }}"><span class="pr-1">{!! $adminMenuItem->icon->art !!}</span>{{$adminMenuItem->label}}</a>
                 @endforeach
             </div>
         </div>
 
-        <div x-data="{ open: '{{ $officeOpen ?? 'false' }}' }">
-            <button @click="open = !open" wire:click="toggleOfficeOpen"
+        <div x-data="{ open: '{{ $appMenuOpen ?? 'false' }}' }">
+            <button @click="open = !open" wire:click="toggleMenuOpen('appMenuOpen')"
                 class="flex items-center justify-between w-full px-2 py-3 text-gray-600 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
                 <span class="flex items-center">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z">
-                        </path>
-                    </svg>
-
-                    <span class="mx-2 font-medium">Office</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                    <span class="mx-2 font-medium">App</span>
                 </span>
 
                 <span>
@@ -69,15 +63,15 @@
             </button>
 
             <div x-show="open" class="ml-8">
-                @foreach ($officeItems as $officeItem)
-                    <a class="flex items-center px-4 py-2 text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $adminItem->link }}"><span class="pr-1">{!! $adminItem->icon->art !!}</span>{{$adminItem->label}}</a>
+                @foreach ($appMenuItems as $appMenuItem)
+                    <a class="flex items-center px-4 py-2 text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $appMenuItem->link }}"><span class="pr-1">{!! $appMenuItem->icon->art !!}</span>{{$appMenuItem->label}}</a>
                 @endforeach
             </div>
         </div>
 
         @if($logged_in_user->isMasterAdmin())
-            <div x-data="{ open: '{{ $logsOpen ?? 'false' }}' }">
-                <button @click="open = !open" wire:click="toggleLogsOpen"
+            <div x-data="{ open: '{{ $logsMenuOpen ?? 'false' }}' }">
+                <button @click="open = !open" wire:click="toggleMenuOpen('logsMenuOpen')"
                     class="flex items-center justify-between w-full px-2 py-3 text-gray-600 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
                     <span class="flex items-center">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>

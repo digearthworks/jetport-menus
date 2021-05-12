@@ -11,10 +11,8 @@ use Livewire\Component;
 class EditUserPassword extends Component
 {
     use AuthorizesRequests,
-        GetsUser,
+        HasUser,
         InteractsWithBanner;
-
-    public $userId;
 
     public $editingUserPassword = false;
 
@@ -40,7 +38,7 @@ class EditUserPassword extends Component
         $validator = Validator::make($this->updateUserPasswordForm, [
             'password' => 'confirmed',
         ]);
-        $users->updatePassword($this->getUser($this->userId), $validator->validateWithBag('updatePasswordForm'));
+        $users->updatePassword($this->user, $validator->validateWithBag('updatePasswordForm'));
         $this->emit('userPasswordUpdated');
         $this->editingUserPassword = false;
     }
@@ -48,7 +46,7 @@ class EditUserPassword extends Component
     public function render()
     {
         return view('admin.users.change-password', [
-            'user' => $this->getUser($this->userId),
+            'user' => $this->user,
         ]);
     }
 }

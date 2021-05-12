@@ -12,10 +12,8 @@ use Livewire\Component;
 class EditRole extends Component
 {
     use AuthorizesRequests,
-        GetsRole,
+        HasRole,
         InteractsWithBanner;
-
-    public $roleId;
 
     public $editingRole = false;
 
@@ -38,10 +36,9 @@ class EditRole extends Component
 
         $this->editingRole = true;
         $this->roleId = $roleId;
-        $role  = $this->getRole($roleId);
-        $this->updateRoleForm['type'] = $role->type;
-        $this->updateRoleForm['name'] = $role->name;
-        $this->updateRoleForm['permissions'] = array_map('strVal', $role->permissions()->pluck('id')->toArray());
+        $this->updateRoleForm['type'] = $this->role->type;
+        $this->updateRoleForm['name'] = $this->role->name;
+        $this->updateRoleForm['permissions'] = array_map('strVal', $this->role->permissions()->pluck('id')->toArray());
         $this->dispatchBrowserEvent('showing-edit-role-modal');
     }
 
@@ -57,7 +54,7 @@ class EditRole extends Component
             'permissions' => ['array'],
         ])->validateWithBag('updateRoleForm');
 
-        $roles->update($this->getRole($this->roleId), $this->updateRoleForm);
+        $roles->update($this->role, $this->updateRoleForm);
         $this->emit('roleUpdated');
         $this->editingRole = false;
     }
@@ -65,7 +62,7 @@ class EditRole extends Component
     public function render()
     {
         return view('admin.roles.edit', [
-            'role' => $this->getRole($this->roleId),
+            'role' => $this->role,
         ]);
     }
 }

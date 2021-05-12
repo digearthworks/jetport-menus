@@ -12,19 +12,11 @@ use Livewire\Component;
 class CreateUser extends Component
 {
     use AuthorizesRequests,
-        GetsUser,
         InteractsWithBanner;
-
-    public $userId;
 
     public $creatingUser = false;
 
-    /**
-     * The update form state.
-     *
-     * @var array
-     */
-    public $createUserForm = [
+    public array $createUserForm = [
         'type' => 'user',
         'name' => '',
         'first_name' => '',

@@ -10,10 +10,8 @@ use Livewire\Component;
 class DeleteRole extends Component
 {
     use AuthorizesRequests,
-        GetsRole,
+        HasRole,
         InteractsWithBanner;
-
-    public $roleId;
 
     public $confirmingDeleteRole = false;
 
@@ -30,7 +28,7 @@ class DeleteRole extends Component
     {
         $this->authorize('onlysuperadmincanddothis');
 
-        $roles->destroy($this->getRole($this->roleId));
+        $roles->destroy($this->role);
         $this->emit('roleDeleted');
         $this->confirmingDeleteRole = false;
     }
@@ -38,7 +36,7 @@ class DeleteRole extends Component
     public function render()
     {
         return view('admin.roles.delete', [
-            'role' => $this->getRole($this->roleId),
+            'role' => $this->role,
         ]);
     }
 }

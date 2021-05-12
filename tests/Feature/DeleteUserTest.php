@@ -34,7 +34,7 @@ class DeleteUserTest extends TestCase
 
         Livewire::test(DeleteUser::class)
             ->set('userId', $user->id)
-            ->call('DeleteUser');
+            ->call('deleteUser');
 
         $this->assertSoftDeleted('users', ['id' => $user->id]);
 
@@ -52,6 +52,7 @@ class DeleteUserTest extends TestCase
 
         Livewire::test(RestoreUser::class)
             ->set('userId', $user->id)
+            ->set('withTrashedUser', true)
             ->call('restoreUser');
 
         $this->assertDatabaseHas('users', ['id' => $user->id]);

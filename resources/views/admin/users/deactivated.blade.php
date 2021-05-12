@@ -10,4 +10,6 @@
     <livewire:users-table status="deactivated" />
 </x-7xl>
 
-<livewire:admin.users.deactivate />
+<livewire:admin.users.reactivate />
+<livewire:admin.users.delete />
+<livewire:admin.users.edit />

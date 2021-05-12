@@ -10,10 +10,8 @@ use Livewire\Component;
 class DeactivateUser extends Component
 {
     use AuthorizesRequests,
-        GetsUser,
+        HasUser,
         InteractsWithBanner;
-
-    public $userId;
 
     public $confirmingDeactivateUser = false;
 
@@ -30,7 +28,7 @@ class DeactivateUser extends Component
     {
         $this->authorize('admin.access.users.deactivate');
 
-        $users->mark($this->getUser($this->userId), (int) 0);
+        $users->mark($this->user, (int) 0);
         $this->emit('userDeactivated');
         $this->confirmingDeactivateUser = false;
     }
@@ -38,7 +36,7 @@ class DeactivateUser extends Component
     public function render()
     {
         return view('admin.users.deactivate', [
-            'user' => $this->getUser($this->userId, true),
+            'user' => $this->user,
         ]);
     }
 }

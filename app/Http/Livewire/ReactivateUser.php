@@ -10,10 +10,8 @@ use Livewire\Component;
 class ReactivateUser extends Component
 {
     use AuthorizesRequests,
-        GetsUser,
+        HasUser,
         InteractsWithBanner;
-
-    public $userId;
 
     public $confirmingReactivateUser = false;
 
@@ -30,7 +28,7 @@ class ReactivateUser extends Component
     {
         $this->authorize('admin.access.users.reactivate');
 
-        $users->mark($this->getUser($this->userId), (int) 1);
+        $users->mark($this->user, (int) 1);
         $this->emit('userReactivated');
         $this->confirmingReactivateUser = false;
     }
@@ -38,7 +36,7 @@ class ReactivateUser extends Component
     public function render()
     {
         return view('admin.users.reactivate', [
-            'user' => $this->getUser($this->userId, true),
+            'user' => $this->user,
         ]);
     }
 }

@@ -10,10 +10,8 @@ use Livewire\Component;
 class DeleteUser extends Component
 {
     use AuthorizesRequests,
-        GetsUser,
+        HasUser,
         InteractsWithBanner;
-
-    public $userId;
 
     public $confirmingDeleteUser = false;
 
@@ -26,11 +24,11 @@ class DeleteUser extends Component
         $this->dispatchBrowserEvent('showing-confirm-delete-user-modal');
     }
 
-    public function DeleteUser(UserService $users)
+    public function deleteUser(UserService $users)
     {
         $this->authorize('admin.access.users');
 
-        $users->delete($this->getUser($this->userId));
+        $users->delete($this->user);
         $this->emit('userDeleted');
         $this->confirmingDeleteUser = false;
     }
@@ -38,7 +36,7 @@ class DeleteUser extends Component
     public function render()
     {
         return view('admin.users.delete', [
-            'user' => $this->getUser($this->userId),
+            'user' => $this->user,
         ]);
     }
 }

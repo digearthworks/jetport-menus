@@ -10,10 +10,8 @@ use Livewire\Component;
 class RestoreUser extends Component
 {
     use AuthorizesRequests,
-        GetsUser,
+        HasUser,
         InteractsWithBanner;
-
-    public $userId;
 
     public $confirmingRestoreUser = false;
 
@@ -23,6 +21,7 @@ class RestoreUser extends Component
     {
         $this->confirmingRestoreUser  = true;
         $this->userId = $userId;
+        $this->withTrashedUser = true;
         $this->dispatchBrowserEvent('showing-confirm-restore-user-modal');
     }
 
@@ -30,7 +29,7 @@ class RestoreUser extends Component
     {
         $this->authorize('admin.access.users');
 
-        $users->restore($this->getUser($this->userId, true));
+        $users->restore($this->user, true);
         $this->emit('userRestored');
         $this->confirmingRestoreUser = false;
     }
@@ -38,7 +37,7 @@ class RestoreUser extends Component
     public function render()
     {
         return view('admin.users.restore', [
-            'user' => $this->getUser($this->userId, true),
+            'user' => $this->user,
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Menu;
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Contracts\Auth\Factory as AuthFactory;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -17,9 +18,9 @@ class ComposerServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(AuthFactory $auth)
     {
-        View::composer('*', function ($view) {
+        View::composer('*', function ($view) use ($auth) {
             $app_logo = config('ui.logo');
 
             if (app()->environment(['testing', 'local'])) {
@@ -30,7 +31,7 @@ class ComposerServiceProvider extends ServiceProvider
 
             $view->with([
                 'app_logo' => $app_logo,
-                'logged_in_user' => auth()->user()
+                'logged_in_user' => $auth->guard()->user()
             ]);
         });
 
