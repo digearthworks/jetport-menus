@@ -13,7 +13,6 @@ use App\Http\Livewire\DeleteUser;
 use App\Http\Livewire\EditRole;
 use App\Http\Livewire\EditUser;
 use App\Http\Livewire\EditUserPassword;
-use App\Http\Livewire\NavigationMenu;
 use App\Http\Livewire\ReactivateUser;
 use App\Http\Livewire\RestoreUser;
 use App\Http\Livewire\Sidebar;
@@ -26,7 +25,6 @@ class LivewireServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        Livewire::component('navigation-menu', NavigationMenu::class);
         Livewire::component('sidebar', Sidebar::class);
         Livewire::component('includes.sidebar-toggler', SidebarToggler::class);
 

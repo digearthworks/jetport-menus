@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Livewire\ClientManager;
+use App\Http\Livewire\OAuthClientManager;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Jetstream\Features;
@@ -13,7 +13,7 @@ class CreateOauthClientTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_oath_clients_can_be_created()
+    public function test_oauth_clients_can_be_created()
     {
         if (! Features::hasApiFeatures()) {
             return $this->markTestSkipped('API support is not enabled.');
@@ -25,7 +25,7 @@ class CreateOauthClientTest extends TestCase
             $this->actingAs($user = User::factory()->create());
         }
 
-        Livewire::test(ClientManager::class)
+        Livewire::test(OAuthClientManager::class)
                     ->set(['createForm' => [
                         'name' => 'Test Client',
                         'redirect' => 'http://127.0.0.1/callback',
