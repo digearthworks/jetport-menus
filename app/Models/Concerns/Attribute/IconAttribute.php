@@ -12,6 +12,6 @@ trait IconAttribute
      */
     public function getArtAttribute(): string
     {
-        return $this->svg ?? "<i class=\"{$this->title}\"></i>";
+        return $this->svg ?? "<i class=\"{$this->class}\"></i>";
     }
 }

@@ -72,7 +72,7 @@ class MenuFactory extends Factory
         return [
             'group' => $this->faker->randomElement(['office', 'admin','menu_page', 'hotlinks']),
             'type' => $this->faker->randomElement(['internal_link', 'external_link', 'main_menu']),
-            'label' => $this->faker->word(),
+            'name' => $this->faker->word(),
             'link' => $this->faker->word(),
             'active' => $this->faker->randomElement([1, 0]),
             'iframe' => $this->faker->randomElement([1, 0]),
@@ -80,9 +80,9 @@ class MenuFactory extends Factory
             'row' => $this->faker->randomElement([1,2,3,4]),
             'menu_id' => Menu::count() % 2 ? $this->faker->randomElement(Menu::all()->pluck('id')) : null,
             'icon_id' => Icon::firstOrCreate([
-                'title' => $this->faker->randomElement($icons),
+                'class' => $this->faker->randomElement($icons),
             ], [
-                'title' => $this->faker->randomElement($icons),
+                'class' => $this->faker->randomElement($icons),
                 'source' => 'FontAwesome',
                 'version' => '5',
             ]),

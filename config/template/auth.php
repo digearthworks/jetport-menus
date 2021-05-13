@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    'admin_home' => '/admin/dashboard',
     'database_connection' => env('AUTH_DB_CONNECTION', env('DB_CONNECTION', 'mysql')),
     'default_webmaster_name' => env('DEFAULT_SUPER_ADMIN_NAME', 'Super Admin'),
     'default_webmaster_email' => env('DEFAULT_SUPER_ADMIN_EMAIL', 'admin@admin.com'),

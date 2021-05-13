@@ -61,7 +61,7 @@
 
                 <x-checklist-index
                     formIndex="menus"
-                    label="label_with_art"
+                    label="name_with_art"
                     childrenLabel="link_with_art"
                     relation="children"
                     :form="$createUserForm ?? []"

@@ -11,6 +11,6 @@ trait AuthConnection
      */
     public function getConnectionName(): string
     {
-        return config('jetport.auth.database_connection');
+        return config('template.auth.database_connection');
     }
 }

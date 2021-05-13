@@ -61,7 +61,7 @@ if (! function_exists('setLocaleReadingDirection')) {
          * For use in the blade directive in BladeServiceProvider
          */
         if (! app()->runningInConsole()) {
-            if (config('jetport.locale.languages')[$locale]['rtl']) {
+            if (config('template.locale.languages')[$locale]['rtl']) {
                 session(['lang-rtl' => true]);
             } else {
                 session()->forget('lang-rtl');
@@ -79,6 +79,6 @@ if (! function_exists('getLocaleName')) {
      */
     function getLocaleName($locale)
     {
-        return config('jetport.locale.languages')[$locale]['name'];
+        return config('template.locale.languages')[$locale]['name'];
     }
 }

@@ -83,7 +83,7 @@ trait HasMenus
 
     public function checkIfMenuIsPermitted(Menu $menu)
     {
-        if (isset($menu->permission) && config('jetport.auth.check_permissions_on_menu_assignment')) {
+        if (isset($menu->permission) && config('template.auth.check_permissions_on_menu_assignment')) {
             if (!in_array($menu->permission->name, $this->getPermissionNames()->toArray())) {
 
                 // throw new GeneralException(__('This user does not have permission to access this menu.'));

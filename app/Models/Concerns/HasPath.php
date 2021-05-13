@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\Concerns\Method;
+namespace App\Models\Concerns;
 
 use Illuminate\Support\Str;
 
-trait PathMethod
+trait HasPath
 {
     /**
      * @return string

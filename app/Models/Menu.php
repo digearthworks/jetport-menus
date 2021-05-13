@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use App\Models\Concerns\Connection\AuthConnection;
+use App\Models\Concerns\HasPath;
 use App\Models\Concerns\HasUuid;
-use App\Models\Concerns\Method\MenuMethod;
-use App\Models\Concerns\Method\PathMethod;
 use App\Models\Concerns\Relationship\MenuRelationship;
 use Database\Factories\MenuFactory;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
@@ -19,20 +18,17 @@ class Menu extends Model
     use AuthConnection,
         CascadeSoftDeletes,
         HasFactory,
-        MenuMethod,
+        HasPath,
+        HasUuid,
         MenuRelationship,
-        PathMethod,
         SoftDeletes,
-        Userstamps,
-        HasUuid;
+        Userstamps;
 
     protected $cascadeDeletes = ['children'];
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $guarded = [];
-
-    // protected $appends = ['grid'];
 
     protected $with = 'icon';
 
@@ -66,7 +62,7 @@ class Menu extends Model
             return Icon::query()->find($icon) ? $icon : null;
         }
 
-        $id = (strlen($icon) > 21) ? Icon::query()->where('svg', $icon)->value('id') : Icon::query()->where('title', $icon)->value('id');
+        $id = (strlen($icon) > 21) ? Icon::query()->where('svg', $icon)->value('id') : Icon::query()->where('class', $icon)->value('id');
 
         if ($id) {
             return $id;
@@ -76,7 +72,7 @@ class Menu extends Model
             'svg' => $icon,
             'source' => 'svg',
         ] : [
-            'title' => $icon,
+            'class' => $icon,
             'source' => 'FontAwesome',
             'version' => '5',
         ];
@@ -91,7 +87,7 @@ class Menu extends Model
      * @param $value
      * @return string
      */
-    public function getLabelAttribute($value): string
+    public function getNameAttribute($value): string
     {
         return ucfirst($value);
     }
@@ -100,9 +96,9 @@ class Menu extends Model
      * @param $value
      * @return string
      */
-    public function getLabelWithArtAttribute(): string
+    public function getNameWithArtAttribute(): string
     {
-        return "{$this->icon->art} {$this->label}";
+        return "{$this->icon->art} {$this->name}";
     }
 
     /**
@@ -187,37 +183,6 @@ class Menu extends Model
         return ($this->attributes['iframe'] ?? 0) == 1;
     }
 
-    public function getGridAttribute()
-    {
-        if ($this->isMenuIndex()) {
-            return [
-                'menu' => $this->reloadWithChildren(),
-                'itemsGroupMeta' => $this->getGroupMetaForItems(),
-                'rows' => $this->getRowsForMenuIndex(),
-            ];
-        }
-
-        if ($this->isParentMenu()) {
-            return [
-                'menu' => $this->reloadWithChildren(),
-                'itemsGroupMeta' => $this->getGroupMetaForItems(),
-                'rows' => [
-                    $this->getChildrenOfRow(1),
-                    $this->getChildrenOfRow(2),
-                    $this->getChildrenOfRow(3),
-                    $this->getChildrenOfRow(4),
-                ],
-            ];
-        }
-
-        return $this->parent->grid;
-    }
-
-    private function getChildrenOfRow($int)
-    {
-        return $this->children()->where('row', $int)->with('icon')->get();
-    }
-
     private function reloadWithChildren()
     {
         return $this->with('children', 'icon')->where('id', $this->id)->first();
@@ -247,19 +212,6 @@ class Menu extends Model
          * just attach it to the parent
          */
         $this->attributes['menu_id'] = ($this->where('id', $menuId)->value('menu_id') ?: $menuId);
-    }
-
-    private function getRowsForMenuIndex()
-    {
-        $count = $this->whereNotNull('id')->count();
-        $collection = collect($this->all());
-        $rowCount = $count / 7;
-        $chunks = [];
-        for ($i = 0; $i < $rowCount; $i++) {
-            $chunks[] = $collection->splice(7, 7);
-        }
-
-        return array_merge($chunks, [$collection]);
     }
 
     private function getCleanSlug()

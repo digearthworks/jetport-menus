@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Http\Livewire\AdminNavigationMenu;
+use App\Http\Livewire\AdminSidebar;
+use App\Http\Livewire\AdminSidebarToggler;
 use App\Http\Livewire\ClearUserSession;
 use App\Http\Livewire\CreateRole;
 use App\Http\Livewire\CreateRoleButton;
@@ -15,8 +18,6 @@ use App\Http\Livewire\EditUser;
 use App\Http\Livewire\EditUserPassword;
 use App\Http\Livewire\ReactivateUser;
 use App\Http\Livewire\RestoreUser;
-use App\Http\Livewire\Sidebar;
-use App\Http\Livewire\SidebarToggler;
 use App\Http\Livewire\UsersTable;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -25,8 +26,9 @@ class LivewireServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        Livewire::component('sidebar', Sidebar::class);
-        Livewire::component('includes.sidebar-toggler', SidebarToggler::class);
+        Livewire::component('admin.navigation-menu', AdminNavigationMenu::class);
+        Livewire::component('admin.sidebar', AdminSidebar::class);
+        Livewire::component('admin.includes.sidebar-toggler', AdminSidebarToggler::class);
 
         Livewire::component('admin.users.livewire-datatable.datatable', UsersTable::class);
         Livewire::component('admin.users.includes.partials.create-user-button', CreateUserButton::class);

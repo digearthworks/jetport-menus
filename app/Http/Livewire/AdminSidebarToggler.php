@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class SidebarToggler extends Component
+class AdminSidebarToggler extends Component
 {
     public $sidebarOpen;
 
@@ -22,6 +22,6 @@ class SidebarToggler extends Component
 
     public function render()
     {
-        return view('includes.sidebar-toggler');
+        return view('admin.includes.sidebar-toggler');
     }
 }

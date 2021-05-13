@@ -24,7 +24,7 @@ class AuthSeeder extends Seeder
 
     public function __construct()
     {
-        $this->connection = config('jetport.auth.database_connection');
+        $this->connection = config('template.auth.database_connection');
     }
     /**
      * Run the database seeds.

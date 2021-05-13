@@ -39,7 +39,7 @@
             </button>
             <div x-show="open" class="ml-4">
                 @foreach($adminMenuItems as $adminMenuItem)
-                    <a class="flex items-center px-4 py-2 text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $adminMenuItem->link }}"><span class="pr-1">{!! $adminMenuItem->icon->art !!}</span>{{$adminMenuItem->label}}</a>
+                    <a class="flex items-center px-4 py-2 text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $adminMenuItem->link }}"><span class="pr-1">{!! $adminMenuItem->icon->art !!}</span>{{$adminMenuItem->name}}</a>
                 @endforeach
             </div>
         </div>
@@ -64,7 +64,7 @@
 
             <div x-show="open" class="ml-8">
                 @foreach ($appMenuItems as $appMenuItem)
-                    <a class="flex items-center px-4 py-2 text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $appMenuItem->link }}"><span class="pr-1">{!! $appMenuItem->icon->art !!}</span>{{$appMenuItem->label}}</a>
+                    <a class="flex items-center px-4 py-2 text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $appMenuItem->link }}"><span class="pr-1">{!! $appMenuItem->icon->art !!}</span>{{$appMenuItem->name}}</a>
                 @endforeach
             </div>
         </div>

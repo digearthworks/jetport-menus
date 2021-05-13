@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\LocaleController;
+
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome')->name('frontend.index');
+// Switch between the included languages
+Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.change');
+
+Route::view('/', 'welcome')->name('index');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
