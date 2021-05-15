@@ -49,21 +49,21 @@
                 <!--form-group-->
             @endif
 
-            <x-checklist-index
-                formIndex="menus"
-                label="name_with_art"
-                childrenLabel="link_with_art"
-                relation="children"
-                :form="$updateUserForm ?? []"
-                formElement="updateUserForm.menus"
-                :categories="$menus"
-                header="Menus"
-                disableChildren="true"
-            />
-
             @if (isset($user) && !$user->isMasterAdmin())
                 <!-- Only shows if type is admin -->
                 <div x-show="userType === '{{ $model::TYPE_ADMIN }}'">
+
+                    <x-checklist-index
+                        formIndex="menus"
+                        label="name_with_art"
+                        childrenLabel="link_with_art"
+                        relation="children"
+                        :form="$updateUserForm ?? []"
+                        formElement="updateUserForm.menus"
+                        :categories="$menus->where('group', 'admin')"
+                        header="Menus"
+                        disableChildren="true"
+                    />
 
                     <x-checklist-index
                         formIndex="roles"
@@ -92,6 +92,18 @@
 
                 <!-- Only shows if type is user -->
                 <div x-show="userType === '{{ $model::TYPE_USER }}'">
+
+                    <x-checklist-index
+                        formIndex="menus"
+                        label="name_with_art"
+                        childrenLabel="link_with_art"
+                        relation="children"
+                        :form="$updateUserForm ?? []"
+                        formElement="updateUserForm.menus"
+                        :categories="$menus->where('group', 'app')"
+                        header="Menus"
+                        disableChildren="true"
+                    />
 
                     <x-checklist-index
                         formIndex="roles"

@@ -243,4 +243,14 @@ class Menu extends Model
     {
         return $this->isParentMenu() ? ['group' => 'main', 'menu_id' => $this->id] : [];
     }
+
+    public function scopeAdmin($query)
+    {
+        return $query->where('group', 'admin');
+    }
+
+    public function scopeApp($query)
+    {
+        return $query->where('group', 'app');
+    }
 }

@@ -9,15 +9,8 @@ use Livewire\Component;
 
 class AdminSidebar extends Component
 {
-    /**
-     * @var Collection|EloquentCollection
-     */
-    public $appMenuItems;
-
-    /**
-     * @var Collection|EloquentCollection
-     */
-    public $adminMenuItems;
+    use HasAdminMenus,
+        HasAppMenus;
 
     public bool $adminMenuOpen;
 
@@ -33,9 +26,6 @@ class AdminSidebar extends Component
         $this->appMenuOpen = session('appMenuOpen', false);
         $this->logsMenuOpen = session('logsMenuOpen', false);
         $this->sidebarOpen = session('sidebarOpen', false);
-
-        $this->adminMenuItems =  Menu::query()->where('group', 'admin')->get();
-        $this->appMenuItems = Menu::query()->where('group', 'app')->get();
     }
 
     public function toggleMenuOpen($sessionKey)
@@ -46,8 +36,8 @@ class AdminSidebar extends Component
     public function render()
     {
         return view('admin.sidebar', [
-            'adminMenuItems' => $this->adminMenuItems,
-            'appMenuItems' => $this->appMenuItems,
+            'adminMenuItems' => $this->adminMenus,
+            'appMenuItems' => $this->appMenus,
         ]);
     }
 }
