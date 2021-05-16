@@ -147,7 +147,7 @@ class UsersTable extends DataTableComponent
      */
     public function query(): Builder
     {
-        $query = User::with('roles')->withCount('roles');
+        $query = User::with('roles')->with('menus')->withCount('roles');
 
         if ($this->status === 'deleted') {
             $query = $query->onlyTrashed();
@@ -208,7 +208,8 @@ class UsersTable extends DataTableComponent
             Column::make(__('2FA'), 'two_factor_auth_count')
                 ->sortable(),
             Column::make(__('Roles')),
-            Column::make(__('Additional Permissions')),
+            // Column::make(__('Added Permissions')),
+            Column::make(__('menus')),
             Column::make(__('Actions')),
         ];
     }

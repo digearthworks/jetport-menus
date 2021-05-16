@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\Concerns\Connection\AuthConnection;
 use App\Models\Concerns\HasPath;
+use App\Models\Concerns\HasPermissionsLabel;
+use App\Models\Concerns\HasRolesLabel;
 use App\Models\Concerns\HasUuid;
 use App\Models\Concerns\Relationship\MenuRelationship;
 use Database\Factories\MenuFactory;
@@ -11,6 +13,7 @@ use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Permission\Traits\HasRoles;
 use Wildside\Userstamps\Userstamps;
 
 class Menu extends Model
@@ -19,6 +22,9 @@ class Menu extends Model
         CascadeSoftDeletes,
         HasFactory,
         HasPath,
+        // HasPermissionsLabel,
+        // HasRoles,
+        // HasRolesLabel,
         HasUuid,
         MenuRelationship,
         SoftDeletes,
@@ -55,7 +61,7 @@ class Menu extends Model
 
         // Leave early if there is no icon
         if (!$icon) {
-            return null;
+            return 1;
         }
 
         if (is_int($icon)) {
@@ -98,7 +104,11 @@ class Menu extends Model
      */
     public function getNameWithArtAttribute(): string
     {
-        return "{$this->icon->art} {$this->name}";
+        if (isset($this->icon->art)) {
+
+            return "{$this->icon->art} {$this->name}";
+        }
+        return $this->name;
     }
 
     /**
@@ -107,7 +117,10 @@ class Menu extends Model
      */
     public function getLinkWithArtAttribute(): string
     {
-        return "{$this->icon->art} {$this->link}";
+        if (isset($this->icon->art)) {
+            return "{$this->icon->art} <u><a href=\"{$this->link}\">{$this->link}</a></u>";
+        }
+        return $this->link;
     }
 
     public function getPathAttribute()
@@ -253,4 +266,42 @@ class Menu extends Model
     {
         return $query->where('group', 'app');
     }
+
+       /**
+     * Get all of the users that are assigned this menu.
+     */
+    public function roles()
+    {
+        return $this->morphedByMany(Role::class, 'menuable');
+    }
+
+        /**
+     * Get all of the users that are assigned this menu.
+     */
+    public function users()
+    {
+        return $this->morphedByMany(User::class, 'menuable');
+    }
+
+    public function usersFromRoles()
+    {
+        return User::role($this->roles()->pluck('name'))->get();
+    }
+
+    public function getAllUsers()
+    {
+        return $this->users->merge($this->usersFromRoles());
+    }
+
+    public function getAllUsersAttribute()
+    {
+        return $this->getAllUsers();
+    }
+
+    public function getAllUsersCountAttribute()
+    {
+        return $this->getAllUsers()->count();
+    }
+
+
 }

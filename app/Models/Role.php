@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Attribute\RoleAttribute;
 use App\Models\Concerns\Connection\AuthConnection;
+use App\Models\Concerns\HasMenus;
 use App\Models\Concerns\HasUuid;
 use App\Models\Concerns\Method\RoleMethod;
 use Database\Factories\RoleFactory;
@@ -18,6 +19,7 @@ use Wildside\Userstamps\Userstamps;
 class Role extends SpatieRole
 {
     use HasFactory,
+        HasMenus,
         HasUuid,
         AuthConnection,
         RoleAttribute,
@@ -30,7 +32,10 @@ class Role extends SpatieRole
      */
     protected $with = [
         'permissions',
+        'users'
     ];
+
+    protected $appends = ['users_list'];
 
     /**
      * Create a new factory instance for the model.
@@ -41,4 +46,10 @@ class Role extends SpatieRole
     {
         return RoleFactory::new();
     }
+
+    public function getUsersListAttribute()
+    {
+        return $this->users;
+    }
+
 }

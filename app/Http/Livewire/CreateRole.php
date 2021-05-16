@@ -27,6 +27,7 @@ class CreateRole extends Component
         'type' => 'user',
         'name' => '',
         'permissions' => [],
+        'menus' => [],
     ];
 
     public $listeners = ['openCreatorForRole'];
@@ -46,6 +47,7 @@ class CreateRole extends Component
             'type' => ['string'],
             'name' => ['required', Rule::unique($roles->getTableName())],
             'permissions' => ['array'],
+            'menus' => ['array'],
         ])->validateWithBag('createdRoleForm');
 
         $roles->store($this->createRoleForm);

@@ -6,6 +6,8 @@ use App\Http\Livewire\AdminNavigationMenu;
 use App\Http\Livewire\AdminSidebar;
 use App\Http\Livewire\AdminSidebarToggler;
 use App\Http\Livewire\ClearUserSession;
+use App\Http\Livewire\CreateButton;
+use App\Http\Livewire\CreateMenu;
 use App\Http\Livewire\CreateRole;
 use App\Http\Livewire\CreateRoleButton;
 use App\Http\Livewire\CreateUser;
@@ -45,5 +47,9 @@ class LivewireServiceProvider extends ServiceProvider
         Livewire::component('admin.roles.edit', EditRole::class);
         Livewire::component('admin.roles.delete', DeleteRole::class);
         Livewire::component('admin.users.includes.partials.create-user-button', CreateRoleButton::class);
+
+        Livewire::component('admin.includes.partials.create-button', CreateButton::class);
+
+        Livewire::component('admin.menus.create', CreateMenu::class);
     }
 }

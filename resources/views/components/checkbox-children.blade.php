@@ -15,7 +15,7 @@
                 @endif
             </label>
 
-                @if($child->$relation->count())
+                @if(isset($child->$relation) && $child->$relation->count())
                     <x-checkbox-children
                         :formElement="$formElement ?? '' "
                         :formIndex="$formIndex ?? ''"

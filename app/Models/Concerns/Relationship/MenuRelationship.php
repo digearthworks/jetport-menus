@@ -4,6 +4,7 @@ namespace App\Models\Concerns\Relationship;
 
 use App\Models\Icon;
 use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 
 trait MenuRelationship
@@ -64,4 +65,26 @@ trait MenuRelationship
     {
         return $this->morphedByMany(User::class, 'menuable');
     }
+
+    public function usersFromRoles()
+    {
+        return User::role($this->roles()->pluck('name'));
+    }
+
+    public function getAllUsers()
+    {
+        return $this->users->merge($this->usersFromRoles());
+    }
+
+    public function getAllUsersAttribute()
+    {
+        return $this->getAllUsers();
+    }
+
+    public function getAllUsersCountAttribute()
+    {
+        return $this->getAllUsers()->count();
+    }
+
+
 }

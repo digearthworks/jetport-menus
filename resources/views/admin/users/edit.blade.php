@@ -54,6 +54,19 @@
                 <div x-show="userType === '{{ $model::TYPE_ADMIN }}'">
 
                     <x-checklist-index
+                        formIndex="roles"
+                        label="name"
+                        :childrenLabels="['permissions' => 'description', 'menus' => 'name']"
+                        :relations="['permissions', 'menus']"
+                        :form="$updateUserForm ?? []"
+                        formElement="updateUserForm.roles"
+                        :categories="$roles->where('type', $model::TYPE_ADMIN) ?? []"
+                        header="Roles"
+                        disableChildren="true"
+                    />
+
+
+                    <x-checklist-index
                         formIndex="menus"
                         label="name_with_art"
                         childrenLabel="link_with_art"
@@ -61,19 +74,7 @@
                         :form="$updateUserForm ?? []"
                         formElement="updateUserForm.menus"
                         :categories="$menus->where('group', 'admin')"
-                        header="Menus"
-                        disableChildren="true"
-                    />
-
-                    <x-checklist-index
-                        formIndex="roles"
-                        label="name"
-                        childrenLabel="description"
-                        relation="permissions"
-                        :form="$updateUserForm ?? []"
-                        formElement="updateUserForm.roles"
-                        :categories="$roles->where('type', $model::TYPE_ADMIN) ?? []"
-                        header="Roles"
+                        header="Additional Menus"
                         disableChildren="true"
                     />
 
@@ -94,6 +95,18 @@
                 <div x-show="userType === '{{ $model::TYPE_USER }}'">
 
                     <x-checklist-index
+                        formIndex="roles"
+                        label="name"
+                        :childrenLabels="['permissions' => 'description', 'menus' => 'name']"
+                        :relations="['permissions', 'menus']"
+                        :form="$updateUserForm ?? []"
+                        formElement="updateUserForm.roles"
+                        :categories="$roles->where('type', $model::TYPE_USER) ?? []"
+                        header="Roles"
+                        disableChildren="true"
+                    />
+
+                    <x-checklist-index
                         formIndex="menus"
                         label="name_with_art"
                         childrenLabel="link_with_art"
@@ -101,19 +114,7 @@
                         :form="$updateUserForm ?? []"
                         formElement="updateUserForm.menus"
                         :categories="$menus->where('group', 'app')"
-                        header="Menus"
-                        disableChildren="true"
-                    />
-
-                    <x-checklist-index
-                        formIndex="roles"
-                        label="name"
-                        childrenLabel="description"
-                        relation="permissions"
-                        :form="$updateUserForm ?? []"
-                        formElement="updateUserForm.roles"
-                        :categories="$roles->where('type', $model::TYPE_USER) ?? []"
-                        header="Roles"
+                        header="Additional Menus"
                         disableChildren="true"
                     />
 
