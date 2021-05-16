@@ -4,7 +4,6 @@ namespace App\Models\Concerns\Relationship;
 
 use App\Models\Icon;
 use App\Models\Permission;
-use App\Models\Role;
 use App\Models\User;
 
 trait MenuRelationship
@@ -85,6 +84,4 @@ trait MenuRelationship
     {
         return $this->getAllUsers()->count();
     }
-
-
 }

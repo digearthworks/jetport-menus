@@ -2,9 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Menu;
 use App\Exceptions\GeneralException;
-use App\Services\BaseService;
+use App\Models\Menu;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -104,5 +103,4 @@ class MenuService extends BaseService
 
         throw new GeneralException(__('There was a problem deleting the menu.'));
     }
-
 }

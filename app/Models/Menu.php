@@ -105,7 +105,6 @@ class Menu extends Model
     public function getNameWithArtAttribute(): string
     {
         if (isset($this->icon->art)) {
-
             return "{$this->icon->art} {$this->name}";
         }
         return $this->name;
@@ -267,7 +266,7 @@ class Menu extends Model
         return $query->where('group', 'app');
     }
 
-       /**
+    /**
      * Get all of the users that are assigned this menu.
      */
     public function roles()
@@ -275,7 +274,7 @@ class Menu extends Model
         return $this->morphedByMany(Role::class, 'menuable');
     }
 
-        /**
+    /**
      * Get all of the users that are assigned this menu.
      */
     public function users()
@@ -302,6 +301,4 @@ class Menu extends Model
     {
         return $this->getAllUsers()->count();
     }
-
-
 }

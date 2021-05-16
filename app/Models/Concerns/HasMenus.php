@@ -115,7 +115,7 @@ trait HasMenus
         return $this->morphToMany(Menu::class, 'menuable')->orderBy('sort')->with('children', 'icon');
     }
 
-        /**
+    /**
      * Return all the permissions the model has via roles.
      */
     public function getMenusViaRoles(): Collection
@@ -176,6 +176,4 @@ trait HasMenus
 
         return $this->getAllMenus()->pluck('name')->implode('<br/>');
     }
-
-
 }

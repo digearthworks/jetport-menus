@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-
 class MenusTable extends DataTableComponent
 {
     use InteractsWithBanner;

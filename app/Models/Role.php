@@ -51,5 +51,4 @@ class Role extends SpatieRole
     {
         return $this->users;
     }
-
 }

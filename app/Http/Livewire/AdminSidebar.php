@@ -2,9 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Menu;
-use Illuminate\Database\Eloquent\Collection as EloquentCollection;
-use Illuminate\Support\Collection;
 use Livewire\Component;
 
 class AdminSidebar extends Component
