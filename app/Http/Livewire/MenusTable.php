@@ -83,4 +83,19 @@ class MenusTable extends DataTableComponent
     {
         return 'admin.menus.includes.row';
     }
+
+        /**
+     * @return mixed
+     */
+    public function render()
+    {
+        return view('admin.users.livewire-tables.'. config('livewire-tables.theme').'.datatable')
+            ->with([
+                'columns' => $this->columns(),
+                'rowView' => $this->rowView(),
+                'filtersView' => $this->filtersView(),
+                'customFilters' => $this->filters(),
+                'rows' => $this->rows,
+            ]);
+    }
 }

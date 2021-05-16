@@ -33,7 +33,7 @@ class CreateMenu extends Component
         'sort' => '1',
         'row' => '',
         'menu_id' => '',
-        'icon_id' => '',
+        'icon' => '',
     ];
 
     public $listeners = ['openCreateDialog'];

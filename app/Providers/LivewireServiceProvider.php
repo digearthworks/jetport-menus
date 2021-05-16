@@ -13,6 +13,7 @@ use App\Http\Livewire\CreateRoleButton;
 use App\Http\Livewire\CreateUser;
 use App\Http\Livewire\CreateUserButton;
 use App\Http\Livewire\DeactivateUser;
+use App\Http\Livewire\DeleteMenu;
 use App\Http\Livewire\DeleteRole;
 use App\Http\Livewire\DeleteUser;
 use App\Http\Livewire\EditMenu;
@@ -53,5 +54,6 @@ class LivewireServiceProvider extends ServiceProvider
 
         Livewire::component('admin.menus.create', CreateMenu::class);
         Livewire::component('admin.menus.edit', EditMenu::class);
+        Livewire::component('admin.menus.delete', DeleteMenu::class);
     }
 }

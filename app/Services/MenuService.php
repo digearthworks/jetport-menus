@@ -40,7 +40,6 @@ class MenuService extends BaseService
                 // 'row' => $data['row'] ?? null,
                 'menu_id' => $data['menu_id'] ?? null,
                 'icon_id' => $data['icon'] ?? null,
-                'permission_id' => isset($data['permission_id']) ? $data['permission_id'] : null,
             ]);
         } catch (Exception $e) {
             DB::rollBack();
