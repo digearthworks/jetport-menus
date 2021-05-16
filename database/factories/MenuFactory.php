@@ -86,7 +86,6 @@ class MenuFactory extends Factory
                 'source' => 'FontAwesome',
                 'version' => '5',
             ]),
-            'permission_id' => Permission::count() % 2 ? $this->faker->randomElement(Permission::all()->pluck('id')) : null,
         ];
     }
 }
