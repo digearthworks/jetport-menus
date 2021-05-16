@@ -68,12 +68,12 @@ class MenusTable extends DataTableComponent
             Column::make(__('Menu'), 'parent.label'),
             Column::make(__('Group'), 'group')
                 ->sortable(),
-            Column::make(__('Active'), 'active')
+            Column::make(__('Name'), 'name')
                 ->sortable(),
             Column::make(__('Nav'), 'link_with_art'),
             Column::make(__('Menu Items'), 'children_count'),
-            Column::make(__('Number of Roles')),
-            Column::make(__('Number of Users'), 'users_count')
+            Column::make(__('Roles Count')),
+            Column::make(__('Users Count'), 'users_count')
                 ->sortable(),
             Column::make(__('Actions')),
         ];

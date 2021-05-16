@@ -7,7 +7,7 @@
 </x-livewire-tables::tw.table.cell>
 
 <x-livewire-tables::tw.table.cell>
-    {{ $row->active ? 'Yes' : 'No'}}
+    {{ $row->name }}
 </x-livewire-tables::tw.table.cell>
 
 <x-livewire-tables::tw.table.cell>

@@ -10,3 +10,4 @@
     <livewire:menus-table />
 </x-7xl>
 <livewire:admin.menus.create />
+<livewire:admin.menus.edit />

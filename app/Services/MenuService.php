@@ -65,21 +65,19 @@ class MenuService extends BaseService
 
             $menu->update([
                 'group' => $data['group'] ?? $menu->group,
-                'label' => $data['label'] ?? $menu->label,
+                'name' => $data['name'] ?? $menu->name,
                 'link' => $data['link'] ?? $menu->link,
                 'type' => $data['type'] ?? $menu->type,
                 'title' => $data['title'] ?? $menu->title,
                 'active' => $data['active'] ?? $menu->active,
                 'iframe' => $data['iframe'] ?? $menu->iframe,
                 'sort' => $data['sort'] ?? $menu->sort,
-                'row' => $data['row'] ?? $menu->row,
+                // 'row' => $data['row'] ?? $menu->row,
                 'menu_id' => $data['menu_id'] ?? ($menu->menu_id ?? null),
                 'icon_id' => $data['icon'] ?? ($menu->icon_id ?? null),
-                'permission_id' => $data['permission_id'] ?? $menu->permission_id,
             ]);
         } catch (Exception $e) {
             DB::rollBack();
-            dd($e->getMessage());
 
             throw new GeneralException(__('There was a problem updating the Menu.'));
         }

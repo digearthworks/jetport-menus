@@ -163,16 +163,16 @@ class Menu extends Model
 
     public function getInternalIframeAttribute(): string
     {
-        $prefix = config('menus.internal_iframe_prefix');
+        $prefix = config('menus.url_segments.internal_iframe_prefix');
 
-        return '/' . $prefix . $this->getInternalLinkAttribute();
+        return '/' . $prefix . $this->internal_link;
     }
 
     public function getExternalIframeAttribute(): string
     {
-        $prefix = config('menus.external_iframe_prefix');
+        $prefix = config('menus.url_segments.external_iframe_prefix');
 
-        return '/' . $prefix . config('menus.external_link_extension') . $this->getCleanSlug();
+        return '/' . $prefix . config('menus.url_segments.external_link_extension') . $this->getCleanSlug();
     }
 
     public function getInternalLinkAttribute(): string
@@ -182,7 +182,7 @@ class Menu extends Model
 
     public function getDisabledLinkAttribute(): string
     {
-        return config('menus.disabled_link_prefix') . $this->getCleanSlug();
+        return config('menus.url_segments.disabled_link_prefix') . $this->getCleanSlug();
     }
 
     public function getIsActiveAttribute(): bool
