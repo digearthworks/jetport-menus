@@ -347,4 +347,9 @@ class Menu extends Model
     {
         return $query->where('type', $type);
     }
+
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
 }

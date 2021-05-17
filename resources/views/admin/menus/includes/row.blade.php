@@ -15,10 +15,6 @@
 </x-livewire-tables::tw.table.cell>
 
 <x-livewire-tables::tw.table.cell>
-    @include('admin.menus.includes.has-children', ['menu' => $row])
-</x-livewire-tables::tw.table.cell>
-
-<x-livewire-tables::tw.table.cell>
     {{ $row->roles_count }}
 </x-livewire-tables::tw.table.cell>
 
@@ -28,4 +24,8 @@
 
 <x-livewire-tables::tw.table.cell>
     @include('admin.menus.includes.actions', ['model' => $row])
+</x-livewire-tables::tw.table.cell>
+
+<x-livewire-tables::tw.table.cell>
+    @include('admin.menus.includes.has-children', ['menu' => $row])
 </x-livewire-tables::tw.table.cell>

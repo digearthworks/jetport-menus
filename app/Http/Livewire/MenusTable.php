@@ -59,6 +59,16 @@ class MenusTable extends DataTableComponent
         $this->emit('confirmRestore', $id);
     }
 
+    public function confirmReactivate($id)
+    {
+        $this->emit('confirmReactivate', $id);
+    }
+
+    public function confirmDeactivate($id)
+    {
+        $this->emit('confirmDeactivate', $id);
+    }
+
     /**
      * @return Builder
      */
@@ -89,11 +99,11 @@ class MenusTable extends DataTableComponent
             Column::make(__('Name'), 'name')
                 ->sortable(),
             Column::make(__('Nav'), 'link_with_art'),
-            Column::make(__('Menu Items'), 'children_count'),
             Column::make(__('Roles Count')),
             Column::make(__('Users Count'), 'users_count')
                 ->sortable(),
             Column::make(__('Actions')),
+            Column::make(__('Menu Items'), 'children_count'),
         ];
     }
 

@@ -8,34 +8,34 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
-class RestoreMenu extends Component
+class ReactivateMenu extends Component
 {
     use AuthorizesRequests,
         HasModel,
         InteractsWithBanner;
 
-    public $confirmingRestore = false;
+    public $confirmingReactivate = false;
 
-    public $listeners = ['confirmRestore'];
+    public $listeners = ['confirmReactivate'];
+
 
     public $eloquentRepository = Menu::class;
 
-    public function confirmRestore($id)
+    public function confirmReactivate($id)
     {
-        $this->confirmingRestore  = true;
+        $this->confirmingReactivate  = true;
         $this->modelId = $id;
-        $this->withTrashed = true;
-        $this->dispatchBrowserEvent('showing-confirm-restore-modal');
+        $this->dispatchBrowserEvent('showing-confirm-reactivate-modal');
     }
 
-    public function restore(MenuService $menus)
+    public function reactivate(MenuService $menus)
     {
-        $this->authorize('onlysuperadmincandothis');
+        $this->authorize('admin.access.menus');
 
-        $menus->restore($this->model);
-        $this->confirmingRestore = false;
+        $menus->reactivate($this->model);
+        $this->confirmingReactivate = false;
 
-        request()->session()->flash('flash.banner', 'Menu Restored!.');
+        request()->session()->flash('flash.banner', 'Menu Reactivated!.');
         request()->session()->flash('falsh.bannerStyle', 'success');
 
         return redirect('/admin/auth/menus');
@@ -43,7 +43,7 @@ class RestoreMenu extends Component
 
     public function render()
     {
-        return view('admin.menus.restore', [
+        return view('admin.menus.reactivate', [
             'menu' => $this->model,
         ]);
     }

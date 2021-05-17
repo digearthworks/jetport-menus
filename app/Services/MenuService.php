@@ -66,6 +66,17 @@ class MenuService extends BaseService
         throw new GeneralException(__('There was a problem restoring this menu. Please try again.'));
     }
 
+    public function deactivate(Menu $menu)
+    {
+        return $menu->deactivate();
+    }
+
+
+    public function reactivate(Menu $menu)
+    {
+        return $menu->activate();
+    }
+
     public function update(array $data, Menu $menu)
     {
         // dd($request);

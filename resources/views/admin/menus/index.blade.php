@@ -12,3 +12,4 @@
 <livewire:admin.menus.create />
 <livewire:admin.menus.edit />
 <livewire:admin.menus.delete />
+<livewire:admin.menus.deactivate />

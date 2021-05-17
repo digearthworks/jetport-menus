@@ -9,3 +9,4 @@
 
     <livewire:menus-table status="deactivated" />
 </x-7xl>
+<livewire:admin.menus.reactivate />
