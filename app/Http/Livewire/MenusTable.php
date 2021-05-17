@@ -12,32 +12,36 @@ class MenusTable extends DataTableComponent
 {
     use InteractsWithBanner;
 
+    public $status;
+
     protected $listeners = [
         'created' => 'created',
-        'updated' => 'updated',
+        'itemUpdated' => 'itemUpdated',
         'deleted' => 'deleted',
-        // 'menuRestored' => 'menuRestored',
+        'restored' => 'restored',
         // 'menuDeactivated' => 'menuDeactivated',
         // 'menuReactivated' => 'menuReactivated',
         'refreshDatatable' => '$refresh',
     ];
 
-    public function updated()
+    public function itemUpdated()
     {
         $this->emit('refreshDatatable');
         $this->banner('Successfully saved changes!');
+    }
+
+    public function restored()
+    {
+        $this->emit('refreshDatatable');
+        return redirect('/admin/auth/menus')
+            ->with('flash.banner', 'Menu Restored!.')
+            ->with('flash.bannerStyle', 'success');
     }
 
     public function created()
     {
         $this->emit('refreshDatatable');
         $this->banner('Successfully created menu!');
-    }
-
-    public function deleted()
-    {
-        $this->emit('refreshDatatable');
-        $this->banner('Successfully deleted menu!');
     }
 
     public function openEditor($id)
@@ -50,13 +54,27 @@ class MenusTable extends DataTableComponent
         $this->emit('confirmDelete', $id);
     }
 
+    public function confirmRestore($id)
+    {
+        $this->emit('confirmRestore', $id);
+    }
+
     /**
      * @return Builder
      */
     public function query(): Builder
     {
-        return Menu::withCount('roles')
-            ->with('icon')
+        $query = Menu::withCount('roles');
+
+        if ($this->status === 'deleted') {
+            $query = $query->onlyTrashed();
+        } elseif ($this->status === 'deactivated') {
+            $query = $query->onlyDeactivated();
+        } else {
+            $query = $query->onlyActive();
+        }
+
+        return $query->with('icon')
             ->withCount('users')
             ->withCount('children')
             ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
@@ -84,12 +102,12 @@ class MenusTable extends DataTableComponent
         return 'admin.menus.includes.row';
     }
 
-        /**
+    /**
      * @return mixed
      */
     public function render()
     {
-        return view('admin.users.livewire-tables.'. config('livewire-tables.theme').'.datatable')
+        return view('admin.users.livewire-tables.' . config('livewire-tables.theme') . '.datatable')
             ->with([
                 'columns' => $this->columns(),
                 'rowView' => $this->rowView(),

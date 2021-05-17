@@ -76,7 +76,7 @@ class EditMenu extends Component
         ])->validateWithBag('editMenuForm');
 
         $menus->update($this->form, $this->model);
-        $this->emit('updated');
+        $this->emit('itemUpdated');
         $this->editing = false;
     }
 

@@ -54,6 +54,18 @@ class MenuService extends BaseService
         return $menu;
     }
 
+    /**
+     * @throws GeneralException
+     */
+    public function restore(Menu $menu): Menu
+    {
+        if ($menu->restore()) {
+            return $menu;
+        }
+
+        throw new GeneralException(__('There was a problem restoring this menu. Please try again.'));
+    }
+
     public function update(array $data, Menu $menu)
     {
         // dd($request);

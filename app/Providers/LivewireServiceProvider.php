@@ -21,6 +21,7 @@ use App\Http\Livewire\EditRole;
 use App\Http\Livewire\EditUser;
 use App\Http\Livewire\EditUserPassword;
 use App\Http\Livewire\ReactivateUser;
+use App\Http\Livewire\RestoreMenu;
 use App\Http\Livewire\RestoreUser;
 use App\Http\Livewire\UsersTable;
 use Illuminate\Support\ServiceProvider;
@@ -55,5 +56,6 @@ class LivewireServiceProvider extends ServiceProvider
         Livewire::component('admin.menus.create', CreateMenu::class);
         Livewire::component('admin.menus.edit', EditMenu::class);
         Livewire::component('admin.menus.delete', DeleteMenu::class);
+        Livewire::component('admin.menus.restore', RestoreMenu::class);
     }
 }

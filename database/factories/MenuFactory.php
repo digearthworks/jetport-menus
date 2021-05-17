@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Icon;
 use App\Models\Menu;
-use App\Models\Permission;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MenuFactory extends Factory

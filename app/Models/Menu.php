@@ -301,4 +301,50 @@ class Menu extends Model
     {
         return $this->getAllUsers()->count();
     }
+
+    /**
+     * @param $query
+     * @param $term
+     *
+     * @return mixed
+     */
+    public function scopeSearch($query, $term)
+    {
+        return $query->where(function ($query) use ($term) {
+            $query->where('name', 'like', '%' . $term . '%')
+                ->orWhere('link', 'like', '%' . $term . '%')
+                ->orWhere('group', 'like', '%' . $term . '%');
+        });
+    }
+
+    /**
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeOnlyDeactivated($query)
+    {
+        return $query->whereActive(false);
+    }
+
+    /**
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeOnlyActive($query)
+    {
+        return $query->whereActive(true);
+    }
+
+    /**
+     * @param $query
+     * @param $type
+     *
+     * @return mixed
+     */
+    public function scopeByType($query, $type)
+    {
+        return $query->where('type', $type);
+    }
 }
