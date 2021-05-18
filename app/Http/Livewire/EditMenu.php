@@ -6,7 +6,6 @@ use App\Models\Menu;
 use App\Services\MenuService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 

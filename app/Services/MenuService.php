@@ -129,15 +129,13 @@ class MenuService extends BaseService
 
             if ($menu->children()->exists()) {
                 foreach ($menu->children as $child) {
-                   $clone = $child->replicate();
-                   $clone->menu_id = $newMenu->id;
-                   $clone->name = $child->name.'-copy';
-                   $clone->uuid = Str::Uuid();
-                   $clone->save();
+                    $clone = $child->replicate();
+                    $clone->menu_id = $newMenu->id;
+                    $clone->name = $child->name.'-copy';
+                    $clone->uuid = Str::Uuid();
+                    $clone->save();
                 }
             }
-
-
         } catch (Exception $e) {
             DB::rollBack();
 

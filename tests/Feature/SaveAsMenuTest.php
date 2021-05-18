@@ -13,7 +13,6 @@ class SaveAsMenuTest extends TestCase
     /** @test */
     public function a_menu_can_be_saved_as_a_new_menu()
     {
-
         $this->loginAsAdmin();
 
         $menu = Menu::factory()->create(['menu_id' => null]);
@@ -56,6 +55,6 @@ class SaveAsMenuTest extends TestCase
         );
 
         //two were created 1 parent + 1 child
-        $this->assertTrue(Menu::count() - $initialCount === 2 );
+        $this->assertTrue(Menu::count() - $initialCount === 2);
     }
 }

@@ -13,7 +13,6 @@ class UpdateMenuTest extends TestCase
     /** @test */
     public function a_menu_can_be_updated()
     {
-
         $this->loginAsAdmin();
 
         $menu = Menu::factory()->create();
@@ -37,6 +36,5 @@ class UpdateMenuTest extends TestCase
             'name' => 'Test Menu',
             'icon_id' => Icon::whereClass('fa fa-file')->first()->id,
         ]);
-
     }
 }

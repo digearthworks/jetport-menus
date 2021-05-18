@@ -31,7 +31,6 @@ class MenusTable extends DataTableComponent
 
     public function itemUpdated()
     {
-
         $this->emit('refreshDatatable');
         $this->banner('Successfully saved changes!');
     }
