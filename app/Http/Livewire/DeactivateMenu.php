@@ -35,8 +35,8 @@ class DeactivateMenu extends Component
         $this->confirmingDeactivate = false;
 
 
-        request()->session()->flash('flash.banner', 'Menu Deactivated!.');
-        request()->session()->flash('falsh.bannerStyle', 'success');
+        session()->flash('flash.banner', 'Menu Deactivated!.');
+        session()->flash('falsh.bannerStyle', 'success');
 
         return redirect('/admin/auth/menus/deactivated');
     }

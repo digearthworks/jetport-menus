@@ -28,7 +28,7 @@
 @if($row->children()->exists())
     @foreach($row->children as $child)
         <x-livewire-tables::tw.table.row
-            class="text-gray-700 bg-gray-100 border-l-8 border-transparent"
+            class="text-gray-700 bg-gray-100"
             x-show="expand === '{{ $row->uuid }}'"
             wire:loading.class.delay="opacity-50"
             wire:key="table-row-{{ $child->uuid }}"

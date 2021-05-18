@@ -34,8 +34,8 @@ class DeleteMenu extends Component
         $menus->destroy($this->model);
         $this->confirmingDelete = false;
 
-        request()->session()->flash('flash.banner', 'Menu Deleted!.');
-        request()->session()->flash('falsh.bannerStyle', 'success');
+        session()->flash('flash.banner', 'Menu Deleted!.');
+        session()->flash('falsh.bannerStyle', 'success');
 
         return redirect('/admin/auth/menus/deleted');
     }

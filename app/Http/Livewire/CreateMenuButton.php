@@ -6,7 +6,7 @@ class CreateMenuButton extends CreateButton
 {
     public function mount($value = null)
     {
-        if($value){
+        if ($value) {
             $this->value = $value;
         }
     }

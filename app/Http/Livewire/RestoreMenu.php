@@ -35,8 +35,8 @@ class RestoreMenu extends Component
         $menus->restore($this->model);
         $this->confirmingRestore = false;
 
-        request()->session()->flash('flash.banner', 'Menu Restored!.');
-        request()->session()->flash('falsh.bannerStyle', 'success');
+        session()->flash('flash.banner', 'Menu Restored!.');
+        session()->flash('falsh.bannerStyle', 'success');
 
         return redirect('/admin/auth/menus');
     }

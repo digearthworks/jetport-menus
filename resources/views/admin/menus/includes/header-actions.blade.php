@@ -13,7 +13,7 @@
 
 
     @if(! str_contains(url()->current(), 'deactivated') && ! str_contains(url()->current(), 'deleted'))
-        <livewire:create-menu-button value="New Menu" />
-        <livewire:create-menu-button value="New Item" item="true" :params="['item' => true]" />
+        <livewire:create-menu-button value="New Menu" :params="['item' => false]" />
+        <livewire:create-menu-button value="New Item" :params="['item' => true]" />
     @endif
 </div>

@@ -1,5 +1,9 @@
-    <x-livewire-tables::tw.table.cell class="border-l-8 border-transparent">
-        {{ $row->group }}
+    <x-livewire-tables::tw.table.cell class="border-l-4 border-blue-500">
+        @if($row->parent()->exists())
+            {{ $row->parent->group }}.{{ $row->group }}
+        @else
+            {{ $row->group }}
+        @endif
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell class="border-l-8 border-transparent">

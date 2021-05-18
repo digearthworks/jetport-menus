@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Menu;
 use App\Services\MenuService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
@@ -21,10 +22,10 @@ class CreateMenu extends Component
      * @var array
      */
     public $form = [
-        'group' => '',
+        'group' => 'app',
         'name' => '',
         'link' => '',
-        'type' => '',
+        'type' => 'main_menu',
         'active' => '1',
         'title' => '',
         'iframe' => '0',
@@ -38,32 +39,41 @@ class CreateMenu extends Component
 
     public $listeners = ['openCreateDialog'];
 
-    public function openCreateDialog($params)
+
+    public function openCreateDialog($params = [])
     {
         $this->authorize('admin.access.menus');
+
+        if (isset($params['item']) && $params['item']) {
+            $this->form['group'] = 'hotlinks';
+            $this->form['menu_id'] = isset($params['menu_id']) ? $params['menu_id'] : Menu::first()->id;
+        } else {
+            $this->form['group'] = 'app';
+            $this->form['menu_id'] = null;
+        }
 
         $this->creating = true;
 
         $this->data = $params;
-
     }
 
     public function create(MenuService $menus)
     {
         $this->resetErrorBag();
 
-        Validator::make($this->form, [
+        $valid = Validator::make($this->form, [
             'group' => ['string', 'required'],
             'name' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
             'title' => ['string'],
             'iframe' => ['int'],
-            'sort' => ['int'],
-            'menu_id' => ['int'],
+            'sort' => ['int', 'nullable'],
+            'menu_id' => ['int', 'nullable'],
         ])->validateWithBag('createMenuForm');
-            // dd($this->form);
+
         $menus->store($this->form);
+
         $this->emit('created');
         $this->emit('closeCreateDialog');
         $this->creating = false;
@@ -77,6 +87,6 @@ class CreateMenu extends Component
 
     public function render()
     {
-        return view('admin.menus.create', $this->data??[]);
+        return view('admin.menus.create', $this->data ?? []);
     }
 }

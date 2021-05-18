@@ -7,7 +7,7 @@
 
     <x-slot name="content">
 
-        <div x-data="{ menuType: '{{isset($model->type) ? $model->type : 'main_menu'}}' }">
+        <div x-data="{ menuType: '{{isset($form['type']) ? $form['type'] : 'main_menu'}}' }">
 
             @if(isset($item) && $item)
                 @include('admin.menus.includes.form.select-menu')

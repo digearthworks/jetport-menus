@@ -44,9 +44,15 @@ class MenusTable extends DataTableComponent
         $this->banner('Successfully created menu!');
     }
 
-    public function openEditor($id)
+    public function openEditor($id, $params = null)
     {
-        $this->emit('openEditor', $id);
+        $params = (array) json_decode($params);
+
+        if (count($params)) {
+            $this->emit('openEditor', $id, json_encode($params));
+        } else {
+            $this->emit('openEditor', $id);
+        }
     }
 
     public function confirmDelete($id)

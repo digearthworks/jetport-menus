@@ -7,7 +7,12 @@
 
     <x-slot name="content">
 
-        <div x-data="{ menuType: '{{isset($menu->type) ? $menu->type : 'main_menu'}}' }">
+        <div x-data="{ menuType: '{{isset($form['type']) ? $form['type'] : 'main_menu'}}' }">
+
+            @if(isset($item) && $item)
+                @include('admin.menus.includes.form.select-menu')
+            @endif
+
 
             @include('admin.menus.includes.form.name')
             @include('admin.menus.includes.form.title')
@@ -23,7 +28,11 @@
 
             @include('admin.menus.includes.form.sort')
 
-            @include('admin.menus.includes.form.select-group', ['model' => $menu] )
+            @if(isset($item) && $item)
+                @include('admin.menus.includes.form.select-item-group')
+            @else
+                @include('admin.menus.includes.form.select-group')
+            @endif
 
             <div x-data="{ menuGroup: '{{ isset($menu->group) ? $menu->group : 'app'}}' }">
 

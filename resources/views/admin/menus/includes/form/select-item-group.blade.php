@@ -19,8 +19,8 @@
                 @endswitch
             </option>
         @endif
-        <option value="hotlinks">Navigation</option>
         <option value="main">Menu Page</option>
+        <option value="hotlinks">Navigation</option>
     </select>
     <x-input-error for="group" class="mt-2" />
 </div>

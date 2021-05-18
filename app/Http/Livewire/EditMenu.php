@@ -37,10 +37,16 @@ class EditMenu extends Component
         'icon' => '',
     ];
 
+    public $item;
+
+    public $data;
+
     public $listeners = ['openEditor'];
 
-    public function openEditor($id)
+    public function openEditor($id, $params = null)
     {
+        $params = (array) json_decode($params);
+
         $this->authorize('onlysuperadmincandothis');
 
         $this->editing = true;
@@ -56,7 +62,13 @@ class EditMenu extends Component
         $this->form['menu_id'] = $this->model->menu_id;
         $this->form['icon'] = $this->model->icon_id;
 
+        if ($this->model->menu_id) {
+            $this->item = true;
+        }
+
         $this->dispatchBrowserEvent('showing-edit-modal');
+
+        $this->data = $params;
     }
 
     public function update(MenuService $menus)
@@ -64,7 +76,6 @@ class EditMenu extends Component
         $this->authorize('is_admin');
 
         $this->resetErrorBag();
-        // dd($this->form);
         Validator::make($this->form, [
             'group' => ['string'],
             'name' => ['required', 'string'],
@@ -72,7 +83,7 @@ class EditMenu extends Component
             'active' => ['int'],
             'title' => ['string'],
             'iframe' => ['int'],
-            'sort' => ['int'],
+            'sort' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
         $menus->update($this->form, $this->model);
@@ -88,8 +99,10 @@ class EditMenu extends Component
 
     public function render()
     {
-        return view('admin.menus.edit', [
+        $this->data = array_merge([
             'menu' => $this->model,
-        ]);
+        ], $this->data ?? []);
+
+        return view('admin.menus.edit', $this->data);
     }
 }

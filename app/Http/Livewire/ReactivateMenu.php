@@ -35,8 +35,8 @@ class ReactivateMenu extends Component
         $menus->reactivate($this->model);
         $this->confirmingReactivate = false;
 
-        request()->session()->flash('flash.banner', 'Menu Reactivated!.');
-        request()->session()->flash('falsh.bannerStyle', 'success');
+        session()->flash('flash.banner', 'Menu Reactivated!.');
+        session()->flash('falsh.bannerStyle', 'success');
 
         return redirect('/admin/auth/menus');
     }

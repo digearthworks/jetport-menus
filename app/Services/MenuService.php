@@ -24,7 +24,8 @@ class MenuService extends BaseService
 
     public function store(array $data = []): Menu
     {
-        // dd($data);
+        $data = $this->filterData($data);
+
         DB::beginTransaction();
 
         try {
@@ -58,7 +59,6 @@ class MenuService extends BaseService
     public function restore(Menu $menu): Menu
     {
         if ($menu->parent()->onlyTrashed()->first()) {
-
             ($menu->parent()->onlyTrashed()->first())->restore();
         }
         return $this->recursiveOperation($menu, 'restore');
@@ -80,12 +80,9 @@ class MenuService extends BaseService
 
     public function update(array $data, Menu $menu)
     {
-        // dd($request);
-
         DB::beginTransaction();
 
-        try { //array_key_exists('icon', $data) && !empty($data['icon'])
-
+        try {
             $menu->update([
                 'group' => $data['group'] ?? $menu->group,
                 'name' => $data['name'] ?? $menu->name,
@@ -134,7 +131,6 @@ class MenuService extends BaseService
             }
             $menu->$operation();
         } catch (Exception $e) {
-
             DB::rollBack();
 
             throw new GeneralException(__('There was a problem ' . $operation . 'ing the menu.'));
@@ -143,5 +139,10 @@ class MenuService extends BaseService
         DB::commit();
 
         return $menu;
+    }
+
+    private function filterData(array $data)
+    {
+        return array_filter($data, fn ($val) => $val !== "");
     }
 }

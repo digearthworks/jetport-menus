@@ -69,14 +69,14 @@ class MenuFactory extends Factory
         ];
 
         return [
-            'group' => $this->faker->randomElement(['office', 'admin','menu_page', 'hotlinks']),
+            'group' => $this->faker->randomElement(['office', 'admin', 'menu_page', 'hotlinks']),
             'type' => $this->faker->randomElement(['internal_link', 'external_link', 'main_menu']),
             'name' => $this->faker->word(),
             'link' => $this->faker->word(),
             'active' => $this->faker->randomElement([1, 0]),
             'iframe' => $this->faker->randomElement([1, 0]),
             'sort' => $this->faker->randomNumber(),
-            'row' => $this->faker->randomElement([1,2,3,4]),
+            'row' => $this->faker->randomElement([1, 2, 3, 4]),
             'menu_id' => Menu::count() % 2 ? $this->faker->randomElement(Menu::all()->pluck('id')) : null,
             'icon_id' => Icon::firstOrCreate([
                 'class' => $this->faker->randomElement($icons),
@@ -86,5 +86,17 @@ class MenuFactory extends Factory
                 'version' => '5',
             ]),
         ];
+    }
+
+    /**
+     * @return MenuFactory
+     */
+    public function deleted()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'deleted_at' => now(),
+            ];
+        });
     }
 }
