@@ -1,4 +1,5 @@
-    <x-livewire-tables::tw.table.cell>
+<tbody x-data="{ open : false }">
+  <x-livewire-tables::tw.table.cell>
         {{ $row->group }}
     </x-livewire-tables::tw.table.cell>
 
@@ -26,10 +27,11 @@
         @include('admin.menus.includes.has-children', ['menu' => $row])
     </x-livewire-tables::tw.table.cell>
 @if($row->children()->exists())
+
     @foreach($row->children as $child)
         <x-livewire-tables::tw.table.row
             class="text-gray-700 bg-gray-100"
-            x-show="expand === '{{ $row->uuid }}'"
+            x-show="open"
             wire:loading.class.delay="opacity-50"
             wire:key="table-row-{{ $child->uuid }}"
         >
@@ -37,4 +39,6 @@
 
         </x-livewire-tables::tw.table.row>
     @endforeach
+
 @endif
+</tbody>

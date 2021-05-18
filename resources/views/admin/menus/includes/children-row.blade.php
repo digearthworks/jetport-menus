@@ -26,14 +26,14 @@
         @include('admin.menus.includes.actions', ['model' => $row])
     </x-livewire-tables::tw.table.cell>
 
-    <x-livewire-tables::tw.table.cell class="border-l-8 border-transparent">
+    <x-livewire-tables::tw.table.cell class="border-l-8 border-transparent" wire:key="table-row-{{ $child->uuid }}-column-6">
         @include('admin.menus.includes.has-children', ['menu' => $row])
     </x-livewire-tables::tw.table.cell>
 @if($row->has('children'))
     @foreach($row->children as $child)
         <x-livewire-tables::tw.table.row
             class="text-gray-700 bg-gray-100 border-l-8 border-transparent hover:bg-white"
-            x-show="expand === '{{ $row->uuid }}'"
+            x-show="open"
             wire:loading.class.delay="opacity-50"
             wire:key="table-row-{{ $child->uuid }}"
         >

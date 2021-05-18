@@ -15,7 +15,7 @@ class MenusTable extends DataTableComponent
     public $status;
 
     protected $listeners = [
-        'created' => 'created',
+        'menuCreated' => 'menuCreated',
         'itemUpdated' => 'itemUpdated',
         'deleted' => 'deleted',
         'restored' => 'restored',
@@ -24,8 +24,14 @@ class MenusTable extends DataTableComponent
         'refreshDatatable' => '$refresh',
     ];
 
+    public function updated()
+    {
+        parent::updated();
+    }
+
     public function itemUpdated()
     {
+
         $this->emit('refreshDatatable');
         $this->banner('Successfully saved changes!');
     }
@@ -38,7 +44,7 @@ class MenusTable extends DataTableComponent
             ->with('flash.bannerStyle', 'success');
     }
 
-    public function created()
+    public function menuCreated()
     {
         $this->emit('refreshDatatable');
         $this->banner('Successfully created menu!');
@@ -103,7 +109,7 @@ class MenusTable extends DataTableComponent
                 ->sortable(),
             Column::make(__('Name'), 'name')
                 ->sortable(),
-            Column::make(__('Nav'), 'link_with_art'),
+            Column::make(__('Icon / link'), 'link_with_art'),
             Column::make(__('Roles Count')),
             Column::make(__('Users Count'), 'users_count')
                 ->sortable(),

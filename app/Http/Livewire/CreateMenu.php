@@ -74,7 +74,7 @@ class CreateMenu extends Component
 
         $menus->store($this->form);
 
-        $this->emit('created');
+        $this->emit('menuCreated');
         $this->emit('closeCreateDialog');
         $this->creating = false;
     }
