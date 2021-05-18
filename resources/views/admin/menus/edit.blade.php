@@ -17,6 +17,10 @@
         <x-jet-button class="ml-2" wire:click="updateMenu" wire:loading.attr="disabled">
             {{ __('Save') }}
         </x-jet-button>
+
+        <x-jet-secondary-button class="ml-2" wire:click="saveMenuAs" wire:loading.attr="disabled">
+            {{ __('Save As New') }}
+        </x-jet-secondary-button>
     </x-slot>
 
 </x-dialog-modal>

@@ -6,6 +6,7 @@ use App\Models\Menu;
 use App\Services\MenuService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
@@ -87,6 +88,27 @@ class EditMenu extends Component
         ])->validateWithBag('editMenuForm');
 
         $menus->update($this->form, $this->model);
+        $this->emit('itemUpdated');
+        $this->editing = false;
+    }
+
+    public function saveMenuAs(MenuService $menus)
+    {
+        $this->authorize('is_admin');
+
+        $this->resetErrorBag();
+        Validator::make($this->form, [
+            'group' => ['string'],
+            'name' => ['required', 'string'],
+            'type' => ['required', 'string'],
+            'active' => ['int'],
+            'title' => ['string'],
+            'iframe' => ['int'],
+            'sort' => ['int', 'nullable'],
+        ])->validateWithBag('editMenuForm');
+
+        $menus->saveAs($this->form, $this->model);
+
         $this->emit('itemUpdated');
         $this->editing = false;
     }
