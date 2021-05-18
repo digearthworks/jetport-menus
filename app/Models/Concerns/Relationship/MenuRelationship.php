@@ -20,7 +20,7 @@ trait MenuRelationship
 
     public function parent()
     {
-        return $this->belongsTo(__CLASS__, 'menu_id')->with('icon', 'parent');
+        return $this->belongsTo(__CLASS__, 'menu_id')->with('icon', 'parent')->withTrashed();
     }
 
     public function isMenuIndex()
@@ -63,5 +63,25 @@ trait MenuRelationship
     public function users()
     {
         return $this->morphedByMany(User::class, 'menuable');
+    }
+
+    public function usersFromRoles()
+    {
+        return User::role($this->roles()->pluck('name'));
+    }
+
+    public function getAllUsers()
+    {
+        return $this->users->merge($this->usersFromRoles());
+    }
+
+    public function getAllUsersAttribute()
+    {
+        return $this->getAllUsers();
+    }
+
+    public function getAllUsersCountAttribute()
+    {
+        return $this->getAllUsers()->count();
     }
 }

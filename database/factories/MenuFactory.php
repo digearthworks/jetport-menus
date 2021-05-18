@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Icon;
 use App\Models\Menu;
-use App\Models\Permission;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MenuFactory extends Factory
@@ -70,23 +69,34 @@ class MenuFactory extends Factory
         ];
 
         return [
-            'group' => $this->faker->randomElement(['office', 'admin','menu_page', 'hotlinks']),
+            'group' => $this->faker->randomElement(['office', 'admin', 'menu_page', 'hotlinks']),
             'type' => $this->faker->randomElement(['internal_link', 'external_link', 'main_menu']),
-            'label' => $this->faker->word(),
+            'name' => $this->faker->word(),
             'link' => $this->faker->word(),
             'active' => $this->faker->randomElement([1, 0]),
             'iframe' => $this->faker->randomElement([1, 0]),
             'sort' => $this->faker->randomNumber(),
-            'row' => $this->faker->randomElement([1,2,3,4]),
+            'row' => $this->faker->randomElement([1, 2, 3, 4]),
             'menu_id' => Menu::count() % 2 ? $this->faker->randomElement(Menu::all()->pluck('id')) : null,
             'icon_id' => Icon::firstOrCreate([
-                'title' => $this->faker->randomElement($icons),
+                'class' => $this->faker->randomElement($icons),
             ], [
-                'title' => $this->faker->randomElement($icons),
+                'class' => $this->faker->randomElement($icons),
                 'source' => 'FontAwesome',
                 'version' => '5',
             ]),
-            'permission_id' => Permission::count() % 2 ? $this->faker->randomElement(Permission::all()->pluck('id')) : null,
         ];
+    }
+
+    /**
+     * @return MenuFactory
+     */
+    public function deleted()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'deleted_at' => now(),
+            ];
+        });
     }
 }

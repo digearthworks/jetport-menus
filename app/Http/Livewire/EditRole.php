@@ -26,6 +26,7 @@ class EditRole extends Component
         'type' => 'user',
         'name' => '',
         'permissions' => [],
+        'menus' => [],
     ];
 
     public $listeners = ['openEditorForRole'];
@@ -39,6 +40,7 @@ class EditRole extends Component
         $this->updateRoleForm['type'] = $this->role->type;
         $this->updateRoleForm['name'] = $this->role->name;
         $this->updateRoleForm['permissions'] = array_map('strVal', $this->role->permissions()->pluck('id')->toArray());
+        $this->updateRoleForm['menus'] = array_map('strVal', $this->role->menus()->pluck('id')->toArray());
         $this->dispatchBrowserEvent('showing-edit-role-modal');
     }
 
@@ -52,6 +54,7 @@ class EditRole extends Component
             'type' => ['string'],
             'name' => ['required', Rule::unique($roles->getTableName())->ignore($this->roleId)],
             'permissions' => ['array'],
+            'menus' => ['array'],
         ])->validateWithBag('updateRoleForm');
 
         $roles->update($this->role, $this->updateRoleForm);

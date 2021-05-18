@@ -60,6 +60,7 @@ class RolesTable extends DataTableComponent
     {
         return Role::with('permissions:id,name,description')
             ->withCount('users')
+            ->with('menus')
             ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
     }
 
@@ -73,6 +74,7 @@ class RolesTable extends DataTableComponent
             Column::make(__('Permissions')),
             Column::make(__('Number of Users'), 'users_count')
                 ->sortable(),
+            Column::make(__('Menus')),
             Column::make(__('Actions')),
         ];
     }

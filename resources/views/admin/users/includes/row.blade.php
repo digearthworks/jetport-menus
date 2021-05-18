@@ -22,8 +22,12 @@
     {!! $row->roles_label !!}
 </x-admin.users.livewire-tables.tw.table.cell>
 
-<x-admin.users.livewire-tables.tw.table.cell>
+{{-- <x-admin.users.livewire-tables.tw.table.cell>
     {!! $row->permissions_label !!}
+</x-admin.users.livewire-tables.tw.table.cell> --}}
+
+<x-admin.users.livewire-tables.tw.table.cell>
+   {!! $row->getAllMenusLabel() !!}
 </x-admin.users.livewire-tables.tw.table.cell>
 
 <x-admin.users.livewire-tables.tw.table.cell>

@@ -26,7 +26,7 @@ trait UserMethod
 
     public function hasAllAccess(): bool
     {
-        return $this->isAdmin() && $this->hasRole(config('jetport.auth.access.role.admin'));
+        return $this->isAdmin() && $this->hasRole(config('template.auth.access.role.admin'));
     }
 
     /**

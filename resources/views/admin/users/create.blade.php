@@ -59,30 +59,31 @@
                 </div>
                     <!--form-group-->
 
-                <x-checklist-index
-                    formIndex="menus"
-                    label="label_with_art"
-                    childrenLabel="link_with_art"
-                    relation="children"
-                    :form="$createUserForm ?? []"
-                    formElement="createUserForm.menus"
-                    :categories="$menus"
-                    header="Menus"
-                    disableChildren="true"
-                />
-
                 <!-- Only shows if type is admin -->
                 <div x-show="userType === '{{ $model::TYPE_ADMIN }}'">
 
                     <x-checklist-index
                         formIndex="roles"
                         label="name"
-                        childrenLabel="description"
-                        relation="permissions"
-                        :form="$createUserForm ?? []"
+                        :childrenLabels="['permissions' => 'description', 'menus' => 'name']"
+                        :relations="['permissions', 'menus']"
+                        :form="$creatUserForm ?? []"
                         formElement="createUserForm.roles"
                         :categories="$roles->where('type', $model::TYPE_ADMIN) ?? []"
                         header="Roles"
+                        disableChildren="true"
+                    />
+
+
+                    <x-checklist-index
+                        formIndex="menus"
+                        label="name_with_art"
+                        childrenLabel="link_with_art"
+                        relation="children"
+                        :form="$createUserForm ?? []"
+                        formElement="createUserForm.menus"
+                        :categories="$menus->where('group', 'admin')"
+                        header="Additional Menus"
                         disableChildren="true"
                     />
 
@@ -102,19 +103,30 @@
                 <!-- Only shows if type is user -->
                 <div x-show="userType === '{{ $model::TYPE_USER }}'">
 
-                    <div class="col-span-6 sm:col-span-4">
-                        <x-checklist-index
-                            formIndex="roles"
-                            label="name"
-                            childrenLabel="description"
-                            relation="permissions"
-                            :form="$createUserForm ?? []"
-                            formElement="createUserForm.roles"
-                            :categories="$roles->where('type', $model::TYPE_USER) ?? []"
-                            header="Roles"
-                            disableChildren="true"
-                        />
-                    </div>
+                    <x-checklist-index
+                        formIndex="roles"
+                        label="name"
+                        :childrenLabels="['permissions' => 'description', 'menus' => 'name']"
+                        :relations="['permissions', 'menus']"
+                        :form="$creatUserForm ?? []"
+                        formElement="createUserForm.roles"
+                        :categories="$roles->where('type', $model::TYPE_USER) ?? []"
+                        header="Roles"
+                        disableChildren="true"
+                    />
+
+
+                    <x-checklist-index
+                        formIndex="menus"
+                        label="name_with_art"
+                        childrenLabel="link_with_art"
+                        relation="children"
+                        :form="$createUserForm ?? []"
+                        formElement="createUserForm.menus"
+                        :categories="$menus->where('group', 'app')"
+                        header="Additional Menus"
+                        disableChildren="true"
+                    />
 
                     <x-checklist-index
                         formIndex="permissions"

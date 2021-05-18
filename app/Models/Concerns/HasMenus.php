@@ -3,6 +3,7 @@
 namespace App\Models\Concerns;
 
 use App\Models\Menu;
+use Illuminate\Support\Collection;
 
 trait HasMenus
 {
@@ -83,7 +84,7 @@ trait HasMenus
 
     public function checkIfMenuIsPermitted(Menu $menu)
     {
-        if (isset($menu->permission) && config('jetport.auth.check_permissions_on_menu_assignment')) {
+        if (isset($menu->permission) && config('template.auth.check_permissions_on_menu_assignment')) {
             if (!in_array($menu->permission->name, $this->getPermissionNames()->toArray())) {
 
                 // throw new GeneralException(__('This user does not have permission to access this menu.'));
@@ -112,5 +113,67 @@ trait HasMenus
     private function morphedMenuable()
     {
         return $this->morphToMany(Menu::class, 'menuable')->orderBy('sort')->with('children', 'icon');
+    }
+
+    /**
+     * Return all the permissions the model has via roles.
+     */
+    public function getMenusViaRoles(): Collection
+    {
+        return $this->loadMissing('roles', 'roles.menus')
+            ->roles->flatMap(function ($role) {
+                return $role->menus;
+            })->sort()->values();
+    }
+
+    /**
+     * Return all the menus the model has, both directly and via roles.
+     */
+    public function getAllMenus(): Collection
+    {
+        /** @var Collection $menus */
+        $menus = $this->menus;
+
+        if ($this->roles) {
+            $menus = $menus->merge($this->getMenusViaRoles());
+        }
+
+        return $menus->sort()->values();
+    }
+
+    public function getAllMenusAttribute()
+    {
+        return $this->getAllMenus();
+    }
+
+    public function getMenusViaRolesAttribute()
+    {
+        return $this->getMenusViaRoles();
+    }
+
+    public function getAllMenusLabel(): string
+    {
+        if ($this->getAllMenus()->count() === Menu::count()) {
+            return 'All';
+        }
+
+        if (! $this->getAllMenus()->count() > 0) {
+            return 'None';
+        }
+
+        return $this->getAllMenus()->pluck('name')->implode('<br/>');
+    }
+
+    public function getAllMenusLabelAttribute(): string
+    {
+        if ($this->getAllMenus()->count() === Menu::count()) {
+            return 'All';
+        }
+
+        if (! $this->getAllMenus()->count() > 0) {
+            return 'None';
+        }
+
+        return $this->getAllMenus()->pluck('name')->implode('<br/>');
     }
 }

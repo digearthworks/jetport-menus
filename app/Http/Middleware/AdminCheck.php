@@ -22,7 +22,7 @@ class AdminCheck
         }
 
         return redirect()
-            ->route('dashboard')
+            ->route('index')
             ->with('flash.banner', 'You do not have access to do that.')
             ->with('flash.bannerStyle', 'danger');
     }

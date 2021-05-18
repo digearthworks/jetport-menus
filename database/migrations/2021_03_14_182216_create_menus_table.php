@@ -13,11 +13,11 @@ class CreateMenusTable extends Migration
      */
     public function up()
     {
-        Schema::connection(config('jetport.auth.database_connection'))->create('menus', function (Blueprint $table) {
+        Schema::connection(config('template.auth.database_connection'))->create('menus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid')->nullable()->unique();
             $table->string('group')->nullable();
-            $table->string('label');
+            $table->string('name');
             $table->string('link')->nullable();
             $table->string('type')->nullable();
             $table->integer('active')->nullable();
@@ -26,7 +26,6 @@ class CreateMenusTable extends Migration
             $table->integer('sort')->nullable();
             $table->integer('row')->nullable();
             $table->unsignedBigInteger('menu_id')->nullable();
-            $table->unsignedBigInteger('permission_id')->nullable();
             $table->integer('icon_id')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
@@ -48,6 +47,6 @@ class CreateMenusTable extends Migration
      */
     public function down()
     {
-        Schema::connection(config('jetport.auth.database_connection'))->dropIfExists('menus');
+        Schema::connection(config('template.auth.database_connection'))->dropIfExists('menus');
     }
 }

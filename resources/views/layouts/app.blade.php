@@ -27,12 +27,16 @@
     <div x-data="{ open:false, sidebarOpen: '{{ session('sidebarOpen', false) }}' }" class="flex min-h-screen overflow-x-hidden bg-gray-100">
 
         @if($logged_in_user->isAdmin())
-            @livewire('sidebar')
+            @livewire('admin.sidebar')
         @endif
 
         <div class="flex-1">
 
-            @livewire('navigation-menu')
+            @if($logged_in_user->isAdmin())
+                @livewire('admin.navigation-menu')
+            @else
+                @livewire('navigation-menu')
+            @endif
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -62,5 +66,6 @@
     @stack('modals')
 
         @livewireScripts
+        <script src="https://cdn.jsdelivr.net/npm/@ryangjchandler/alpine-clipboard@1.x.x/dist/alpine-clipboard.js"></script>
     </body>
 </html>

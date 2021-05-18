@@ -38,7 +38,7 @@ class UpdateUserTest extends TestCase
                 'name' => 'John Doe',
                 'email' => 'john@example.com',
                 'roles' => [
-                    Role::whereName(config('jetport.auth.access.role.admin'))->first()->id,
+                    Role::whereName(config('template.auth.access.role.admin'))->first()->id,
                 ],
                 'menus' => [
                     $menu->id,
@@ -55,7 +55,7 @@ class UpdateUserTest extends TestCase
         ]);
 
         $this->assertDatabaseHas('model_has_roles', [
-            'role_id' => Role::whereName(config('jetport.auth.access.role.admin'))->first()->id,
+            'role_id' => Role::whereName(config('template.auth.access.role.admin'))->first()->id,
             'model_type' => User::class,
             'model_id' => User::whereEmail('john@example.com')->first()->id,
         ]);
