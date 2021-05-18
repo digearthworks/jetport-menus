@@ -6,39 +6,7 @@
     </x-slot>
 
     <x-slot name="content">
-
-        <div x-data="{ menuType: '{{isset($form['type']) ? $form['type'] : 'main_menu'}}' }">
-
-            @if(isset($item) && $item)
-                @include('admin.menus.includes.form.select-menu')
-            @endif
-
-
-            @include('admin.menus.includes.form.name')
-            @include('admin.menus.includes.form.title')
-
-            @include('admin.menus.includes.form.select-type')
-
-            <!-- Only shows if type is admin -->
-            <div x-show="menuType !='main_menu'">
-                @include('admin.menus.includes.form.link', ['model' => $menu] )
-            </div>
-
-            @include('admin.menus.includes.form.select-active', ['model' => $menu] )
-
-            @include('admin.menus.includes.form.sort')
-
-            @if(isset($item) && $item)
-                @include('admin.menus.includes.form.select-item-group')
-            @else
-                @include('admin.menus.includes.form.select-group')
-            @endif
-
-            <div x-data="{ menuGroup: '{{ isset($menu->group) ? $menu->group : 'app'}}' }">
-
-            </div>
-
-        </div>
+        @include('admin.menus.includes.partials.form-body')
     </x-slot>
 
     <x-slot name="footer">
@@ -46,7 +14,7 @@
             {{ __('Cancel') }}
         </x-jet-secondary-button>
 
-        <x-jet-button class="ml-2" wire:click="update" wire:loading.attr="disabled">
+        <x-jet-button class="ml-2" wire:click="updateMenu" wire:loading.attr="disabled">
             {{ __('Save') }}
         </x-jet-button>
     </x-slot>

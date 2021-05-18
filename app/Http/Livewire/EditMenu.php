@@ -71,7 +71,7 @@ class EditMenu extends Component
         $this->data = $params;
     }
 
-    public function update(MenuService $menus)
+    public function updateMenu(MenuService $menus)
     {
         $this->authorize('is_admin');
 

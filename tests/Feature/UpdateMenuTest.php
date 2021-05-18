@@ -2,19 +2,41 @@
 
 namespace Tests\Feature;
 
+use App\Http\Livewire\EditMenu;
+use App\Models\Icon;
+use App\Models\Menu;
+use Livewire;
 use Tests\TestCase;
 
 class UpdateMenuTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    /** @test */
+    public function a_role_can_be_updated()
     {
-        $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $this->loginAsAdmin();
+
+        $menu = Menu::factory()->create();
+
+        $this->assertDatabaseMissing('menus', [
+            'type' => 'main_menu',
+            'name' => 'Test Menu',
+        ]);
+
+        Livewire::test(EditMenu::class)
+            ->set('modelId', $menu->id)
+            ->set(['form' => [
+                'type' => 'main_menu',
+                'name' => 'Test Menu',
+                'icon' => 'fa fa-file'
+            ]])
+            ->call('updateMenu');
+
+        $this->assertDatabaseHas('menus', [
+            'type' => 'main_menu',
+            'name' => 'Test Menu',
+            'icon_id' => Icon::whereClass('fa fa-file')->first()->id,
+        ]);
+
     }
 }
