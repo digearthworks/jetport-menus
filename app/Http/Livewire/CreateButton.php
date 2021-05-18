@@ -4,16 +4,20 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class CreateButton extends Component
+abstract class CreateButton extends Component
 {
     public $creating = false;
 
+    public $value;
+
     public $listeners = ['closeCreateDialog'];
+
+    public $params = [];
 
     public function openCreateDialog()
     {
         $this->creating = true;
-        $this->emit('openCreateDialog');
+        $this->emit('openCreateDialog', $this->params);
     }
 
     public function closeCreateDialog()

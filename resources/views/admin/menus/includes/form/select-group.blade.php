@@ -10,19 +10,19 @@
         @if(isset($model->group))
             <option value="{{$model->group}}">
                 @switch($model->group)
-                    @case('office')
-                        office (cloud)
+                    @case('app')
+                        Application Main Menus
                         @break
                     @case('admin')
-                        admin (settings)
+                        Admin Menus
                     @break
 
                     @default
                 @endswitch
             </option>
         @endif
-    <option value="app">App</option>
-    <option value="admin">Admin</option>
+    <option value="app">Application Main Menus</option>
+    <option value="admin">Admin Menus</option>
     </select>
     <x-input-error for="group" class="mt-2" />
 </div>

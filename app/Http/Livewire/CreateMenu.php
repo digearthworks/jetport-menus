@@ -13,8 +13,6 @@ class CreateMenu extends Component
     use AuthorizesRequests,
         InteractsWithBanner;
 
-    public $dd;
-
     public $creating = false;
 
     /**
@@ -23,26 +21,31 @@ class CreateMenu extends Component
      * @var array
      */
     public $form = [
-        'group' => 'app',
+        'group' => '',
         'name' => '',
         'link' => '',
-        'type' => 'main_menu',
+        'type' => '',
         'active' => '1',
         'title' => '',
         'iframe' => '0',
-        'sort' => '1',
+        'sort' => '',
         'row' => '',
         'menu_id' => '',
         'icon' => '',
     ];
 
+    public $data;
+
     public $listeners = ['openCreateDialog'];
 
-    public function openCreateDialog()
+    public function openCreateDialog($params)
     {
         $this->authorize('admin.access.menus');
 
         $this->creating = true;
+
+        $this->data = $params;
+
     }
 
     public function create(MenuService $menus)
@@ -50,7 +53,7 @@ class CreateMenu extends Component
         $this->resetErrorBag();
 
         Validator::make($this->form, [
-            'group' => ['string'],
+            'group' => ['string', 'required'],
             'name' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
@@ -59,7 +62,7 @@ class CreateMenu extends Component
             'sort' => ['int'],
             'menu_id' => ['int'],
         ])->validateWithBag('createMenuForm');
-
+            // dd($this->form);
         $menus->store($this->form);
         $this->emit('created');
         $this->emit('closeCreateDialog');
@@ -74,6 +77,6 @@ class CreateMenu extends Component
 
     public function render()
     {
-        return view('admin.menus.create');
+        return view('admin.menus.create', $this->data??[]);
     }
 }
