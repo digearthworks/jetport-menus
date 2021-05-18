@@ -11,7 +11,7 @@ use Tests\TestCase;
 class UpdateMenuTest extends TestCase
 {
     /** @test */
-    public function a_role_can_be_updated()
+    public function a_menu_can_be_updated()
     {
 
         $this->loginAsAdmin();
