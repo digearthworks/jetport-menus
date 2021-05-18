@@ -308,13 +308,46 @@ class Menu extends Model
      *
      * @return mixed
      */
-    public function scopeSearch($query, $term)
+    public function scopeSearch($query, $search)
     {
-        return $query->where(function ($query) use ($term) {
-            $query->where('name', 'like', '%' . $term . '%')
-                ->orWhere('link', 'like', '%' . $term . '%')
-                ->orWhere('group', 'like', '%' . $term . '%');
-        });
+        $search = is_array($search) ? $search : [$search];
+
+        $fields = ['children' => ['name', 'link', 'group'], 'name', 'link', 'group'];
+
+
+        // orWhereHas will use joins, so we'll start with fields foreach
+        foreach ($fields as $relation => $field) {
+            if (is_array($field)) {
+                // here we join table for each relation
+                $query->orWhereHas($relation, function ($q) use ($field, $search) {
+
+                    // here we need to use nested where like: ... WHERE key = fk AND (x LIKE y OR z LIKE y)
+                    $q->where(function ($q) use ($field, $search) {
+                        foreach ($field as $relatedField) {
+                            foreach ($search as $term) {
+                                $q->orWhere($relatedField, 'like', "%{$term}%");
+                            }
+                        }
+                    });
+                });
+                $query->with($relation, function ($q) use ($field, $search) {
+
+                    // here we need to use nested where like: ... WHERE key = fk AND (x LIKE y OR z LIKE y)
+                    $q->where(function ($q) use ($field, $search) {
+                        foreach ($field as $relatedField) {
+                            foreach ($search as $term) {
+                                $q->orWhere($relatedField, 'like', "%{$term}%");
+                            }
+                        }
+                    });
+                });
+            } else {
+                foreach ($search as $term) {
+                    $query->orWhere($field, 'like', "%{$term}%");
+                }
+            }
+        }
+        return $query;
     }
 
     /**
@@ -351,5 +384,10 @@ class Menu extends Model
     public function isActive(): bool
     {
         return $this->active;
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(__CLASS__, 'menu_id')->with('icon', 'parent')->withTrashed();
     }
 }

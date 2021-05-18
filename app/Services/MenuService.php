@@ -54,27 +54,28 @@ class MenuService extends BaseService
         return $menu;
     }
 
-    /**
-     * @throws GeneralException
-     */
+
     public function restore(Menu $menu): Menu
     {
-        if ($menu->restore()) {
-            return $menu;
-        }
+        if ($menu->parent()->onlyTrashed()->first()) {
 
-        throw new GeneralException(__('There was a problem restoring this menu. Please try again.'));
+            ($menu->parent()->onlyTrashed()->first())->restore();
+        }
+        return $this->recursiveOperation($menu, 'restore');
     }
 
     public function deactivate(Menu $menu)
     {
-        return $menu->deactivate();
+        return $this->recursiveOperation($menu, 'deactivate');
     }
 
 
     public function reactivate(Menu $menu)
     {
-        return $menu->activate();
+        if ($menu->parent()->exists() && !$menu->parent->isActive) {
+            $menu->parent->activate();
+        }
+        return $this->recursiveOperation($menu, 'activate');
     }
 
     public function update(array $data, Menu $menu)
@@ -109,18 +110,38 @@ class MenuService extends BaseService
         return $menu;
     }
 
-    /**
-     * @param  Menu  $menu
-     *
-     * @return bool
-     * @throws GeneralException
-     */
-    public function destroy(Menu $menu): bool
+    public function destroy(Menu $menu)
     {
-        if ($this->deleteById($menu->id)) {
-            return true;
+        return $this->recursiveOperation($menu, 'delete');
+    }
+
+    private function recursiveOperation(Menu $menu, $operation)
+    {
+        DB::beginTransaction();
+
+        try {
+            if ($menu->children()->exists()) {
+                foreach ($menu->children as $child) {
+                    $child->$operation();
+                }
+            }
+            if ($operation == 'restore') {
+                if ($menu->children()->onlyTrashed()->count()) {
+                    foreach ($menu->children()->onlyTrashed()->get() as $trashedChild) {
+                        $trashedChild->restore();
+                    }
+                }
+            }
+            $menu->$operation();
+        } catch (Exception $e) {
+
+            DB::rollBack();
+
+            throw new GeneralException(__('There was a problem ' . $operation . 'ing the menu.'));
         }
 
-        throw new GeneralException(__('There was a problem deleting the menu.'));
+        DB::commit();
+
+        return $menu;
     }
 }

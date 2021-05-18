@@ -66,5 +66,6 @@
     @stack('modals')
 
         @livewireScripts
+        <script src="https://cdn.jsdelivr.net/npm/@ryangjchandler/alpine-clipboard@1.x.x/dist/alpine-clipboard.js"></script>
     </body>
 </html>

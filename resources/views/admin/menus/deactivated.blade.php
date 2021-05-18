@@ -7,6 +7,6 @@
         @include('admin.menus.includes.header-actions')
     </x-slot>
 
-    <livewire:menus-table status="deactivated" />
+    @include('admin.menus.includes.table', ['status' => 'deactivated'])
 </x-7xl>
 <livewire:admin.menus.reactivate />

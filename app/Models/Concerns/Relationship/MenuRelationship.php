@@ -20,7 +20,7 @@ trait MenuRelationship
 
     public function parent()
     {
-        return $this->belongsTo(__CLASS__, 'menu_id')->with('icon', 'parent');
+        return $this->belongsTo(__CLASS__, 'menu_id')->with('icon', 'parent')->withTrashed();
     }
 
     public function isMenuIndex()

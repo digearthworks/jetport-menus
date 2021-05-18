@@ -74,26 +74,25 @@ class MenusTable extends DataTableComponent
      */
     public function query(): Builder
     {
-        $query = Menu::withCount('roles');
+        $query = Menu::withCount('roles')
+            ->with('icon')
+            ->withCount('users')
+            ->withCount('children');
 
         if ($this->status === 'deleted') {
             $query = $query->onlyTrashed();
         } elseif ($this->status === 'deactivated') {
             $query = $query->onlyDeactivated();
         } else {
-            $query = $query->onlyActive();
+            $query = $query->onlyActive()->whereNull('menu_id')->with('children');
         }
 
-        return $query->with('icon')
-            ->withCount('users')
-            ->withCount('children')
-            ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
+        return $query->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
     }
 
     public function columns(): array
     {
         return [
-            Column::make(__('Menu'), 'parent.label'),
             Column::make(__('Group'), 'group')
                 ->sortable(),
             Column::make(__('Name'), 'name')

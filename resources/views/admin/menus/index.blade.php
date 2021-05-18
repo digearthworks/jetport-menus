@@ -7,9 +7,10 @@
         @include('admin.menus.includes.header-actions')
     </x-slot>
 
-    <livewire:menus-table />
+    @include('admin.menus.includes.table')
 </x-7xl>
 <livewire:admin.menus.create />
 <livewire:admin.menus.edit />
 <livewire:admin.menus.delete />
 <livewire:admin.menus.deactivate />
+
