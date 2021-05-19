@@ -44,3 +44,15 @@ if (! function_exists('homeRoute')) {
         return 'index';
     }
 }
+
+if (! function_exists('currentRouteHas')) {
+    /**
+     * Check if current url contains a given string
+     *
+     * @return bool
+     */
+    function currentRouteHas(string $value ): bool
+    {
+        return str_contains(url()->current(), $value);
+    }
+}

@@ -39,7 +39,12 @@
             </button>
             <div x-show="open" class="ml-4">
                 @foreach($adminMenuItems as $adminMenuItem)
-                    <a class="flex items-center px-4 py-2 text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $adminMenuItem->link }}"><span class="pr-1">{!! $adminMenuItem->icon->art !!}</span>{{$adminMenuItem->name}}</a>
+                    <x-sidebar-link
+                        href="{{ $adminMenuItem->link }}"
+                        :active="currentRouteHas($adminMenuItem->link)"
+                        >
+                        <span class="pr-1">{!! $adminMenuItem->icon->art !!}</span>{{$adminMenuItem->name}}
+                    </x-sidebar-link>
                 @endforeach
             </div>
         </div>
@@ -64,7 +69,12 @@
 
             <div x-show="open" class="ml-8">
                 @foreach ($appMenuItems as $appMenuItem)
-                    <a class="flex items-center px-4 py-2 text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="{{ $appMenuItem->link }}"><span class="pr-1">{!! $appMenuItem->icon->art !!}</span>{{$appMenuItem->name}}</a>
+                    <x-sidebar-link
+                        href="{{ $appMenuItem->link }}"
+                        :active="currentRouteHas($appMenuItem->link)"
+                        >
+                        <span class="pr-1">{!! $appMenuItem->icon->art !!}</span>{{ $appMenuItem->name }}
+                    </x-sidebar-link>
                 @endforeach
             </div>
         </div>
@@ -91,8 +101,12 @@
 
                 <div x-show="open" class="ml-8">
 
-                        <a class="flex items-center px-4 py-2 text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="/admin/log-viewer"><span class="pr-1"></span>Dashboard</a>
-                        <a class="flex items-center px-4 py-2 text-sm text-gray-600 hover:bg-blue-500 hover:text-white" href="/admin/log-viewer/logs"><span class="pr-1"></span>Logs</a>
+                    <x-sidebar-link href="/admin/log-viewer" :active="currentRouteHas('/admin/log-viewer')">
+                        <span class="pr-1"></span>Dashboard
+                    </x-sidebar-link>
+                    <x-sidebar-link href="/admin/log-viewer/logs" :active="currentRouteHas('/admin/log-viewer/logs')">
+                        <span class="pr-1"></span>Logs
+                    </x-sidebar-link>
 
                 </div>
             </div>
