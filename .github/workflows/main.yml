@@ -21,9 +21,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.WORKFLOW_SECRET }}
-          submodules: true
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
