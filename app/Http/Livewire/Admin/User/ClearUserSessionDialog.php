@@ -1,13 +1,19 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin\User;
 
+use App\Http\Livewire\Concerns\HasModel;
+use App\Models\User;
 use App\Services\UserService;
+use App\Support\Concerns\InteractsWithBanner;
 use Livewire\Component;
 
-class ClearUserSession extends Component
+class ClearUserSessionDialog extends Component
 {
-    use HasUser;
+    use HasModel,
+        InteractsWithBanner;
+
+    private $eloquentRepository = User::class;
 
     public $confirmingClearSessions = false;
 
@@ -16,21 +22,21 @@ class ClearUserSession extends Component
     public function confirmClearSessions($userId)
     {
         $this->confirmingClearSessions  = true;
-        $this->userId = $userId;
+        $this->modelId = $userId;
         $this->dispatchBrowserEvent('showing-clear-sessions-modal');
     }
 
     public function clearSessions(UserService $users)
     {
-        $users->clearSessions($this->user);
-        $this->emit('userSessionsCleared');
+        $users->clearSessions($this->model);
+        $this->banner('User Sessions Cleared!');
         $this->confirmingClearSessions = false;
     }
 
     public function render()
     {
         return view('admin.users.clear-sessions', [
-            'user' => $this->user,
+            'user' => $this->model,
         ]);
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Admin\User;
 
 use App\Events\User\UserUpdated;
-use App\Http\Livewire\EditUser;
+use App\Http\Livewire\Admin\User\EditUserForm;
 use App\Models\Menu;
 use App\Models\Role;
 use App\Models\User;
@@ -31,9 +31,9 @@ class UpdateUserTest extends TestCase
             'email' => 'john@example.com',
         ]);
 
-        Livewire::test(EditUser::class)
-            ->set('userId', $user->id)
-            ->set(['updateUserForm' => [
+        Livewire::test(EditUserForm::class)
+            ->set('modelId', $user->id)
+            ->set(['state' => [
                 'type' => User::TYPE_ADMIN,
                 'name' => 'John Doe',
                 'email' => 'john@example.com',

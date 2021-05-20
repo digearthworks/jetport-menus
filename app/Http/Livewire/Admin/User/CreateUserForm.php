@@ -1,22 +1,20 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin\User;
 
+use App\Http\Livewire\Concerns\HandlesCreateDialogInteraction;
 use App\Services\UserService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
-class CreateUser extends Component
+class CreateUserForm extends Component
 {
     use AuthorizesRequests,
-        InteractsWithBanner;
+        HandlesCreateDialogInteraction;
 
-    public $creatingUser = false;
-
-    public array $createUserForm = [
+    public array $state = [
         'type' => 'user',
         'name' => '',
         'first_name' => '',
@@ -32,19 +30,10 @@ class CreateUser extends Component
         'email_verified' => '1',
     ];
 
-    public $listeners = ['openCreateDialog'];
-
-    public function openCreateDialog()
-    {
-        $this->creatingUser = true;
-        $this->dispatchBrowserEvent('showing-create-user-modal');
-    }
-
-    public function closeCreateDialog()
-    {
-        $this->creatingUser = false;
-        $this->emit('closeCreateDialog');
-    }
+    public $listeners = [
+        'createDialog',
+        'closeCreateDialog',
+    ];
 
     public function createUser(UserService $users)
     {
@@ -52,7 +41,7 @@ class CreateUser extends Component
 
         $this->resetErrorBag();
 
-        Validator::make($this->createUserForm, [
+        Validator::make($this->state, [
             'type' => ['string'],
             'name' => ['required'],
             'email' => ['required','email', 'max:255', Rule::unique($users->getTableName())],
@@ -65,10 +54,10 @@ class CreateUser extends Component
             'email_verified' => ['integer'],
         ])->validateWithBag('creatUserForm');
 
-        $users->store($this->createUserForm);
+        $users->store($this->state);
         $this->emit('closeCreateDialog');
-        $this->emit('userCreated');
-        $this->creatingUser = false;
+        $this->emit( 'refreshWithSuccess', 'User Created');
+        $this->creatingResource = false;
     }
 
     public function render()

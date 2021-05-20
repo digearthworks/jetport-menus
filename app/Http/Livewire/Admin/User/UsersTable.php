@@ -1,25 +1,18 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin\User;
 
+use App\Http\Livewire\Admin\BaseDataTable;
 use App\Models\User;
-use App\Support\Concerns\InteractsWithBanner;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 /**
  * Class UsersTable.
  */
-class UsersTable extends DataTableComponent
+class UsersTable extends BaseDataTable
 {
-    use InteractsWithBanner;
-
-    /**
-     * @var
-     */
-    public $status;
 
     /**
      * @var array|string[]
@@ -35,104 +28,6 @@ class UsersTable extends DataTableComponent
         'type' => 'User Type',
         'verified' => 'E-mail Verified',
     ];
-
-    protected $listeners = [
-        'userCreated' => 'userCreated',
-        'userUpdated' => 'userUpdated',
-        'userSessionsCleared' => 'userSessionsCleared',
-        'userPasswordUpdated' => 'userPasswordUpdated',
-        'userDeleted' => 'userDeleted',
-        'userRestored' => 'userRestored',
-        'userDeactivated' => 'userDeactivated',
-        'userReactivated' => 'userReactivated',
-        'refreshDatatable' => '$refresh',
-    ];
-
-    public function userCreated()
-    {
-        $this->emit('refreshDatatable');
-        $this->banner('Successfully saved!');
-    }
-
-    public function userUpdated()
-    {
-        $this->emit('refreshDatatable');
-        $this->banner('Successfully saved!');
-    }
-
-    public function userSessionsCleared()
-    {
-        $this->emit('refreshDatatable');
-        $this->banner('Successfully Cleared Sessions!');
-    }
-
-    public function userPasswordUpdated()
-    {
-        $this->banner('Successfully updated password!');
-    }
-
-    public function userDeleted()
-    {
-        $this->emit('refreshDatatable');
-        $this->banner('Successfully Deleted User!');
-        return redirect('/admin/auth/users/deleted');
-    }
-
-    public function userRestored()
-    {
-        $this->emit('refreshDatatable');
-        $this->banner('Successfully Restored User!');
-        return redirect('/admin/auth/users');
-    }
-
-    public function userDeactivated()
-    {
-        $this->emit('refreshDatatable');
-        $this->banner('Successfully Deactivated User!');
-        return redirect('/admin/auth/users/deactivated');
-    }
-
-    public function userReactivated()
-    {
-        $this->emit('refreshDatatable');
-        $this->banner('Successfully Deactivated User!');
-        return redirect('/admin/auth/users');
-    }
-
-    public function openEditorForUser($userId)
-    {
-        $this->emit('openEditorForUser', $userId);
-    }
-
-    public function confirmDeleteUser($userId)
-    {
-        $this->emit('confirmDeleteUser', $userId);
-    }
-
-    public function confirmRestoreUser($userId)
-    {
-        $this->emit('confirmRestoreUser', $userId);
-    }
-
-    public function confirmClearSessions($userId)
-    {
-        $this->emit('confirmClearSessions', $userId);
-    }
-
-    public function confirmDeactivateUser($userId)
-    {
-        $this->emit('confirmDeactivateUser', $userId);
-    }
-
-    public function confirmReactivateUser($userId)
-    {
-        $this->emit('confirmReactivateUser', $userId);
-    }
-
-    public function openEditorForUserPassword($userId)
-    {
-        $this->emit('openEditorForUserPassword', $userId);
-    }
 
     /**
      * @param  string  $status

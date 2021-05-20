@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Admin\User;
 
 use App\Events\User\UserStatusChanged;
-use App\Http\Livewire\DeactivateUser;
-use App\Http\Livewire\ReactivateUser;
+use App\Http\Livewire\Admin\User\DeactivateUserDialog;
+use App\Http\Livewire\Admin\User\ReactivateUserDialog;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Livewire;
@@ -41,8 +41,8 @@ class DeactivateReactivateUserTest extends TestCase
             'active' => false,
         ]);
 
-        Livewire::test(ReactivateUser::class)
-            ->set('userId', $deactivatedUser->id)
+        Livewire::test(ReactivateUserDialog::class)
+            ->set('modelId', $deactivatedUser->id)
             ->call('reactivateUser');
 
         $this->assertDatabaseHas('users', [
@@ -69,8 +69,8 @@ class DeactivateReactivateUserTest extends TestCase
             'active' => true,
         ]);
 
-        Livewire::test(DeactivateUser::class)
-            ->set('userId', $activeUser->id)
+        Livewire::test(DeactivateUserDialog::class)
+            ->set('modelId', $activeUser->id)
             ->call('deactivateUser');
 
         $this->assertDatabaseHas('users', [
@@ -93,8 +93,8 @@ class DeactivateReactivateUserTest extends TestCase
             'active' => true,
         ]);
 
-        Livewire::test(DeactivateUser::class)
-            ->set('userId', $activeUser->id)
+        Livewire::test(DeactivateUserDialog::class)
+            ->set('modelId', $activeUser->id)
             ->call('deactivateUser');
 
         $this->assertDatabaseHas('users', [
@@ -115,8 +115,8 @@ class DeactivateReactivateUserTest extends TestCase
             'active' => false,
         ]);
 
-        Livewire::test(ReactivateUser::class)
-            ->set('userId', $deactivatedUser->id)
+        Livewire::test(ReactivateUserDialog::class)
+            ->set('modelId', $deactivatedUser->id)
             ->call('reactivateUser');
 
         $this->assertDatabaseHas('users', [

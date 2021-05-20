@@ -1,22 +1,26 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin\User;
 
+use App\Http\Livewire\Concerns\HasModel;
+use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
-class EditUserPassword extends Component
+class EditUserPasswordForm extends Component
 {
     use AuthorizesRequests,
-        HasUser,
+        HasModel,
         InteractsWithBanner;
 
     public $editingUserPassword = false;
 
-    public $updateUserPasswordForm = [
+    public $eloquentRepository = User::class;
+
+    public $state = [
         'password' => '',
         'password_confirmation' => ''
     ];
@@ -26,7 +30,7 @@ class EditUserPassword extends Component
     public function openEditorForUserPassword($userId)
     {
         $this->editingUserPassword = true;
-        $this->userId = $userId;
+        $this->modelId = $userId;
         $this->dispatchBrowserEvent('showing-edit-user-password-modal');
     }
 
@@ -35,18 +39,19 @@ class EditUserPassword extends Component
         $this->authorize('admin.access.users.change-password');
 
         $this->resetErrorBag();
-        $validator = Validator::make($this->updateUserPasswordForm, [
+        $validator = Validator::make($this->state, [
             'password' => 'confirmed',
-        ]);
-        $users->updatePassword($this->user, $validator->validateWithBag('updatePasswordForm'));
-        $this->emit('userPasswordUpdated');
+        ])->validateWithBag('updatePasswordForm');
+
+        $users->updatePassword($this->model, $this->state);
+        $this->emit('refreshWithSuccess', 'Successfully changed password for '. $this->model->name);
         $this->editingUserPassword = false;
     }
 
     public function render()
     {
         return view('admin.users.change-password', [
-            'user' => $this->user,
+            'user' => $this->model,
         ]);
     }
 }

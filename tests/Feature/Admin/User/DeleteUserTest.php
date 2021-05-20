@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Admin\User;
 
 use App\Events\User\UserDeleted;
-use App\Http\Livewire\DeleteUser;
-use App\Http\Livewire\RestoreUser;
+use App\Http\Livewire\Admin\User\DeleteUserDialog;
+use App\Http\Livewire\Admin\User\RestoreUserDialog;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Livewire;
@@ -32,8 +32,8 @@ class DeleteUserTest extends TestCase
 
         $user = User::factory()->create();
 
-        Livewire::test(DeleteUser::class)
-            ->set('userId', $user->id)
+        Livewire::test(DeleteUserDialog::class)
+            ->set('modelId', $user->id)
             ->call('deleteUser');
 
         $this->assertSoftDeleted('users', ['id' => $user->id]);
@@ -50,9 +50,9 @@ class DeleteUserTest extends TestCase
 
         $this->assertSoftDeleted('users', ['id' => $user->id]);
 
-        Livewire::test(RestoreUser::class)
-            ->set('userId', $user->id)
-            ->set('withTrashedUser', true)
+        Livewire::test(RestoreUserDialog::class)
+            ->set('modelId', $user->id)
+            ->set('withTrashed', true)
             ->call('restoreUser');
 
         $this->assertDatabaseHas('users', ['id' => $user->id]);
