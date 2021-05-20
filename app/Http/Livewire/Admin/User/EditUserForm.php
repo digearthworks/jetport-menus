@@ -2,25 +2,15 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Concerns\HandlesEditDialogInteraction;
+use App\Http\Livewire\Admin\BaseEditForm;
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Livewire\Component;
 
-class EditUserForm extends Component
+class EditUserForm extends BaseEditForm
 {
-    use AuthorizesRequests,
-        HandlesEditDialogInteraction;
-
-    public $listeners = [
-        'editDialog',
-        'closeEditDialog',
-    ];
-
-    private $eloquentRepository = User::class;
+    protected $eloquentRepository = User::class;
 
     public array $state = [
         'type' => 'user',

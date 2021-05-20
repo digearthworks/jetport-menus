@@ -7,7 +7,7 @@
         @include('admin.roles.includes.header-actions')
     </x-slot>
 
-    <livewire:roles-table />
+    <livewire:admin.role.roles-table />
 </x-7xl>
 
 <livewire:admin.roles.create />

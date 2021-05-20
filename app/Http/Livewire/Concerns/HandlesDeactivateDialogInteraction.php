@@ -25,5 +25,4 @@ trait HandlesDeactivateDialogInteraction
         $this->confirmingDeactivate = false;
         $this->dispatchBrowserEvent('closing-confirm-restore-modal');
     }
-
 }

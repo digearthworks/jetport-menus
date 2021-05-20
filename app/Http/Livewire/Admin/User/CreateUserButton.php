@@ -2,15 +2,10 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Concerns\HandlesCreateDialogInteraction;
-use App\Http\Livewire\Concerns\InteractsWithDialogs;
-use Livewire\Component;
+use App\Http\Livewire\Admin\BaseCreateButton;
 
-class CreateUserButton extends Component
+class CreateUserButton extends BaseCreateButton
 {
-    use InteractsWithDialogs,
-        HandlesCreateDialogInteraction;
-
     public function render()
     {
         return view('admin.users.includes.partials.create-user-button');

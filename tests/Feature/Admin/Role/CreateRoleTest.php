@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Admin\Role;
 
 use App\Events\Role\RoleCreated;
-use App\Http\Livewire\CreateRole;
+use App\Http\Livewire\Admin\Role\CreateRoleForm;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
@@ -28,7 +28,7 @@ class CreateRoleTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        Livewire::test(CreateRole::class)
+        Livewire::test(CreateRoleForm::class)
             ->call('createRole')
             ->assertHasErrors(['name']);
     }
@@ -40,8 +40,8 @@ class CreateRoleTest extends TestCase
 
         Role::factory()->create(['name' => 'test']);
 
-        Livewire::test(CreateRole::class)
-            ->set('createRoleForm.name', 'test')
+        Livewire::test(CreateRoleForm::class)
+            ->set('state.name', 'test')
             ->call('createRole')
             ->assertHasErrors(['name']);
     }
@@ -58,8 +58,8 @@ class CreateRoleTest extends TestCase
 
         // dd($permission);
 
-        Livewire::test(CreateRole::class)
-            ->set(['createRoleForm' => [
+        Livewire::test(CreateRoleForm::class)
+            ->set(['state' => [
                 'type' => User::TYPE_ADMIN,
                 'name' => 'Test Role',
 

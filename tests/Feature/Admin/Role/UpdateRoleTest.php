@@ -1,8 +1,9 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Admin\Role;
 
 use App\Events\Role\RoleUpdated;
+use App\Http\Livewire\Admin\Role\EditRoleForm;
 use App\Http\Livewire\EditRole;
 use App\Models\Permission;
 use App\Models\Role;
@@ -32,9 +33,9 @@ class UpdateRoleTest extends TestCase
             'name' => 'Test Role',
         ]);
 
-        Livewire::test(EditRole::class)
-            ->set('roleId', $role->id)
-            ->set(['updateRoleForm' => [
+        Livewire::test(EditRoleForm::class)
+            ->set('modelId', $role->id)
+            ->set(['state' => [
                 'type' => User::TYPE_ADMIN,
                 'name' => 'Test Role',
                 'permissions' => [

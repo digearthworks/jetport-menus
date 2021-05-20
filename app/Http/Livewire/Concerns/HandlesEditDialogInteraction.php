@@ -19,5 +19,4 @@ trait HandlesEditDialogInteraction
         $this->editingResource = false;
         $this->dispatchBrowserEvent('closing-edit-modal');
     }
-
 }

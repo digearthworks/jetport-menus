@@ -2,27 +2,16 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Concerns\HandlesDeleteDialogInteraction;
+use App\Http\Livewire\Admin\BaseDeleteDialog;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Laravel\Jetstream\InteractsWithBanner;
-use Livewire\Component;
 
-class DeleteUserDialog extends Component
+class DeleteUserDialog extends BaseDeleteDialog
 {
-    use AuthorizesRequests,
-        HandlesDeleteDialogInteraction,
-        InteractsWithBanner;
+    use AuthorizesRequests;
 
-    public $confirmingDeleteUser = false;
-
-    private $eloquentRepository = User::class;
-
-    public $listeners = [
-        'confirmDelete',
-        'closeConfirmDelete',
-    ];
+    protected $eloquentRepository = User::class;
 
     public function deleteUser(UserService $users)
     {

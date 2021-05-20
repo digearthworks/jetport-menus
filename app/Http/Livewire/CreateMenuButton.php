@@ -2,12 +2,8 @@
 
 namespace App\Http\Livewire;
 
-class CreateMenuButton extends CreateButton
+use App\Http\Livewire\Admin\BaseCreateButton;
+
+class CreateMenuButton extends BaseCreateButton
 {
-    public function mount($value = null)
-    {
-        if ($value) {
-            $this->value = $value;
-        }
-    }
 }

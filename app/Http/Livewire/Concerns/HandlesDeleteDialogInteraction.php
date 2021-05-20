@@ -20,5 +20,4 @@ trait HandlesDeleteDialogInteraction
         $this->confirmingDelete = false;
         $this->dispatchBrowserEvent('closing-confirm-delete-modal');
     }
-
 }

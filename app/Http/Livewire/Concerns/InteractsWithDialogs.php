@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Concerns;
 
 trait InteractsWithDialogs
 {
-
     public function dialog(string $verb, $resourceId = null, string $params = null)
     {
         $params = (array) json_decode($params);

@@ -29,5 +29,4 @@ abstract class BaseDataTable extends DataTableComponent
         $this->emit('refreshDatatable');
         $this->banner($message);
     }
-
 }

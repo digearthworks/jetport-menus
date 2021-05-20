@@ -51,7 +51,7 @@ if (! function_exists('currentRouteHas')) {
      *
      * @return bool
      */
-    function currentRouteHas(string $value ): bool
+    function currentRouteHas(string $value): bool
     {
         return str_contains(url()->current(), $value);
     }

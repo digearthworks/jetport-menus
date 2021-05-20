@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Admin\Role;
 
 use App\Events\Role\RoleDeleted;
-use App\Http\Livewire\DeleteRole;
+use App\Http\Livewire\Admin\Role\DeleteRoleDialog;
 use App\Models\Role;
 use Illuminate\Support\Facades\Event;
 use Livewire;
@@ -20,8 +20,8 @@ class DeleteRoleTest extends TestCase
 
         $role = Role::factory()->create();
 
-        Livewire::test(DeleteRole::class)
-           ->set('roleId', $role->id)
+        Livewire::test(DeleteRoleDialog::class)
+           ->set('modelId', $role->id)
            ->call('deleteRole');
 
         $this->assertSoftDeleted('roles', ['id' => $role->id]);

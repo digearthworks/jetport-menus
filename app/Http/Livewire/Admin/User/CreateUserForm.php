@@ -2,18 +2,13 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Concerns\HandlesCreateDialogInteraction;
+use App\Http\Livewire\Admin\BaseCreateForm;
 use App\Services\UserService;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Livewire\Component;
 
-class CreateUserForm extends Component
+class CreateUserForm extends BaseCreateForm
 {
-    use AuthorizesRequests,
-        HandlesCreateDialogInteraction;
-
     public array $state = [
         'type' => 'user',
         'name' => '',
@@ -28,11 +23,6 @@ class CreateUserForm extends Component
         'permissions' => [],
         'send_confirmation_email' => '0',
         'email_verified' => '1',
-    ];
-
-    public $listeners = [
-        'createDialog',
-        'closeCreateDialog',
     ];
 
     public function createUser(UserService $users)
@@ -56,7 +46,7 @@ class CreateUserForm extends Component
 
         $users->store($this->state);
         $this->emit('closeCreateDialog');
-        $this->emit( 'refreshWithSuccess', 'User Created');
+        $this->emit('refreshWithSuccess', 'User Created');
         $this->creatingResource = false;
     }
 

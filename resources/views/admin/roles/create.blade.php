@@ -1,6 +1,6 @@
 @inject('model', '\App\Models\User')
 
-<x-dialog-modal maxWidth="2xl" wire:model="creatingRole">
+<x-dialog-modal maxWidth="2xl" wire:model="creatingResource">
 
     <x-slot name="title">
 
@@ -14,7 +14,7 @@
                     <x-jet-label for="name" value="{{ __('Name') }}" />
                     <x-jet-input type="text" name="name" class="block w-full mb-1" placeholder="{{ __('Name') }}"
                         maxlength="100"
-                        wire:model.defer="createRoleForm.name" required />
+                        wire:model.defer="state.name" required />
                     <x-input-error for="name" class="mt-2" />
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 <div class="col-span-6 sm:col-span-4">
                     <select name="type"
                         class="block w-full mb-2 border-gray-300 rounded-md shadow-sm form-select focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        x-on:change="userType = $event.target.value" wire:model.defer="createRoleForm.type"
+                        x-on:change="userType = $event.target.value" wire:model.defer="state.type"
                         required>
                         <option value="{{ $model::TYPE_USER }}">@lang('User')</option>
                         <option value="{{ $model::TYPE_ADMIN }}">@lang('Administrator')</option>
@@ -44,8 +44,8 @@
                     label="name_with_art"
                     childrenLabel="link_with_art"
                     relation="children"
-                    :form="$createRoleForm ?? []"
-                    formElement="createRoleForm.menus"
+                    :form="$state ?? []"
+                    formElement="state.menus"
                     :categories="$menus->where('group', 'admin')"
                     header="Menus"
                     disableChildren="true"
@@ -56,8 +56,8 @@
                     label="description"
                     childrenLabel="description"
                     relation="children"
-                    :form="$createRoleForm ?? []"
-                    formElement="createRoleForm.permissions"
+                    :form="$state ?? []"
+                    formElement="state.permissions"
                     :categories="$permissionCategories->where('type', $model::TYPE_ADMIN) ?? []"
                     :general="$generalPermissions->where('type', $model::TYPE_ADMIN) ?? []"
                     header="Permissions"
@@ -72,8 +72,8 @@
                     label="name_with_art"
                     childrenLabel="link_with_art"
                     relation="children"
-                    :form="$createRoleForm ?? []"
-                    formElement="createRoleForm.menus"
+                    :form="$state ?? []"
+                    formElement="state.menus"
                     :categories="$menus->where('group', 'app')"
                     header="Menus"
                     disableChildren="true"
@@ -84,8 +84,8 @@
                     label="description"
                     childrenLabel="description"
                     relation="children"
-                    :form="$createRoleForm ?? []"
-                    formElement="createRoleForm.permissions"
+                    :form="$state ?? []"
+                    formElement="state.permissions"
                     :categories="$permissionCategories->where('type', $model::TYPE_USER) ?? []"
                     :general="$generalPermissions->where('type', $model::TYPE_USER) ?? []"
                     header="Permissions"
