@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Admin\Menu;
 
 use App\Http\Livewire\DeactivateMenu;
 use App\Models\Menu;
