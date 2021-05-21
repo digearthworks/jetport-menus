@@ -3,7 +3,7 @@
     <select
         id="iframe"
         name="iframe"
-        wire:model="form.iframe"
+        wire:model="state.iframe"
         class="block w-full mb-2 border-gray-300 rounded-md shadow-sm form-select focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         >
             @isset($model->iframe)
@@ -18,6 +18,6 @@
 
     <x-jet-input type="text" name="link" class="block w-full mb-1" placeholder="{{ __('Link') }}"
         maxlength="100"
-        wire:model.defer="form.link" required />
+        wire:model.defer="state.link" required />
     <x-input-error for="link" class="mt-2" />
 </div>

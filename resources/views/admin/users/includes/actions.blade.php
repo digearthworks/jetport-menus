@@ -2,21 +2,21 @@
     @inject('model', '\App\Models\User')
 
     @if ($user->trashed() && $logged_in_user->hasAllAccess())
-        <x-button wire:click="confirmRestoreUser({{ $user->id }})">
+        <x-button wire:click="confirm('restore',{{ $user->id }})">
             {{ __('Restore') }}
         </x-button>
     @else
         @if ($logged_in_user->hasAllAccess())
-            <x-edit-button wire:click="openEditorForUser({{ $user->id }})"
+            <x-edit-button wire:click="dialog('edit',{{ $user->id }})"
                 id="editUserButton_{{ $user->id }}">
             </x-edit-button>
         @endif
         @if (! $user->isActive())
-            <x-refresh-button wire:click="confirmReactivateUser({{ $user->id }})">
+            <x-refresh-button wire:click="confirm('reactivate', {{ $user->id }})">
             </x-refresh-button>
         @endif
         @if ($user->id !== $logged_in_user->id && !$user->isMasterAdmin() && $logged_in_user->hasAllAccess())
-            <x-delete-button wire:click="confirmDeleteUser({{ $user->id }})">
+            <x-delete-button wire:click="confirm('delete',{{ $user->id }})">
             </x-delete-button>
         @endif
 
@@ -62,7 +62,7 @@
                         </x-jet-dropdown-link>
 
                         @if ($user->id !== $logged_in_user->id && !$user->isMasterAdmin())
-                            <x-jet-dropdown-link href="#" wire:click="confirmClearSessions({{ $user->id }})">
+                            <x-jet-dropdown-link href="#" wire:click="confirm('clearSessions', {{ $user->id }})">
                                     {{__('Clear Sessions')}}
                             </x-jet-dropdown-link>
 
@@ -72,7 +72,7 @@
                                 </x-jet-dropdown-link>
                             @endCanBeImpersonated
 
-                            <x-jet-dropdown-link href="#" wire:click="confirmDeactivateUser({{ $user->id }})">
+                            <x-jet-dropdown-link href="#" wire:click="confirm('deactivate', {{ $user->id }})">
                                 {{__('Deactivate')}}
                             </x-jet-dropdown-link>
 

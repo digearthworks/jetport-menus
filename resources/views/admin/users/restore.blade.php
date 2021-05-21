@@ -1,4 +1,4 @@
-<x-jet-confirmation-modal wire:model="confirmingRestoreUser">
+<x-jet-confirmation-modal wire:model="confirmingRestore">
     <x-slot name="title">
         {{ __('Restore user') }}
     </x-slot>
@@ -8,7 +8,7 @@
     </x-slot>
 
     <x-slot name="footer">
-        <x-jet-secondary-button wire:click="$toggle('confirmingRestoreUser')" wire:loading.attr="disabled">
+        <x-jet-secondary-button wire:click="$toggle('confirmingRestore')" wire:loading.attr="disabled">
             {{ __('Cancel') }}
         </x-jet-secondary-button>
 

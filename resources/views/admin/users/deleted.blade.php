@@ -7,7 +7,7 @@
         @include('admin.users.includes.header-actions')
     </x-slot>
 
-    <livewire:users-table status="deleted" />
+    <livewire:admin.users.livewire-datatable.datatable status="deleted" />
 </x-7xl>
 
 <livewire:admin.users.restore />

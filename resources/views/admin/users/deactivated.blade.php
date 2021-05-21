@@ -7,7 +7,7 @@
         @include('admin.users.includes.header-actions')
     </x-slot>
 
-    <livewire:users-table status="deactivated" />
+    <livewire:admin.users.livewire-datatable.datatable status="deactivated" />
 </x-7xl>
 
 <livewire:admin.users.reactivate />

@@ -7,7 +7,7 @@
         @include('admin.users.includes.header-actions')
     </x-slot>
 
-    <livewire:users-table />
+    <livewire:admin.users.livewire-datatable.datatable />
 </x-7xl>
 
 <livewire:admin.users.create />

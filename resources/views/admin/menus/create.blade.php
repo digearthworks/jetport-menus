@@ -1,5 +1,5 @@
 @inject('model', '\App\Models\User')
-<x-dialog-modal maxWidth="2xl" wire:model="creating">
+<x-dialog-modal maxWidth="2xl" wire:model="creatingResource">
 
     <x-slot name="title">
 
@@ -14,7 +14,7 @@
             {{ __('Cancel') }}
         </x-jet-secondary-button>
 
-        <x-jet-button class="ml-2" wire:click="create" wire:loading.attr="disabled">
+        <x-jet-button class="ml-2" wire:click="createMenu" wire:loading.attr="disabled">
             {{ __('Save') }}
         </x-jet-button>
     </x-slot>

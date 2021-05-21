@@ -1,6 +1,6 @@
-<x-jet-confirmation-modal wire:model="confirmingDeleteUser">
+<x-jet-confirmation-modal wire:model="confirmingDelete">
     <x-slot name="title">
-        {{ __('Delete user') }}
+        {{ __('Delete User') }}
     </x-slot>
 
     <x-slot name="content">
@@ -8,7 +8,7 @@
     </x-slot>
 
     <x-slot name="footer">
-        <x-jet-secondary-button wire:click="$toggle('confirmingDeleteUser')" wire:loading.attr="disabled">
+        <x-jet-secondary-button wire:click="$toggle('confirmingDelete')" wire:loading.attr="disabled">
             {{ __('Cancel') }}
         </x-jet-secondary-button>
 

@@ -27,7 +27,7 @@
     <div x-data="{ open:false, sidebarOpen: '{{ session('sidebarOpen', false) }}' }" class="flex min-h-screen overflow-x-hidden bg-gray-100">
 
         @if($logged_in_user->isAdmin())
-            @livewire('admin.sidebar')
+            @livewire('admin.sidebar-menu')
         @endif
 
         <div class="flex-1">
