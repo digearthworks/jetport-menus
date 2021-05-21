@@ -4,7 +4,6 @@ namespace Tests\Feature\Admin\Role;
 
 use App\Events\Role\RoleUpdated;
 use App\Http\Livewire\Admin\Role\EditRoleForm;
-use App\Http\Livewire\EditRole;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;

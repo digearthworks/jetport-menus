@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Menu;
 
-use App\Http\Livewire\CreateMenu;
+use App\Http\Livewire\Admin\Menu\CreateMenuForm;
 use App\Models\Icon;
 use Livewire;
 use Tests\TestCase;
@@ -24,8 +24,8 @@ class CreateMenuTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        Livewire::test(CreateMenu::class)
-            ->set(['form' => [
+        Livewire::test(CreateMenuForm::class)
+            ->set(['state' => [
                 'group' => 'app',
                 'name' => 'test',
                 'link' => 'test',
@@ -38,7 +38,7 @@ class CreateMenuTest extends TestCase
                 'menu_id' => '',
                 'icon' => Icon::find(1)->svg,
             ]])
-            ->call('create');
+            ->call('createMenu');
 
         $this->assertDatabaseHas(
             'menus',
@@ -57,8 +57,8 @@ class CreateMenuTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        Livewire::test(CreateMenu::class)
-            ->call('create')
+        Livewire::test(CreateMenuForm::class)
+            ->call('createMenu')
             ->assertHasErrors(['name']);
     }
 }

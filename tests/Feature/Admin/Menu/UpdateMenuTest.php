@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Menu;
 
-use App\Http\Livewire\EditMenu;
+use App\Http\Livewire\Admin\Menu\EditMenuForm;
 use App\Models\Icon;
 use App\Models\Menu;
 use Livewire;
@@ -22,9 +22,9 @@ class UpdateMenuTest extends TestCase
             'name' => 'Test Menu',
         ]);
 
-        Livewire::test(EditMenu::class)
+        Livewire::test(EditMenuForm::class)
             ->set('modelId', $menu->id)
-            ->set(['form' => [
+            ->set(['state' => [
                 'type' => 'main_menu',
                 'name' => 'Test Menu',
                 'icon' => 'fa fa-file'

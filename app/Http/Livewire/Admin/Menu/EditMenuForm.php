@@ -1,22 +1,14 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin\Menu;
 
+use App\Http\Livewire\Admin\BaseEditForm;
 use App\Models\Menu;
 use App\Services\MenuService;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Jetstream\InteractsWithBanner;
-use Livewire\Component;
 
-class EditMenu extends Component
+class EditMenuForm extends BaseEditForm
 {
-    use AuthorizesRequests,
-        HasModel,
-        InteractsWithBanner;
-
-    public $editing = false;
-
     public $eloquentRepository = Menu::class;
 
     /**
@@ -24,7 +16,7 @@ class EditMenu extends Component
      *
      * @var array
      */
-    public $form = [
+    public $state = [
         'group' => 'app',
         'name' => '',
         'link' => '',
@@ -41,26 +33,24 @@ class EditMenu extends Component
 
     public $data;
 
-    public $listeners = ['openEditor'];
-
-    public function openEditor($id, $params = null)
+    public function editDialog($resourceId, $params = null)
     {
         $params = (array) json_decode($params);
 
         $this->authorize('onlysuperadmincandothis');
 
-        $this->editing = true;
-        $this->modelId = $id;
-        $this->form['group'] = $this->model->group;
-        $this->form['name'] = $this->model->name;
-        $this->form['link'] = $this->model->link;
-        $this->form['type'] = $this->model->type;
-        $this->form['active'] = $this->model->active;
-        $this->form['title'] = $this->model->title;
-        $this->form['iframe'] = $this->model->iframe;
-        $this->form['sort'] = $this->model->sort;
-        $this->form['menu_id'] = $this->model->menu_id;
-        $this->form['icon'] = $this->model->icon_id;
+        $this->editingResource = true;
+        $this->modelId = $resourceId;
+        $this->state['group'] = $this->model->group;
+        $this->state['name'] = $this->model->name;
+        $this->state['link'] = $this->model->link;
+        $this->state['type'] = $this->model->type;
+        $this->state['active'] = $this->model->active;
+        $this->state['title'] = $this->model->title;
+        $this->state['iframe'] = $this->model->iframe;
+        $this->state['sort'] = $this->model->sort;
+        $this->state['menu_id'] = $this->model->menu_id;
+        $this->state['icon'] = $this->model->icon_id;
 
         if ($this->model->menu_id) {
             $this->item = true;
@@ -76,7 +66,7 @@ class EditMenu extends Component
         $this->authorize('is_admin');
 
         $this->resetErrorBag();
-        Validator::make($this->form, [
+        Validator::make($this->state, [
             'group' => ['string'],
             'name' => ['required', 'string'],
             'type' => ['required', 'string'],
@@ -86,9 +76,9 @@ class EditMenu extends Component
             'sort' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
-        $menus->update($this->form, $this->model);
-        $this->emit('itemUpdated');
-        $this->editing = false;
+        $menus->update($this->state, $this->model);
+        $this->emit('refreshWithSuccess', 'Menu Updated!');
+        $this->editingResource = false;
     }
 
     public function saveMenuAs(MenuService $menus)
@@ -96,7 +86,7 @@ class EditMenu extends Component
         $this->authorize('is_admin');
 
         $this->resetErrorBag();
-        Validator::make($this->form, [
+        Validator::make($this->state, [
             'group' => ['string'],
             'name' => ['required', 'string'],
             'type' => ['required', 'string'],
@@ -106,10 +96,10 @@ class EditMenu extends Component
             'sort' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
-        $menus->saveAs($this->form, $this->model);
+        $menus->saveAs($this->state, $this->model);
 
-        $this->emit('itemUpdated');
-        $this->editing = false;
+        $this->emit('refreshWithSuccess', 'Menu Saved!');
+        $this->editingResource = false;
     }
 
     public function closeEditDialog()

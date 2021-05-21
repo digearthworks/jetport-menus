@@ -1,27 +1,21 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin\Menu;
 
+use App\Http\Livewire\Admin\BaseCreateForm;
 use App\Models\Menu;
 use App\Services\MenuService;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Jetstream\InteractsWithBanner;
-use Livewire\Component;
 
-class CreateMenu extends Component
+class CreateMenuForm extends BaseCreateForm
 {
-    use AuthorizesRequests,
-        InteractsWithBanner;
-
-    public $creating = false;
 
     /**
      * The create form state.
      *
      * @var array
      */
-    public $form = [
+    public $state = [
         'group' => 'app',
         'name' => '',
         'link' => '',
@@ -37,31 +31,28 @@ class CreateMenu extends Component
 
     public $data;
 
-    public $listeners = ['openCreateDialog'];
-
-
-    public function openCreateDialog($params = [])
+    public function createDialog($params = [])
     {
         $this->authorize('admin.access.menus');
 
         if (isset($params['item']) && $params['item']) {
-            $this->form['group'] = 'hotlinks';
-            $this->form['menu_id'] = isset($params['menu_id']) ? $params['menu_id'] : Menu::first()->id;
+            $this->state['group'] = 'hotlinks';
+            $this->state['menu_id'] = isset($params['menu_id']) ? $params['menu_id'] : Menu::first()->id;
         } else {
-            $this->form['group'] = 'app';
-            $this->form['menu_id'] = null;
+            $this->state['group'] = 'app';
+            $this->state['menu_id'] = null;
         }
 
-        $this->creating = true;
+        $this->creatingResource = true;
 
         $this->data = $params;
     }
 
-    public function create(MenuService $menus)
+    public function createMenu(MenuService $menus)
     {
         $this->resetErrorBag();
 
-        $valid = Validator::make($this->form, [
+        $valid = Validator::make($this->state, [
             'group' => ['string', 'required'],
             'name' => ['required', 'string'],
             'type' => ['required', 'string'],
@@ -72,17 +63,11 @@ class CreateMenu extends Component
             'menu_id' => ['int', 'nullable'],
         ])->validateWithBag('createMenuForm');
 
-        $menus->store($this->form);
+        $menus->store($this->state);
 
-        $this->emit('menuCreated');
+        $this->emit('refreshWithSuccess', 'Menu Created!');
         $this->emit('closeCreateDialog');
-        $this->creating = false;
-    }
-
-    public function closeCreateDialog()
-    {
-        $this->creating = false;
-        $this->emit('closeCreateDialog');
+        $this->creatingResource = false;
     }
 
     public function render()

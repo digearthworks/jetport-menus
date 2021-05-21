@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Menu;
 
-use App\Http\Livewire\ReactivateMenu;
+use App\Http\Livewire\Admin\Menu\ReactivateMenuDialog;
 use App\Models\Menu;
 use Livewire;
 use Tests\TestCase;
@@ -16,9 +16,9 @@ class ReactivateMenuTest extends TestCase
 
         $menu = Menu::factory()->create(['active' => 0]);
 
-        Livewire::test(ReactivateMenu::class)
+        Livewire::test(ReactivateMenuDialog::class)
             ->set('modelId', $menu->id)
-            ->call('reactivate');
+            ->call('reactivateMenu');
 
         $this->assertDatabaseHas('menus', ['id' => $menu->id, 'active' => 1]);
     }
@@ -38,9 +38,9 @@ class ReactivateMenuTest extends TestCase
         $this->assertDatabaseHas('menus', ['id' => $parent->id, 'active' => 0]);
         $this->assertDatabaseHas('menus', ['id' => $child->id, 'active' => 0]);
 
-        Livewire::test(ReactivateMenu::class)
+        Livewire::test(ReactivateMenuDialog::class)
             ->set('modelId', $parent->id)
-            ->call('reactivate');
+            ->call('reactivateMenu');
 
         $this->assertDatabaseHas('menus', ['id' => $parent->id, 'active' => 1]);
         $this->assertDatabaseHas('menus', ['id' => $child->id, 'active' => 1]);
@@ -62,9 +62,9 @@ class ReactivateMenuTest extends TestCase
         $this->assertDatabaseHas('menus', ['id' => $child->id, 'active' => 0]);
 
 
-        Livewire::test(ReactivateMenu::class)
+        Livewire::test(ReactivateMenuDialog::class)
             ->set('modelId', $child->id)
-            ->call('reactivate');
+            ->call('reactivateMenu');
 
         $this->assertDatabaseHas('menus', ['id' => $parent->id, 'active' => 1]);
         $this->assertDatabaseHas('menus', ['id' => $child->id, 'active' => 1]);

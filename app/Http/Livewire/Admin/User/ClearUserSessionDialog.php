@@ -13,7 +13,7 @@ class ClearUserSessionDialog extends Component
     use HasModel,
         InteractsWithBanner;
 
-    private $eloquentRepository = User::class;
+    protected $eloquentRepository = User::class;
 
     public $confirmingClearSessions = false;
 

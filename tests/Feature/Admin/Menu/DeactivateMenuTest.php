@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Menu;
 
-use App\Http\Livewire\DeactivateMenu;
+use App\Http\Livewire\Admin\Menu\DeactivateMenuDialog;
 use App\Models\Menu;
 use Livewire;
 use Tests\TestCase;
@@ -16,9 +16,9 @@ class DeactivateMenuTest extends TestCase
 
         $menu = Menu::factory()->create();
 
-        Livewire::test(DeactivateMenu::class)
+        Livewire::test(DeactivateMenuDialog::class)
            ->set('modelId', $menu->id)
-           ->call('deactivate');
+           ->call('deactivateMenu');
 
         $this->assertDatabaseHas('menus', ['id' => $menu->id, 'active' => 0]);
     }
@@ -35,9 +35,9 @@ class DeactivateMenuTest extends TestCase
         $this->assertDatabaseHas('menus', ['id' => $parent->id, 'active' => 1]);
         $this->assertDatabaseHas('menus', ['id' => $child->id, 'active' => 1]);
 
-        Livewire::test(DeactivateMenu::class)
+        Livewire::test(DeactivateMenuDialog::class)
            ->set('modelId', $parent->id)
-           ->call('deactivate');
+           ->call('deactivateMenu');
 
         $this->assertDatabaseHas('menus', ['id' => $parent->id, 'active' => 0]);
         $this->assertDatabaseHas('menus', ['id' => $child->id, 'active' => 0]);

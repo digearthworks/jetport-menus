@@ -2,25 +2,13 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Concerns\HandlesRestoreDialogInteraction;
+use App\Http\Livewire\Admin\BaseRestoreDialog;
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Laravel\Jetstream\InteractsWithBanner;
-use Livewire\Component;
 
-class RestoreUserDialog extends Component
+class RestoreUserDialog extends BaseRestoreDialog
 {
-    use AuthorizesRequests,
-        HandlesRestoreDialogInteraction,
-        InteractsWithBanner;
-
-    public $listeners = [
-        'confirmRestore',
-        'closeConfirmRestore',
-    ];
-
-    private $eloquentRepository = User::class;
+    protected $eloquentRepository = User::class;
 
     public function restoreUser(UserService $users)
     {

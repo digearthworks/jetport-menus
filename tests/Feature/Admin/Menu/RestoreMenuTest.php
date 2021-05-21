@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Menu;
 
-use App\Http\Livewire\RestoreMenu;
+use App\Http\Livewire\Admin\Menu\RestoreMenuDialog;
 use App\Models\Menu;
 use Livewire;
 use Tests\TestCase;
@@ -18,10 +18,10 @@ class RestoreMenuTest extends TestCase
 
         $this->assertSoftDeleted('menus', ['id' => $menu->id]);
 
-        Livewire::test(RestoreMenu::class)
+        Livewire::test(RestoreMenuDialog::class)
             ->set('modelId', $menu->id)
             ->set('withTrashed', true)
-            ->call('restore');
+            ->call('restoreMenu');
 
         $this->assertDatabaseHas('menus', ['id' => $menu->id]);
     }
@@ -41,10 +41,10 @@ class RestoreMenuTest extends TestCase
         $this->assertSoftDeleted('menus', ['id' => $parent->id]);
 
 
-        Livewire::test(RestoreMenu::class)
+        Livewire::test(RestoreMenuDialog::class)
             ->set('modelId', $parent->id)
             ->set('withTrashed', true)
-            ->call('restore');
+            ->call('restoreMenu');
 
         $this->assertDatabaseHas('menus', ['id' => $child->id]);
     }
@@ -64,10 +64,10 @@ class RestoreMenuTest extends TestCase
         $this->assertSoftDeleted('menus', ['id' => $parent->id]);
 
 
-        Livewire::test(RestoreMenu::class)
+        Livewire::test(RestoreMenuDialog::class)
             ->set('modelId', $child->id)
             ->set('withTrashed', true)
-            ->call('restore');
+            ->call('restoreMenu');
 
         $this->assertDatabaseHas('menus', ['id' => $parent->id]);
     }

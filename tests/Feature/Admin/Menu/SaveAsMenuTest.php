@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Menu;
 
-use App\Http\Livewire\EditMenu;
+use App\Http\Livewire\Admin\Menu\EditMenuForm;
 use App\Models\Icon;
 use App\Models\Menu;
 use Livewire;
@@ -27,9 +27,9 @@ class SaveAsMenuTest extends TestCase
             'link' => 'testlink',
         ]);
 
-        Livewire::test(EditMenu::class)
+        Livewire::test(EditMenuForm::class)
             ->set('modelId', $menu->id)
-            ->set(['form' => [
+            ->set(['state' => [
                 'type' => 'main_menu',
                 'name' => 'Test Menu',
                 'link' => 'testlink',

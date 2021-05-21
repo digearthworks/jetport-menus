@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Menu;
 
-use App\Http\Livewire\DeleteMenu;
+use App\Http\Livewire\Admin\Menu\DeleteMenuDialog;
 use App\Models\Menu;
 use Livewire;
 use Tests\TestCase;
@@ -16,9 +16,9 @@ class DeleteMenuTest extends TestCase
 
         $menu = Menu::factory()->create();
 
-        Livewire::test(DeleteMenu::class)
+        Livewire::test(DeleteMenuDialog::class)
            ->set('modelId', $menu->id)
-           ->call('delete');
+           ->call('deleteMenu');
 
         $this->assertSoftDeleted('menus', ['id' => $menu->id]);
     }
@@ -32,9 +32,9 @@ class DeleteMenuTest extends TestCase
 
         $child = Menu::factory()->create(['menu_id' => $parent->id]);
 
-        Livewire::test(DeleteMenu::class)
+        Livewire::test(DeleteMenuDialog::class)
            ->set('modelId', $parent->id)
-           ->call('delete');
+           ->call('deleteMenu');
 
         $this->assertSoftDeleted('menus', ['id' => $child->id]);
     }

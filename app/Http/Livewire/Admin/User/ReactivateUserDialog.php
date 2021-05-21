@@ -2,27 +2,13 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Concerns\HandlesReactivateDialogInteraction;
+use App\Http\Livewire\Admin\BaseReactivateDialog;
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Laravel\Jetstream\InteractsWithBanner;
-use Livewire\Component;
 
-class ReactivateUserDialog extends Component
+class ReactivateUserDialog extends BaseReactivateDialog
 {
-    use AuthorizesRequests,
-        HandlesReactivateDialogInteraction,
-        InteractsWithBanner;
-
-    private $eloquentRepository = User::class;
-
-    public $confirmingReactivateUser = false;
-
-    public $listeners = [
-        'confirmReactivate',
-        'closeConfirmReactivate',
-    ];
+    protected $eloquentRepository = User::class;
 
     public function reactivateUser(UserService $users)
     {

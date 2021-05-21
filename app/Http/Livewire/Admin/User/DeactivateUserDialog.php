@@ -2,25 +2,13 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Concerns\HandlesDeactivateDialogInteraction;
+use App\Http\Livewire\Admin\BaseReactivateDialog;
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Laravel\Jetstream\InteractsWithBanner;
-use Livewire\Component;
 
-class DeactivateUserDialog extends Component
+class DeactivateUserDialog extends BaseReactivateDialog
 {
-    use AuthorizesRequests,
-        HandlesDeactivateDialogInteraction,
-        InteractsWithBanner;
-
-    private $eloquentRepository = User::class;
-
-    public $listeners = [
-        'confirmDeactivate',
-        'closeConfirmDeactivate',
-    ];
+    protected $eloquentRepository = User::class;
 
     public function deactivateUser(UserService $users)
     {

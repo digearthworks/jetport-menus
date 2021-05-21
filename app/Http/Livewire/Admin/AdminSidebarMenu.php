@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
+use App\Http\Livewire\Concerns\HasAdminMenus;
+use App\Http\Livewire\Concerns\HasAppMenus;
 use Livewire\Component;
 
-class AdminSidebar extends Component
+class AdminSidebarMenu extends Component
 {
     use HasAdminMenus,
         HasAppMenus;
@@ -32,7 +34,7 @@ class AdminSidebar extends Component
 
     public function render()
     {
-        return view('admin.sidebar', [
+        return view('admin.sidebar-menu', [
             'adminMenuItems' => $this->adminMenus,
             'appMenuItems' => $this->appMenus,
         ]);

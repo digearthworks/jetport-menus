@@ -1,5 +1,5 @@
 @inject('model', '\App\Models\User')
-<x-dialog-modal maxWidth="2xl" wire:model="editing">
+<x-dialog-modal maxWidth="2xl" wire:model="editingResource">
 
     <x-slot name="title">
 

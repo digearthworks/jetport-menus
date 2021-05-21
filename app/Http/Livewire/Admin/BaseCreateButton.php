@@ -13,6 +13,8 @@ abstract class BaseCreateButton extends Component
 
     public $value;
 
+    public $params;
+
     public function mount($value = null)
     {
         if ($value) {
