@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Admin\BaseReactivateDialog;
+use App\Http\Livewire\Admin\BaseDeactivateDialog;
 use App\Models\User;
 use App\Services\UserService;
 
-class DeactivateUserDialog extends BaseReactivateDialog
+class DeactivateUserDialog extends BaseDeactivateDialog
 {
     protected $eloquentRepository = User::class;
 

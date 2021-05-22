@@ -21,7 +21,7 @@
 </x-livewire-tables::tw.table.cell>
 
 <x-livewire-tables::tw.table.cell>
-    {{ $row->all_menus_label }}
+    {!! $row->all_menus_label !!}
 </x-livewire-tables::tw.table.cell>
 
 <x-livewire-tables::tw.table.cell>

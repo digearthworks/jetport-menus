@@ -100,7 +100,7 @@ class UsersTable extends BaseDataTable
                 ->sortable(),
             Column::make(__('Verified'), 'email_verified_at')
                 ->sortable(),
-            Column::make(__('2FA'), 'two_factor_auth_count')
+            Column::make(__('Last Login'), 'last_login_at')
                 ->sortable(),
             Column::make(__('Roles')),
             // Column::make(__('Added Permissions')),

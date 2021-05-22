@@ -48,11 +48,14 @@ if (! function_exists('homeRoute')) {
 if (! function_exists('currentRouteHas')) {
     /**
      * Check if current url contains a given string
-     *
+     * @param string|array $value
      * @return bool
      */
-    function currentRouteHas(string $value): bool
+    function currentRouteHas($value): bool
     {
+        if (is_array($value)) {
+            return in_array('/'.request()->path(), $value);
+        }
         return str_contains(url()->current(), $value);
     }
 }

@@ -8,11 +8,6 @@ trait HandlesDeactivateDialogInteraction
 
     public $confirmingDeactivate = false;
 
-    public $listeners = [
-        'confirmDeactivate',
-        'closeConfirmDeactivate',
-    ];
-
     public function confirmDeactivate($resourceId)
     {
         $this->modelId = $resourceId;

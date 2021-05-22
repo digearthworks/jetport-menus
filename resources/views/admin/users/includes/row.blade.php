@@ -15,7 +15,7 @@
 </x-admin.users.livewire-tables.tw.table.cell>
 
 <x-admin.users.livewire-tables.tw.table.cell>
-    @include('admin.users.includes.2fa', ['user' => $row])
+    {{ $row->last_login_at ? $row->last_login_at->diffForHumans() : __('Never') }}
 </x-admin.users.livewire-tables.tw.table.cell>
 
 <x-admin.users.livewire-tables.tw.table.cell>
