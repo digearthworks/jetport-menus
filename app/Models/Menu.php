@@ -4,8 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Connection\AuthConnection;
 use App\Models\Concerns\HasPath;
-use App\Models\Concerns\HasPermissionsLabel;
-use App\Models\Concerns\HasRolesLabel;
 use App\Models\Concerns\HasUuid;
 use App\Models\Concerns\Relationship\MenuRelationship;
 use Database\Factories\MenuFactory;
@@ -13,7 +11,6 @@ use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Permission\Traits\HasRoles;
 use Wildside\Userstamps\Userstamps;
 
 class Menu extends Model
@@ -22,9 +19,6 @@ class Menu extends Model
         CascadeSoftDeletes,
         HasFactory,
         HasPath,
-        // HasPermissionsLabel,
-        // HasRoles,
-        // HasRolesLabel,
         HasUuid,
         MenuRelationship,
         SoftDeletes,
