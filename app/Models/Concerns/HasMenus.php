@@ -112,7 +112,7 @@ trait HasMenus
 
     private function morphedMenuable()
     {
-        return $this->morphToMany(Menu::class, 'menuable')->orderBy('sort')->with('children', 'icon');
+        return $this->morphToMany(Menu::class, 'menuable')->with('children', 'icon')->ordered();
     }
 
     /**
@@ -179,6 +179,6 @@ trait HasMenus
 
     public function getAppMenusAttribute()
     {
-        return $this->getAllMenus()->where('group', 'app');
+        return $this->getAllMenus()->where('group', 'app')->sortBy('sort');
     }
 }

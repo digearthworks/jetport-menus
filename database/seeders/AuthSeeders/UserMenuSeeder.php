@@ -32,6 +32,13 @@ class UserMenuSeeder extends Seeder
 
         User::find(1)->assignMenu($allMenus);
 
+        if (app()->environment(['local', 'testing'])) {
+
+            User::find(2)->assignMenu(Menu::dashboard()->id);
+        }
+
+
+
         $this->enableForeignKeys($this->connection);
     }
 }

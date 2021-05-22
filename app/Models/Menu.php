@@ -408,6 +408,11 @@ class Menu extends Model implements Sortable
 
     public function scopeSortGroup($query)
     {
-        return $query()->where('menu_id', $this->menu_id);
+        return $query()->where('menu_id', $this->menu_id)->where('group', $this->group);
+    }
+
+    public static function dashboard()
+    {
+        return self::where('name', 'Dashboard')->first();
     }
 }
