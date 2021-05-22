@@ -18,7 +18,6 @@ class CreateMenuablesTable extends Migration
             $table->integer('menuable_id');
             $table->string('menuable_type');
             $table->string('menuable_group')->nullable();
-            $table->string('checked')->nullable();
             $table->timestamps();
 
             $table->foreign('menu_id')
