@@ -29,7 +29,7 @@ trait MenuRelationship
 
     public function getChildrenQuery()
     {
-        return $this->hasMany(__CLASS__, 'menu_id');
+        return $this->hasMany(__CLASS__, 'menu_id')->ordered();
     }
 
     public function hotlinks()

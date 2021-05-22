@@ -42,11 +42,7 @@ return [
 
     /**
     * Whether to allow manual entry of value for "sort" field
-    * in the menu edit and create forms. Note: Manually sorting
-    * in this manner will not automatically adjust the sort
-    * value for other menus, which can lead to multiple
-    * menus having the same sort value, unless the value
-    * for each menu is adjusted manually in turn
+    * in the menu edit and create forms.
     */
-    'allow_manual_sort' => false,
+    'allow_manual_sort' => true,
 ];

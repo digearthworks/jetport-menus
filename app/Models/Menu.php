@@ -11,9 +11,11 @@ use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 use Wildside\Userstamps\Userstamps;
 
-class Menu extends Model
+class Menu extends Model implements Sortable
 {
     use AuthConnection,
         CascadeSoftDeletes,
@@ -22,6 +24,7 @@ class Menu extends Model
         HasUuid,
         MenuRelationship,
         SoftDeletes,
+        SortableTrait,
         Userstamps;
 
     protected $cascadeDeletes = ['children'];
@@ -383,5 +386,20 @@ class Menu extends Model
     public function parent()
     {
         return $this->belongsTo(__CLASS__, 'menu_id')->with('icon', 'parent')->withTrashed();
+    }
+
+    public function getSortOrder()
+    {
+        return $this->ordered()->pluck('id');
+    }
+
+    public function buildSortQuery()
+    {
+        return static::query()->where('menu_id', $this->menu_id);
+    }
+
+    public function scopeSortGroup($query)
+    {
+        return $query()->where('menu_id', $this->menu_id);
     }
 }

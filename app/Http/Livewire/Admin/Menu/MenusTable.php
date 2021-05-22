@@ -15,7 +15,7 @@ class MenusTable extends BaseDataTable
      */
     public function query(): Builder
     {
-        $query = Menu::withCount('roles')
+        $query = Menu::ordered()->withCount('roles')
             ->with('icon')
             ->withCount('users')
             ->withCount('children');

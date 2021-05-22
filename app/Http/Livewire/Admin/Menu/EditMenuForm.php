@@ -71,7 +71,7 @@ class EditMenuForm extends BaseEditForm
             'name' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
-            'title' => ['string'],
+            'title' => ['string', 'nullable'],
             'iframe' => ['int'],
             'sort' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
@@ -91,7 +91,7 @@ class EditMenuForm extends BaseEditForm
             'name' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
-            'title' => ['string'],
+            'title' => ['string', 'nullable'],
             'iframe' => ['int'],
             'sort' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
