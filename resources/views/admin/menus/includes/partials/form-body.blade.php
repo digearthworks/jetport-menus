@@ -1,4 +1,4 @@
-<div x-data="{ menuType: '{{isset($form['type']) ? $form['type'] : 'main_menu'}}' }">
+<div x-data="{ menuType: '{{isset($state['type']) ? $state['type'] : 'main_menu'}}' }">
 
     @if(isset($item) && $item)
         @include('admin.menus.includes.form.select-menu')

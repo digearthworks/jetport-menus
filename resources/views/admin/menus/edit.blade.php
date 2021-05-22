@@ -10,7 +10,7 @@
     </x-slot>
 
     <x-slot name="footer">
-        <x-jet-secondary-button wire:click="closeEditDialog" wire:loading.attr="disabled">
+        <x-jet-secondary-button wire:click="$toggle('editingResource')" wire:loading.attr="disabled">
             {{ __('Cancel') }}
         </x-jet-secondary-button>
 

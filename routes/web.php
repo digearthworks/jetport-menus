@@ -9,7 +9,7 @@ Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.cha
 
 Route::view('/', 'welcome')->name('index');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
@@ -20,4 +20,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
  */
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
     includeRouteFiles(__DIR__.'/admin/');
+});
+
+/*
+ * Menu Routes
+ */
+Route::group(['prefix' => 'menus', 'as' => 'menus.', 'middleware' => 'auth'], function () {
+    includeRouteFiles(__DIR__.'/menus/');
 });

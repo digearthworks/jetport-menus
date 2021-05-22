@@ -32,7 +32,7 @@
             </div>
             <!--form-group-->
 
-            @if (isset($user) && !$user->isMasterAdmin())
+            @if (isset($user) && $logged_in_user->isMasterAdmin() || isset($user) && !$user->isMasterAdmin())
                 <div class="col-span-6 sm:col-span-4">
                     <x-jet-label for="updatingName" value="{{ __('Type') }}" />
 
@@ -64,7 +64,8 @@
                         header="Roles"
                         disableChildren="true"
                     />
-
+            @endif
+            @if(isset($user) && $logged_in_user->isMasterAdmin() || isset($user) && !$user->isMasterAdmin())
 
                     <x-checklist-index
                         formIndex="menus"
@@ -77,7 +78,8 @@
                         header="Additional Menus"
                         disableChildren="true"
                     />
-
+            @endif
+            @if (isset($user) && !$user->isMasterAdmin())
                     <x-checklist-index
                         formIndex="permissions"
                         label="description"
@@ -90,10 +92,10 @@
                         header="Additional Permissions by Category"
                     />
                 </div>
-
+            @endif
                 <!-- Only shows if type is user -->
                 <div x-show="userType === '{{ $model::TYPE_USER }}'">
-
+            @if (isset($user) && !$user->isMasterAdmin())
                     <x-checklist-index
                         formIndex="roles"
                         label="name"
@@ -105,7 +107,8 @@
                         header="Roles"
                         disableChildren="true"
                     />
-
+            @endif
+            @if(isset($user) && $logged_in_user->isMasterAdmin() || isset($user) && !$user->isMasterAdmin())
                     <x-checklist-index
                         formIndex="menus"
                         label="name_with_art"
@@ -117,7 +120,8 @@
                         header="Additional Menus"
                         disableChildren="true"
                     />
-
+            @endif
+            @if (isset($user) && !$user->isMasterAdmin())
                     <x-checklist-index
                         formIndex="permissions"
                         label="description"
@@ -129,8 +133,9 @@
                         :general="$generalPermissions->where('type', $model::TYPE_USER) ?? []"
                         header="Additional Permissions by Category"
                     />
-                </div>
             @endif
+                </div>
+
         </div>
     </x-slot>
 

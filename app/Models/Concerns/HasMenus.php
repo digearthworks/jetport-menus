@@ -176,4 +176,9 @@ trait HasMenus
 
         return $this->getAllMenus()->pluck('name')->implode('<br/>');
     }
+
+    public function getAppMenusAttribute()
+    {
+        return $this->getAllMenus()->where('group', 'app');
+    }
 }
