@@ -279,6 +279,14 @@ class Menu extends Model implements Sortable
         return $this->morphedByMany(User::class, 'menuable');
     }
 
+    /**
+     * Get all of the users that are assigned this menu.
+     */
+    public function bookmarks()
+    {
+        return $this->morphedByMany(User::class, 'menuable')->wherePivot('menuable_group', 'bookmarks');
+    }
+
     public function usersFromRoles()
     {
         return User::role($this->roles()->pluck('name'))->get();

@@ -97,7 +97,7 @@ trait HasMenus
 
     public function bookmarks()
     {
-        return $this->morphedMenuable()->withTimestamps()->wherePivot('menuable_group', 'bookmarks');
+        return $this->morphedMenuable()->withTimestamps()->wherePivot('menuable_group', 'bookmarks')->withPivot('menuable_group');
     }
 
     public function menus()
