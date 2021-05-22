@@ -48,11 +48,10 @@ class MenuService extends BaseService
 
                 // get the diff
                 $diff = $menu->sort - $data['sort'];
-                for($i = 0; $i < $diff; $i ++){
+                for ($i = 0; $i < $diff; $i ++) {
                     $menu->moveOrderUp();
                 }
             }
-
         } catch (Exception $e) {
             DB::rollBack();
 
@@ -110,25 +109,22 @@ class MenuService extends BaseService
 
             if (isset($data['sort']) && $this->model->where('sort', $data['sort'])->where('id', '!=', $menu->id)->count()) {
                 //wheth to move up or down
-                if($menu->sort > $this->model->buildSortQuery()->where('sort', $data['sort'])->where('id', '!=', $menu->id)->first()->sort){
+                if ($menu->sort > $this->model->buildSortQuery()->where('sort', $data['sort'])->where('id', '!=', $menu->id)->first()->sort) {
 
                     // get the diff
                     $diff = $menu->sort - $data['sort'];
-                    for($i = 0; $i < $diff; $i ++){
+                    for ($i = 0; $i < $diff; $i ++) {
                         $menu->moveOrderUp();
                     }
-
-                }else{
+                } else {
 
                     // get the diff
                     $diff = $data['sort'] - $menu->sort;
-                    for($i = 0; $i < $diff; $i ++){
+                    for ($i = 0; $i < $diff; $i ++) {
                         $menu->moveOrderDown();
                     }
                 }
-
             }
-
         } catch (Exception $e) {
             DB::rollBack();
 
