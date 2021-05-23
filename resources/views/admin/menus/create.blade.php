@@ -1,4 +1,3 @@
-@inject('model', '\App\Models\User')
 <x-dialog-modal maxWidth="2xl" wire:model="creatingResource">
 
     <x-slot name="title">

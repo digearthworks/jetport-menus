@@ -2,9 +2,6 @@
 
 namespace App\Models\Concerns\Attribute;
 
-/**
- * Trait RoleAttribute.
- */
 trait IconAttribute
 {
     /**
@@ -12,6 +9,6 @@ trait IconAttribute
      */
     public function getArtAttribute(): string
     {
-        return $this->svg ?? "<i class=\"{$this->class}\"></i>";
+        return $this->html ?? "<i class=\"{$this->class}\"></i>";
     }
 }

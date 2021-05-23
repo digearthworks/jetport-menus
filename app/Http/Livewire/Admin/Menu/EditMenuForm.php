@@ -50,7 +50,8 @@ class EditMenuForm extends BaseEditForm
         $this->state['iframe'] = $this->model->iframe;
         $this->state['sort'] = $this->model->sort;
         $this->state['menu_id'] = $this->model->menu_id;
-        $this->state['icon_id'] = $this->model->icon_id;
+        $this->state['icon_id'] = $this->model->icon->art;
+        $this->model->load('icon');
 
         if ($this->model->menu_id) {
             $this->item = true;

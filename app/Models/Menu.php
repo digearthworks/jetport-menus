@@ -65,15 +65,15 @@ class Menu extends Model implements Sortable
             return Icon::query()->find($icon) ? $icon : null;
         }
 
-        $id = (strlen($icon) > 21) ? Icon::query()->where('svg', $icon)->value('id') : Icon::query()->where('class', $icon)->value('id');
+        $id = (strlen($icon) > 21) ? Icon::query()->where('html', $icon)->value('id') : Icon::query()->where('class', $icon)->value('id');
 
         if ($id) {
             return $id;
         }
 
         $iconAttributes = (strlen($icon) > 21) ? [
-            'svg' => $icon,
-            'source' => 'svg',
+            'html' => $icon,
+            'source' => 'raw',
         ] : [
             'class' => $icon,
             'source' => 'FontAwesome',
