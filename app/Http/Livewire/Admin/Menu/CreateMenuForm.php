@@ -26,7 +26,7 @@ class CreateMenuForm extends BaseCreateForm
         'sort' => '',
         'row' => '',
         'menu_id' => '',
-        'icon' => '',
+        'icon_id' => '',
     ];
 
     public $data;
