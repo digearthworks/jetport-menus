@@ -29,5 +29,5 @@
 
     </div>
 
-    @include('admin.menus.includes.form.select-icon')
+    {{-- @include('admin.menus.includes.form.select-icon') --}}
 </div>
