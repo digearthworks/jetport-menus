@@ -3,7 +3,6 @@
 namespace App\Models\Concerns\Relationship;
 
 use App\Models\Icon;
-use App\Models\Permission;
 use App\Models\User;
 
 trait MenuRelationship
@@ -13,19 +12,9 @@ trait MenuRelationship
         return $this->belongsTo(Icon::class);
     }
 
-    public function permission()
-    {
-        return $this->belongsTo(Permission::class);
-    }
-
     public function parent()
     {
         return $this->belongsTo(__CLASS__, 'menu_id')->with('icon', 'parent')->withTrashed();
-    }
-
-    public function isMenuIndex()
-    {
-        return $this->label === 'Menu Index';
     }
 
     public function isParentMenu()
@@ -35,21 +24,17 @@ trait MenuRelationship
 
     public function children()
     {
-        return $this->isMenuIndex() ? $this->whereNotNull('id') : $this->getChildrenQuery();
+        return $this->getChildrenQuery();
     }
 
     public function getChildrenQuery()
     {
-        return $this->hasMany(__CLASS__, 'menu_id')->with('icon', 'children');
+        return $this->hasMany(__CLASS__, 'menu_id')->ordered();
     }
 
     public function hotlinks()
     {
-        $q = $this->getChildrenQuery();
-
-        $isIndex = $this->isMenuIndex();
-
-        return $isIndex ? $q->whereNull('id') : $q->where('group', 'hotlinks');
+        return $this->getChildrenQuery()->where('group', 'hotlinks');
     }
 
     public function items()

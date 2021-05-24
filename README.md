@@ -20,7 +20,7 @@
 - [x] OAuth2 Server
 - [x] Permissions Role User with Livewire Datatable Frontend.
 - [x] Admin Impersonation of Users
-- [ ] Menu Management Crud
+- [x] Menu Management Crud
 - [x] Assignable Menus for Each User
 - [ ] Alpha Docs
 

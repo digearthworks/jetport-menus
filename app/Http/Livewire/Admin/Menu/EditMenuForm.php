@@ -9,7 +9,13 @@ use Illuminate\Support\Facades\Validator;
 
 class EditMenuForm extends BaseEditForm
 {
-    public $eloquentRepository = Menu::class;
+    protected $eloquentRepository = Menu::class;
+
+    public $listeners = [
+        'editDialog',
+        'closeEditDialog',
+        'selectIcon',
+    ];
 
     /**
      * The create form state.
@@ -26,12 +32,17 @@ class EditMenuForm extends BaseEditForm
         'iframe' => '0',
         'sort' => '1',
         'menu_id' => '',
-        'icon' => '',
+        'icon_id' => '',
     ];
 
     public $item;
 
     public $data;
+
+    public function selectIcon($value)
+    {
+        $this->state['icon_id'] = $value;
+    }
 
     public function editDialog($resourceId, $params = null)
     {
@@ -50,7 +61,8 @@ class EditMenuForm extends BaseEditForm
         $this->state['iframe'] = $this->model->iframe;
         $this->state['sort'] = $this->model->sort;
         $this->state['menu_id'] = $this->model->menu_id;
-        $this->state['icon'] = $this->model->icon_id;
+        $this->state['icon_id'] = $this->model->icon->input;
+        $this->model->load('icon');
 
         if ($this->model->menu_id) {
             $this->item = true;
@@ -71,7 +83,7 @@ class EditMenuForm extends BaseEditForm
             'name' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
-            'title' => ['string'],
+            'title' => ['string', 'nullable'],
             'iframe' => ['int'],
             'sort' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
@@ -91,7 +103,7 @@ class EditMenuForm extends BaseEditForm
             'name' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
-            'title' => ['string'],
+            'title' => ['string', 'nullable'],
             'iframe' => ['int'],
             'sort' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');

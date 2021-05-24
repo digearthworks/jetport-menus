@@ -34,7 +34,7 @@ class SaveAsMenuTest extends TestCase
                 'name' => 'Test Menu',
                 'link' => 'testlink',
                 'group' => 'admin',
-                'icon' => 'fa fa-file',
+                'icon_id' => 'fa fa-file',
             ]])
             ->call('saveMenuAs');
 

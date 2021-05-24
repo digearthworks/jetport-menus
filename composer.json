@@ -24,6 +24,7 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
         "rappasoft/laravel-livewire-tables": "^1.6",
+        "spatie/eloquent-sortable": "^3.11",
         "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-permission": "^4.0",
         "wildside/userstamps": "^2.1"

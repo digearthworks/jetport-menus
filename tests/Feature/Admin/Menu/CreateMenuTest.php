@@ -36,7 +36,7 @@ class CreateMenuTest extends TestCase
                 'sort' => '1',
                 'row' => '1',
                 'menu_id' => '',
-                'icon' => Icon::find(1)->svg,
+                'icon_id' => Icon::find(1)->svg,
             ]])
             ->call('createMenu');
 

@@ -68,7 +68,7 @@
 
                             @canBeImpersonated($user)
                                 <x-jet-dropdown-link href="{{ route('impersonate', $user->id)}}">
-                                        {{ __('Impersonate') }}
+                                        {{ __('Login as') }} {{ $user->name }}
                                 </x-jet-dropdown-link>
                             @endCanBeImpersonated
 

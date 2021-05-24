@@ -4,8 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Connection\AuthConnection;
 use App\Models\Concerns\HasPath;
-use App\Models\Concerns\HasPermissionsLabel;
-use App\Models\Concerns\HasRolesLabel;
 use App\Models\Concerns\HasUuid;
 use App\Models\Concerns\Relationship\MenuRelationship;
 use Database\Factories\MenuFactory;
@@ -13,21 +11,20 @@ use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Permission\Traits\HasRoles;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 use Wildside\Userstamps\Userstamps;
 
-class Menu extends Model
+class Menu extends Model implements Sortable
 {
     use AuthConnection,
         CascadeSoftDeletes,
         HasFactory,
         HasPath,
-        // HasPermissionsLabel,
-        // HasRoles,
-        // HasRolesLabel,
         HasUuid,
         MenuRelationship,
         SoftDeletes,
+        SortableTrait,
         Userstamps;
 
     protected $cascadeDeletes = ['children'];
@@ -68,15 +65,15 @@ class Menu extends Model
             return Icon::query()->find($icon) ? $icon : null;
         }
 
-        $id = (strlen($icon) > 21) ? Icon::query()->where('svg', $icon)->value('id') : Icon::query()->where('class', $icon)->value('id');
+        $id = (strlen($icon) > 32) ? Icon::query()->where('html', $icon)->value('id') : Icon::query()->where('class', $icon)->value('id');
 
         if ($id) {
             return $id;
         }
 
-        $iconAttributes = (strlen($icon) > 21) ? [
-            'svg' => $icon,
-            'source' => 'svg',
+        $iconAttributes = (strlen($icon) > 32) ? [
+            'html' => $icon,
+            'source' => 'raw',
         ] : [
             'class' => $icon,
             'source' => 'FontAwesome',
@@ -282,6 +279,14 @@ class Menu extends Model
         return $this->morphedByMany(User::class, 'menuable');
     }
 
+    /**
+     * Get all of the users that are assigned this menu.
+     */
+    public function bookmarks()
+    {
+        return $this->morphedByMany(User::class, 'menuable')->wherePivot('menuable_group', 'bookmarks');
+    }
+
     public function usersFromRoles()
     {
         return User::role($this->roles()->pluck('name'))->get();
@@ -389,5 +394,25 @@ class Menu extends Model
     public function parent()
     {
         return $this->belongsTo(__CLASS__, 'menu_id')->with('icon', 'parent')->withTrashed();
+    }
+
+    public function getSortOrder()
+    {
+        return $this->ordered()->pluck('id');
+    }
+
+    public function buildSortQuery()
+    {
+        return static::query()->where('menu_id', $this->menu_id);
+    }
+
+    public function scopeSortGroup($query)
+    {
+        return $query()->where('menu_id', $this->menu_id)->where('group', $this->group);
+    }
+
+    public static function dashboard()
+    {
+        return self::where('name', 'Dashboard')->first();
     }
 }

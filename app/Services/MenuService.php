@@ -38,11 +38,20 @@ class MenuService extends BaseService
                 'title' => $data['title'] ?? null,
                 'active' => $data['active'] ?? 1,
                 'iframe' => $data['iframe'] ?? null,
-                'sort' => $data['sort'] ?? null,
+                // 'sort' => $data['sort'] ?? null,
                 // 'row' => $data['row'] ?? null,
                 'menu_id' => $data['menu_id'] ?? null,
-                'icon_id' => $data['icon'] ?? null,
+                'icon_id' => $data['icon_id'] ?? null,
             ]);
+
+            if (isset($data['sort']) && $this->model->buildSortQuery()->where('sort', $data['sort'])->count()) {
+
+                // get the diff
+                $diff = $menu->sort - $data['sort'];
+                for ($i = 0; $i < $diff; $i ++) {
+                    $menu->moveOrderUp();
+                }
+            }
         } catch (Exception $e) {
             DB::rollBack();
 
@@ -92,11 +101,30 @@ class MenuService extends BaseService
                 'title' => $data['title'] ?? $menu->title,
                 'active' => $data['active'] ?? $menu->active,
                 'iframe' => $data['iframe'] ?? $menu->iframe,
-                'sort' => $data['sort'] ?? $menu->sort,
+                // 'sort' => $data['sort'] ?? $menu->sort,
                 // 'row' => $data['row'] ?? $menu->row,
                 'menu_id' => $data['menu_id'] ?? ($menu->menu_id ?? null),
-                'icon_id' => $data['icon'] ?? ($menu->icon_id ?? null),
+                'icon_id' => $data['icon_id'] ?? ($menu->icon_id ?? null),
             ]);
+
+            if (isset($data['sort']) && $this->model->where('sort', $data['sort'])->where('id', '!=', $menu->id)->count()) {
+                //wheth to move up or down
+                if ($menu->sort > $this->model->buildSortQuery()->where('sort', $data['sort'])->where('id', '!=', $menu->id)->first()->sort) {
+
+                    // get the diff
+                    $diff = $menu->sort - $data['sort'];
+                    for ($i = 0; $i < $diff; $i ++) {
+                        $menu->moveOrderUp();
+                    }
+                } else {
+
+                    // get the diff
+                    $diff = $data['sort'] - $menu->sort;
+                    for ($i = 0; $i < $diff; $i ++) {
+                        $menu->moveOrderDown();
+                    }
+                }
+            }
         } catch (Exception $e) {
             DB::rollBack();
 
@@ -115,7 +143,7 @@ class MenuService extends BaseService
         try {
             $newMenu = $this->model->create([
                 'group' => $data['group'] ?? $menu->group,
-                'name' => (isset($data['name']) && $data['name'] === $menu->name) ? $menu->name.'-copy' : ($data['name'] ?? $menu->name.'-copy'),
+                'name' => (isset($data['name']) && $data['name'] === $menu->name) ? $menu->name . '-copy' : ($data['name'] ?? $menu->name . '-copy'),
                 'link' => $data['link'] ?? $menu->link,
                 'type' => $data['type'] ?? $menu->type,
                 'title' => $data['title'] ?? $menu->title,
@@ -124,14 +152,14 @@ class MenuService extends BaseService
                 'sort' => $data['sort'] ?? $menu->sort,
                 // 'row' => $data['row'] ?? $menu->row,
                 'menu_id' => $data['menu_id'] ?? ($menu->menu_id ?? null),
-                'icon_id' => $data['icon'] ?? ($menu->icon_id ?? null),
+                'icon_id' => $data['icon_id'] ?? ($menu->icon_id ?? null),
             ]);
 
             if ($menu->children()->exists()) {
                 foreach ($menu->children as $child) {
                     $clone = $child->replicate();
                     $clone->menu_id = $newMenu->id;
-                    $clone->name = $child->name.'-copy';
+                    $clone->name = $child->name . '-copy';
                     $clone->uuid = Str::Uuid();
                     $clone->save();
                 }

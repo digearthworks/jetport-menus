@@ -2,16 +2,15 @@
 
 namespace App\Models\Concerns\Attribute;
 
-/**
- * Trait RoleAttribute.
- */
 trait IconAttribute
 {
-    /**
-     * @return string
-     */
     public function getArtAttribute(): string
     {
-        return $this->svg ?? "<i class=\"{$this->class}\"></i>";
+        return $this->html ?? "<i class=\"{$this->class}\"></i>";
+    }
+
+    public function getInputAttribute(): string
+    {
+        return $this->html ?? "$this->class";
     }
 }
