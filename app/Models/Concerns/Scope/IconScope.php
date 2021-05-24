@@ -2,10 +2,9 @@
 
 namespace App\Models\Concerns\Scope;
 
-
 trait IconScope
 {
-        /**
+    /**
      * @param $query
      * @param $term
      *

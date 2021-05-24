@@ -4,7 +4,6 @@ namespace App\Models\Concerns\Attribute;
 
 trait IconAttribute
 {
-
     public function getArtAttribute(): string
     {
         return $this->html ?? "<i class=\"{$this->class}\"></i>";
@@ -14,5 +13,4 @@ trait IconAttribute
     {
         return $this->html ?? "$this->class";
     }
-
 }

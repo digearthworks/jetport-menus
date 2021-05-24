@@ -7,7 +7,6 @@ use Livewire\Component;
 
 class IconSelect extends Component
 {
-
     public $query;
     public $icons;
     public $iconSource;
@@ -15,7 +14,6 @@ class IconSelect extends Component
 
     public function mount($source = null)
     {
-
         $icons = [];
 
         switch ($source) {
