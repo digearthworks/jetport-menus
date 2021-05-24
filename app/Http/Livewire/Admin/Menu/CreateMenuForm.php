@@ -29,7 +29,18 @@ class CreateMenuForm extends BaseCreateForm
         'icon_id' => '',
     ];
 
+    public $listeners = [
+        'createDialog',
+        'closeCreateDialog',
+        'selectIcon',
+    ];
+
     public $data;
+
+    public function selectIcon($value)
+    {
+        $this->state['icon_id'] = $value;
+    }
 
     public function createDialog($params = [])
     {

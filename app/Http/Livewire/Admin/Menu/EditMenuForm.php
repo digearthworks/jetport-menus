@@ -9,7 +9,13 @@ use Illuminate\Support\Facades\Validator;
 
 class EditMenuForm extends BaseEditForm
 {
-    public $eloquentRepository = Menu::class;
+    protected $eloquentRepository = Menu::class;
+
+    public $listeners = [
+        'editDialog',
+        'closeEditDialog',
+        'selectIcon',
+    ];
 
     /**
      * The create form state.
@@ -33,6 +39,11 @@ class EditMenuForm extends BaseEditForm
 
     public $data;
 
+    public function selectIcon($value)
+    {
+        $this->state['icon_id'] = $value;
+    }
+
     public function editDialog($resourceId, $params = null)
     {
         $params = (array) json_decode($params);
@@ -50,7 +61,7 @@ class EditMenuForm extends BaseEditForm
         $this->state['iframe'] = $this->model->iframe;
         $this->state['sort'] = $this->model->sort;
         $this->state['menu_id'] = $this->model->menu_id;
-        $this->state['icon_id'] = $this->model->icon->art;
+        $this->state['icon_id'] = $this->model->icon->input;
         $this->model->load('icon');
 
         if ($this->model->menu_id) {
