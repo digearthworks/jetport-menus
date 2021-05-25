@@ -1,20 +1,5 @@
 # Road Map
 
-
-### First Steps. *Create Tasks*
-- [ ] Improve This Roadmap
-- [ ] Improve this README
-- [ ] Create Detailed issues for each item on Alpha list
- * Put a link to the issue next to each item
- * Link The Project [Jetport Menus](https://github.com/orgs/digearthworks/projects/2) to create automated To Do (You will see it on the right next under assignees and labels)
- * If you see an item here without an issue from @inmanturbo describing how it needs to be done
-   1. Create an issue asking for the information you need
-   2. Include any suggestions or ideas you might have on how to implement the feature
- * Include Screenshots and Gifs of examples when available
- * Include code snippents from and links to examples when available
- * Reference [Boilerplate](https://github.com/digearthworks/laravel-ui-boilerplate) when applicable      
-- [ ] Begin Documentation 
-
 ### Alpha. *Menus*
 
 - [x] OAuth2 Server
