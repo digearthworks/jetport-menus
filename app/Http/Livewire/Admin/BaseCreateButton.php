@@ -3,12 +3,12 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Http\Livewire\Concerns\HandlesCreateDialogInteraction;
-use App\Http\Livewire\Concerns\InteractsWithDialogs;
+use App\Http\Livewire\Concerns\InteractsWithDialog;
 use Livewire\Component;
 
 abstract class BaseCreateButton extends Component
 {
-    use InteractsWithDialogs,
+    use InteractsWithDialog,
         HandlesCreateDialogInteraction;
 
     public $value;

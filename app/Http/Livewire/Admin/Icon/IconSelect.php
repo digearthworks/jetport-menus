@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Icon;
 
 use App\Models\Icon;
+use App\Services\Icon\FontAwesome;
 use Livewire\Component;
 
 class IconSelect extends Component
@@ -10,35 +11,14 @@ class IconSelect extends Component
     public $query;
     public $icons;
     public $iconSource;
-    public $source;
 
-    public function mount($source = null)
+    public function mount()
     {
-        $icons = [];
+        $fontAwesomeIcons = FontAwesome::all();
 
-        switch ($source) {
-            case 'FontAwesome':
+        $icons = Icon::all();
 
-                $content = file_get_contents('https://raw.githubusercontent.com/FortAwesome/Font-Awesome/5.15.3/metadata/icons.json');
-                $json = json_decode($content);
-
-                foreach ($json as $icon => $value) {
-                    foreach ($value->styles as $style) {
-                        $icons[] = new Icon([
-                            'class' => 'fa' . substr($style, 0, 1) . ' fa-' . $icon,
-                            'source' => 'FontAwesome',
-                            'version' => 5,
-                        ]);
-                    }
-                }
-                break;
-
-            default:
-                $icons = Icon::all();
-                break;
-        }
-
-        $this->iconSource = collect($icons);
+        $this->iconSource = collect($icons)->merge(collect($fontAwesomeIcons));
         $this->icons = $this->iconSource;
     }
 
