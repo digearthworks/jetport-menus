@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "Livewire"
+date:   2021-04-15 2:44:53 -0400
+categories: jekyll update
+---
+
+##### Where to find Livewire Components
+
+Livewire components are Registered in App\Providers\LivewireServiceProvider.php
+
+```php
+
+<?php
+
+namespace App\Providers;
+
+use App\Http\Livewire\Sidebar;
+
+...
+
+class LivewireServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        Livewire::component('sidebar', Sidebar::class);
+    }
+
+...
+
+}
+```
+Here the frontend `component` is under `views/sidebar.blade.php`, and the php logic can be found in `App\Http\Livewire\Sidebar.php`
+
+###### [Livewire Docs](https://laravel-livewire.com/docs/2.x/quickstart)

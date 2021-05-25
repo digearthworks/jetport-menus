@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 if (app()->environment(['local', 'testing'])) {
-    if (config('domains.posts.active')) {
+    if (config('template.posts.active')) {
         Route::get('/posts', function (Request $request) {
             return Post::all();
         })->middleware('auth:api');

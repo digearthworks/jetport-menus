@@ -2,30 +2,56 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Attribute\UserAttribute;
+use App\Models\Concerns\Connection\AuthConnection;
+use App\Models\Concerns\HasMenus;
+use App\Models\Concerns\HasUuid;
+use App\Models\Concerns\Method\UserMethod;
+use App\Models\Concerns\Scope\UserScope;
+use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Passport\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use Wildside\Userstamps\Userstamps;
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
-    use HasFactory;
-    use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
+    use AuthConnection,
+        HasApiTokens,
+        HasFactory,
+        HasMenus,
+        HasProfilePhoto,
+        HasRoles,
+        HasUuid,
+        Impersonate,
+        Notifiable,
+        MustVerifyEmail,
+        SoftDeletes,
+        TwoFactorAuthenticatable,
+        UserAttribute,
+        UserMethod,
+        UserScope,
+        Userstamps;
+
+    public const TYPE_ADMIN = 'admin';
+
+    public const TYPE_USER = 'user';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $guarded = [
+        // 'name',
+        // 'email',
+        // 'password',
     ];
 
     /**
@@ -47,6 +73,9 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'active' => 'boolean',
+        'last_login_at' => 'datetime',
+        'to_be_logged_out' => 'boolean',
     ];
 
     /**
@@ -57,14 +86,4 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
-    /**
-     *  Find whether the model has active clients
-     *
-     * @return bool
-     */
-    public function hasActiveClients()
-    {
-        return $this->clients->where('revoked', 0)->count() > 0;
-    }
 }

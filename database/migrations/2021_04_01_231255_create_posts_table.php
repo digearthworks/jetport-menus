@@ -13,7 +13,7 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        if (config('domains.posts.active')) {
+        if (config('template.posts.active')) {
             Schema::create('posts', function (Blueprint $table) {
                 $table->id();
                 $table->string('title');

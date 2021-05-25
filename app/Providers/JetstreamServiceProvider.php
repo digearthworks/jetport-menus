@@ -4,7 +4,8 @@ namespace App\Providers;
 
 use App\Actions\Jetstream\DeleteUser;
 use App\Http\Livewire\ApiTokenManager;
-use App\Http\Livewire\ClientManager;
+use App\Http\Livewire\NavigationMenu;
+use App\Http\Livewire\OAuthClientManager;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Laravel\Jetstream\Features;
@@ -12,7 +13,6 @@ use Laravel\Jetstream\Jetstream;
 use Laravel\Passport\Passport;
 // use App\Http\Livewire\DeleteUserForm;
 // use App\Http\Livewire\LogoutOtherBrowserSessionsForm;
-// use App\Http\Livewire\NavigationDropdown;
 // use App\Http\Livewire\TwoFactorAuthenticationForm;
 // use App\Http\Livewire\UpdatePasswordForm;
 // use App\Http\Livewire\UpdateProfileInformationForm;
@@ -20,16 +20,11 @@ use Livewire\Livewire;
 
 class JetstreamServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
     public function register()
     {
         $this->app->afterResolving(BladeCompiler::class, function () {
             if (config('jetstream.stack') === 'livewire' && class_exists(Livewire::class)) {
-                // Livewire::component('navigation-dropdown', NavigationDropdown::class);
+                Livewire::component('navigation-menu', NavigationMenu::class);
                 // Livewire::component('profile.update-profile-information-form', UpdateProfileInformationForm::class);
                 // Livewire::component('profile.update-password-form', UpdatePasswordForm::class);
                 // Livewire::component('profile.two-factor-authentication-form', TwoFactorAuthenticationForm::class);
@@ -38,7 +33,7 @@ class JetstreamServiceProvider extends ServiceProvider
 
                 if (Features::hasApiFeatures()) {
                     Livewire::component('api.api-token-manager', ApiTokenManager::class);
-                    Livewire::component('api.client-manager', ClientManager::class);
+                    Livewire::component('api.client-manager', OAuthClientManager::class);
                 }
 
                 // if (Features::hasTeamFeatures()) {
@@ -51,11 +46,6 @@ class JetstreamServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot()
     {
         $this->configurePermissions();
