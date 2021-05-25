@@ -30,14 +30,13 @@ class AuthServiceProvider extends ServiceProvider
         // Implicitly grant "Admin" role all permissions
         // This works in the app by using gate-related functions like auth()->user->can() and @can()
         Gate::before(function ($user) {
-            return $user->hasAllAccess() ? true : null;
+            return $user->hasAllAccess();
         });
 
         Gate::define('is_admin', function ($user = null) {
-            // return true if access to web tinker is allowed
             return $user->type  === User::TYPE_ADMIN;
         });
-        //
+
         Passport::routes();
 
         Passport::tokensCan([

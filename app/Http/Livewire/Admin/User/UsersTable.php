@@ -98,8 +98,8 @@ class UsersTable extends BaseDataTable
                 ->sortable(),
             Column::make(__('E-mail'), 'email')
                 ->sortable(),
-            Column::make(__('Verified'), 'email_verified_at')
-                ->sortable(),
+            // Column::make(__('Verified'), 'email_verified_at')
+            //     ->sortable(),
             Column::make(__('Last Login'), 'last_login_at')
                 ->sortable(),
             Column::make(__('Roles')),

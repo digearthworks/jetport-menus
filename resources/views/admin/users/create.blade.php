@@ -62,17 +62,19 @@
                 <!-- Only shows if type is admin -->
                 <div x-show="userType === '{{ $model::TYPE_ADMIN }}'">
 
-                    <x-checklist-index
-                        formIndex="roles"
-                        label="name"
-                        :childrenLabels="['permissions' => 'description', 'menus' => 'name']"
-                        :relations="['permissions', 'menus']"
-                        :form="$state ?? []"
-                        formElement="state.roles"
-                        :categories="$roles->where('type', $model::TYPE_ADMIN) ?? []"
-                        header="Roles"
-                        disableChildren="true"
-                    />
+                    @if($logged_in_user->hasAllAccess())
+                        <x-checklist-index
+                            formIndex="roles"
+                            label="name"
+                            :childrenLabels="['permissions' => 'description', 'menus' => 'name']"
+                            :relations="['permissions', 'menus']"
+                            :form="$state ?? []"
+                            formElement="state.roles"
+                            :categories="$roles->where('type', $model::TYPE_ADMIN) ?? []"
+                            header="Roles"
+                            disableChildren="true"
+                        />
+                    @endif
 
 
                     <x-checklist-index
@@ -87,17 +89,19 @@
                         disableChildren="true"
                     />
 
-                    <x-checklist-index
-                        formIndex="permissions"
-                        label="description"
-                        childrenLabel="description"
-                        relation="children"
-                        :form="$state ?? []"
-                        formElement="state.permissions"
-                        :categories="$permissionCategories->where('type', $model::TYPE_ADMIN) ?? []"
-                        :general="$generalPermissions->where('type', $model::TYPE_ADMIN) ?? []"
-                        header="Additional Permissions by Category"
-                    />
+                    @if($logged_in_user->hasAllAccess())
+                        <x-checklist-index
+                            formIndex="permissions"
+                            label="description"
+                            childrenLabel="description"
+                            relation="children"
+                            :form="$state ?? []"
+                            formElement="state.permissions"
+                            :categories="$permissionCategories->where('type', $model::TYPE_ADMIN) ?? []"
+                            :general="$generalPermissions->where('type', $model::TYPE_ADMIN) ?? []"
+                            header="Additional Permissions by Category"
+                        />
+                    @endif
                 </div>
 
                 <!-- Only shows if type is user -->

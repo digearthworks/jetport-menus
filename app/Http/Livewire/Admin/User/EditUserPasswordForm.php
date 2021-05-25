@@ -25,9 +25,9 @@ class EditUserPasswordForm extends Component
         'password_confirmation' => ''
     ];
 
-    public $listeners = ['openEditorForUserPassword'];
+    public $listeners = ['editPasswordDialog'];
 
-    public function openEditorForUserPassword($userId)
+    public function editPasswordDialog($userId)
     {
         $this->editingUserPassword = true;
         $this->modelId = $userId;
@@ -44,7 +44,7 @@ class EditUserPasswordForm extends Component
         ])->validateWithBag('updatePasswordForm');
 
         $users->updatePassword($this->model, $this->state);
-        $this->emit('refreshWithSuccess', 'Successfully changed password for '. $this->model->name);
+        $this->emit('refreshWithSuccess', 'Successfully changed password for ' . $this->model->name);
         $this->editingUserPassword = false;
     }
 

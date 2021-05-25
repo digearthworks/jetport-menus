@@ -4,7 +4,9 @@ namespace App\Http\Livewire\Admin\Role;
 
 use App\Http\Livewire\Admin\BaseEditForm;
 use App\Models\Role;
+use App\Models\User;
 use App\Services\RoleService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -27,8 +29,6 @@ class EditRoleForm extends BaseEditForm
 
     public function editDialog($resourceId, $params = null)
     {
-        $this->authorize('onlysuperadmincandothis');
-
         $this->editingResource = true;
         $this->modelId = $resourceId;
         $this->state['type'] = $this->model->type;
@@ -40,9 +40,20 @@ class EditRoleForm extends BaseEditForm
 
     public function updateRole(RoleService $roles)
     {
-        $this->authorize('is_admin');
+        if ($this->model->type == User::TYPE_ADMIN) {
+            $this->authorize('onlysuperadmincandothis');
+        } else {
+            $this->authorize('admin.access.users');
+        }
 
         $this->resetErrorBag();
+
+        // We will allow lower level admins to assign admin
+        // menus and links, but we will not allow them to
+        // change the type
+        if (!Auth::user()->hasAllAccess()) {
+            $this->state['type'] = $this->model->type;
+        }
 
         Validator::make($this->state, [
             'type' => ['string'],
