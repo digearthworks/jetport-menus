@@ -42,12 +42,12 @@ class CreateMenuForm extends BaseCreateForm
 
     public function reloadIconPreview()
     {
-        if(strlen($this->state['icon_id']) > 32){
+        if (strlen($this->state['icon_id']) > 32) {
             $this->iconPreview = (new Icon([
                 'source' => 'raw',
                 'html' => $this->state['icon_id']
             ]))->art;
-        }else{
+        } else {
             $this->iconPreview = (new Icon([
                 'source' => 'FontAwesome',
                 'class' => $this->state['icon_id']
