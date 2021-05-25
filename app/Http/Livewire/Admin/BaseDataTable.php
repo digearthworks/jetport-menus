@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Http\Livewire\Concerns\InteractsWithDialogs;
+use App\Http\Livewire\Concerns\InteractsWithDialog;
 use App\Support\Concerns\InteractsWithBanner;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 
@@ -12,7 +12,7 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 abstract class BaseDataTable extends DataTableComponent
 {
     use InteractsWithBanner,
-        InteractsWithDialogs;
+        InteractsWithDialog;
 
     /**
      * @var

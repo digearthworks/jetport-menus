@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Concerns;
 
-trait InteractsWithDialogs
+trait InteractsWithDialog
 {
     public function dialog(string $verb, $resourceId = null, string $params = null)
     {
