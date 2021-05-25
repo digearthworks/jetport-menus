@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Menu;
 
 use App\Http\Livewire\Admin\BaseEditForm;
+use App\Models\Icon;
 use App\Models\Menu;
 use App\Services\MenuService;
 use Illuminate\Support\Facades\Validator;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Validator;
 class EditMenuForm extends BaseEditForm
 {
     protected $eloquentRepository = Menu::class;
+
+    public $iconPreview;
 
     public $listeners = [
         'editDialog',
@@ -42,6 +45,7 @@ class EditMenuForm extends BaseEditForm
     public function selectIcon($value)
     {
         $this->state['icon_id'] = $value;
+        $this->reloadIconPreview();
     }
 
     public function editDialog($resourceId, $params = null)
@@ -63,6 +67,8 @@ class EditMenuForm extends BaseEditForm
         $this->state['menu_id'] = $this->model->menu_id;
         $this->state['icon_id'] = $this->model->icon->input;
         $this->model->load('icon');
+
+        $this->iconPreview = $this->model->icon->art;
 
         if ($this->model->menu_id) {
             $this->item = true;
@@ -91,6 +97,21 @@ class EditMenuForm extends BaseEditForm
         $menus->update($this->state, $this->model);
         $this->emit('refreshWithSuccess', 'Menu Updated!');
         $this->editingResource = false;
+    }
+
+    public function reloadIconPreview()
+    {
+        if(strlen($this->state['icon_id']) > 32){
+            $this->iconPreview = (new Icon([
+                'source' => 'raw',
+                'html' => $this->state['icon_id']
+            ]))->art;
+        }else{
+            $this->iconPreview = (new Icon([
+                'source' => 'FontAwesome',
+                'class' => $this->state['icon_id']
+            ]))->art;
+        }
     }
 
     public function saveMenuAs(MenuService $menus)

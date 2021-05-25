@@ -7,7 +7,7 @@
     }
 </style>
 <div class="flex flex-col items-center">
-    <div class="flex flex-col items-center w-full h-64 md:w-1/2">
+    <div class="flex flex-col items-center w-full h-64">
         <div class="w-full px-4">
             <div class="relative flex flex-col items-center">
                 <div class="w-full">

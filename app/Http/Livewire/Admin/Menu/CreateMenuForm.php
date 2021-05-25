@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Menu;
 
 use App\Http\Livewire\Admin\BaseCreateForm;
+use App\Models\Icon;
 use App\Models\Menu;
 use App\Services\MenuService;
 use Illuminate\Support\Facades\Validator;
@@ -37,9 +38,27 @@ class CreateMenuForm extends BaseCreateForm
 
     public $data;
 
+    public $iconPreview;
+
+    public function reloadIconPreview()
+    {
+        if(strlen($this->state['icon_id']) > 32){
+            $this->iconPreview = (new Icon([
+                'source' => 'raw',
+                'html' => $this->state['icon_id']
+            ]))->art;
+        }else{
+            $this->iconPreview = (new Icon([
+                'source' => 'FontAwesome',
+                'class' => $this->state['icon_id']
+            ]))->art;
+        }
+    }
+
     public function selectIcon($value)
     {
         $this->state['icon_id'] = $value;
+        $this->reloadIconPreview();
     }
 
     public function createDialog($params = [])
