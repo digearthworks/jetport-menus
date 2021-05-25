@@ -51,18 +51,19 @@
                     header="Menus"
                     disableChildren="true"
                 />
-
-                <x-checklist-index
-                    formIndex="permissions"
-                    label="description"
-                    childrenLabel="description"
-                    relation="children"
-                    :form="$state ?? []"
-                    formElement="state.permissions"
-                    :categories="$permissionCategories->where('type', $model::TYPE_ADMIN) ?? []"
-                    :general="$generalPermissions->where('type', $model::TYPE_ADMIN) ?? []"
-                    header="Permissions"
-                />
+                @if($logged_in_user->hasAllAccess())
+                    <x-checklist-index
+                        formIndex="permissions"
+                        label="description"
+                        childrenLabel="description"
+                        relation="children"
+                        :form="$state ?? []"
+                        formElement="state.permissions"
+                        :categories="$permissionCategories->where('type', $model::TYPE_ADMIN) ?? []"
+                        :general="$generalPermissions->where('type', $model::TYPE_ADMIN) ?? []"
+                        header="Permissions"
+                    />
+                @endif
             </div>
 
             <!-- Only shows if type is user -->

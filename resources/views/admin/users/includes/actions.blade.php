@@ -6,7 +6,7 @@
             {{ __('Restore') }}
         </x-button>
     @else
-        @if ($logged_in_user->hasAllAccess())
+        @if (!$user->hasAllAccess() || $logged_in_user->hasAllAccess())
             <x-edit-button wire:click="dialog('edit',{{ $user->id }})"
                 id="editUserButton_{{ $user->id }}">
             </x-edit-button>
@@ -15,7 +15,8 @@
             <x-refresh-button wire:click="confirm('reactivate', {{ $user->id }})">
             </x-refresh-button>
         @endif
-        @if ($user->id !== $logged_in_user->id && !$user->isMasterAdmin() && $logged_in_user->hasAllAccess())
+        @if (
+            $user->id !== $logged_in_user->id && !$user->isMasterAdmin() && (!$user->hasAllAccess() || $logged_in_user->hasAllAccess()))
             <x-delete-button wire:click="confirm('delete',{{ $user->id }})">
             </x-delete-button>
         @endif
@@ -37,9 +38,12 @@
                     </x-slot>
                 </x-jet-dropdown>
             @elseif (
+                        $logged_in_user->isMasterAdmin() || // the logged in user is master admin
                         !$user->isMasterAdmin() && // This is not the master admin
                         $user->isActive() && // The account is active
                         $user->id !== $logged_in_user->id && // It's not the person logged in
+                        $logged_in_user->hasAllPermissions($user->getAllPermissions()->pluck('name')->toArray()) &&
+                        ( !$user->hasAllAccess() || $logged_in_user->hasAllAccess() ) && // do not allow escalation
                         // Any they have at lease one of the abilities in this dropdown
                         (
                             $logged_in_user->can('admin.access.users.change-password') ||
@@ -57,7 +61,9 @@
 
                     <x-slot name="content">
 
-                        <x-jet-dropdown-link href="#" wire:click="openEditorForUserPassword({{ $user->id }})">
+                        {{$user->hasAllAccess()}} {{$logged_in_user->hasAllAccess()}}
+
+                        <x-jet-dropdown-link href="#" wire:click="dialog('editPassword',{{ $user->id }})">
                             {{__('Change Password')}}
                         </x-jet-dropdown-link>
 

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\User;
 use App\Http\Livewire\Admin\BaseEditForm;
 use App\Models\User;
 use App\Services\UserService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -50,6 +51,14 @@ class EditUserForm extends BaseEditForm
         $this->authorize('admin.access.users');
 
         $this->resetErrorBag();
+
+
+        // We will allow lower level admins to assign admin
+        // menus and links, but we will not allow
+        // them to change the type
+        if (!Auth::user()->hasAllAccess()) {
+            $this->state['type'] = $this->model->type;
+        }
 
         Validator::make($this->state, [
             'type' => ['string'],
