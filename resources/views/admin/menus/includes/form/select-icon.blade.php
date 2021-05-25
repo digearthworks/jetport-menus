@@ -6,11 +6,24 @@
     }"
     class="col-span-6 sm:col-span-4">
     <x-jet-label for="active" value="{{ __('Icon') }}" />
+
+    <div class="flex justify-around p-2">
+        <x-page-article>
+
+            {!! $iconPreview ?? '' !!}
+
+            <x-slot name="caption">
+                {{ $state['name'] ?? '' }}
+            </x-slot>
+        </x-page-article>
+    </div>
+
     <x-textarea
         id="select-from-existing-icons"
         name="icon_id"
         rows="5"
         wire:model="state.icon_id"
+        wire:keyup="reloadIconPreview"
         class="block w-full mb-2 border-gray-300 rounded-md shadow-sm form-select focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
     />
     <x-input-error for="icon_id" class="mt-2" />
