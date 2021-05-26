@@ -8,7 +8,7 @@ class MenuController extends Controller
 {
     public function show(Menu $menu)
     {
-        return view('menus.page.show', [
+        return view('menus.show', [
             'menu' => $menu,
         ]);
     }

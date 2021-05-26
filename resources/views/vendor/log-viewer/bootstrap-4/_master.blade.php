@@ -227,7 +227,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="mr-auto navbar-nav">
                 <li class="nav-item">
-                    <a href="{{ route('dashboard') }}" class="nav-link">
+                    <a href="{{ route('dashboard') }}" target="_top" class="nav-link">
                         <i class="fa fa-home"></i> {{ appName() }}
                     </a>
                 </li>
