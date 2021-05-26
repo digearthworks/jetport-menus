@@ -63,7 +63,7 @@ return [
      |  This defines how many logs & entries are displayed per page.
      */
 
-    'per-page' => 30,
+    'per-page' => 10000,
 
     /* -----------------------------------------------------------------
      |  Download settings

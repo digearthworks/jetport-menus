@@ -8,14 +8,14 @@
     <x-jet-label for="active" value="{{ __('Icon') }}" />
 
     <div class="flex justify-around p-2">
-        <x-page-article>
+        <x-article>
 
             {!! $iconPreview ?? '' !!}
 
             <x-slot name="caption">
                 {{ $state['name'] ?? '' }}
             </x-slot>
-        </x-page-article>
+        </x-article>
     </div>
 
     <x-textarea

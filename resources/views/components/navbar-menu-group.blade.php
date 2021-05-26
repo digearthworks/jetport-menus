@@ -1,4 +1,4 @@
-<x-header-nav-group :active="$active ?? false">
+<x-navbar-nav-group :active="$active ?? false">
     <div class="flex flex-col p-0">
         <div class="flex flex-row items-center justify-around -mb-0.5">
             {{ $header }}
@@ -7,4 +7,4 @@
             {{ $slot }}
         </div>
     </div>
-</x-header-nav-group>
+</x-navbar-nav-group>
