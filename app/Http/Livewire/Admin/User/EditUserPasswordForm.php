@@ -29,7 +29,6 @@ class EditUserPasswordForm extends Component
 
     public function editPasswordDialog($userId)
     {
-        $this->authorize('admin.access.users.change-password');
         $this->editingUserPassword = true;
         $this->modelId = $userId;
         $this->dispatchBrowserEvent('showing-edit-user-password-modal');

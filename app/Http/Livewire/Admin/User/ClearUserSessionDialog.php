@@ -6,13 +6,11 @@ use App\Http\Livewire\Concerns\HasModel;
 use App\Models\User;
 use App\Services\UserService;
 use App\Support\Concerns\InteractsWithBanner;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
 class ClearUserSessionDialog extends Component
 {
-    use AuthorizesRequests,
-        HasModel,
+    use HasModel,
         InteractsWithBanner;
 
     protected $eloquentRepository = User::class;
@@ -23,7 +21,6 @@ class ClearUserSessionDialog extends Component
 
     public function confirmClearSessions($userId)
     {
-        $this->authorize('admin.access.users.clear-session');
         $this->confirmingClearSessions  = true;
         $this->modelId = $userId;
         $this->dispatchBrowserEvent('showing-clear-sessions-modal');
@@ -31,7 +28,6 @@ class ClearUserSessionDialog extends Component
 
     public function clearSessions(UserService $users)
     {
-        $this->authorize('admin.access.users.clear-session');
         $users->clearSessions($this->model);
         $this->banner('User Sessions Cleared!');
         $this->confirmingClearSessions = false;

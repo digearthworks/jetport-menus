@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/auth/users', 'admin.users.index')
     ->middleware('password.confirm')
+    ->middleware('can:admin.access.users')
     ->name('users');
 
 Route::view('/auth/users/deleted', 'admin.users.deleted')
