@@ -28,25 +28,3 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
 Route::group(['prefix' => 'menus', 'as' => 'menus.', 'middleware' => 'auth'], function () {
     includeRouteFiles(__DIR__.'/menus/');
 });
-
-/*
- *  Local Iframe Routes
- */
-Route::group([
-    'prefix' => config('menus.url_segments.internal_iframe_prefix'),
-    'as' => config('menus.url_segments.internal_iframe_prefix').'.',
-    'middleware' => 'auth'
-], function () {
-    includeRouteFiles(__DIR__.'/iframes/');
-});
-
-/*
- *  External Iframe Routes
- */
-Route::group([
-    'prefix' => config('menus.url_segments.external_iframe_prefix'),
-    'as' => config('menus.url_segments.external_iframe_prefix').'.',
-    'middleware' => 'auth'
-], function () {
-    includeRouteFiles(__DIR__.'/extras/');
-});
