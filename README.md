@@ -13,13 +13,12 @@
 - [ ] Must first complete Alpha Checklist
 - [ ] Implement openapi documentation for OAuth server with swagger frontend.
 - [ ] Restful API for key resources.
-- [ ] Create Docmentation Guidlines, and support libraries for extending API
+- [ ] Documentation Guidelines, and support libraries for extending API
 - [ ] Build a Service or Client library for consuming API
-- [ ] Create Docmentated Guidlines and Support Libraries for extending Client
+- [ ] Documented Guidelines and Support Libraries for extending Client
 
 ### RC. *Going Silver*
 - [ ] Must first complete Beta Checklist
-- [ ] Working equivelent of all current features in production app **not listed here**
 - [ ] Ability to share and consume "*key resourses*" to and from instances
 - [ ] Implement SSO with an open source email client
 - [ ] Implement ability to manage auth for Nexcloud server (Supports OAuth2)  
@@ -27,7 +26,6 @@
 
 ### Release. *Prod 1*
 - [ ] Must first complete RC Checklist
-- [ ] Unit Tests for equivelent of all current features in production app **not listed here**
 - [ ] Deployment Pipelines
 - [ ] Openid connect 
 
