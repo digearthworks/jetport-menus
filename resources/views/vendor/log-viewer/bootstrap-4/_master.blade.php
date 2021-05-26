@@ -217,7 +217,7 @@
     </style>
 </head>
 <body>
-    <nav class="p-0 navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+    {{-- <nav class="p-0 navbar navbar-expand-md navbar-dark sticky-top bg-dark">
         <a href="{{ route('log-viewer::dashboard') }}" class="mr-0 navbar-brand">
             <i class="fa fa-fw fa-book"></i> LogViewer
         </a>
@@ -243,7 +243,7 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> --}}
 
     <div class="container-fluid">
         <main role="main" class="pt-3">
