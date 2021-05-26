@@ -8,7 +8,7 @@
 
         <div class="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-8 gap-y-2 gap-x-0">
             @forelse($menu->children as $item)
-                <x-article href="{{ $item->link }}" @if($item->type == 'external_link') target="_blank" @endif >
+                <x-article href="{{ $item->link }}" :active="requestPathIs($item->link)" :target="($item->type == 'external_link') ? '_blank' : null" >
 
                     {!! $item->icon->art !!}
 

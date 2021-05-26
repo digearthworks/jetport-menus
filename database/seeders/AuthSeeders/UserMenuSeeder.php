@@ -28,7 +28,7 @@ class UserMenuSeeder extends Seeder
     {
         $this->disableForeignKeys($this->connection);
 
-        $allMenus = Menu::all()->pluck('id');
+        $allMenus = Menu::whereDoesntHave('parent')->pluck('id');
 
         User::find(1)->assignMenu($allMenus);
 
