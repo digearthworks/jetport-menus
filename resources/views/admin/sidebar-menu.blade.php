@@ -101,10 +101,10 @@
 
                 <div x-show="open" class="ml-8">
 
-                    <x-sidebar-link href="/admin/log-viewer" :active="currentRouteHas('/admin/log-viewer')">
+                    <x-sidebar-link href="/{{ config('menus.url_segments.internal_iframe_prefix') }}/admin/log-viewer" :active="currentRouteHas('/admin/log-viewer') && !currentRouteHas('/admin/log-viewer/logs')">
                         <span class="pr-1"></span>Dashboard
                     </x-sidebar-link>
-                    <x-sidebar-link href="/admin/log-viewer/logs" :active="currentRouteHas('/admin/log-viewer/logs')">
+                    <x-sidebar-link href="/{{ config('menus.url_segments.internal_iframe_prefix') }}/admin/log-viewer/logs" :active="currentRouteHas('/admin/log-viewer/logs')">
                         <span class="pr-1"></span>Logs
                     </x-sidebar-link>
 
