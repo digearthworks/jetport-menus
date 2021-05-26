@@ -32,4 +32,6 @@ return [
     'business_name_one' => env('BIZ_NAME', 'Example Business, LLC'),
 
     'business_name_two' => env('DBA', 'Example Doing-Business-As'),
+
+    'show_admin_sidebar' => env('SHOW_ADMIN_SIDEBAR', true),
 ];
