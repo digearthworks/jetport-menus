@@ -13,7 +13,7 @@
     <div class="p-4 justify-even">
 
         <div class="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-8 gap-y-2 gap-x-0">
-            @forelse($logged_in_user->all_menus->whereNull('menu_id') as $item)
+            @forelse($logged_in_user->all_menus as $item)
                 <x-article href="{{ $item->link }}" :active="requestPathIs($item->link)" :target="($item->type == 'external_link') ? '_blank' : null">
 
                     {!! $item->icon->art !!}
