@@ -1,4 +1,4 @@
-<div x-data="{ open: false}" class="relative w-32" x-on:mouseleave="open = false" >
+<div x-data="{ open: '{{ $active ?? false }}' }" class="relative w-32" x-on:mouseleave="open = '{{ $active ?? false }}'" >
     <a {{ $attributes->merge(['class' => 'p-0']) }}>
 
         <div :class="{'border-indigo-400': open, 'border-transparant': ! open}" class="absolute inset-0 transform -skew-y-6 border-4 shadow-lg bg-indigo-50 hover:border-gray-500 bg-gradient-to-r from-cyan-400 to-light-blue-500 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>

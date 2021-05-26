@@ -217,7 +217,7 @@
     </style>
 </head>
 <body>
-    {{-- <nav class="p-0 navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+    <nav class="p-0 navbar navbar-expand-md navbar-dark sticky-top bg-dark">
         <a href="{{ route('log-viewer::dashboard') }}" class="mr-0 navbar-brand">
             <i class="fa fa-fw fa-book"></i> LogViewer
         </a>
@@ -227,7 +227,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="mr-auto navbar-nav">
                 <li class="nav-item">
-                    <a href="{{ route('dashboard') }}" class="nav-link">
+                    <a href="{{ route('dashboard') }}" target="_top" class="nav-link">
                         <i class="fa fa-home"></i> {{ appName() }}
                     </a>
                 </li>
@@ -243,7 +243,7 @@
                 </li>
             </ul>
         </div>
-    </nav> --}}
+    </nav>
 
     <div class="container-fluid">
         <main role="main" class="pt-3">
