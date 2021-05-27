@@ -32,7 +32,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-jet-dropdown-link href="#" wire:click="openEditorForUserPassword({{ $user->id }})">
+                        <x-jet-dropdown-link href="#" wire:click="dialog('editPassword',{{ $user->id }})">
                             {{__('Change Password')}}
                         </x-jet-dropdown-link>
                     </x-slot>
@@ -60,8 +60,6 @@
                     </x-slot>
 
                     <x-slot name="content">
-
-                        {{$user->hasAllAccess()}} {{$logged_in_user->hasAllAccess()}}
 
                         <x-jet-dropdown-link href="#" wire:click="dialog('editPassword',{{ $user->id }})">
                             {{__('Change Password')}}
