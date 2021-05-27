@@ -87,44 +87,7 @@ class MenuSeeder extends Seeder
             'iframe' => 0,
             'row' => null,
             'menu_id' => null,
-            'icon_id' => '<svg class="h-4" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            viewBox="0 0 285 285" style="enable-background:new 0 0 285 285;" xml:space="preserve">
-       <path d="M227.5,20c0-11.046-8.954-20-20-20h-130c-11.046,0-20,8.954-20,20v245c0,11.046,8.954,20,20,20h130c11.046,0,20-8.954,20-20
-           V20z M201.5,249h-118v-25h118V249z M134.348,129.52c0-7.048,5.714-12.762,12.762-12.762c7.048,0,12.762,5.714,12.762,12.762
-           c0,7.048-5.714,12.762-12.762,12.762C140.062,142.282,134.348,136.568,134.348,129.52z M173.336,129.52
-           c0-7.048,5.714-12.762,12.762-12.762c7.048,0,12.762,5.714,12.762,12.762c0,7.048-5.714,12.762-12.762,12.762
-           C179.049,142.282,173.336,136.568,173.336,129.52z M201.5,94h-118V68h118V94z M201.5,48h-118V22h118V48z"/>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       </svg>
+            'icon_id' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
        ',
         ]);
 
