@@ -3,13 +3,15 @@
 namespace App\Http\Livewire\Admin\Menu;
 
 use App\Http\Livewire\Admin\BaseEditForm;
-use App\Models\Icon;
+use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
 use App\Models\Menu;
 use App\Services\MenuService;
 use Illuminate\Support\Facades\Validator;
 
 class EditMenuForm extends BaseEditForm
 {
+    use HandlesSelectIconEvent;
+
     protected $eloquentRepository = Menu::class;
 
     public $iconPreview;
@@ -41,12 +43,6 @@ class EditMenuForm extends BaseEditForm
     public $item;
 
     public $data;
-
-    public function selectIcon($value)
-    {
-        $this->state['icon_id'] = $value;
-        $this->reloadIconPreview();
-    }
 
     public function editDialog($resourceId, $params = null)
     {
@@ -97,21 +93,6 @@ class EditMenuForm extends BaseEditForm
         $menus->update($this->state, $this->model);
         $this->emit('refreshWithSuccess', 'Menu Updated!');
         $this->editingResource = false;
-    }
-
-    public function reloadIconPreview()
-    {
-        if (strlen($this->state['icon_id']) > 32) {
-            $this->iconPreview = (new Icon([
-                'source' => 'raw',
-                'html' => $this->state['icon_id']
-            ]))->art;
-        } else {
-            $this->iconPreview = (new Icon([
-                'source' => 'FontAwesome',
-                'class' => $this->state['icon_id']
-            ]))->art;
-        }
     }
 
     public function saveMenuAs(MenuService $menus)

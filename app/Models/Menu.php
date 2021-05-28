@@ -6,6 +6,7 @@ use App\Models\Concerns\Connection\AuthConnection;
 use App\Models\Concerns\HasPath;
 use App\Models\Concerns\HasUuid;
 use App\Models\Concerns\Relationship\MenuRelationship;
+use App\Services\Icon\FontAwesome;
 use Database\Factories\MenuFactory;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -71,15 +72,16 @@ class Menu extends Model implements Sortable
             return $id;
         }
 
-        $iconAttributes = (strlen($icon) > 32) ? [
+        $iconAttributes = (!FontAwesome::wantsFontAwesome($icon)) ? [
             'html' => $icon,
             'source' => 'raw',
+            'meta' => $this->name,
         ] : [
             'class' => $icon,
             'source' => 'FontAwesome',
             'version' => '5',
+            'meta' => $this->name,
         ];
-
 
         $icon = Icon::create($iconAttributes);
 
