@@ -37,7 +37,7 @@ return [
          * be used to load external sites inside
          * an iframe.
          */
-        'external_link_query' => '?externallink=',
+        'external_link_extension' => '?externallink=',
     ],
 
     /**
