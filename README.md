@@ -149,7 +149,7 @@ composer test
 ```
 composer format
 ```
-[Contributing](https://github.com/digearthworks/laravel-jetport/blob/main/.github/CONTRIBUTING.md)
+[Contributing](https://github.com/digearthworks/jetport-menus/blob/main/.github/CONTRIBUTING.md)
 
 ### Reference
 - https://laravel.com/docs/8.x/envoy
