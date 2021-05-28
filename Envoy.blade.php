@@ -8,12 +8,12 @@
     php artisan passport:keys
     php artisan db:wipe
     php artisan migrate:refresh --seed
-    {{isset($test) ? 'php artisan test' : ''}}
+    {{ isset($test) ? 'php artisan test' : '' }}
 @endtask
 
 @task('update', ['on'=> 'localhost'])
     git fetch --all
-    git pull {{isset($remote) ? $remote : ''}} {{isset($branch) ? $branch : ''}}
+    git pull {{ isset($remote) ? $remote : ''}} {{isset($branch) ? $branch : '' }}
     composer update
 @endtask
 
