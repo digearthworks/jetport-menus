@@ -171,7 +171,7 @@ class Menu extends Model implements Sortable
     {
         $prefix = config('menus.url_segments.external_iframe_prefix');
 
-        return '/' . $prefix . config('menus.url_segments.external_link_query') . $this->getCleanSlug();
+        return '/' . $prefix . config('menus.url_segments.external_link_extension') . $this->getCleanSlug();
     }
 
     public function getInternalLinkAttribute(): string
