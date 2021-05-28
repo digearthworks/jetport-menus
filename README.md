@@ -1,3 +1,9 @@
+# Support and Acknowledgements
+
+This project is heavily based on @rappasoft 's [laravel/boilerplate](https://github.com/rappasoft/laravel-boilerplate)
+
+If you wish to support a project please support him, or one of this project's dependencies, such as [spatie](https://github.com/spatie/laravel-permission) or [calebporzio](https://github.com/livewire/livewire), to name a couple.
+
 # Road Map
 
 ### Alpha. *Menus*
@@ -39,13 +45,15 @@
 
 
 
-# Laravel Jetport
+----
+[![Tests](https://github.com/digearthworks/jetport-menus/workflows/Tests/badge.svg?branch=main)](https://github.com/digearthworks/jetport-menus/actions/workflows/main.yml)
+----
 
  - [Laravel Jetstream](https://jetstream.laravel.com/2.x/introduction.html) with [Livewire](https://github.com/livewire/livewire)
  - Full Featured [Laravel Passport](https://github.com/laravel/passport) api in place of of [Laravel Sanctum](https://github.com/laravel/sanctum)
  - A full OAuth2 server, complete with [Tailwind](https://tailwindcss.com/) Styled Client and Token Management UI in minutes!
 
-[![Tests](https://github.com/digearthworks/jetport-menus/workflows/Tests/badge.svg?branch=main)](https://github.com/digearthworks/jetport-menus/actions/workflows/main.yml)
+![api-tokens](https://user-images.githubusercontent.com/47095624/118184596-89878f00-b409-11eb-84b9-dc61b7e5e5a6.png)
 
 ### Development Demo 
 
@@ -98,7 +106,7 @@ composer install
 ```
 edit .env
 ```
-
+#### Mac or Linux
 ```
 ./vendor/bin/envoy run dev
 ```
@@ -108,7 +116,23 @@ edit .env
 ```
 ./vendor/bin/envoy run dev --test
 ```
+#### Windows
 
+See https://laravel.com/docs/8.x/installation#getting-started-on-windows
+
+Or follow steps in `dev` task in Envoy.blade.php:
+
+```blade
+@task('dev', ['on'=> 'localhost'])
+    php artisan key:generate
+    npm install && npm run dev
+    php artisan storage:link
+    php artisan passport:keys
+    php artisan db:wipe
+    php artisan migrate:refresh --seed
+    {{ isset($test) ? 'php artisan test' : '' }}
+@endtask
+```
 ### default login
 
 **email** `admin@admin.com`
