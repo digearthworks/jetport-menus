@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Http\Livewire\Admin\AdminNavigationMenu;
 use App\Http\Livewire\Admin\AdminSidebarMenu;
 use App\Http\Livewire\Admin\AdminSidebarToggler;
+use App\Http\Livewire\Admin\Icon\IconSelect;
 use App\Http\Livewire\Admin\Menu\CreateMenuButton;
 use App\Http\Livewire\Admin\Menu\CreateMenuForm;
 use App\Http\Livewire\Admin\Menu\DeactivateMenuDialog;
@@ -60,5 +61,7 @@ class LivewireServiceProvider extends ServiceProvider
         Livewire::component('admin.menus.reactivate', ReactivateMenuDialog::class);
         Livewire::component('admin.menus.restore', RestoreMenuDialog::class);
         Livewire::component('admin.menus.includes.partials.create-menu-button', CreateMenuButton::class);
+
+        Livewire::component('admin.icons.icon-select', IconSelect::class);
     }
 }

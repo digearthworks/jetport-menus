@@ -8,14 +8,14 @@
     <x-jet-label for="active" value="{{ __('Icon') }}" />
 
     <div class="flex justify-around p-2">
-        <x-article>
+        <x-article-stacked>
 
             {!! $iconPreview ?? '' !!}
 
             <x-slot name="caption">
-                {{ $state['name'] ?? '' }}
+                {{ (strlen($state['name']) > 0) ? $state['name'] : 'Menu Name ...' }}
             </x-slot>
-        </x-article>
+        </x-article-stacked>
     </div>
 
     <x-textarea
@@ -29,5 +29,5 @@
     <x-input-error for="icon_id" class="mt-2" />
     <x-form-help-text value="You may select from below, or enter raw html for svg, or class name for font awesome" />
 
-    <livewire:admin.icon.icon-select />
+    <livewire:admin.icons.icon-select />
 </div>

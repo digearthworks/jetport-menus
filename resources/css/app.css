@@ -1,3 +1,24 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.picture-box > svg,
+.picture-box > img,
+.picture-box > i {
+    height: 100% !important;
+    width: 100% !important;
+    font-size: 70px !important;
+}
+.picture-box > i {
+    padding-top: 15px;
+    padding-left: 10px;
+}
+.top-100 {
+    top: 100%;
+}
+.bottom-100 {
+    bottom: 100%;
+}
+.max-h-select {
+    max-height: 200px;
+}
