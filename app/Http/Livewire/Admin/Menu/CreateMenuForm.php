@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Menu;
 
 use App\Http\Livewire\Admin\BaseCreateForm;
 use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
+use App\Models\Icon;
 use App\Models\Menu;
 use App\Services\MenuService;
 use Illuminate\Support\Facades\Validator;
@@ -44,6 +45,7 @@ class CreateMenuForm extends BaseCreateForm
     public function createDialog($params = [])
     {
         $this->authorize('admin.access.menus');
+        $this->emit('selectIcon', Icon::first()->art);
 
         if (isset($params['item']) && $params['item']) {
             $this->state['group'] = 'hotlinks';
