@@ -5,17 +5,20 @@
     <div class="max-w-full px-4 mx-auto sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                @if($logged_in_user->isAdmin())
-                    <!--- sidebar toggler -->
-                    @livewire('admin.includes.sidebar-toggler')
-                @endif
-                <!-- Logo -->
-                <div class="flex items-center flex-shrink-0">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block w-auto h-9" />
-                    </a>
-                </div>
+                <div class="flex" x-show="!sidebarOpen">
 
+                    @if($logged_in_user->isAdmin())
+                    <!--- sidebar toggler -->
+                    <livewire:admin.includes.sidebar-toggler />
+                    @endif
+                    <!-- Logo -->
+                    <div class="flex items-center flex-shrink-0">
+                        <a href="{{ route('dashboard') }}">
+                            <x-jet-application-mark class="block w-auto h-9" />
+                        </a>
+                    </div>
+
+                </div>
                 <!-- Navigation Links -->
                 <div class="hidden space-x-2 sm:-my-px sm:ml-10 sm:flex">
                     @include('menus.navbar.app')
