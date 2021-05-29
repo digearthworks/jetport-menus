@@ -1,18 +1,19 @@
-<aside class="flex flex-col flex-shrink-0 w-48 transition-all duration-300 border-r" x-show="sidebarOpen">
+<aside class="fixed flex flex-col flex-shrink-0 w-48 h-screen transition-all duration-300 sm:relative" x-show="sidebarOpen">
 
-    <div class="flex justify-between h-16 bg-white border-b border-gray-100">
-        <div class="flex">
-            <div class="flex items-center flex-shrink-0 mx-16">
-                <a href="{{ route('dashboard') }}">
-                    <x-jet-application-mark class="block w-auto h-9" />
-                </a>
-            </div>
+    <div class="flex items-center justify-around h-16 bg-white border-b border-gray-100">
+        <div>
+            @livewire('admin.includes.sidebar-toggler')
+        </div>
+        <div class="flex items-center flex-shrink-0">
+        <a href="{{ route('dashboard') }}">
+            <x-jet-application-mark class="block w-auto h-9" />
+        </a>
         </div>
     </div>
 
-    <nav class="flex flex-col flex-1 pt-8 bg-white">
+    <nav class="flex flex-col flex-1 pt-8 bg-white border-r border-gray-100">
 
-        <div class="ml-0" x-data="{ open: '{{ $adminMenuOpen ?? 'false' }}' }">
+        <div x-data="{ open: '{{ $adminMenuOpen ?? 'false' }}' }">
             <button @click="open = !open" wire:click="toggleMenuOpen('adminMenuOpen')"
                 class="flex items-center justify-between w-full px-2 py-3 text-gray-600 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
                 <span class="flex items-center">
