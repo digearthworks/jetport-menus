@@ -7,20 +7,18 @@
     class="col-span-6 sm:col-span-4">
     <x-jet-label for="active" value="{{ __('Icon') }}" />
 
-    <div class="flex justify-around p-2">
-        <x-article-stacked>
+    <x-article-stacked class="w-full overflow-hidden text-gray-500 bg-white cursor-pointer hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50">
 
-            <div class="w-24 h-24 ml-auto mr-auto picture-box">
-                {!! $iconPreview ?? '' !!}
-            </div>
+        <div class="w-24 h-24 ml-auto mr-auto picture-box">
+            {!! $iconPreview ?? '' !!}
+        </div>
 
-            <x-slot name="caption">
-                <p class="ml-auto mr-auto overflow-hidden leading-none tracking-tighter">
-                    {{ (strlen($state['name']) > 0) ? $state['name'] : 'Menu Name ...' }}
-                </p>
-            </x-slot>
-        </x-article-stacked>
-    </div>
+        <x-slot name="caption">
+            <p class="ml-auto mr-auto overflow-hidden leading-none tracking-tighter">
+                {{ (strlen($state['name']) > 0) ? $state['name'] : 'Menu Name ...' }}
+            </p>
+        </x-slot>
+    </x-article-stacked>
 
     <x-textarea
         id="select-from-existing-icons"
