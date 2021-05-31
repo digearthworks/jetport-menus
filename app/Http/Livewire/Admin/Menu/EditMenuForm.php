@@ -6,11 +6,13 @@ use App\Http\Livewire\Admin\BaseEditForm;
 use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
 use App\Models\Menu;
 use App\Services\MenuService;
+use App\Support\Concerns\InteractsWithBanner;
 use Illuminate\Support\Facades\Validator;
 
 class EditMenuForm extends BaseEditForm
 {
-    use HandlesSelectIconEvent;
+    use HandlesSelectIconEvent,
+        InteractsWithBanner;
 
     protected $eloquentRepository = Menu::class;
 
@@ -92,6 +94,8 @@ class EditMenuForm extends BaseEditForm
 
         $menus->update($this->state, $this->model);
         $this->emit('refreshWithSuccess', 'Menu Updated!');
+        $this->emit('refreshMenuGrid');
+        $this->banner('Menu Updated');
         $this->editingResource = false;
     }
 

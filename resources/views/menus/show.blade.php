@@ -2,32 +2,23 @@
     <x-slot name="header">
         <div class="inline-flex items-center">
             {!! $menu->name_with_art !!}
+            @if($logged_in_user->isAdmin())
+                <x-edit-button class="z-50" x-show="designerView" onclick="window.livewire.emit('editDialog', {{ $menu->id }})" id="editMenuButton_{{ $menu->id }}" />
+                <x-delete-button class="z-50" x-show="designerView" onclick="window.livewire.emit('confirmDelete', {{ $menu->id }})" />
+            @endif
         </div>
     </x-slot>
-    <x-app-grid>
-        @forelse($menu->children as $item)
-            <x-article-stacked href="{{ $item->link }}" :target="($item->type == 'external_link') ? '_blank' : null" >
+    @if($logged_in_user->isAdmin())
+        <x-slot name="headerActions">
+            <div x-show="designerView" class="flex items-center">
+                <livewire:admin.menus.includes.partials.create-menu-button value="Add Item" :params="['item' => true, 'menu_id' => $menu->id ]" wire:key="table-row-{{ $menu->uuid }}-column-6-button" />
+        </x-slot>
+    @endif
 
-                <div class="w-24 h-24 ml-auto mr-auto picture-box">
-                    {!! $item->icon->art !!}
-                </div>
-
-                <x-slot name="caption">
-                    <p class="ml-auto mr-auto overflow-hidden leading-none tracking-tighter">
-                        {{ $item->name ?? $item->link }}
-                    </p>
-                </x-slot>
-            </x-article-stacked>
-        @empty
-            <x-article-stacked>
-
-                <svg class="h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-
-                <x-slot name="caption">
-                    {{__('No Items')}}
-                </x-slot>
-            </x-article-stacked>
-        @endforelse
-    </x-app-grid>
+        <livewire:menu.menu-grid :menuId="$menu->id" />
 </x-7xl>
-
+@if($logged_in_user->isAdmin())
+    <livewire:admin.menus.create />
+    <livewire:admin.menus.edit />
+    <livewire:admin.menus.delete />
+@endif

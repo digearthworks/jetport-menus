@@ -24,7 +24,7 @@
 
     <body class="font-sans antialiased">
 
-    <div x-data="{ open:false, sidebarOpen: '{{ session('sidebarOpen', config('ui.show_admin_sidebar', true )) }}' }" class="flex min-h-screen overflow-x-hidden bg-gray-100">
+    <div x-data="{ open:false, sidebarOpen: '{{ session('sidebarOpen', config('ui.show_admin_sidebar', true )) }}', designerView: false }" class="flex min-h-screen overflow-x-hidden bg-gray-100">
 
         @if($logged_in_user->isAdmin())
             @livewire('admin.sidebar-menu')
@@ -60,12 +60,15 @@
 
             </main>
         </div>
-
+        @if($logged_in_user->isAdmin())
+            @include('admin.includes.designer-view-toggler')
+        @endif
     </div>
 
     @stack('modals')
 
         @livewireScripts
+        <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@ryangjchandler/alpine-clipboard@1.x.x/dist/alpine-clipboard.js"></script>
     </body>
 </html>
