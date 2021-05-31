@@ -50,7 +50,7 @@
             @endif
 
             <!-- Only shows if type is admin -->
-            <div x-show="userType === '{{ $model::TYPE_ADMIN }}'">
+            <div x-cloak x-show="userType === '{{ $model::TYPE_ADMIN }}'">
                 @if (isset($user) && !$user->isMasterAdmin() && $logged_in_user->hasAllAccess())
                     <x-checklist-index
                         formIndex="roles"
@@ -93,7 +93,7 @@
             </div> {{-- end type admin --}}
 
             <!-- Only shows if type is user -->
-            <div x-show="userType === '{{ $model::TYPE_USER }}'">
+            <div x-cloak x-show="userType === '{{ $model::TYPE_USER }}'">
                 @if (isset($user) && !$user->isMasterAdmin())
                         <x-checklist-index
                             formIndex="roles"
