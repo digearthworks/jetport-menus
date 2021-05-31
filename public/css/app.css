@@ -33398,6 +33398,10 @@ select {
   max-height: 200px;
 }
 
+[x-cloak] {
+  display: none !important;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

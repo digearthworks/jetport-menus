@@ -22,3 +22,6 @@
 .max-h-select {
     max-height: 200px;
 }
+[x-cloak] {
+    display: none !important;
+}
