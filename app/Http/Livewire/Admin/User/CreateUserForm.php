@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Admin\BaseCreateForm;
+use App\Http\Livewire\BaseCreateForm;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;

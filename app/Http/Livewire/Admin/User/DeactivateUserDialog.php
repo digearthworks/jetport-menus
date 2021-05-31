@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Admin\BaseDeactivateDialog;
+use App\Http\Livewire\BaseDeactivateDialog;
 use App\Models\User;
 use App\Services\UserService;
 

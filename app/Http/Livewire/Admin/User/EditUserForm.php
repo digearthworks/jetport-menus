@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Admin\BaseEditForm;
+use App\Http\Livewire\BaseEditForm;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;

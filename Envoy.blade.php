@@ -3,7 +3,7 @@
 
 @task('dev', ['on'=> 'localhost'])
     php artisan key:generate
-    npm install && npm run dev
+    yarn && yarn run dev
     php artisan storage:link
     php artisan passport:keys
     php artisan db:wipe

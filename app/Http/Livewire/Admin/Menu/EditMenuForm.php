@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Menu;
 
-use App\Http\Livewire\Admin\BaseEditForm;
+use App\Http\Livewire\BaseEditForm;
 use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
 use App\Models\Menu;
 use App\Services\MenuService;

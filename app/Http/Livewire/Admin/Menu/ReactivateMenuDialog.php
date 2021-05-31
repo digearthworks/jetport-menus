@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Menu;
 
-use App\Http\Livewire\Admin\BaseReactivateDialog;
+use App\Http\Livewire\BaseReactivateDialog;
 use App\Models\Menu;
 use App\Services\MenuService;
 
