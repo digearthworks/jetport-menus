@@ -5,7 +5,7 @@
     <div class="max-w-full px-4 mx-auto sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <div class="flex" x-show="!sidebarOpen">
+                <div class="flex" x-cloak x-show="!sidebarOpen">
 
                     @if($logged_in_user->isAdmin())
                     <!--- sidebar toggler -->

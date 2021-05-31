@@ -2,16 +2,18 @@
 
 namespace App\Http\Livewire\Admin\Menu;
 
-use App\Http\Livewire\Admin\BaseCreateForm;
+use App\Http\Livewire\BaseCreateForm;
 use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
 use App\Models\Icon;
 use App\Models\Menu;
 use App\Services\MenuService;
+use App\Support\Concerns\InteractsWithBanner;
 use Illuminate\Support\Facades\Validator;
 
 class CreateMenuForm extends BaseCreateForm
 {
-    use HandlesSelectIconEvent;
+    use HandlesSelectIconEvent,
+        InteractsWithBanner;
 
     /**
      * The create form state.
@@ -79,6 +81,8 @@ class CreateMenuForm extends BaseCreateForm
 
         $this->emit('refreshWithSuccess', 'Menu Created!');
         $this->emit('closeCreateDialog');
+        $this->emit('refreshMenuGrid');
+        $this->banner('Menu Created');
         $this->creatingResource = false;
     }
 

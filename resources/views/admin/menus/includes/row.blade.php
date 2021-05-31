@@ -31,7 +31,7 @@
     @foreach($row->children as $child)
         <x-livewire-tables::tw.table.row
             class="text-gray-700 bg-gray-100 border-l-4 border-indigo-400"
-            x-show="open"
+            x-cloak x-show="open"
             wire:loading.class.delay="opacity-50"
             wire:key="table-row-{{ $child->uuid }}"
         >

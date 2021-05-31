@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Role;
 
-use App\Http\Livewire\Admin\BaseCreateButton;
+use App\Http\Livewire\BaseCreateButton;
 
 class CreateRoleButton extends BaseCreateButton
 {

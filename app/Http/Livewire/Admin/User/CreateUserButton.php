@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Admin\BaseCreateButton;
+use App\Http\Livewire\BaseCreateButton;
 
 class CreateUserButton extends BaseCreateButton
 {

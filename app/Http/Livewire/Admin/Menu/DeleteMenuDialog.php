@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Menu;
 
-use App\Http\Livewire\Admin\BaseDeleteDialog;
+use App\Http\Livewire\BaseDeleteDialog;
 use App\Models\Menu;
 use App\Services\MenuService;
 

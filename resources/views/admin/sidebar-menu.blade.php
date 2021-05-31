@@ -31,14 +31,14 @@
 
                 <span>
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path x-show="! open" d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2"
+                        <path x-cloak x-show="! open" d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" style="display: none;"></path>
-                        <path x-show="open" d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2"
+                        <path x-cloak x-show="open" d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                 </span>
             </button>
-            <div x-show="open" class="ml-4">
+            <div x-cloak x-show="open" class="ml-4">
                 @foreach($adminMenuItems as $adminMenuItem)
                     <x-sidebar-link
                         href="{{ $adminMenuItem->link }}"
@@ -64,15 +64,15 @@
 
                 <span>
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path x-show="! open" d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2"
+                        <path x-cloak x-show="! open" d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" style="display: none;"></path>
-                        <path x-show="open" d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2"
+                        <path x-cloak x-show="open" d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                 </span>
             </button>
 
-            <div x-show="open" class="ml-8">
+            <div x-cloak x-show="open" class="ml-8">
                 @foreach ($appMenuItems as $appMenuItem)
                     <x-sidebar-link
                         href="{{ $appMenuItem->link }}"
