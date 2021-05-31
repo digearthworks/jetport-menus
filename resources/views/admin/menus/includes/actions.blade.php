@@ -6,7 +6,7 @@
         </x-button>
     @else
 
-        <x-edit-button wire:click="dialog('edit', {{ $model->id }})" id="editRoleButton_{{ $model->id }}" />
+        <x-edit-button wire:click="dialog('edit', {{ $model->id }})" id="editMenuButton_{{ $model->id }}" />
         <!-- todo: delete action -->
         <x-delete-button wire:click="confirm('delete', {{ $model->id }})" />
 
