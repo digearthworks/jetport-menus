@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Menu;
 
-use App\Http\Livewire\Admin\BaseCreateForm;
+use App\Http\Livewire\BaseCreateForm;
 use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
 use App\Models\Icon;
 use App\Models\Menu;

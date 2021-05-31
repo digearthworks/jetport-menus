@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire;
 
 use App\Http\Livewire\Concerns\HandlesDeleteDialogInteraction;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

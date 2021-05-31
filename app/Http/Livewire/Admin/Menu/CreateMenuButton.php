@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Menu;
 
-use App\Http\Livewire\Admin\BaseCreateButton;
+use App\Http\Livewire\BaseCreateButton;
 
 class CreateMenuButton extends BaseCreateButton
 {
