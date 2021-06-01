@@ -67,7 +67,7 @@
                 @if(isset($user) && $logged_in_user->isMasterAdmin() || isset($user) && !$user->isMasterAdmin())
                     <x-checklist-index
                         formIndex="menus"
-                        label="name_with_art"
+                        label="meta_name_with_art"
                         childrenLabel="link_with_art"
                         relation="children"
                         :form="$state ?? []"
@@ -110,7 +110,7 @@
                 @if(isset($user) && $logged_in_user->isMasterAdmin() || isset($user) && !$user->isMasterAdmin())
                         <x-checklist-index
                             formIndex="menus"
-                            label="name_with_art"
+                            label="meta_name_with_art"
                             childrenLabel="link_with_art"
                             relation="children"
                             :form="$state ?? []"

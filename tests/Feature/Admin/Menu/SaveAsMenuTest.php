@@ -23,6 +23,7 @@ class SaveAsMenuTest extends TestCase
         $this->assertDatabaseMissing('menus', [
             'type' => 'main_menu',
             'name' => 'Test Menu',
+            'meta_name' => 'Test Menu',
             'group' => 'admin',
             'link' => 'testlink',
         ]);
@@ -32,6 +33,7 @@ class SaveAsMenuTest extends TestCase
             ->set(['state' => [
                 'type' => 'main_menu',
                 'name' => 'Test Menu',
+                'meta_name' => 'Test Menu',
                 'link' => 'testlink',
                 'group' => 'admin',
                 'icon_id' => 'fa fa-file',

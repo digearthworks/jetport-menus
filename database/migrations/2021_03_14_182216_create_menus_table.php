@@ -18,6 +18,7 @@ class CreateMenusTable extends Migration
             $table->uuid('uuid')->nullable()->unique();
             $table->string('group')->nullable();
             $table->string('name');
+            $table->string('meta_name');
             $table->string('link')->nullable();
             $table->string('type')->nullable();
             $table->integer('active')->nullable();

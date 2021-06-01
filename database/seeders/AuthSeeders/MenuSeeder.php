@@ -29,6 +29,7 @@ class MenuSeeder extends Seeder
         Menu::create([
             'group' => 'app',
             'name' => 'Dashboard',
+            'meta_name' => 'Default Dashboard',
             'link' => '/dashboard',
             'type' => 'internal_link',
             'title' => 'Link to the Dashboard',
@@ -42,6 +43,7 @@ class MenuSeeder extends Seeder
         Menu::create([
             'group' => 'admin',
             'name' => 'Menu Management',
+            'meta_name' => 'Menu Management',
             'link' => '/admin/auth/menus',
             'type' => 'internal_link',
             'title' => 'Link to the Menu Manager',
@@ -55,6 +57,7 @@ class MenuSeeder extends Seeder
         Menu::create([
             'group' => 'admin',
             'name' => 'User Management',
+            'meta_name' => 'User Management',
             'link' => '/admin/auth/users',
             'type' => 'internal_link',
             'title' => 'Link to the User Manager',
@@ -68,6 +71,7 @@ class MenuSeeder extends Seeder
         Menu::create([
             'group' => 'admin',
             'name' => 'Role Management',
+            'meta_name' => 'Role Management',
             'link' => '/admin/auth/roles',
             'type' => 'internal_link',
             'title' => 'Link to the Role Manager',
@@ -81,6 +85,7 @@ class MenuSeeder extends Seeder
         $system = Menu::create([
             'group' => 'admin',
             'name' => 'System',
+            'meta_name' => 'System',
             'type' => 'main_menu',
             'title' => 'System Menu',
             'active' => 1,
@@ -95,6 +100,7 @@ class MenuSeeder extends Seeder
             new Menu([
                 'group' => 'main',
                 'name' => 'Logs Dashboard',
+                'meta_name' => 'Logs Dashboard',
                 'link' => '/admin/log-viewer',
                 'type' => 'internal_link',
                 'title' => 'Link to the Log Viewer Dashboard',
@@ -105,6 +111,7 @@ class MenuSeeder extends Seeder
             new Menu([
                 'group' => 'main',
                 'name' => 'Logs',
+                'meta_name' => 'Logs',
                 'link' => '/admin/log-viewer/logs',
                 'type' => 'internal_link',
                 'title' => 'Link to the Logs table',

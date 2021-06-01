@@ -23,6 +23,7 @@ class CreateMenuForm extends BaseCreateForm
     public $state = [
         'group' => 'app',
         'name' => '',
+        'meta_name' => '',
         'link' => '',
         'type' => 'main_menu',
         'active' => '1',
@@ -69,6 +70,7 @@ class CreateMenuForm extends BaseCreateForm
         Validator::make($this->state, [
             'group' => ['string', 'required'],
             'name' => ['required', 'string'],
+            'meta_name' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
             'title' => ['string'],
