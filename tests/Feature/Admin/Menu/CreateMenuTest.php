@@ -28,6 +28,7 @@ class CreateMenuTest extends TestCase
             ->set(['state' => [
                 'group' => 'app',
                 'name' => 'test',
+                'meta_name' => 'test',
                 'link' => 'test',
                 'type' => 'main_menu',
                 'active' => '1',

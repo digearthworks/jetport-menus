@@ -6,6 +6,8 @@
 
     @include('admin.menus.includes.form.name')
 
+    @include('admin.menus.includes.form.meta-name')
+
     @include('admin.menus.includes.form.title')
 
     @include('admin.menus.includes.form.select-type')

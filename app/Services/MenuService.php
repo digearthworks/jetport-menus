@@ -33,6 +33,7 @@ class MenuService extends BaseService
             $menu = $this->model::create([
                 'group' => $data['group'] ?? null,
                 'name' => $data['name'] ?? null,
+                'meta_name' => $data['meta_name'] ?? null,
                 'link' => $data['link'] ?? null,
                 'type' => $data['type'] ?? null,
                 'title' => $data['title'] ?? null,
@@ -96,6 +97,7 @@ class MenuService extends BaseService
             $menu->update([
                 'group' => $data['group'] ?? $menu->group,
                 'name' => $data['name'] ?? $menu->name,
+                'meta_name' => $data['meta_name'] ?? null,
                 'link' => $data['link'] ?? $menu->link,
                 'type' => $data['type'] ?? $menu->type,
                 'title' => $data['title'] ?? $menu->title,
@@ -144,6 +146,7 @@ class MenuService extends BaseService
             $newMenu = $this->model->create([
                 'group' => $data['group'] ?? $menu->group,
                 'name' => (isset($data['name']) && $data['name'] === $menu->name) ? $menu->name . '-copy' : ($data['name'] ?? $menu->name . '-copy'),
+                'meta_name' => (isset($data['meta_name']) && $data['meta_name'] === $menu->meta_name) ? $menu->meta_name . '-copy' : ($data['meta_name'] ?? $menu->meta_name . '-copy'),
                 'link' => $data['link'] ?? $menu->link,
                 'type' => $data['type'] ?? $menu->type,
                 'title' => $data['title'] ?? $menu->title,
