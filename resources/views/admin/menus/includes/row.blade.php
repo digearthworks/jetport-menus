@@ -4,7 +4,7 @@
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
-        {{ $row->name }}
+        {{ $row->meta_name }}
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>

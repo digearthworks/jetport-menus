@@ -113,6 +113,18 @@ class Menu extends Model implements Sortable
      * @param $value
      * @return string
      */
+    public function getMetaNameWithArtAttribute(): string
+    {
+        if (isset($this->icon->art)) {
+            return "{$this->icon->art} {$this->meta_name}";
+        }
+        return $this->name;
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
     public function getLinkWithArtAttribute(): string
     {
         if (isset($this->icon->art)) {

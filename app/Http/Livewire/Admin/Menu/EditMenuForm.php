@@ -32,6 +32,7 @@ class EditMenuForm extends BaseEditForm
     public $state = [
         'group' => 'app',
         'name' => '',
+        'meta_name' => '',
         'link' => '',
         'type' => 'main_menu',
         'active' => '1',
@@ -56,6 +57,7 @@ class EditMenuForm extends BaseEditForm
         $this->modelId = $resourceId;
         $this->state['group'] = $this->model->group;
         $this->state['name'] = $this->model->name;
+        $this->state['meta_name'] = $this->model->meta_name;
         $this->state['link'] = $this->model->link;
         $this->state['type'] = $this->model->type;
         $this->state['active'] = $this->model->active;
@@ -85,6 +87,7 @@ class EditMenuForm extends BaseEditForm
         Validator::make($this->state, [
             'group' => ['string'],
             'name' => ['required', 'string'],
+            'meta_name' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
             'title' => ['string', 'nullable'],
@@ -107,6 +110,7 @@ class EditMenuForm extends BaseEditForm
         Validator::make($this->state, [
             'group' => ['string'],
             'name' => ['required', 'string'],
+            'meta_name' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
             'title' => ['string', 'nullable'],
