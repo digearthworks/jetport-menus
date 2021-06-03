@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Menu;
 use App\Http\Livewire\Concerns\HasModel;
 use App\Http\Livewire\Concerns\InteractsWithDialog;
 use App\Models\Menu;
-use App\Services\MenuService;
 use Livewire\Component;
 
 class MenuGrid extends Component
@@ -32,12 +31,11 @@ class MenuGrid extends Component
         $this->designerView = ! $this->designerView;
     }
 
-    public function updateSort(MenuService $menus, $list)
+    public function updateSort($list)
     {
-        if($this->designerView){
-
-            foreach($list as $item){
-                $menus->update(['sort' => $item['order']], Menu::find($item['value']));
+        if ($this->designerView) {
+            foreach ($list as $item) {
+                Menu::find($item['value'])->update(['sort' => $item['order']]);
             }
         }
     }
