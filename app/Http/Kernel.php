@@ -50,6 +50,19 @@ class Kernel extends HttpKernel
             'auth',
             'is_admin',
         ],
+        'adminer' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+
+            // you may create customized middleware to fit your needs
+            // example uses Laravel default authentication (default protection)
+            \Illuminate\Auth\Middleware\Authenticate::class,
+            \App\Http\Middleware\AdminCheck::class,
+            \App\Http\Middleware\SuperAdminCheck::class,
+            \Illuminate\Routing\Middleware\ThrottleRequests::class,
+            \Illuminate\Auth\Middleware\RequirePassword::class,
+        ],
     ];
 
     /**
