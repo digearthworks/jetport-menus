@@ -2,6 +2,7 @@
 
 namespace Database\Seeders\AuthSeeders;
 
+use App\Events\User\UserUpdated;
 use App\Models\User;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
@@ -27,7 +28,9 @@ class UserRoleSeeder extends Seeder
     {
         $this->disableForeignKeys($this->connection);
 
-        User::find(1)->assignRole(config('template.auth.access.role.admin'));
+        $admin = User::find(1)->assignRole(config('template.auth.access.role.admin'));
+
+        event(new UserUpdated($admin));
 
         $this->enableForeignKeys($this->connection);
     }

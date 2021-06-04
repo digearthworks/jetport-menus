@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Bridge\WinkBridgeController;
 use App\Http\Controllers\LocaleController;
 
 use Illuminate\Support\Facades\Route;
@@ -50,3 +51,21 @@ Route::group([
 ], function () {
     includeRouteFiles(__DIR__.'/extras/');
 });
+
+
+if (config('template.cms.cms')) {
+    if (config('template.cms.driver') === 'wink') {
+        Route::middleware(config('wink.middleware_group'))
+        ->as('wink.')
+        ->domain(config('wink.domain'))
+        ->prefix(config('wink.path'))
+        ->group(function () {
+            Route::get('huh', function () {
+            });
+            Route::get('/login', [WinkBridgeController::class, 'showLoginForm'])->name('auth.login');
+            Route::post('/login', [WinkBridgeController::class, 'login'])->name('auth.attempt');
+            // Logout Route...
+            Route::get('/logout', [WinkBridgeController::class, 'logout'])->name('logout');
+        });
+    }
+}

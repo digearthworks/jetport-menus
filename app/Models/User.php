@@ -6,6 +6,7 @@ use App\Models\Concerns\Attribute\UserAttribute;
 use App\Models\Concerns\Connection\AuthConnection;
 use App\Models\Concerns\HasMenus;
 use App\Models\Concerns\HasUuid;
+use App\Models\Concerns\IsWinkAuthor;
 use App\Models\Concerns\Method\UserMethod;
 use App\Models\Concerns\Scope\UserScope;
 use Illuminate\Auth\MustVerifyEmail;
@@ -30,6 +31,7 @@ class User extends Authenticatable
         HasRoles,
         HasUuid,
         Impersonate,
+        IsWinkAuthor,
         Notifiable,
         MustVerifyEmail,
         SoftDeletes,
@@ -86,4 +88,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    protected function canEditContent()
+    {
+        return $this->hasRole(config('template.auth.access.role.admin'));
+    }
 }

@@ -116,7 +116,7 @@ class Menu extends Model implements Sortable
     public function getMetaNameWithArtAttribute(): string
     {
         if (isset($this->icon->art)) {
-            return "{$this->icon->art} {$this->meta_name}";
+            return "{$this->icon->art} {$this->handle}";
         }
         return $this->name;
     }

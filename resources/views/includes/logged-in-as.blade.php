@@ -1,3 +1,4 @@
+@auth
 @impersonating
 
 <div class="px-4 py-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -6,3 +7,4 @@
     </div><!--alert alert-warning-->
 </div>
 @endImpersonating
+@endauth

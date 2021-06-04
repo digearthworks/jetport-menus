@@ -33,7 +33,7 @@ class MenuService extends BaseService
             $menu = $this->model::create([
                 'group' => $data['group'] ?? null,
                 'name' => $data['name'] ?? null,
-                'meta_name' => $data['meta_name'] ?? null,
+                'handle' => $data['handle'] ?? null,
                 'link' => $data['link'] ?? null,
                 'type' => $data['type'] ?? null,
                 'title' => $data['title'] ?? null,
@@ -49,7 +49,7 @@ class MenuService extends BaseService
 
                 // get the diff
                 $diff = $menu->sort - $data['sort'];
-                for ($i = 0; $i < $diff; $i ++) {
+                for ($i = 0; $i < $diff; $i++) {
                     $menu->moveOrderUp();
                 }
             }
@@ -97,7 +97,7 @@ class MenuService extends BaseService
             $menu->update([
                 'group' => $data['group'] ?? $menu->group,
                 'name' => $data['name'] ?? $menu->name,
-                'meta_name' => $data['meta_name'] ?? null,
+                'handle' => $data['handle'] ?? null,
                 'link' => $data['link'] ?? $menu->link,
                 'type' => $data['type'] ?? $menu->type,
                 'title' => $data['title'] ?? $menu->title,
@@ -109,20 +109,21 @@ class MenuService extends BaseService
                 'icon_id' => $data['icon_id'] ?? ($menu->icon_id ?? null),
             ]);
 
-            if (isset($data['sort']) && $this->model->where('sort', $data['sort'])->where('id', '!=', $menu->id)->count()) {
+            if (isset($data['sort']) && ($this->querySortCollisions($menu, $data['sort']))->count()) {
+
                 //wheth to move up or down
-                if ($menu->sort > $this->model->buildSortQuery()->where('sort', $data['sort'])->where('id', '!=', $menu->id)->first()->sort) {
+                if ($menu->sort > ($this->querySortCollisions($menu, $data['sort']))->first()->sort) {
 
                     // get the diff
                     $diff = $menu->sort - $data['sort'];
-                    for ($i = 0; $i < $diff; $i ++) {
+                    for ($i = 0; $i < $diff; $i++) {
                         $menu->moveOrderUp();
                     }
                 } else {
 
                     // get the diff
                     $diff = $data['sort'] - $menu->sort;
-                    for ($i = 0; $i < $diff; $i ++) {
+                    for ($i = 0; $i < $diff; $i++) {
                         $menu->moveOrderDown();
                     }
                 }
@@ -130,7 +131,7 @@ class MenuService extends BaseService
         } catch (Exception $e) {
             DB::rollBack();
 
-            throw new GeneralException(__('There was a problem updating the Menu.'));
+            throw new GeneralException($e->getMessage());
         }
 
         DB::commit();
@@ -146,7 +147,7 @@ class MenuService extends BaseService
             $newMenu = $this->model->create([
                 'group' => $data['group'] ?? $menu->group,
                 'name' => (isset($data['name']) && $data['name'] === $menu->name) ? $menu->name . '-copy' : ($data['name'] ?? $menu->name . '-copy'),
-                'meta_name' => (isset($data['meta_name']) && $data['meta_name'] === $menu->meta_name) ? $menu->meta_name . '-copy' : ($data['meta_name'] ?? $menu->meta_name . '-copy'),
+                'handle' => (isset($data['handle']) && $data['handle'] === $menu->handle) ? $menu->handle . '-copy' : ($data['handle'] ?? $menu->handle . '-copy'),
                 'link' => $data['link'] ?? $menu->link,
                 'type' => $data['type'] ?? $menu->type,
                 'title' => $data['title'] ?? $menu->title,
@@ -215,5 +216,13 @@ class MenuService extends BaseService
     private function filterData(array $data)
     {
         return array_filter($data, fn ($val) => $val !== "");
+    }
+
+    private function querySortCollisions(Menu $menu, $sort)
+    {
+        return $this->model->buildSortQuery()
+            ->where('sort', $sort)
+            ->where('id', '!=', $menu->id)
+            ->where('menu_id', $menu->menu_id);
     }
 }
