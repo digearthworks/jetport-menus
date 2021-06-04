@@ -7,7 +7,9 @@ use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
 use App\Models\Menu;
 use App\Services\MenuService;
 use App\Support\Concerns\InteractsWithBanner;
+use Exception;
 use Illuminate\Support\Facades\Validator;
+use Log;
 
 class EditMenuForm extends BaseEditForm
 {
@@ -32,7 +34,7 @@ class EditMenuForm extends BaseEditForm
     public $state = [
         'group' => 'app',
         'name' => '',
-        'meta_name' => '',
+        'handle' => '',
         'link' => '',
         'type' => 'main_menu',
         'active' => '1',
@@ -57,7 +59,7 @@ class EditMenuForm extends BaseEditForm
         $this->modelId = $resourceId;
         $this->state['group'] = $this->model->group;
         $this->state['name'] = $this->model->name;
-        $this->state['meta_name'] = $this->model->meta_name;
+        $this->state['handle'] = $this->model->handle;
         $this->state['link'] = $this->model->link;
         $this->state['type'] = $this->model->type;
         $this->state['active'] = $this->model->active;
@@ -83,11 +85,13 @@ class EditMenuForm extends BaseEditForm
     {
         $this->authorize('is_admin');
 
+        // dd($this->state);
+
         $this->resetErrorBag();
         Validator::make($this->state, [
             'group' => ['string'],
             'name' => ['required', 'string'],
-            'meta_name' => ['required', 'string'],
+            'handle' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
             'title' => ['string', 'nullable'],
@@ -95,7 +99,12 @@ class EditMenuForm extends BaseEditForm
             'sort' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
-        $menus->update($this->state, $this->model);
+        try {
+            $menus->update($this->state, $this->model);
+        } catch (Exception $e) {
+            Log::error($e);
+        }
+
         $this->emit('refreshWithSuccess', 'Menu Updated!');
         $this->emit('refreshMenuGrid');
         $this->banner('Menu Updated');
@@ -110,7 +119,7 @@ class EditMenuForm extends BaseEditForm
         Validator::make($this->state, [
             'group' => ['string'],
             'name' => ['required', 'string'],
-            'meta_name' => ['required', 'string'],
+            'handle' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
             'title' => ['string', 'nullable'],

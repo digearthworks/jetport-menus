@@ -7,7 +7,7 @@
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
-        {{ $row->meta_name }}
+        {{ $row->handle }}
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>

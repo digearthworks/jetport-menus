@@ -27,7 +27,7 @@ class UpdateMenuTest extends TestCase
             ->set(['state' => [
                 'type' => 'main_menu',
                 'name' => 'Test Menu',
-                'meta_name' => 'Test Menu',
+                'handle' => 'Test Menu',
                 'icon_id' => 'fa fa-file'
             ]])
             ->call('updateMenu');

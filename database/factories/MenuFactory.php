@@ -72,7 +72,7 @@ class MenuFactory extends Factory
             'group' => $this->faker->randomElement(['office', 'admin', 'menu_page', 'hotlinks']),
             'type' => $this->faker->randomElement(['internal_link', 'external_link', 'main_menu']),
             'name' => $this->faker->word(),
-            'meta_name' => $this->faker->word(),
+            'handle' => $this->faker->word(),
             'link' => $this->faker->word(),
             'active' => $this->faker->randomElement([1, 0]),
             'iframe' => $this->faker->randomElement([1, 0]),
