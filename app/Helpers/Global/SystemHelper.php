@@ -38,7 +38,6 @@ if (!function_exists('includeRouteFiles')) {
 }
 
 if (!function_exists('adminer_object')) {
-
     function adminer_object()
     {
         // required to run any plugin
