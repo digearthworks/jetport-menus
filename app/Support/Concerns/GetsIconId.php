@@ -53,7 +53,7 @@ trait GetsIconId
         ] : [
             'class' => $icon,
             'source' => 'FontAwesome',
-            'version' => '5',
+            'version' => config('fontawesome.version'),
             'meta' => $meta,
         ];
 

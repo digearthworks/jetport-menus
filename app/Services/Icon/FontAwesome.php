@@ -2,13 +2,15 @@
 
 namespace App\Services\Icon;
 
+use App\Facades\Blink;
 use App\Models\Icon;
+use Illuminate\Support\Facades\Http;
 
 class FontAwesome
 {
     public static function all() : array
     {
-        return self::fetchIcons();
+        return Blink::once(now()->format('y-m-d'), fn () => self::fetchIcons());
     }
 
     /**
@@ -40,7 +42,7 @@ class FontAwesome
     {
         $fontAwesomeIcons = [];
 
-        $content = file_get_contents(config('fontawesome.base_url').'/'. config('fontawesome.version').'/'. config('fontawesome.path'));
+        $content = Http::get(config('fontawesome.base_url').'/'. config('fontawesome.version').'/'. config('fontawesome.path'))->body();
         $json = json_decode($content);
 
         foreach ($json as $icon => $value) {
@@ -48,7 +50,7 @@ class FontAwesome
                 $fontAwesomeIcons[] = new Icon([
                     'class' => 'fa' . substr($style, 0, 1) . ' fa-' . $icon,
                     'source' => 'FontAwesome',
-                    'version' => 5,
+                    'version' => config('fontawesome.version'),
                 ]);
             }
         }
