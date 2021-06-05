@@ -19,7 +19,6 @@ class WinkBridgeController extends Controller
     public function showLoginForm()
     {
         if ($this->bridge()) {
-
             $this->loginAppUserAsWinkAuthor(auth('web')->user());
             return redirect()->intended('/' . config('wink.path'));
         }
@@ -34,7 +33,6 @@ class WinkBridgeController extends Controller
     public function login()
     {
         if ($this->bridge()) {
-
             $this->loginAppUserAsWinkAuthor(auth('web')->user());
             return redirect()->intended('/' . config('wink.path'));
         }

@@ -5,6 +5,9 @@ namespace App\Providers;
 use App\Http\Livewire\Admin\AdminNavigationMenu;
 use App\Http\Livewire\Admin\AdminSidebarMenu;
 use App\Http\Livewire\Admin\AdminSidebarToggler;
+use App\Http\Livewire\Admin\Icon\CreateIconForm;
+use App\Http\Livewire\Admin\Icon\DeleteIconDialog;
+use App\Http\Livewire\Admin\Icon\EditIconForm;
 use App\Http\Livewire\Admin\Icon\IconSelect;
 use App\Http\Livewire\Admin\Menu\CreateMenuButton;
 use App\Http\Livewire\Admin\Menu\CreateMenuForm;
@@ -65,10 +68,11 @@ class LivewireServiceProvider extends ServiceProvider
         Livewire::component('admin.menus.includes.partials.create-menu-button', CreateMenuButton::class);
 
         Livewire::component('admin.icons.icon-select', IconSelect::class);
+        Livewire::component('admin.icons.create', CreateIconForm::class);
+        Livewire::component('admin.icons.edit', EditIconForm::class);
+        Livewire::component('admin.icons.delete', DeleteIconDialog::class);
 
         Livewire::component('includes.dashboard-grid', DashboardGrid::class);
         Livewire::component('menu.includes.menu-grid', MenuGrid::class);
-
-
     }
 }

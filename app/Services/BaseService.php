@@ -374,4 +374,9 @@ abstract class BaseService
                 '.prefix').
             $this->model->getTable();
     }
+
+    protected function filterData(array $data)
+    {
+        return array_filter($data, fn ($val) => $val !== "");
+    }
 }

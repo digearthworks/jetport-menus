@@ -6,7 +6,7 @@ use App\Models\Concerns\Connection\AuthConnection;
 use App\Models\Concerns\HasPath;
 use App\Models\Concerns\HasUuid;
 use App\Models\Concerns\Relationship\MenuRelationship;
-use App\Services\Icon\FontAwesome;
+use App\Support\Concerns\GetsIconId;
 use Database\Factories\MenuFactory;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,6 +20,7 @@ class Menu extends Model implements Sortable
 {
     use AuthConnection,
         CascadeSoftDeletes,
+        GetsIconId,
         HasFactory,
         HasPath,
         HasUuid,
@@ -52,40 +53,6 @@ class Menu extends Model implements Sortable
     protected static function newFactory()
     {
         return MenuFactory::new();
-    }
-
-    protected function getIconId($icon)
-    {
-
-        // Leave early if there is no icon
-        if (!$icon) {
-            return 1;
-        }
-
-        if (is_int($icon)) {
-            return Icon::query()->find($icon) ? $icon : null;
-        }
-
-        $id = (strlen($icon) > 32) ? Icon::query()->where('html', $icon)->value('id') : Icon::query()->where('class', $icon)->value('id');
-
-        if ($id) {
-            return $id;
-        }
-
-        $iconAttributes = (!FontAwesome::wantsFontAwesome($icon)) ? [
-            'html' => $icon,
-            'source' => 'raw',
-            'meta' => $this->name,
-        ] : [
-            'class' => $icon,
-            'source' => 'FontAwesome',
-            'version' => '5',
-            'meta' => $this->name,
-        ];
-
-        $icon = Icon::create($iconAttributes);
-
-        return $icon->id;
     }
 
     /**
@@ -218,7 +185,7 @@ class Menu extends Model implements Sortable
 
     public function setIconIdAttribute($icon)
     {
-        $this->attributes['icon_id'] = $this->getIconId($icon);
+        $this->attributes['icon_id'] = $this->getIconId($icon, $this->name);
     }
 
     public function setMenuIdAttribute($menuId)
