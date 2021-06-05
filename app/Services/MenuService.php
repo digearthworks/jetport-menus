@@ -213,11 +213,6 @@ class MenuService extends BaseService
         return $menu;
     }
 
-    private function filterData(array $data)
-    {
-        return array_filter($data, fn ($val) => $val !== "");
-    }
-
     private function querySortCollisions(Menu $menu, $sort)
     {
         return $this->model->buildSortQuery()
