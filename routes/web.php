@@ -10,9 +10,9 @@ Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.cha
 
 Route::view('/', 'welcome')->name('index');
 
-Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::view('/dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 /*
  * Admin Routes
@@ -20,14 +20,14 @@ Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
  * These routes can only be accessed by users with type `admin`
  */
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
-    includeRouteFiles(__DIR__.'/admin/');
+    includeRouteFiles(__DIR__ . '/admin/');
 });
 
 /*
  * Menu Routes
  */
 Route::group(['prefix' => 'menus', 'as' => 'menus.', 'middleware' => 'auth'], function () {
-    includeRouteFiles(__DIR__.'/menus/');
+    includeRouteFiles(__DIR__ . '/menus/');
 });
 
 /*
@@ -35,10 +35,10 @@ Route::group(['prefix' => 'menus', 'as' => 'menus.', 'middleware' => 'auth'], fu
  */
 Route::group([
     'prefix' => config('menus.url_segments.internal_iframe_prefix'),
-    'as' => config('menus.url_segments.internal_iframe_prefix').'.',
+    'as' => config('menus.url_segments.internal_iframe_prefix') . '.',
     'middleware' => 'auth'
 ], function () {
-    includeRouteFiles(__DIR__.'/iframes/');
+    includeRouteFiles(__DIR__ . '/iframes/');
 });
 
 /*
@@ -46,26 +46,26 @@ Route::group([
  */
 Route::group([
     'prefix' => config('menus.url_segments.external_iframe_prefix'),
-    'as' => config('menus.url_segments.external_iframe_prefix').'.',
+    'as' => config('menus.url_segments.external_iframe_prefix') . '.',
     'middleware' => 'auth'
 ], function () {
-    includeRouteFiles(__DIR__.'/extras/');
+    includeRouteFiles(__DIR__ . '/extras/');
 });
 
 
 if (config('template.cms.cms')) {
     if (config('template.cms.driver') === 'wink') {
         Route::middleware(config('wink.middleware_group'))
-        ->as('wink.')
-        ->domain(config('wink.domain'))
-        ->prefix(config('wink.path'))
-        ->group(function () {
-            Route::get('huh', function () {
+            ->as('wink.')
+            ->domain(config('wink.domain'))
+            ->prefix(config('wink.path'))
+            ->group(function () {
+                Route::get('huh', function () {
+                });
+                Route::get('/login', [WinkBridgeController::class, 'showLoginForm'])->name('auth.login');
+                Route::post('/login', [WinkBridgeController::class, 'login'])->name('auth.attempt');
+                // Logout Route...
+                Route::get('/logout', [WinkBridgeController::class, 'logout'])->name('logout');
             });
-            Route::get('/login', [WinkBridgeController::class, 'showLoginForm'])->name('auth.login');
-            Route::post('/login', [WinkBridgeController::class, 'login'])->name('auth.attempt');
-            // Logout Route...
-            Route::get('/logout', [WinkBridgeController::class, 'logout'])->name('logout');
-        });
     }
 }
