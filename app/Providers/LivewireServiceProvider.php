@@ -27,6 +27,8 @@ use App\Http\Livewire\Admin\User\EditUserPasswordForm;
 use App\Http\Livewire\Admin\User\ReactivateUserDialog;
 use App\Http\Livewire\Admin\User\RestoreUserDialog;
 use App\Http\Livewire\Admin\User\UsersTable;
+use App\Http\Livewire\DashboardGrid;
+use App\Http\Livewire\Menu\MenuGrid;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 
@@ -63,5 +65,10 @@ class LivewireServiceProvider extends ServiceProvider
         Livewire::component('admin.menus.includes.partials.create-menu-button', CreateMenuButton::class);
 
         Livewire::component('admin.icons.icon-select', IconSelect::class);
+
+        Livewire::component('includes.dashboard-grid', DashboardGrid::class);
+        Livewire::component('menu.includes.menu-grid', MenuGrid::class);
+
+
     }
 }
