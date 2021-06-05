@@ -9,7 +9,7 @@
                     </div>
                 </div>
 
-                <div x-cloak x-show="open" class="absolute z-40 w-full overflow-x-hidden overflow-y-auto bg-white rounded shadow top-100 lef-0 max-h-select svelte-5uyqqj">
+                <div x-show="open" class="absolute z-40 w-full overflow-x-hidden overflow-y-auto bg-white rounded shadow top-100 lef-0 max-h-select svelte-5uyqqj">
                     <div class="flex flex-col w-full">
                         <div class="w-full border-b border-gray-100 rounded-t cursor-pointer hover:bg-teal-100">
                          @forelse($icons as $icon)
