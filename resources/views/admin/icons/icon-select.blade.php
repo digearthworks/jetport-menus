@@ -5,7 +5,7 @@
                 <div class="w-full">
                     <div class="flex p-1 my-2 bg-white border border-gray-200 rounded">
                         <div class="flex flex-wrap flex-auto"></div>
-                        <input x-on:focus="open = true" wire:model="query" placeholder="Search Icons" class="w-full p-1 px-2 text-gray-800 outline-none appearance-none">
+                        <input x-on:focus="open = true" wire:model.debounce.50ms="query" placeholder="Search Icons" class="w-full p-1 px-2 text-gray-800 outline-none appearance-none">
                     </div>
                 </div>
 
