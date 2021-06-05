@@ -42,8 +42,8 @@ class MenuSeeder extends Seeder
 
         Menu::create([
             'group' => 'admin',
-            'name' => 'Menu Management',
-            'handle' => 'Menu Management',
+            'name' => 'Menu Manager',
+            'handle' => 'Menu Manager',
             'link' => '/admin/auth/menus',
             'type' => 'internal_link',
             'title' => 'Link to the Menu Manager',
@@ -56,8 +56,22 @@ class MenuSeeder extends Seeder
 
         Menu::create([
             'group' => 'admin',
-            'name' => 'User Management',
-            'handle' => 'User Management',
+            'name' => 'Icon Manager',
+            'handle' => 'Icon Manager',
+            'link' => '/admin/auth/icons',
+            'type' => 'internal_link',
+            'title' => 'Link to the Icon Manager',
+            'active' => 1,
+            'iframe' => 0,
+            'row' => null,
+            'menu_id' => null,
+            'icon_id' => 'fas fa-icons',
+        ]);
+
+        Menu::create([
+            'group' => 'admin',
+            'name' => 'User Manager',
+            'handle' => 'User Manager',
             'link' => '/admin/auth/users',
             'type' => 'internal_link',
             'title' => 'Link to the User Manager',
@@ -70,8 +84,8 @@ class MenuSeeder extends Seeder
 
         Menu::create([
             'group' => 'admin',
-            'name' => 'Role Management',
-            'handle' => 'Role Management',
+            'name' => 'Role Manager',
+            'handle' => 'Role Manager',
             'link' => '/admin/auth/roles',
             'type' => 'internal_link',
             'title' => 'Link to the Role Manager',

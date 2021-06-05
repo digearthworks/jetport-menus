@@ -5,7 +5,7 @@
     inactiveClasses: 'text-blue-500 hover:text-blue-800'
     }"
     class="col-span-6 sm:col-span-4">
-    <x-jet-label for="active" value="{{ __('Icon') }}" />
+    <x-jet-label for="active" value="{{ __('Icon Editor') }}" />
 
     <x-article-stacked class="w-full overflow-hidden text-gray-500 bg-white cursor-pointer hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50">
 
@@ -15,7 +15,7 @@
 
         <x-slot name="caption">
             <p class="ml-auto mr-auto overflow-hidden leading-none tracking-tighter">
-                {{ (strlen($state['name']) > 0) ? $state['name'] : 'Menu Name ...' }}
+                {{ (strlen($state['name']) > 0) ? $state['name'] : 'Name ...' }}
             </p>
         </x-slot>
     </x-article-stacked>

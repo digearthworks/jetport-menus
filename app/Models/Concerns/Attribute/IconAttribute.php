@@ -25,4 +25,23 @@ trait IconAttribute
     {
         return $value ? trim(preg_replace("/\r|\n/", "", $this->repairHtml($value))) : null;
     }
+
+    /**
+     * @return string
+     */
+    public function getMetaLabelAttribute(): string
+    {
+        return collect(explode(' ', $this->meta ?? ''))
+            ->implode('<br/>');
+    }
+
+    /**
+     * @return string
+     */
+    public function getMenusLabelAttribute(): string
+    {
+
+        return collect($this->menus()->pluck('name')->toArray())
+            ->implode('<br/>');
+    }
 }
