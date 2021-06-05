@@ -24,6 +24,7 @@
         "livewire/livewire": "^2.4.4",
         "onecentlin/laravel-adminer": "^5.2",
         "rappasoft/laravel-livewire-tables": "^1.7",
+        "spatie/blink": "^1.1",
         "spatie/eloquent-sortable": "^3.11",
         "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-permission": "^4.0",
