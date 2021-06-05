@@ -71,7 +71,7 @@
 
                 <x-checklist-index
                     formIndex="menus"
-                    label="meta_name_with_art"
+                    label="handle_with_art"
                     childrenLabel="link_with_art"
                     relation="children"
                     :form="$state ?? []"

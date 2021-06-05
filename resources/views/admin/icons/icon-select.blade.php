@@ -5,11 +5,11 @@
                 <div class="w-full">
                     <div class="flex p-1 my-2 bg-white border border-gray-200 rounded">
                         <div class="flex flex-wrap flex-auto"></div>
-                        <input x-on:focus="open = true" wire:model="query" placeholder="Search Icons" class="w-full p-1 px-2 text-gray-800 outline-none appearance-none">
+                        <input x-on:focus="open = true" wire:model.debounce.50ms="query" placeholder="Search Icons" class="w-full p-1 px-2 text-gray-800 outline-none appearance-none">
                     </div>
                 </div>
 
-                <div x-cloak x-show="open" class="absolute z-40 w-full overflow-x-hidden overflow-y-auto bg-white rounded shadow top-100 lef-0 max-h-select svelte-5uyqqj">
+                <div x-show="open" class="absolute z-40 w-full overflow-x-hidden overflow-y-auto bg-white rounded shadow top-100 lef-0 max-h-select svelte-5uyqqj">
                     <div class="flex flex-col w-full">
                         <div class="w-full border-b border-gray-100 rounded-t cursor-pointer hover:bg-teal-100">
                          @forelse($icons as $icon)

@@ -17,3 +17,5 @@ supervisord.pid
 .phpstorm.meta.php
 _ide_helper.php
 .idea
+Envoy*
+!Envoy.blade.php

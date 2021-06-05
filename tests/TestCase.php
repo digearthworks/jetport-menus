@@ -18,6 +18,10 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
+        if (config('template.cms.cms') && config('template.cms.driver') === 'wink') {
+            Artisan::call('wink:migrate');
+        }
+
         Artisan::call('db:seed');
 
         $this->withoutMiddleware(RequirePassword::class);

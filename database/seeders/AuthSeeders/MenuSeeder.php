@@ -29,7 +29,7 @@ class MenuSeeder extends Seeder
         Menu::create([
             'group' => 'app',
             'name' => 'Dashboard',
-            'meta_name' => 'Default Dashboard',
+            'handle' => 'Default Dashboard',
             'link' => '/dashboard',
             'type' => 'internal_link',
             'title' => 'Link to the Dashboard',
@@ -43,7 +43,7 @@ class MenuSeeder extends Seeder
         Menu::create([
             'group' => 'admin',
             'name' => 'Menu Management',
-            'meta_name' => 'Menu Management',
+            'handle' => 'Menu Management',
             'link' => '/admin/auth/menus',
             'type' => 'internal_link',
             'title' => 'Link to the Menu Manager',
@@ -57,7 +57,7 @@ class MenuSeeder extends Seeder
         Menu::create([
             'group' => 'admin',
             'name' => 'User Management',
-            'meta_name' => 'User Management',
+            'handle' => 'User Management',
             'link' => '/admin/auth/users',
             'type' => 'internal_link',
             'title' => 'Link to the User Manager',
@@ -71,7 +71,7 @@ class MenuSeeder extends Seeder
         Menu::create([
             'group' => 'admin',
             'name' => 'Role Management',
-            'meta_name' => 'Role Management',
+            'handle' => 'Role Management',
             'link' => '/admin/auth/roles',
             'type' => 'internal_link',
             'title' => 'Link to the Role Manager',
@@ -85,22 +85,37 @@ class MenuSeeder extends Seeder
         $system = Menu::create([
             'group' => 'admin',
             'name' => 'System',
-            'meta_name' => 'System',
+            'handle' => 'System',
             'type' => 'main_menu',
             'title' => 'System Menu',
             'active' => 1,
             'iframe' => 0,
             'row' => null,
             'menu_id' => null,
-            'icon_id' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
-       ',
+            'icon_id' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>',
         ]);
+
+        if (config('template.cms.cms') || config('template.cms.driver') === 'wink') {
+            Menu::create([
+                'group' => 'admin',
+                'name' => 'Web Pages',
+                'handle' => 'Web Pages',
+                'link' => '/' . config('wink.path') . '/pages',
+                'type' => 'internal_link',
+                'title' => 'Web Pages',
+                'active' => 1,
+                'iframe' => 1,
+                'row' => null,
+                'menu_id' => null,
+                'icon_id' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>',
+            ]);
+        }
 
         $system->children()->saveMany([
             new Menu([
                 'group' => 'main',
                 'name' => 'Logs Dashboard',
-                'meta_name' => 'Logs Dashboard',
+                'handle' => 'Logs Dashboard',
                 'link' => '/admin/log-viewer',
                 'type' => 'internal_link',
                 'title' => 'Link to the Log Viewer Dashboard',
@@ -111,7 +126,7 @@ class MenuSeeder extends Seeder
             new Menu([
                 'group' => 'main',
                 'name' => 'Logs',
-                'meta_name' => 'Logs',
+                'handle' => 'Logs',
                 'link' => '/admin/log-viewer/logs',
                 'type' => 'internal_link',
                 'title' => 'Link to the Logs table',
@@ -123,7 +138,7 @@ class MenuSeeder extends Seeder
             new Menu([
                 'group' => 'main',
                 'name' => 'Database',
-                'meta_name' => 'Database',
+                'handle' => 'Database',
                 'link' => '/adminer',
                 'type' => 'internal_link',
                 'title' => 'Link to adminer',
