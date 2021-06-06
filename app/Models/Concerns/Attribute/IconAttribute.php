@@ -40,7 +40,6 @@ trait IconAttribute
      */
     public function getMenusLabelAttribute(): string
     {
-
         return collect($this->menus()->pluck('name')->toArray())
             ->implode('<br/>');
     }
