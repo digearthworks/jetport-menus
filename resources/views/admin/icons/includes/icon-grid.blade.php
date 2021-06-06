@@ -2,7 +2,7 @@
     <input wire:model.debounce.50ms="query" placeholder="Search Icons" class="w-full p-1 px-2 text-gray-800 outline-none appearance-none">
     <x-compact-grid>
         @forelse($icons as $item)
-            <x-compact-article-stacked wire:click="$emit('selectIcon', '{{ $item['input'] }}')" x-data="{ tooltip: false }" x-on:click="$clipboard('{{ trim($item['input']) }}'); tooltip = true; setTimeout(() => tooltip = false, 1000)" >
+            <x-compact-article-stacked wire:click="$set('query', '{{ $item['input'] }}')" x-data="{ tooltip: false }" x-on:click="$clipboard('{{ trim($item['input']) }}'); tooltip = true; setTimeout(() => tooltip = false, 1000)" >
 
                 <div class="relative" x-cloak x-show="tooltip">
                     <div class="absolute top-0 z-10 p-2 -mt-1 text-sm leading-tight text-gray-700 transform -translate-x-1/2 -translate-y-full bg-white border-t-4 border-gray-500 rounded-lg shadow-lg w-36">
