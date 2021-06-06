@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Jetstream\Jetstream;
+use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\Environment;
+use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -20,6 +24,14 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+
+
+
+        // return view('terms', [
+        //     'terms' => (new CommonMarkConverter([], $environment))->convertToHtml(file_get_contents($termsFile)),
+        // ]);
+
         View::composer('*', function ($view) {
             $app_logo = config('ui.logo');
 
@@ -45,6 +57,34 @@ class ComposerServiceProvider extends ServiceProvider
                 'menus' => Menu::query()->where('menu_id', null)->with('children')->get(),
                 'roles' => Role::with('permissions')->get(),
             ]);
+        });
+
+        View::composer([
+            'layouts.welcome',
+            'layouts.guest',
+            'welcome',
+        ], function ($view) {
+            if (config('template.cms.cms')) {
+                $driver = config('template.cms.drivers.' . config('template.cms.driver'));
+                $navTopPagesQuery = $driver['query']['navtop'];
+                $welcomePageQuery = $driver['query']['welcome'];
+
+                $view->with([
+                    'topPages' => ($driver['pages_model'])::where($navTopPagesQuery['key'], $navTopPagesQuery['value'])->get(),
+                    'welcomePage' => ($driver['pages_model'])::where($welcomePageQuery['key'], $welcomePageQuery['value'])
+                        ->orderBy('created_at', 'desc')
+                        ->first(),
+                ]);
+            } else {
+                $termsFile = Jetstream::localizedMarkdownPath('welcome.md');
+
+                $environment = Environment::createCommonMarkEnvironment();
+                $environment->addExtension(new GithubFlavoredMarkdownExtension());
+
+                $view->with([
+                    'welcome' => (new CommonMarkConverter([], $environment))->convertToHtml(file_get_contents($termsFile)),
+                ]);
+            }
         });
 
         View::composer([

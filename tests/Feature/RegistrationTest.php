@@ -13,6 +13,7 @@ class RegistrationTest extends TestCase
 
     public function test_registration_screen_can_be_rendered()
     {
+        $this->withoutExceptionHandling();
         $response = $this->get('/register');
 
         $response->assertStatus(200);
