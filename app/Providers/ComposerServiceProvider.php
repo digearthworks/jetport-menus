@@ -24,14 +24,6 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
-
-
-
-        // return view('terms', [
-        //     'terms' => (new CommonMarkConverter([], $environment))->convertToHtml(file_get_contents($termsFile)),
-        // ]);
-
         View::composer('*', function ($view) {
             $app_logo = config('ui.logo');
 
