@@ -28,7 +28,7 @@ class WinkPageSeeder extends Seeder
             'title' => 'Welcome to Jetport',
             'body' => '<div class="inline_html" contenteditable="false"><!--?xml version="1.0" encoding="iso-8859-1"?-->
             <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="624px" height="624px" viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
             <g>
                 <g>
                     <path d="M509.384,61.784c-2.501-2.463-6.227-3.2-9.476-1.873L5.455,261.892c-3.186,1.302-5.316,4.345-5.448,7.785
@@ -74,7 +74,7 @@ class WinkPageSeeder extends Seeder
             </g>
             </svg></div><div class="inline_html" contenteditable="false"><!--?xml version="1.0" encoding="iso-8859-1"?-->
             <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 469.999 469.999" style="enable-background:new 0 0 469.999 469.999;" xml:space="preserve">
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="624px" height="624px" viewBox="0 0 469.999 469.999" style="enable-background:new 0 0 469.999 469.999;" xml:space="preserve">
             <g>
                 <path d="M469.935,172.273c0.008-0.06,0.018-0.119,0.024-0.179c0.002-0.022,0.003-0.046,0.005-0.069
                     c0.009-0.097,0.011-0.193,0.017-0.291c0.007-0.131,0.018-0.263,0.018-0.395c0-0.19-0.011-0.321-0.018-0.453
