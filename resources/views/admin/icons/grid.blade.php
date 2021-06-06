@@ -9,3 +9,4 @@
 
     <livewire:admin.icons.includes.icon-grid />
 </x-7xl>
+<livewire:admin.icons.create />
