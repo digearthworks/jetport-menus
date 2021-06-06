@@ -11,7 +11,7 @@ class WinkWebpage extends Component
 
     public function render()
     {
-        return view('webpage')
-            ->layout(config('template.cms.page_layout'));
+        return view(config('template.cms.page_view', 'webpage'))
+            ->layout(config('template.cms.page_layout', 'layouts.guest'));
     }
 }
