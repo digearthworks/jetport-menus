@@ -9,10 +9,25 @@
     width: 100% !important;
     font-size: 70px !important;
 }
+
+.mini-box > svg,
+.mini-box > img,
+.mini-box > i {
+    height: 100% !important;
+    width: 100% !important;
+    font-size: 34px !important;
+}
+
 .picture-box > i {
     padding-top: 15px;
     padding-left: 10px;
 }
+
+.mini-box > i {
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
 .top-100 {
     top: 100%;
 }
