@@ -80,7 +80,7 @@ class Menu extends Model implements Sortable
      * @param $value
      * @return string
      */
-    public function getMetaNameWithArtAttribute(): string
+    public function getHandleWithArtAttribute(): string
     {
         if (isset($this->icon->art)) {
             return "{$this->icon->art} {$this->handle}";
