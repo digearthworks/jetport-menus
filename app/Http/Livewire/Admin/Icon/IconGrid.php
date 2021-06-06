@@ -12,10 +12,6 @@ class IconGrid extends Component
     public $icons;
     public $iconSource;
 
-    public $listeners = [
-        'selectIcon',
-    ];
-
     public function mount()
     {
         $fontAwesomeIcons = FontAwesome::all();
@@ -24,11 +20,6 @@ class IconGrid extends Component
 
         $this->iconSource = collect($icons)->merge(collect($fontAwesomeIcons));
         $this->icons = $this->iconSource;
-    }
-
-    public function selectIcon($value)
-    {
-        $this->query = $value;
     }
 
     public function updatedQuery()
