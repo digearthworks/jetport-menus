@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
 
         if (app()->environment(['local', 'testing'])) {
             $this->call(ClientSeederExample::class);
+            if (config('template.cms.cms') && config('template.cms.driver') === 'wink') {
+                $this->call(WinkPageSeeder::class);
+            }
             if (config('template.posts.active')) {
                 $this->call(PostSeeder::class);
             }

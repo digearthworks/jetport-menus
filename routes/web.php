@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Bridge\WinkBridgeController;
 use App\Http\Controllers\LocaleController;
-
 use Illuminate\Support\Facades\Route;
 
 // Switch between the included languages
@@ -54,7 +53,12 @@ Route::group([
 
 
 if (config('template.cms.cms')) {
-    if (config('template.cms.driver') === 'wink') {
+
+    $driver = config('template.cms.drivers.' . config('template.cms.driver'));
+
+    Route::get('/pages/{page:slug}', $driver['webpage_handler']);
+
+    if ($driver === 'wink') {
         Route::middleware(config('wink.middleware_group'))
             ->as('wink.')
             ->domain(config('wink.domain'))
