@@ -64,8 +64,7 @@ class ComposerServiceProvider extends ServiceProvider
             'layouts.guest',
             'welcome',
         ], function ($view) {
-
-            if(config('template.cms.cms')){
+            if (config('template.cms.cms')) {
                 $driver = config('template.cms.drivers.' . config('template.cms.driver'));
                 $navTopPagesQuery = $driver['query']['navtop'];
                 $welcomePageQuery = $driver['query']['welcome'];
@@ -76,7 +75,7 @@ class ComposerServiceProvider extends ServiceProvider
                         ->orderBy('created_at', 'desc')
                         ->first(),
                 ]);
-            }else{
+            } else {
                 $termsFile = Jetstream::localizedMarkdownPath('welcome.md');
 
                 $environment = Environment::createCommonMarkEnvironment();
