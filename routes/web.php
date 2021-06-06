@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Bridge\WinkBridgeController;
 use App\Http\Controllers\LocaleController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,22 +53,10 @@ Route::group([
 
 if (config('template.cms.cms')) {
 
-    $driver = config('template.cms.drivers.' . config('template.cms.driver'));
-
-    Route::get('/pages/{page:slug}', $driver['webpage_handler']);
-
-    if ($driver === 'wink') {
-        Route::middleware(config('wink.middleware_group'))
-            ->as('wink.')
-            ->domain(config('wink.domain'))
-            ->prefix(config('wink.path'))
-            ->group(function () {
-                Route::get('huh', function () {
-                });
-                Route::get('/login', [WinkBridgeController::class, 'showLoginForm'])->name('auth.login');
-                Route::post('/login', [WinkBridgeController::class, 'login'])->name('auth.attempt');
-                // Logout Route...
-                Route::get('/logout', [WinkBridgeController::class, 'logout'])->name('logout');
-            });
-    }
+    /*
+    *  Managed Content Routes
+    */
+    Route::group([], function () {
+        includeRouteFiles(__DIR__ . '/content/');
+    });
 }

@@ -22,7 +22,6 @@ class WinkPageSeeder extends Seeder
      */
     public function run()
     {
-
         WinkPage::create([
             'id' => Str::uuid(),
             'slug' => 'welcome',
