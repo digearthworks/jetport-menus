@@ -6,6 +6,34 @@ use Illuminate\Support\Facades\Schema;
 
 class {{ class }} extends Migration
 {
+
+    /**
+     * The database schema.
+     *
+     * @var \Illuminate\Database\Schema\Builder
+     */
+    protected $schema;
+
+    /**
+     * Create a new migration instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->schema = Schema::connection($this->getConnection());
+    }
+
+    /**
+     * Get the migration connection name.
+     *
+     * @return string|null
+     */
+    public function getConnection()
+    {
+        return config('database.default');
+    }
+
     /**
      * Run the migrations.
      *
@@ -13,7 +41,7 @@ class {{ class }} extends Migration
      */
     public function up()
     {
-        Schema::table('{{ table }}', function (Blueprint $table) {
+        $this->schema->table('{{ table }}', function (Blueprint $table) {
             //
         });
     }
@@ -25,7 +53,7 @@ class {{ class }} extends Migration
      */
     public function down()
     {
-        Schema::table('{{ table }}', function (Blueprint $table) {
+        $this->schema->table('{{ table }}', function (Blueprint $table) {
             //
         });
     }

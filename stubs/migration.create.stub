@@ -6,6 +6,34 @@ use Illuminate\Support\Facades\Schema;
 
 class {{ class }} extends Migration
 {
+
+    /**
+     * The database schema.
+     *
+     * @var \Illuminate\Database\Schema\Builder
+     */
+    protected $schema;
+
+    /**
+     * Create a new migration instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->schema = Schema::connection($this->getConnection());
+    }
+
+    /**
+     * Get the migration connection name.
+     *
+     * @return string|null
+     */
+    public function getConnection()
+    {
+        return config('database.default');
+    }
+
     /**
      * Run the migrations.
      *
@@ -13,9 +41,13 @@ class {{ class }} extends Migration
      */
     public function up()
     {
-        Schema::create('{{ table }}', function (Blueprint $table) {
+        $this->schema->create('{{ table }}', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
             $table->timestamps();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('deleted_by')->nullable();
         });
     }
 
@@ -26,6 +58,6 @@ class {{ class }} extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('{{ table }}');
+        $this->schema->dropIfExists('{{ table }}');
     }
 }
