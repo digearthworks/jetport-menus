@@ -13,7 +13,7 @@
 
     <nav class="flex flex-col flex-1 pt-8 bg-white border-r border-gray-100">
 
-        <div x-data="{ open: '{{ $adminMenuOpen ?? 'false' }}' }">
+        <div x-data="{ open: '{{ $adminMenuOpen ?? config('ui.admin_sidebar_default_open', true ) }}' }">
             <button @click="open = !open" wire:click="toggleMenuOpen('adminMenuOpen')"
                 class="flex items-center justify-between w-full px-2 py-3 text-gray-600 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
                 <span class="flex items-center">
@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <div x-data="{ open: '{{ $appMenuOpen ?? 'false' }}' }">
+        <div x-data="{ open: '{{ $appMenuOpen ?? config('ui.admin_sidebar_default_open', true ) }}' }">
             <button @click="open = !open" wire:click="toggleMenuOpen('appMenuOpen')"
                 class="flex items-center justify-between w-full px-2 py-3 text-gray-600 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
                 <span class="flex items-center">

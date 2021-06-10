@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- icons -->
-        <link href="{{ asset('css/icons/font-awesome/css/all.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/icons/fontawesome-free/css/all.css') }}" rel="stylesheet">
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -24,7 +24,7 @@
 
     <body class="font-sans antialiased">
 
-    <div x-data="{ open:false, sidebarOpen: '{{ session('sidebarOpen', config('ui.show_admin_sidebar', true )) }}', designerView: false }" class="flex min-h-screen overflow-x-hidden bg-gray-100">
+    <div x-data="{ open:false, sidebarOpen: '{{ session('sidebarOpen', config('ui.admin_sidebar_default_open', true )) }}', designerView: false }" class="flex min-h-screen overflow-x-hidden bg-gray-100">
 
         @if($logged_in_user->isAdmin())
             @livewire('admin.sidebar-menu')

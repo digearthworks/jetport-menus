@@ -21,10 +21,10 @@ class AdminSidebarMenu extends Component
 
     public function mount()
     {
-        $this->adminMenuOpen = session('adminMenuOpen', false);
-        $this->appMenuOpen = session('appMenuOpen', false);
-        $this->logsMenuOpen = session('logsMenuOpen', false);
-        $this->sidebarOpen = session('sidebarOpen', false);
+        $this->adminMenuOpen = session('adminMenuOpen', config('ui.admin_sidebar_default_open', true ));
+        $this->appMenuOpen = session('appMenuOpen', config('ui.admin_sidebar_default_open', true ));
+        $this->logsMenuOpen = session('logsMenuOpen', config('ui.admin_sidebar_default_open', true ));
+        $this->sidebarOpen = session('sidebarOpen', config('ui.admin_sidebar_default_open', true ));
     }
 
     public function toggleMenuOpen($sessionKey)

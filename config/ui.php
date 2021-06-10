@@ -33,5 +33,5 @@ return [
 
     'business_name_two' => env('DBA', 'Example Doing-Business-As'),
 
-    'show_admin_sidebar' => env('SHOW_ADMIN_SIDEBAR', true),
+    'admin_sidebar_default_open' => env('ADMIN_SIDEBAR_DEFAULT_OPEN', true),
 ];
