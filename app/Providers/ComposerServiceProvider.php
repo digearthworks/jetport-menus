@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Menu;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\SitePage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
@@ -52,31 +53,28 @@ class ComposerServiceProvider extends ServiceProvider
         });
 
         View::composer([
-            'layouts.welcome',
             'layouts.guest',
             'welcome',
         ], function ($view) {
-            if (config('template.cms.cms')) {
-                $driver = config('template.cms.drivers.' . config('template.cms.driver'));
-                $navTopPagesQuery = $driver['query']['navtop'];
-                $welcomePageQuery = $driver['query']['welcome'];
-
+            if (config('template.website.managed')) {
                 $view->with([
-                    'topPages' => ($driver['pages_model'])::where($navTopPagesQuery['key'], $navTopPagesQuery['value'])->get(),
-                    'welcomePage' => ($driver['pages_model'])::where($welcomePageQuery['key'], $welcomePageQuery['value'])
-                        ->orderBy('created_at', 'desc')
-                        ->first(),
-                ]);
-            } else {
-                $termsFile = Jetstream::localizedMarkdownPath('welcome.md');
-
-                $environment = Environment::createCommonMarkEnvironment();
-                $environment->addExtension(new GithubFlavoredMarkdownExtension());
-
-                $view->with([
-                    'welcome' => (new CommonMarkConverter([], $environment))->convertToHtml(file_get_contents($termsFile)),
+                    'welcomePage' => SitePage::welcomePages()->first(),
                 ]);
             }
+            $welcomeFile = Jetstream::localizedMarkdownPath('welcome.md');
+
+            $environment = Environment::createCommonMarkEnvironment();
+            $environment->addExtension(new GithubFlavoredMarkdownExtension());
+
+            $view->with([
+                'welcome' => (new CommonMarkConverter([], $environment))->convertToHtml(file_get_contents($welcomeFile)),
+            ]);
+        });
+
+        View::composer(['guest.includes.*',], function ($view) {
+            $view->with([
+                'guestNavigationMenu' => Menu::where('handle', 'guest_navigation')->first()
+            ]);
         });
 
         View::composer([

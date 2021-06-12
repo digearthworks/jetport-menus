@@ -42,6 +42,7 @@ class EditMenuForm extends BaseEditForm
         'iframe' => '0',
         'sort' => '1',
         'menu_id' => '',
+        'page_id' => '',
         'icon_id' => '',
     ];
 
@@ -67,8 +68,9 @@ class EditMenuForm extends BaseEditForm
         $this->state['iframe'] = $this->model->iframe;
         $this->state['sort'] = $this->model->sort;
         $this->state['menu_id'] = $this->model->menu_id;
+        $this->state['page_id'] = $this->model->page_id;
         $this->state['icon_id'] = $this->model->icon->input;
-        $this->model->load('icon');
+        $this->model->load('icon', 'page');
 
         $this->iconPreview = $this->model->icon->art;
 
@@ -125,6 +127,8 @@ class EditMenuForm extends BaseEditForm
             'title' => ['string', 'nullable'],
             'iframe' => ['int'],
             'sort' => ['int', 'nullable'],
+            'page_id' => ['int', 'nullable'],
+            'menu_id' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
         $menus->saveAs($this->state, $this->model);

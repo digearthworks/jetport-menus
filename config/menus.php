@@ -9,6 +9,8 @@ return [
      */
     'url_segments' => [
 
+        'pages_prefix' => '/pages/',
+
         /**
          * The Route prefix under which views should be loaded in an iframe.
          * This can be useful when you want to keep the appearance of the

@@ -23,12 +23,12 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.4.4",
         "onecentlin/laravel-adminer": "^5.2",
-        "rappasoft/laravel-livewire-tables": "^1.7",
+        "rappasoft/laravel-livewire-tables": "^1.8",
         "spatie/blink": "^1.1",
+        "spatie/browsershot": "^3.46",
         "spatie/eloquent-sortable": "^3.11",
         "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-permission": "^4.0",
-        "themsaid/wink": "^1.2",
         "wildside/userstamps": "^2.1"
     },
     "require-dev": {

@@ -54,17 +54,12 @@ class IconsTable extends BaseDataTable
                 $table->string('class')->nullable();
                 $table->string('version')->nullable();
                 $table->text('html')->nullable();
-                $table->string('unicode')->nullable();
-                $table->string('mime_type')->nullable();
-                $table->string('encoding')->nullable();
-                $table->string('url')->nullable();
-                $table->integer('weight')->nullable();
                 $table->integer('created_by')->nullable();
                 $table->integer('updated_by')->nullable();
                 $table->integer('deleted_by')->nullable();
                 $table->timestamps();
                 $table->softDeletes();
-                $table->unique(['source', 'class', 'version'], 'source_class_version');
+                $table->unique(['source','class','version'], 'source_class_version');
             });
 
             $fontAwesomeIcons = FontAwesome::all();

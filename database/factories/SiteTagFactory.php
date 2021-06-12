@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\WebPage;
+use App\Models\SiteTag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class WebPageFactory extends Factory
+class SiteTagFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = WebPage::class;
+    protected $model = SiteTag::class;
 
     /**
      * Define the model's default state.

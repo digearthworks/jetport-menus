@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWebPagesTable extends Migration
+class CreateSitePagesTable extends Migration
 {
 
     /**
@@ -41,43 +41,56 @@ class CreateWebPagesTable extends Migration
      */
     public function up()
     {
-        $this->schema->create('web_pages', function (Blueprint $table) {
+        $this->schema->create('site_tags', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
+            $table->boolean('active')->nullable();
+            $table->string('slug')->unique();
+            $table->string('name');
+            $table->string('color')->nullable();
+            $table->string('layout')->nullable();
+            $table->integer('sort')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('deleted_by')->nullable();
+        });
+
+        $this->schema->create('site_pages', function (Blueprint $table) {
+            $table->id();
+            $table->uuid('uuid');
+            $table->boolean('active')->nullable();
             $table->string('slug')->unique();
             $table->string('title');
             $table->text('body');
+            $table->string('layout')->nullable();
+            $table->integer('sort')->nullable();
             $table->text('meta')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
-        });
-        $this->schema->create('web_tags', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('uuid');
-            $table->string('slug')->unique();
-            $table->string('name');
-            $table->string('color')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->unsignedBigInteger('deleted_by')->nullable();
+            $table->unsignedBigInteger('site_tag_id')->nullable();
+
+            $table->foreign('site_tag_id')
+            ->references('id')
+            ->on('site_tags')
+            ->onDelete('cascade');
         });
 
-        $this->schema->create('web_taggables', function (Blueprint $table) {
-            $table->unsignedBigInteger('web_tag_id');
-            $table->morphs('web_taggable');
+        $this->schema->create('site_taggables', function (Blueprint $table) {
+            $table->unsignedBigInteger('site_tag_id');
+            $table->morphs('site_taggable');
 
-            $table->foreign('web_tag_id')
+            $table->foreign('site_tag_id')
                 ->references('id')
-                ->on('web_tags')
+                ->on('site_tags')
                 ->onDelete('cascade');
 
-            $table->primary(['web_tag_id', 'web_taggable_id'], 'web_taggable_web_tag_id_web_taggable_id_primary');
-            $table->unique(['web_tag_id', 'web_taggable_id']);
+            $table->primary(['site_tag_id', 'site_taggable_id'], 'site_taggable_site_tag_id_site_taggable_id_primary');
+            $table->unique(['site_tag_id', 'site_taggable_id']);
         });
     }
 
@@ -88,8 +101,8 @@ class CreateWebPagesTable extends Migration
      */
     public function down()
     {
-        $this->schema->dropIfExists('web_taggables');
-        $this->schema->dropIfExists('web_tags');
-        $this->schema->dropIfExists('web_pages');
+        $this->schema->dropIfExists('site_taggables');
+        $this->schema->dropIfExists('site_tags');
+        $this->schema->dropIfExists('site_pages');
     }
 }
