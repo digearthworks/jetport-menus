@@ -85,12 +85,18 @@ class EditSitePageForm extends BaseEditForm
                 'slug' => $this->state['slug'] ?? $this->model->slug,
                 'body' => $this->state['body'] ?? $this->model->body,
                 'layout' => $this->state['layout'] ?? $this->model->layout,
-                'active' => $this->state['active'] ?? $this->model->active,
+                // 'active' => $this->state['active'] ?? $this->model->active,
                 'meta' => $this->state['meta'] ?? $this->model->meta,
             ])->save();
 
             if ($this->state['sort'] > 0) {
                 $this->model->insertAtSortPosition($this->state['sort']);
+            }
+
+            if ( (int) $this->state['active'] === 0) {
+                $this->model->deactivate();
+            }elseIf( (int) $this->state['active'] === 1){
+                $this->model->activate();
             }
         } catch (Exception $error) {
             Log::error($error);
@@ -124,12 +130,18 @@ class EditSitePageForm extends BaseEditForm
                 'slug' => $this->state['slug'] === $this->model->slug ? $this->model->slug . '-copy' : $this->state['slug'],
                 'body' => $this->state['body'] ?? $this->model->body,
                 'layout' => $this->state['layout'] ?? $this->model->layout,
-                'active' => $this->state['active'] ?? $this->model->active,
+                // 'active' => $this->state['active'] ?? $this->model->active,
                 'meta' => $this->state['meta'] ?? $this->model->meta,
             ])->save();
 
             if ($this->state['sort'] > 0) {
                 $copy->insertAtSortPosition($this->state['sort']);
+            }
+
+            if ( (int) $this->state['active'] === 0) {
+                $this->model->deactivate();
+            }elseIf( (int) $this->state['active'] === 1){
+                $this->model->activate();
             }
         } catch (Exception $error) {
             Log::error($error);

@@ -21,9 +21,9 @@ class SitePage extends Model implements Sortable
 
     protected $guarded = [];
 
-    protected $cascadeReactivates = ['group', 'tags'];
+    protected $cascadeReactivates = ['group', 'tags', 'menus'];
 
-    protected $cascadeDeactivates = [];
+    protected $cascadeDeactivates = ['menus'];
 
     public function scopeOnlyDeactivated($query)
     {
@@ -129,6 +129,6 @@ class SitePage extends Model implements Sortable
 
     public function menus()
     {
-        return $this->hasMany(Menu::class);
+        return $this->hasMany(Menu::class, 'site_page_id', 'id');
     }
 }
