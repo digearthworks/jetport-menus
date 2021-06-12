@@ -26,13 +26,6 @@
     </head>
     <body class="antialiased">
         <div class="relative flex justify-center min-h-screen py-4 bg-gray-100 items-top dark:bg-gray-900 sm:items-center sm:pt-0">
-            <div class="fixed top-0 left-0 hidden px-6 py-4 sm:block">
-                <div class="flex items-center flex-shrink-0">
-                    <a href="{{ route('index') }}">
-                        <x-jet-application-mark class="block w-auto h-9" />
-                    </a>
-                </div>
-            </div>
 
             @include('guest.includes.nav-top-left')
 
