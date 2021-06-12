@@ -7,7 +7,7 @@
         class="block w-full mb-2 border-gray-300 rounded-md shadow-sm form-select focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         >
             @isset($model->iframe)
-                <option value="{{$model->iframe}}">{{$model->iframe === 1 ? 'Yes' : 'No'}}</option>
+                <option value="{{ $model->iframe }}">{{$model->iframe === 1 ? 'Yes' : 'No'}}</option>
             @endisset
         <option value="0">No</option>
         <option value="1">Yes</option>

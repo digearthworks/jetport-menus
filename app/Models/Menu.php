@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Connection\AuthConnection;
+use App\Models\Concerns\HasIterativeQuickSort;
 use App\Models\Concerns\HasPath;
 use App\Models\Concerns\HasUuid;
 use App\Models\Concerns\Relationship\MenuRelationship;
@@ -13,7 +14,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\EloquentSortable\Sortable;
-use Spatie\EloquentSortable\SortableTrait;
 use Wildside\Userstamps\Userstamps;
 
 class Menu extends Model implements Sortable
@@ -22,11 +22,11 @@ class Menu extends Model implements Sortable
         CascadeSoftDeletes,
         GetsIconId,
         HasFactory,
+        HasIterativeQuickSort,
         HasPath,
         HasUuid,
         MenuRelationship,
         SoftDeletes,
-        SortableTrait,
         Userstamps;
 
     protected $cascadeDeletes = ['children'];

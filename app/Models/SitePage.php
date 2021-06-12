@@ -2,26 +2,26 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasIterativeQuickSort;
 use App\Models\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Spatie\EloquentSortable\Sortable;
-use Spatie\EloquentSortable\SortableTrait;
 use Wildside\Userstamps\Userstamps;
 
 class SitePage extends Model implements Sortable
 {
     use HasFactory,
+        HasIterativeQuickSort,
         HasUuid,
         Userstamps,
-        SoftDeletes,
-        SortableTrait;
+        SoftDeletes;
 
     protected $guarded = [];
 
-    protected $cascadeReactivates = [ 'group', 'tags' ];
+    protected $cascadeReactivates = ['group', 'tags'];
 
     protected $cascadeDeactivates = [];
 
@@ -38,8 +38,8 @@ class SitePage extends Model implements Sortable
     public function scopeSearch($query, $term)
     {
         return $query->where(function ($query) use ($term) {
-            $query->where('title', 'like', '%'.$term.'%')
-                ->orWhere('slug', 'like', '%'.$term.'%');
+            $query->where('title', 'like', '%' . $term . '%')
+                ->orWhere('slug', 'like', '%' . $term . '%');
         });
     }
 

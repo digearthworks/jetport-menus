@@ -22,7 +22,11 @@ class SitePageFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'slug' => $this->faker->unique()->slug(2),
+            'title' => $this->faker->unique()->sentence(3),
+            'body' => $this->faker->randomHtml(),
+            'layout' => $this->faker->randomElement(['layouts.guest', 'layouts.welcome']),
+            'active' => 1,
         ];
     }
 }

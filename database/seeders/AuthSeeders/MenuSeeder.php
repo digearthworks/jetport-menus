@@ -27,7 +27,7 @@ class MenuSeeder extends Seeder
     {
         $this->disableForeignKeys($this->connection);
 
-        Menu::create([
+        $dashboard = Menu::create([
             'group' => 'app',
             'name' => 'Dashboard',
             'handle' => 'Default Dashboard',
@@ -41,10 +41,10 @@ class MenuSeeder extends Seeder
             'icon_id' => 'fas fa-tachometer-alt',
         ]);
 
-        Menu::create([
+        $menus = Menu::create([
             'group' => 'admin',
-            'name' => 'Menu Manager',
-            'handle' => 'Menu Manager',
+            'name' => 'Menus',
+            'handle' => 'menus',
             'link' => '/admin/auth/menus',
             'type' => 'internal_link',
             'title' => 'Link to the Menu Manager',
@@ -55,10 +55,10 @@ class MenuSeeder extends Seeder
             'icon_id' => 'far fa-list-alt',
         ]);
 
-        Menu::create([
+        $icons = Menu::create([
             'group' => 'admin',
-            'name' => 'Icon Manager',
-            'handle' => 'Icon Manager',
+            'name' => 'Icons',
+            'handle' => 'icons',
             'link' => '/admin/auth/icons',
             'type' => 'internal_link',
             'title' => 'Link to the Icon Manager',
@@ -69,10 +69,10 @@ class MenuSeeder extends Seeder
             'icon_id' => 'fas fa-icons',
         ]);
 
-        Menu::create([
+        $users = Menu::create([
             'group' => 'admin',
-            'name' => 'User Manager',
-            'handle' => 'User Manager',
+            'name' => 'Users',
+            'handle' => 'users',
             'link' => '/admin/auth/users',
             'type' => 'internal_link',
             'title' => 'Link to the User Manager',
@@ -83,10 +83,10 @@ class MenuSeeder extends Seeder
             'icon_id' => '<svg class="h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>',
         ]);
 
-        Menu::create([
+        $roles = Menu::create([
             'group' => 'admin',
-            'name' => 'Role Manager',
-            'handle' => 'Role Manager',
+            'name' => 'Roles',
+            'handle' => 'roles',
             'link' => '/admin/auth/roles',
             'type' => 'internal_link',
             'title' => 'Link to the Role Manager',
@@ -111,7 +111,7 @@ class MenuSeeder extends Seeder
         ]);
 
         if (config('template.website.managed')) {
-            Menu::create([
+            $webpages = Menu::create([
                 'group' => 'admin',
                 'name' => 'Webpages',
                 'handle' => 'webpages',
@@ -119,23 +119,24 @@ class MenuSeeder extends Seeder
                 'type' => 'internal_link',
                 'title' => 'Pages',
                 'active' => 1,
+                'iframe' => 0,
                 'row' => null,
                 'icon_id' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>',
             ]);
-            $guestNav = Menu::create([
+            $guestLinks = Menu::create([
                 'group' => 'app',
-                'name' => 'Guest Navigation',
-                'handle' => 'guest_navigation',
+                'name' => 'Guest Links',
+                'handle' => 'guest_links',
                 'type' => 'main_menu',
                 'title' => 'Guest Navigation Menu',
                 'active' => 1,
-                'icon_id' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>',
+                'icon_id' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>',
             ]);
 
-            $guestNav->children()->saveMany([
+            $guestLinks->children()->saveMany([
                 new Menu([
                     'group' => 'hotlinks',
-                    'name' => 'example-page',
+                    'name' => 'Example Page',
                     'handle' => 'example_page',
                     'type' => 'page',
                     'title' => 'Link to the example page',
@@ -181,6 +182,17 @@ class MenuSeeder extends Seeder
                 'iframe' => 1,
                 'icon_id' => '<svg class="h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>',
             ]),
+        ]);
+
+        Menu::setNewOrder([
+            $dashboard->id,
+            $users->id,
+            $roles->id,
+            $menus->id,
+            $icons->id,
+            $webpages->id,
+            $guestLinks->id,
+            $system->id,
         ]);
 
         $this->enableForeignKeys($this->connection);

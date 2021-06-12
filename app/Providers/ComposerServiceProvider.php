@@ -73,7 +73,7 @@ class ComposerServiceProvider extends ServiceProvider
 
         View::composer(['guest.includes.*',], function ($view) {
             $view->with([
-                'guestNavigationMenu' => Menu::where('handle', 'guest_navigation')->first()
+                'guestLinks' => Menu::where('handle', 'guest_links')->first()->children
             ]);
         });
 

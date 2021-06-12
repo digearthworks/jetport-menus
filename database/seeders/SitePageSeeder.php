@@ -244,13 +244,10 @@ class SitePageSeeder extends Seeder
             </svg></div><p><br></p>',
             'layout' => 'layouts.welcome',
             'active' => 1,
-            'sort' => 1,
         ]);
 
-        SitePage::create([
+        SitePage::factory()->create([
             'slug' => 'example-page',
-            'title' => 'This is an Example Title',
-            'body' => '<p>This is an example page</p>',
             'layout' => 'layouts.guest',
             'active' => 1,
         ]);

@@ -28,7 +28,7 @@ class SitePagesTable extends BaseDataTable
             $query = $query->onlyActive();
         }
 
-        return $query->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
+        return $query->ordered()->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
     }
 
     public function columns(): array
