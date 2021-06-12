@@ -42,7 +42,7 @@ class EditMenuForm extends BaseEditForm
         'iframe' => '0',
         'sort' => '0',
         'menu_id' => '',
-        'page_id' => '',
+        'site_page_id' => '',
         'icon_id' => '',
     ];
 
@@ -68,9 +68,9 @@ class EditMenuForm extends BaseEditForm
         $this->state['iframe'] = $this->model->iframe;
         $this->state['sort'] = $this->model->sort;
         $this->state['menu_id'] = $this->model->menu_id;
-        $this->state['page_id'] = $this->model->page_id;
+        $this->state['site_page_id'] = $this->model->site_page_id;
         $this->state['icon_id'] = $this->model->icon->input;
-        $this->model->load('icon', 'page');
+        $this->model->load('icon', 'sitePage');
 
         $this->iconPreview = $this->model->icon->art;
 
@@ -127,7 +127,7 @@ class EditMenuForm extends BaseEditForm
             'title' => ['string', 'nullable'],
             'iframe' => ['boolean', 'nullable'],
             'sort' => ['int', 'nullable'],
-            'page_id' => ['int', 'nullable'],
+            'site_page_id' => ['int', 'nullable'],
             'menu_id' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
 

@@ -45,6 +45,7 @@ class Menu extends Model implements Sortable
         return ltrim(str_replace(array_values(config('menus.url_segments', [])), '', $slug), '/');
     }
 
+
     /**
      * Create a new factory instance for the model.
      *
@@ -108,8 +109,8 @@ class Menu extends Model implements Sortable
 
     public function getLinkAttribute($value)
     {
-        if (isset($this->page_id)) {
-            return config('menus.url_segments.pages_prefix') . $this->page->slug;
+        if (isset($this->site_page_id)) {
+            return config('menus.url_segments.pages_prefix') . $this->sitePage->slug;
         }
 
         if (!$this->is_active) {
@@ -401,7 +402,7 @@ class Menu extends Model implements Sortable
         return self::where('name', 'Dashboard')->first();
     }
 
-    public function page()
+    public function sitePage()
     {
         return $this->belongsTo(SitePage::class);
     }

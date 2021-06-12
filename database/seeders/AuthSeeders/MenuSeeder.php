@@ -141,7 +141,7 @@ class MenuSeeder extends Seeder
                     'type' => 'page',
                     'title' => 'Link to the example page',
                     'active' => 1,
-                    'page_id' => SitePage::where('slug', 'example-page')->first()->id,
+                    'site_page_id' => SitePage::where('slug', 'example-page')->first()->id,
                     'icon_id' => 1,
                 ]),
             ]);
