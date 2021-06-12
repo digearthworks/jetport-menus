@@ -37,7 +37,8 @@ class CreateSitePageForm extends BaseCreateForm
             'slug' => ['required', 'min:1', 'max:100', Rule::unique('site_pages')],
             'body' => ['string'],
             'layout' => ['string', 'min:1', 'max:100', 'nullable'],
-            'active' => ['int'],
+            'active' => ['int', 'nullable'],
+            'sort' => ['int', 'nullable'],
             'meta' => ['array', 'nullable'],
 
         ])->validateWithBag('createdsitePageForm');

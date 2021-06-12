@@ -33,6 +33,7 @@ class EditSitePageForm extends BaseEditForm
         'body' => '',
         'layout' => '',
         'active' =>  1,
+        'sort' =>  0,
         'meta' => [],
     ];
 
@@ -53,6 +54,7 @@ class EditSitePageForm extends BaseEditForm
         $this->state['body'] = $this->model->body;
         $this->state['layout'] = $this->model->layout;
         $this->state['active'] = $this->model->active;
+        $this->state['sort'] = $this->model->sort;
         $this->state['meta'] = $this->model->meta;
 
         $this->dispatchBrowserEvent('showing-edit-modal');
@@ -72,7 +74,8 @@ class EditSitePageForm extends BaseEditForm
             'slug' => ['required', 'min:1', 'max:100', Rule::unique('site_pages')->ignore($this->modelId)],
             'body' => ['string'],
             'layout' => ['string', 'min:1', 'max:100', 'nullable'],
-            'active' => ['int'],
+            'active' => ['int', 'nullable'],
+            'sort' => ['int', 'nullable'],
             'meta' => ['array', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
@@ -85,6 +88,10 @@ class EditSitePageForm extends BaseEditForm
                 'active' => $this->state['active'] ?? $this->model->active,
                 'meta' => $this->state['meta'] ?? $this->model->meta,
             ])->save();
+
+            if ($this->state['sort'] > 0) {
+                $this->model->insertAtSortPosition($this->state['sort']);
+            }
         } catch (Exception $error) {
             Log::error($error);
         }
@@ -103,7 +110,8 @@ class EditSitePageForm extends BaseEditForm
             'slug' => ['required', 'min:1', 'max:100', Rule::unique('site_pages')->ignore($this->modelId)],
             'body' => ['string'],
             'layout' => ['string', 'min:1', 'max:100', 'nullable'],
-            'active' => ['int'],
+            'active' => ['int', 'nullable'],
+            'sort' => ['int', 'nullable'],
             'meta' => ['array', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
@@ -119,6 +127,10 @@ class EditSitePageForm extends BaseEditForm
                 'active' => $this->state['active'] ?? $this->model->active,
                 'meta' => $this->state['meta'] ?? $this->model->meta,
             ])->save();
+
+            if ($this->state['sort'] > 0) {
+                $copy->insertAtSortPosition($this->state['sort']);
+            }
         } catch (Exception $error) {
             Log::error($error);
         }

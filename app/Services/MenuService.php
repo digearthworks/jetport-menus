@@ -46,13 +46,8 @@ class MenuService extends BaseService
                 'icon_id' => $data['icon_id'] ?? null,
             ]);
 
-            if (isset($data['sort']) && $this->model->buildSortQuery()->where('sort', $data['sort'])->count()) {
-
-                // get the diff
-                $diff = $menu->sort - $data['sort'];
-                for ($i = 0; $i < $diff; $i++) {
-                    $menu->moveOrderUp();
-                }
+            if (isset($data['sort']) && $data['sort'] > 0) {
+                $menu->insertAtSortPosition($data['sort']);
             }
         } catch (Exception $e) {
             DB::rollBack();
@@ -111,24 +106,8 @@ class MenuService extends BaseService
                 'icon_id' => $data['icon_id'] ?? ($menu->icon_id ?? null),
             ]);
 
-            if (isset($data['sort']) && ($this->querySortCollisions($menu, $data['sort']))->count()) {
-
-                //wheth to move up or down
-                if ($menu->sort > ($this->querySortCollisions($menu, $data['sort']))->first()->sort) {
-
-                    // get the diff
-                    $diff = $menu->sort - $data['sort'];
-                    for ($i = 0; $i < $diff; $i++) {
-                        $menu->moveOrderUp();
-                    }
-                } else {
-
-                    // get the diff
-                    $diff = $data['sort'] - $menu->sort;
-                    for ($i = 0; $i < $diff; $i++) {
-                        $menu->moveOrderDown();
-                    }
-                }
+            if (isset($data['sort']) && $data['sort'] > 0) {
+                $menu->insertAtSortPosition($data['sort']);
             }
         } catch (Exception $e) {
             DB::rollBack();

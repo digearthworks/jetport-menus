@@ -1,7 +1,7 @@
 <div class="fixed top-0 right-0 hidden px-6 py-4 sm:block">
-    @foreach($guestNavigationMenu->children as $menu)
-        <x-jet-nav-link  href="{{ $menu->link }}" :active="currentRouteHas($menu->link)">
-            {{__(':title', [ 'title' => isset($menu->page->name) ? $menu->page->name : $menu->name ])}}
+    @foreach($guestLinks as $menuItem)
+        <x-jet-nav-link  href="{{ $menuItem->link }}" :active="currentRouteHas($menuItem->link)">
+            {{__(':title', [ 'title' => isset($menuItem->page->name) ? $menuItem->page->name : $menuItem->name ])}}
         </x-jet-nav-link>
     @endforeach
     @if (Route::has('login'))

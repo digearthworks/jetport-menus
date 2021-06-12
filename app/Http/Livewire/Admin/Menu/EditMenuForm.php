@@ -40,7 +40,7 @@ class EditMenuForm extends BaseEditForm
         'active' => '1',
         'title' => '',
         'iframe' => '0',
-        'sort' => '1',
+        'sort' => '0',
         'menu_id' => '',
         'page_id' => '',
         'icon_id' => '',
@@ -97,7 +97,7 @@ class EditMenuForm extends BaseEditForm
             'type' => ['required', 'string'],
             'active' => ['int'],
             'title' => ['string', 'nullable'],
-            'iframe' => ['int'],
+            'iframe' => ['boolean', 'nullable'],
             'sort' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
@@ -125,7 +125,7 @@ class EditMenuForm extends BaseEditForm
             'type' => ['required', 'string'],
             'active' => ['int'],
             'title' => ['string', 'nullable'],
-            'iframe' => ['int'],
+            'iframe' => ['boolean', 'nullable'],
             'sort' => ['int', 'nullable'],
             'page_id' => ['int', 'nullable'],
             'menu_id' => ['int', 'nullable'],
