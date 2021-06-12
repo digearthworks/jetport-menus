@@ -1,4 +1,4 @@
-@props(['id', 'maxWidth'])
+@props(['id', 'maxWidth', 'overflowHidden'])
 
 @php
 $id = $id ?? md5($attributes->wire('model'));
@@ -9,8 +9,14 @@ $maxWidth = [
     'lg' => 'sm:max-w-lg',
     'xl' => 'sm:max-w-xl',
     '2xl' => 'sm:max-w-2xl',
-    '7xl' => 'sm:max-w-7xl'
+    '7xl' => 'sm:max-w-7xl',
+    'screen-sm' => 'max-w-screen-sm',
+    'screen-md' => 'max-w-screen-md',
+    'screen-lg' => 'max-w-screen-lg',
 ][$maxWidth ?? '7xl'];
+
+$overflowHidden = (isset($overflowHidden) && $overflowHidden === false) ? '' : 'overflow-hidden';
+
 @endphp
 
 <div
@@ -56,7 +62,7 @@ $maxWidth = [
         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
     </div>
 
-    <div x-cloak x-show="show" class="mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full {{ $maxWidth }} sm:mx-auto"
+    <div x-cloak x-show="show" class="mb-6 bg-white rounded-lg shadow-xl transform transition-all sm:w-full {{ $overflowHidden }} {{ $maxWidth }} sm:mx-auto"
                     x-transition:enter="ease-out duration-300"
                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"

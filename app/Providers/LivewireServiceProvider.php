@@ -21,6 +21,13 @@ use App\Http\Livewire\Admin\Role\CreateRoleButton;
 use App\Http\Livewire\Admin\Role\CreateRoleForm;
 use App\Http\Livewire\Admin\Role\DeleteRoleDialog;
 use App\Http\Livewire\Admin\Role\EditRoleForm;
+use App\Http\Livewire\Admin\Site\CreateSitePageButton;
+use App\Http\Livewire\Admin\Site\CreateSitePageForm;
+use App\Http\Livewire\Admin\Site\DeactivateSitePageDialog;
+use App\Http\Livewire\Admin\Site\DeleteSitePageDialog;
+use App\Http\Livewire\Admin\Site\EditSitePageForm;
+use App\Http\Livewire\Admin\Site\ReactivateSitePageDialog;
+use App\Http\Livewire\Admin\Site\RestoreSitePageDialog;
 use App\Http\Livewire\Admin\User\ClearUserSessionDialog;
 use App\Http\Livewire\Admin\User\CreateUserButton;
 use App\Http\Livewire\Admin\User\CreateUserForm;
@@ -76,5 +83,13 @@ class LivewireServiceProvider extends ServiceProvider
 
         Livewire::component('includes.dashboard-grid', DashboardGrid::class);
         Livewire::component('menu.includes.menu-grid', MenuGrid::class);
+
+        Livewire::component('admin.site.pages.create', CreateSitePageForm::class);
+        Livewire::component('admin.site.pages.edit', EditSitePageForm::class);
+        Livewire::component('admin.site.pages.delete', DeleteSitePageDialog::class);
+        Livewire::component('admin.site.pages.restore', RestoreSitePageDialog::class);
+        Livewire::component('admin.site.pages.deactivate', DeactivateSitePageDialog::class);
+        Livewire::component('admin.site.pages.reactivate', ReactivateSitePageDialog::class);
+        Livewire::component('admin.site.pages.includes.partials.create-site-page-button', CreateSitePageButton::class);
     }
 }

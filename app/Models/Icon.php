@@ -39,9 +39,9 @@ class Icon extends Model
             return $html;
         }
         $openedtags = array_reverse($openedtags);
-        for ($i=0; $i < $len_opened; $i++) {
+        for ($i = 0; $i < $len_opened; $i++) {
             if (!in_array($openedtags[$i], $closedtags)) {
-                $html .= '</'.$openedtags[$i].'>';
+                $html .= '</' . $openedtags[$i] . '>';
             } else {
                 unset($closedtags[array_search($openedtags[$i], $closedtags)]);
             }

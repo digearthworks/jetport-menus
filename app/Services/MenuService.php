@@ -42,6 +42,7 @@ class MenuService extends BaseService
                 // 'sort' => $data['sort'] ?? null,
                 // 'row' => $data['row'] ?? null,
                 'menu_id' => $data['menu_id'] ?? null,
+                'page_id' => $data['page_id'] ?? null,
                 'icon_id' => $data['icon_id'] ?? null,
             ]);
 
@@ -106,6 +107,7 @@ class MenuService extends BaseService
                 // 'sort' => $data['sort'] ?? $menu->sort,
                 // 'row' => $data['row'] ?? $menu->row,
                 'menu_id' => $data['menu_id'] ?? ($menu->menu_id ?? null),
+                'page_id' => $data['page_id'] ?? ($menu->page_id ?? null),
                 'icon_id' => $data['icon_id'] ?? ($menu->icon_id ?? null),
             ]);
 

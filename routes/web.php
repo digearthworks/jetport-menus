@@ -51,12 +51,10 @@ Route::group([
 });
 
 
-if (config('template.cms.cms')) {
 
-    /*
-    *  Managed Content Routes
-    */
-    Route::group([], function () {
-        includeRouteFiles(__DIR__ . '/content/');
-    });
-}
+/*
+*  Public Website Routes
+*/
+Route::group([], function () {
+    includeRouteFiles(__DIR__ . '/website/');
+});

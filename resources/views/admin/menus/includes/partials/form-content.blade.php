@@ -12,9 +12,13 @@
 
     @include('admin.menus.includes.form.select-type')
 
-    <!-- Only shows if type is admin -->
-    <div x-cloak x-show="menuType !='main_menu'">
+
+    <div x-cloak x-show="menuType !='main_menu' && menuType !='page' ">
         @include('admin.menus.includes.form.link')
+    </div>
+
+    <div x-cloak x-show="menuType ==='page' ">
+        @include('admin.menus.includes.form.select-page')
     </div>
 
     @include('admin.menus.includes.form.select-active')

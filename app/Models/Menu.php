@@ -108,6 +108,10 @@ class Menu extends Model implements Sortable
 
     public function getLinkAttribute($value)
     {
+        if (isset($this->page_id)) {
+            return config('menus.url_segments.pages_prefix') . $this->page->slug;
+        }
+
         if (!$this->is_active) {
             return $this->disabled_link;
         }
@@ -395,5 +399,10 @@ class Menu extends Model implements Sortable
     public static function dashboard()
     {
         return self::where('name', 'Dashboard')->first();
+    }
+
+    public function page()
+    {
+        return $this->belongsTo(SitePage::class);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\WebPage;
+use App\Models\sitePage;
 use Illuminate\Http\Request;
 
-class WebPageController extends Controller
+class sitePageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class WebPageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\WebPage  $webPage
+     * @param  \App\Models\sitePage  $sitePage
      * @return \Illuminate\Http\Response
      */
-    public function show(WebPage $webPage)
+    public function show(sitePage $sitePage)
     {
         //
     }
@@ -52,10 +52,10 @@ class WebPageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\WebPage  $webPage
+     * @param  \App\Models\sitePage  $sitePage
      * @return \Illuminate\Http\Response
      */
-    public function edit(WebPage $webPage)
+    public function edit(sitePage $sitePage)
     {
         //
     }
@@ -64,10 +64,10 @@ class WebPageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\WebPage  $webPage
+     * @param  \App\Models\sitePage  $sitePage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WebPage $webPage)
+    public function update(Request $request, sitePage $sitePage)
     {
         //
     }
@@ -75,10 +75,10 @@ class WebPageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\WebPage  $webPage
+     * @param  \App\Models\sitePage  $sitePage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(WebPage $webPage)
+    public function destroy(sitePage $sitePage)
     {
         //
     }

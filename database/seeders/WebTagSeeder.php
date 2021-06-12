@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class WebTagSeeder extends Seeder
+class SiteTagSeeder extends Seeder
 {
     /**
      * Run the database seeds.

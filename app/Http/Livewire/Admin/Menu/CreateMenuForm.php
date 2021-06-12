@@ -32,6 +32,7 @@ class CreateMenuForm extends BaseCreateForm
         'sort' => '',
         'row' => '',
         'menu_id' => '',
+        'page_id' => '',
         'icon_id' => '',
     ];
 
@@ -77,6 +78,7 @@ class CreateMenuForm extends BaseCreateForm
             'iframe' => ['int'],
             'sort' => ['int', 'nullable'],
             'menu_id' => ['int', 'nullable'],
+            'page_id' => ['int', 'nullable'],
         ])->validateWithBag('createMenuForm');
 
         $menus->store($this->state);

@@ -11,8 +11,6 @@ use App\Events\User\UserStatusChanged;
 use App\Events\User\UserUpdated;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\PasswordReset;
-use Str;
-use Wink\WinkAuthor;
 
 /**
  * Class UserEventListener.
@@ -75,10 +73,6 @@ class UserEventListener
      */
     public function onUpdated($event)
     {
-        if (config('template.cms.cms') && config('template.cms.driver') === 'wink') {
-            $this->createWinkAuthor($event);
-        }
-
         activity('user')
             ->performedOn($event->user)
             ->withProperties([
@@ -98,10 +92,6 @@ class UserEventListener
      */
     public function onDeleted($event)
     {
-        if (config('template.cms.cms') && config('template.cms.driver') === 'wink') {
-            $this->deleteWinkAuthor($event);
-        }
-
         activity('user')
             ->performedOn($event->user)
             ->log(':causer.name deleted user :subject.name');
@@ -112,10 +102,6 @@ class UserEventListener
      */
     public function onRestored($event)
     {
-        if (config('template.cms.cms') && config('template.cms.driver') === 'wink') {
-            $this->createWinkAuthor($event);
-        }
-
         activity('user')
             ->performedOn($event->user)
             ->log(':causer.name restored user :subject.name');
@@ -126,10 +112,6 @@ class UserEventListener
      */
     public function onDestroyed($event)
     {
-        if (config('template.cms.cms') && config('template.cms.driver') === 'wink') {
-            $this->deleteWinkAuthor($event);
-        }
-
         activity('user')
             ->performedOn($event->user)
             ->log(':causer.name permanently deleted user :subject.name');
@@ -200,33 +182,5 @@ class UserEventListener
             UserStatusChanged::class,
             'App\Listeners\UserEventListener@onStatusChanged'
         );
-    }
-
-    protected function createWinkAuthor($event)
-    {
-        if (!$event->user->hasRole(config('template.auth.access.role.admin'))) {
-            return;
-        }
-        WinkAuthor::firstOrCreate([
-            'email' => $event->user->email,
-        ], [
-            'id' => (string) Str::uuid(),
-            'name' => $event->user->name,
-            'slug' => Str::slug($event->user->name),
-            'bio' => 'This is me.',
-            'email' => $event->user->email,
-            'password' => $event->user->password,
-        ]);
-    }
-
-    protected function deleteWinkAuthor($event)
-    {
-        $author = WinkAuthor::where([
-            'email' => $event->user->email,
-        ])->first();
-
-        if ($author) {
-            $author->delete();
-        }
     }
 }

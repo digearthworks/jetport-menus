@@ -17,17 +17,16 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(AuthSeeder::class);
-
         if (app()->environment(['local', 'testing'])) {
             $this->call(ClientSeederExample::class);
-            if (config('template.cms.cms') && config('template.cms.driver') === 'wink') {
-                $this->call(WinkPageSeeder::class);
+            if (config('template.website.managed')) {
+                $this->call(SitePageSeeder::class);
             }
             if (config('template.posts.active')) {
                 $this->call(PostSeeder::class);
             }
         }
+        $this->call(AuthSeeder::class);
 
         Model::reguard();
     }

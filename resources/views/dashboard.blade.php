@@ -10,9 +10,10 @@
 
     </x-slot>
         <livewire:includes.dashboard-grid />
+
+        @if($logged_in_user->isAdmin())
+            <livewire:admin.menus.edit />
+            <livewire:admin.menus.delete />
+        @endif
 </x-7xl>
-@if($logged_in_user->isAdmin())
-    <livewire:admin.menus.edit />
-    <livewire:admin.menus.delete />
-@endif
 

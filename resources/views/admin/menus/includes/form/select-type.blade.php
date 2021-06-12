@@ -9,6 +9,7 @@
         <option value="main_menu">{{ (isset($item) && $item) ? 'Link to selected menu' : 'Menu'}}</option>
         <option value="internal_link">Local Link</option>
         <option value="external_link">External Link</option>
+        <option value="page">Link a Page</option>
     </select>
     <x-input-error for="type" class="mt-2" />
 </div>

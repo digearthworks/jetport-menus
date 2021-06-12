@@ -2,19 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\SitePage;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
-use Wink\WinkPage;
 
-class WinkPageSeeder extends Seeder
+class SitePageSeeder extends Seeder
 {
-    private $config;
-
-    public function __construct()
-    {
-        $this->config = config('wink');
-    }
-
     /**
      * Run the database seeds.
      *
@@ -22,8 +14,7 @@ class WinkPageSeeder extends Seeder
      */
     public function run()
     {
-        WinkPage::create([
-            'id' => Str::uuid(),
+        SitePage::create([
             'slug' => 'welcome',
             'title' => 'Welcome to Jetport',
             'body' => '<div class="inline_html" contenteditable="false"><!--?xml version="1.0" encoding="iso-8859-1"?-->
@@ -251,34 +242,17 @@ class WinkPageSeeder extends Seeder
             <g>
             </g>
             </svg></div><p><br></p>',
-            'meta' => [
-                'meta_description' => 'welcome',
-                'opengraph_title' => null,
-                'opengraph_description' => null,
-                'opengraph_image' => null,
-                'opengraph_image_width' => null,
-                'opengraph_image_height' => null,
-                'twitter_title' => null,
-                'twitter_description' => null,
-                'twitter_image' => null
-            ],
+            'layout' => 'layouts.welcome',
+            'active' => 1,
+            'sort' => 1,
         ]);
-        WinkPage::create([
-            'id' => Str::uuid(),
+
+        SitePage::create([
             'slug' => 'example-page',
             'title' => 'This is an Example Title',
             'body' => '<p>This is an example page</p>',
-            'meta' => [
-                'meta_description' => 'navtop',
-                'opengraph_title' => null,
-                'opengraph_description' => null,
-                'opengraph_image' => null,
-                'opengraph_image_width' => null,
-                'opengraph_image_height' => null,
-                'twitter_title' => null,
-                'twitter_description' => null,
-                'twitter_image' => null
-            ],
+            'layout' => 'layouts.guest',
+            'active' => 1,
         ]);
     }
 }
