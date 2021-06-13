@@ -9,7 +9,7 @@ class RestoreSitePageDialog extends BaseRestoreDialog
 {
     public $eloquentRepository = SitePage::class;
 
-    public function restoreSitePage()
+    public function restoreSitePage(): void
     {
         $this->authorize('is_admin');
 
@@ -20,6 +20,9 @@ class RestoreSitePageDialog extends BaseRestoreDialog
         $this->emit('refreshWithSuccess', 'Page Restored!');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.site.pages.restore', [

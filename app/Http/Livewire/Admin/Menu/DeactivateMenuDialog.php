@@ -24,6 +24,9 @@ class DeactivateMenuDialog extends BaseDeactivateDialog
         return redirect()->route('admin.menus.deactivated');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.menus.deactivate', [

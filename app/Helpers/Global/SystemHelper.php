@@ -6,8 +6,10 @@ if (!function_exists('includeFilesInFolder')) {
      * Searches sub-directories as well.
      *
      * @param $folder
+     *
+     * @return void
      */
-    function includeFilesInFolder($folder)
+    function includeFilesInFolder($folder): void
     {
         try {
             $rdi = new RecursiveDirectoryIterator($folder);
@@ -30,15 +32,17 @@ if (!function_exists('includeRouteFiles')) {
 
     /**
      * @param $folder
+     *
+     * @return void
      */
-    function includeRouteFiles($folder)
+    function includeRouteFiles($folder): void
     {
         includeFilesInFolder($folder);
     }
 }
 
 if (!function_exists('adminer_object')) {
-    function adminer_object()
+    function adminer_object(): AdminerPlugin
     {
         // required to run any plugin
         // include_once  base_path('/adminer/plugins/plugin.php');

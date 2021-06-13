@@ -35,7 +35,7 @@ class SiteTag extends Model
         return $this->hasMany(SitePage::class)->ordered();
     }
 
-    public function activate()
+    public function activate(): void
     {
         $this->update(['active' => 1]);
 
@@ -44,7 +44,7 @@ class SiteTag extends Model
         }
     }
 
-    public function deactivate()
+    public function deactivate(): void
     {
         $this->update(['active' => 0]);
 
@@ -56,10 +56,11 @@ class SiteTag extends Model
     /**
      * Cascade deactivate the given relationship on the given mode.
      *
-     * @param  string  $relationship
-     * @return return
+     * @param string  $relationship
+     *
+     * @return void
      */
-    protected function cascadeDeactivate($relationship)
+    protected function cascadeDeactivate($relationship): void
     {
         foreach ($this->{$relationship}()->get() as $model) {
             $model->pivot ? $model->pivot->deactivate() : $model->deactivate();
@@ -69,10 +70,11 @@ class SiteTag extends Model
     /**
      * Cascade deactivate the given relationship on the given mode.
      *
-     * @param  string  $relationship
-     * @return return
+     * @param string  $relationship
+     *
+     * @return void
      */
-    protected function cascadeReactivate($relationship)
+    protected function cascadeReactivate($relationship): void
     {
         foreach ($this->{$relationship}()->get() as $model) {
             $model->pivot ? $model->pivot->activate() : $model->activate();

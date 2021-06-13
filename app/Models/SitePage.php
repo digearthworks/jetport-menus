@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 use Spatie\EloquentSortable\Sortable;
 use Wildside\Userstamps\Userstamps;
 
@@ -53,12 +54,12 @@ class SitePage extends Model implements Sortable
         return $this->active ?? false;
     }
 
-    public function group()
+    public function group(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(SiteTag::class, 'site_tag_id');
     }
 
-    public function tags()
+    public function tags(): \Illuminate\Database\Eloquent\Relations\MorphToMany
     {
         return $this->morphToMany(SiteTag::class, 'site_taggable');
     }
@@ -78,12 +79,12 @@ class SitePage extends Model implements Sortable
         return $this->body;
     }
 
-    public function getNameAttribute()
+    public function getNameAttribute(): Stringable
     {
         return Str::of($this->slug)->replace(['_', '-'], ' ')->title();
     }
 
-    public function activate()
+    public function activate(): void
     {
         $this->update(['active' => 1]);
 
@@ -92,7 +93,7 @@ class SitePage extends Model implements Sortable
         }
     }
 
-    public function deactivate()
+    public function deactivate(): void
     {
         $this->update(['active' => 0]);
 
@@ -104,10 +105,11 @@ class SitePage extends Model implements Sortable
     /**
      * Cascade deactivate the given relationship on the given mode.
      *
-     * @param  string  $relationship
-     * @return return
+     * @param string  $relationship
+     *
+     * @return void
      */
-    protected function cascadeDeactivate($relationship)
+    protected function cascadeDeactivate($relationship): void
     {
         foreach ($this->{$relationship}()->get() as $model) {
             $model->pivot ? $model->pivot->deactivate() : $model->deactivate();
@@ -117,17 +119,18 @@ class SitePage extends Model implements Sortable
     /**
      * Cascade deactivate the given relationship on the given mode.
      *
-     * @param  string  $relationship
-     * @return return
+     * @param string  $relationship
+     *
+     * @return void
      */
-    protected function cascadeReactivate($relationship)
+    protected function cascadeReactivate($relationship): void
     {
         foreach ($this->{$relationship}()->get() as $model) {
             $model->pivot ? $model->pivot->activate() : $model->activate();
         }
     }
 
-    public function menus()
+    public function menus(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Menu::class, 'site_page_id', 'id');
     }

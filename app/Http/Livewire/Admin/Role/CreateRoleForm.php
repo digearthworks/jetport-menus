@@ -22,7 +22,7 @@ class CreateRoleForm extends BaseCreateForm
         'menus' => [],
     ];
 
-    public function createRole(RoleService $roles)
+    public function createRole(RoleService $roles): void
     {
         $this->resetErrorBag();
 
@@ -38,6 +38,9 @@ class CreateRoleForm extends BaseCreateForm
         $this->creatingResource = false;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.roles.create');

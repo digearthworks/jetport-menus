@@ -226,12 +226,12 @@ class UserService extends BaseService
     }
 
     /**
-     * @param  User  $user
-     * @param  array  $data
+     * @param User  $user
+     * @param array  $data
      *
-     * @return User
+     * @return bool
      */
-    public function updateProfile(User $user, array $data = []): User
+    public function updateProfile(User $user, array $data = []): bool
     {
         $user->name = $data['name'] ?? null;
 
@@ -246,14 +246,15 @@ class UserService extends BaseService
     }
 
     /**
-     * @param  User  $user
+     * @param User  $user
      * @param $data
-     * @param  bool  $expired
+     * @param mixed
      *
-     * @return User
+     * @return mixed
+     *
      * @throws \Throwable
      */
-    public function updatePassword(User $user, $data, $expired = false): User
+    public function updatePassword(User $user, $data, $expired = false)
     {
         if (isset($data['current_password'])) {
             throw_if(
@@ -274,13 +275,15 @@ class UserService extends BaseService
     }
 
     /**
-     * @param  User  $user
+     * @param User  $user
      * @param $status
+     * @param int $status
      *
      * @return User
+     *
      * @throws GeneralException
      */
-    public function mark(User $user, $status): User
+    public function mark(User $user, int $status): User
     {
         if ($status === 0 && auth()->id() === $user->id) {
             throw new GeneralException(__('You can not do that to yourself.'));

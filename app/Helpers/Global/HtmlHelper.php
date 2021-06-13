@@ -19,8 +19,10 @@ if (! function_exists('activeClass')) {
 if (! function_exists('htmlLang')) {
     /**
      * Access the htmlLang helper.
+     *
+     * @return string
      */
-    function htmlLang()
+    function htmlLang(): string
     {
         return str_replace('_', '-', app()->getLocale());
     }

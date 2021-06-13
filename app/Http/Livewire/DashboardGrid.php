@@ -17,12 +17,12 @@ class DashboardGrid extends Component
 
     public $designerView = false;
 
-    public function designerView()
+    public function designerView(): void
     {
         $this->designerView = ! $this->designerView;
     }
 
-    public function updateSort($list)
+    public function updateSort($list): void
     {
         if ($this->designerView) {
             foreach ($list as $item) {
@@ -31,6 +31,9 @@ class DashboardGrid extends Component
         }
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('includes.dashboard-grid');

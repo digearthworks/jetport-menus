@@ -7,7 +7,7 @@ use App\Models\User;
 
 trait MenuRelationship
 {
-    public function icon()
+    public function icon(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Icon::class);
     }
@@ -17,7 +17,7 @@ trait MenuRelationship
         return $this->belongsTo(__CLASS__, 'menu_id')->with('icon', 'parent')->withTrashed();
     }
 
-    public function isParentMenu()
+    public function isParentMenu(): bool
     {
         return $this->menu_id === null;
     }
