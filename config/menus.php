@@ -9,6 +9,8 @@ return [
      */
     'url_segments' => [
 
+        'pages_prefix' => '/pages/',
+
         /**
          * The Route prefix under which views should be loaded in an iframe.
          * This can be useful when you want to keep the appearance of the
@@ -37,7 +39,7 @@ return [
          * be used to load external sites inside
          * an iframe.
          */
-        'external_link_extension' => '?externallink=',
+        'external_link_query' => '?external_link=',
     ],
 
     /**

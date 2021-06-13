@@ -6,8 +6,10 @@ if (! function_exists('setAllLocale')) {
 
     /**
      * @param $locale
+     *
+     * @return void
      */
-    function setAllLocale($locale)
+    function setAllLocale($locale): void
     {
         setAppLocale($locale);
         setPHPLocale($locale);
@@ -20,8 +22,10 @@ if (! function_exists('setAppLocale')) {
 
     /**
      * @param $locale
+     *
+     * @return void
      */
-    function setAppLocale($locale)
+    function setAppLocale($locale): void
     {
         app()->setLocale($locale);
     }
@@ -31,8 +35,10 @@ if (! function_exists('setPHPLocale')) {
 
     /**
      * @param $locale
+     *
+     * @return void
      */
-    function setPHPLocale($locale)
+    function setPHPLocale($locale): void
     {
         setlocale(LC_TIME, $locale);
     }
@@ -42,8 +48,10 @@ if (! function_exists('setCarbonLocale')) {
 
     /**
      * @param $locale
+     *
+     * @return void
      */
-    function setCarbonLocale($locale)
+    function setCarbonLocale($locale): void
     {
         Carbon::setLocale($locale);
     }
@@ -53,8 +61,10 @@ if (! function_exists('setLocaleReadingDirection')) {
 
     /**
      * @param $locale
+     *
+     * @return void
      */
-    function setLocaleReadingDirection($locale)
+    function setLocaleReadingDirection($locale): void
     {
         /*
          * Set the session variable for whether or not the app is using RTL support

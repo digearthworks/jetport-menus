@@ -137,8 +137,9 @@ class OAuthClientManager extends Component
     /**
      * Allow the given Client to be managed.
      *
-     * @param  string  $clientId
-     * @param  Laravel\Passport\ClientRepository  $clients
+     * @param string  $clientId
+     * @param ClientRepository $clients
+     *
      * @return void
      */
     public function manageClient($managingClientId, ClientRepository $clients)
@@ -159,7 +160,8 @@ class OAuthClientManager extends Component
     /**
      * Update the Client.
      *
-     * @param  Laravel\Passport\ClientRepository  $clients
+     * @param ClientRepository $clients
+     *
      * @return void
      */
     public function updateClient(ClientRepository $clients)
@@ -172,8 +174,10 @@ class OAuthClientManager extends Component
 
     /**
      * Confirm that the given API token should be deleted.
+     *
+     * @return void
      */
-    public function confirmDeletion($clientIdBeingDeleted)
+    public function confirmDeletion($clientIdBeingDeleted): void
     {
         $this->confirmingDeletion = true;
 
@@ -183,7 +187,8 @@ class OAuthClientManager extends Component
     /**
      * Delete the Client.
      *
-     * @param  Laravel\Passport\ClientRepository  $clients
+     * @param ClientRepository $clients
+     *
      * @return void
      */
     public function deleteClient(ClientRepository $clients)
@@ -209,6 +214,9 @@ class OAuthClientManager extends Component
         return Auth::user();
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('api.client-manager');

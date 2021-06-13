@@ -8,7 +8,7 @@ trait HandlesRestoreDialogInteraction
 
     public $confirmingRestore = false;
 
-    public function confirmRestore($resourceId)
+    public function confirmRestore($resourceId): void
     {
         $this->withTrashed = true;
         $this->modelId = $resourceId;
@@ -16,7 +16,7 @@ trait HandlesRestoreDialogInteraction
         $this->dispatchBrowserEvent('showing-confirm-restore-modal');
     }
 
-    public function closeConfirmRestore()
+    public function closeConfirmRestore(): void
     {
         $this->confirmingRestore = false;
         $this->dispatchBrowserEvent('closing-confirm-restore-modal');

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Role;
 
-use App\Http\Livewire\Admin\BaseCreateForm;
+use App\Http\Livewire\BaseCreateForm;
 use App\Services\RoleService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -22,7 +22,7 @@ class CreateRoleForm extends BaseCreateForm
         'menus' => [],
     ];
 
-    public function createRole(RoleService $roles)
+    public function createRole(RoleService $roles): void
     {
         $this->resetErrorBag();
 
@@ -38,6 +38,9 @@ class CreateRoleForm extends BaseCreateForm
         $this->creatingResource = false;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.roles.create');

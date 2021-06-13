@@ -18,14 +18,16 @@ class CreateMenusTable extends Migration
             $table->uuid('uuid')->nullable()->unique();
             $table->string('group')->nullable();
             $table->string('name');
+            $table->string('handle');
             $table->string('link')->nullable();
             $table->string('type')->nullable();
-            $table->integer('active')->nullable();
+            $table->boolean('active')->nullable();
             $table->text('title')->nullable();
             $table->integer('iframe')->nullable();
             $table->integer('sort')->nullable();
             $table->integer('row')->nullable();
             $table->unsignedBigInteger('menu_id')->nullable();
+            $table->unsignedBigInteger('site_page_id')->nullable();
             $table->integer('icon_id')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

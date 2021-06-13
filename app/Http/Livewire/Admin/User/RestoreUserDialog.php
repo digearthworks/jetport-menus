@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Admin\BaseRestoreDialog;
+use App\Http\Livewire\BaseRestoreDialog;
 use App\Models\User;
 use App\Services\UserService;
 
@@ -24,6 +24,9 @@ class RestoreUserDialog extends BaseRestoreDialog
         return redirect()->route('admin.users');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.users.restore', [

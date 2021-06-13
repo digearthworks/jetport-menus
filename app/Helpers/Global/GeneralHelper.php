@@ -59,3 +59,21 @@ if (! function_exists('currentRouteHas')) {
         return str_contains(url()->current(), $value);
     }
 }
+
+if (! function_exists('requestPathIs')) {
+    /**
+     * Check if current request path
+     * is equal to the given string
+     * NOTE: prepends slash '/'
+     * or array of strings
+     * @param string|array $value
+     * @return bool
+     */
+    function requestPathIs($value): bool
+    {
+        if (is_array($value)) {
+            return in_array('/'.request()->path(), $value);
+        }
+        return '/'.request()->path() === $value;
+    }
+}

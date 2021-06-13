@@ -12,7 +12,7 @@ class IconSelect extends Component
     public $icons;
     public $iconSource;
 
-    public function mount()
+    public function mount(): void
     {
         $fontAwesomeIcons = FontAwesome::all();
 
@@ -22,7 +22,7 @@ class IconSelect extends Component
         $this->icons = $this->iconSource;
     }
 
-    public function updatedQuery()
+    public function updatedQuery(): void
     {
         $query = $this->query;
 
@@ -34,6 +34,9 @@ class IconSelect extends Component
         });
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.icons.icon-select');

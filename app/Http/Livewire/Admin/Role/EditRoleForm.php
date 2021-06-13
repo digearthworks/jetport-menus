@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Role;
 
-use App\Http\Livewire\Admin\BaseEditForm;
+use App\Http\Livewire\BaseEditForm;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\RoleService;

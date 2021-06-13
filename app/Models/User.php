@@ -86,4 +86,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    protected function canEditContent(): bool
+    {
+        return $this->hasRole(config('template.auth.access.role.admin'));
+    }
 }

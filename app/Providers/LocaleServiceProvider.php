@@ -12,8 +12,10 @@ class LocaleServiceProvider extends ServiceProvider
 {
     /**
      * Register bindings in the container.
+     *
+     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         setAllLocale(config('app.locale'));
 

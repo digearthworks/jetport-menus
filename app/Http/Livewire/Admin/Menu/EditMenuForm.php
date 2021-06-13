@@ -2,14 +2,20 @@
 
 namespace App\Http\Livewire\Admin\Menu;
 
-use App\Http\Livewire\Admin\BaseEditForm;
-use App\Models\Icon;
+use App\Http\Livewire\BaseEditForm;
+use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
 use App\Models\Menu;
 use App\Services\MenuService;
+use App\Support\Concerns\InteractsWithBanner;
+use Exception;
 use Illuminate\Support\Facades\Validator;
+use Log;
 
 class EditMenuForm extends BaseEditForm
 {
+    use HandlesSelectIconEvent,
+        InteractsWithBanner;
+
     protected $eloquentRepository = Menu::class;
 
     public $iconPreview;
@@ -28,25 +34,21 @@ class EditMenuForm extends BaseEditForm
     public $state = [
         'group' => 'app',
         'name' => '',
+        'handle' => '',
         'link' => '',
         'type' => 'main_menu',
         'active' => '1',
         'title' => '',
         'iframe' => '0',
-        'sort' => '1',
+        'sort' => '0',
         'menu_id' => '',
+        'site_page_id' => '',
         'icon_id' => '',
     ];
 
     public $item;
 
     public $data;
-
-    public function selectIcon($value)
-    {
-        $this->state['icon_id'] = $value;
-        $this->reloadIconPreview();
-    }
 
     public function editDialog($resourceId, $params = null)
     {
@@ -58,6 +60,7 @@ class EditMenuForm extends BaseEditForm
         $this->modelId = $resourceId;
         $this->state['group'] = $this->model->group;
         $this->state['name'] = $this->model->name;
+        $this->state['handle'] = $this->model->handle;
         $this->state['link'] = $this->model->link;
         $this->state['type'] = $this->model->type;
         $this->state['active'] = $this->model->active;
@@ -65,8 +68,9 @@ class EditMenuForm extends BaseEditForm
         $this->state['iframe'] = $this->model->iframe;
         $this->state['sort'] = $this->model->sort;
         $this->state['menu_id'] = $this->model->menu_id;
+        $this->state['site_page_id'] = $this->model->site_page_id;
         $this->state['icon_id'] = $this->model->icon->input;
-        $this->model->load('icon');
+        $this->model->load('icon', 'sitePage');
 
         $this->iconPreview = $this->model->icon->art;
 
@@ -83,35 +87,30 @@ class EditMenuForm extends BaseEditForm
     {
         $this->authorize('is_admin');
 
+        // dd($this->state);
+
         $this->resetErrorBag();
         Validator::make($this->state, [
             'group' => ['string'],
             'name' => ['required', 'string'],
+            'handle' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
             'title' => ['string', 'nullable'],
-            'iframe' => ['int'],
+            'iframe' => ['boolean', 'nullable'],
             'sort' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
-        $menus->update($this->state, $this->model);
-        $this->emit('refreshWithSuccess', 'Menu Updated!');
-        $this->editingResource = false;
-    }
-
-    public function reloadIconPreview()
-    {
-        if (strlen($this->state['icon_id']) > 32) {
-            $this->iconPreview = (new Icon([
-                'source' => 'raw',
-                'html' => $this->state['icon_id']
-            ]))->art;
-        } else {
-            $this->iconPreview = (new Icon([
-                'source' => 'FontAwesome',
-                'class' => $this->state['icon_id']
-            ]))->art;
+        try {
+            $menus->update($this->state, $this->model);
+        } catch (Exception $e) {
+            Log::error($e);
         }
+
+        $this->emit('refreshWithSuccess', 'Menu Updated!');
+        $this->emit('refreshMenuGrid');
+        $this->banner('Menu Updated');
+        $this->editingResource = false;
     }
 
     public function saveMenuAs(MenuService $menus)
@@ -122,11 +121,14 @@ class EditMenuForm extends BaseEditForm
         Validator::make($this->state, [
             'group' => ['string'],
             'name' => ['required', 'string'],
+            'handle' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
             'title' => ['string', 'nullable'],
-            'iframe' => ['int'],
+            'iframe' => ['boolean', 'nullable'],
             'sort' => ['int', 'nullable'],
+            'site_page_id' => ['int', 'nullable'],
+            'menu_id' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
         $menus->saveAs($this->state, $this->model);

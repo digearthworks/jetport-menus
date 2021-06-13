@@ -16,8 +16,13 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
+    <body class="antialiased">
+
+        @include('guest.includes.nav-top-left')
+
+        @include('guest.includes.nav-top-right')
+
+        <div class="font-sans antialiased text-gray-900">
             {{ $slot }}
         </div>
     </body>

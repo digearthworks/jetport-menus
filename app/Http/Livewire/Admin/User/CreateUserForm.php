@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Admin\BaseCreateForm;
+use App\Http\Livewire\BaseCreateForm;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -25,7 +25,7 @@ class CreateUserForm extends BaseCreateForm
         'email_verified' => '1',
     ];
 
-    public function createUser(UserService $users)
+    public function createUser(UserService $users): void
     {
         $this->authorize('admin.access.users');
 
@@ -50,6 +50,9 @@ class CreateUserForm extends BaseCreateForm
         $this->creatingResource = false;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.users.create');

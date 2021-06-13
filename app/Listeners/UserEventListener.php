@@ -11,17 +11,20 @@ use App\Events\User\UserStatusChanged;
 use App\Events\User\UserUpdated;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Events\Dispatcher;
 
 /**
  * Class UserEventListener.
  */
 class UserEventListener
 {
-    /**
-     * @param $event
-     */
+
     public function onLoggedIn($event)
     {
+        if (get_class($event->user) != config('auth.providers.users.model')) {
+            return;
+        }
+
         // Update the logging in users time & IP
         $event->user->update([
             'last_login_at' => now(),
@@ -29,21 +32,17 @@ class UserEventListener
         ]);
     }
 
-    /**
-     * @param $event
-     */
-    public function onPasswordReset($event)
+    public function onPasswordReset($event): void
     {
         $event->user->update([
             'password_changed_at' => now(),
         ]);
     }
 
-    /**
-     * @param $event
-     */
-    public function onCreated($event)
+
+    public function onCreated($event): void
     {
+
         activity('user')
             ->performedOn($event->user)
             ->withProperties([
@@ -60,10 +59,7 @@ class UserEventListener
             ->log(':causer.name created user :subject.name with roles: :properties.roles and permissions: :properties.permissions');
     }
 
-    /**
-     * @param $event
-     */
-    public function onUpdated($event)
+    public function onUpdated($event): void
     {
         activity('user')
             ->performedOn($event->user)
@@ -79,52 +75,37 @@ class UserEventListener
             ->log(':causer.name updated user :subject.name with roles: :properties.roles and permissions: :properties.permissions');
     }
 
-    /**
-     * @param $event
-     */
-    public function onDeleted($event)
+
+    public function onDeleted($event): void
     {
         activity('user')
             ->performedOn($event->user)
             ->log(':causer.name deleted user :subject.name');
     }
 
-    /**
-     * @param $event
-     */
-    public function onRestored($event)
+    public function onRestored($event): void
     {
         activity('user')
             ->performedOn($event->user)
             ->log(':causer.name restored user :subject.name');
     }
 
-    /**
-     * @param $event
-     */
-    public function onDestroyed($event)
+    public function onDestroyed($event): void
     {
         activity('user')
             ->performedOn($event->user)
             ->log(':causer.name permanently deleted user :subject.name');
     }
 
-    /**
-     * @param $event
-     */
-    public function onStatusChanged($event)
+    public function onStatusChanged($event): void
     {
+
         activity('user')
             ->performedOn($event->user)
-            ->log(':causer.name '.($event->status === 0 ? 'deactivated' : 'reactivated').' user :subject.name');
+            ->log(':causer.name ' . ($event->status === 0 ? 'deactivated' : 'reactivated') . ' user :subject.name');
     }
 
-    /**
-     * Register the listeners for the subscriber.
-     *
-     * @param \Illuminate\Events\Dispatcher $events
-     */
-    public function subscribe($events)
+    public function subscribe(Dispatcher $events): void
     {
         $events->listen(
             UserLoggedIn::class,

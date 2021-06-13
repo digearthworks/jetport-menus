@@ -12,9 +12,9 @@ trait TruncateTable
     /**
      * @param $table
      *
-     * @return bool
+     * @return bool|null
      */
-    protected function truncate($table, $connection = null)
+    protected function truncate($table, $connection = null): ?bool
     {
         switch (DB::connection($connection)->getDriverName()) {
             case 'mysql':
@@ -32,8 +32,10 @@ trait TruncateTable
 
     /**
      * @param array $tables
+     *
+     * @return void
      */
-    protected function truncateMultiple(array $tables, $connection = null)
+    protected function truncateMultiple(array $tables, $connection = null): void
     {
         foreach ($tables as $table) {
             $this->truncate($table, $connection);

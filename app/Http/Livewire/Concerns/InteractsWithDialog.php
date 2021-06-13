@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Concerns;
 
 trait InteractsWithDialog
 {
-    public function dialog(string $verb, $resourceId = null, string $params = null)
+    public function dialog(string $verb, $resourceId = null, string $params = null): void
     {
         $params = (array) json_decode($params);
 
@@ -15,12 +15,12 @@ trait InteractsWithDialog
         }
     }
 
-    public function confirm(string $verb, $resourceId = null, string $params = null)
+    public function confirm(string $verb, $resourceId = null, string $params = null): void
     {
         $this->emit('confirm' . ucfirst($verb), $resourceId);
     }
 
-    private function dialogWithParams(string $verb, array $params, $resourceId = null)
+    private function dialogWithParams(string $verb, array $params, $resourceId = null): void
     {
         $this->emit($verb . 'Dialog', $resourceId, json_encode($params));
     }

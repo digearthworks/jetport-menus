@@ -24,8 +24,10 @@ class PermissionRoleSeeder extends Seeder
 
     /**
      * Run the database seed.
+     *
+     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $this->disableForeignKeys($this->connection);
 

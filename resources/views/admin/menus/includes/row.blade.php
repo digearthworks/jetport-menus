@@ -4,7 +4,7 @@
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
-        {{ $row->name }}
+        {{ $row->handle }}
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
@@ -30,8 +30,8 @@
 
     @foreach($row->children as $child)
         <x-livewire-tables::tw.table.row
-            class="text-gray-700 bg-gray-100"
-            x-show="open"
+            class="text-gray-700 bg-gray-100 border-l-4 border-indigo-400"
+            x-cloak x-show="open"
             wire:loading.class.delay="opacity-50"
             wire:key="table-row-{{ $child->uuid }}"
         >

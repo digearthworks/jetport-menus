@@ -10,10 +10,14 @@ use Illuminate\Support\Facades\Hash;
 trait UserAttribute
 {
 
-    /** -------------MUTATORS------------------
+    /**
+     * -------------MUTATORS------------------
+     *
      * @param $sort
+     *
+     * @return void
      */
-    public function setSortAttribute($sort)
+    public function setSortAttribute($sort): void
     {
         $this->attributes['sort'] = $this->menu_id . str_replace($this->menu_id, '', $sort);
     }

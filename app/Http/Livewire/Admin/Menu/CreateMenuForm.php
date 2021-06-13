@@ -2,14 +2,18 @@
 
 namespace App\Http\Livewire\Admin\Menu;
 
-use App\Http\Livewire\Admin\BaseCreateForm;
+use App\Http\Livewire\BaseCreateForm;
+use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
 use App\Models\Icon;
 use App\Models\Menu;
 use App\Services\MenuService;
+use App\Support\Concerns\InteractsWithBanner;
 use Illuminate\Support\Facades\Validator;
 
 class CreateMenuForm extends BaseCreateForm
 {
+    use HandlesSelectIconEvent,
+        InteractsWithBanner;
 
     /**
      * The create form state.
@@ -19,6 +23,7 @@ class CreateMenuForm extends BaseCreateForm
     public $state = [
         'group' => 'app',
         'name' => '',
+        'handle' => '',
         'link' => '',
         'type' => 'main_menu',
         'active' => '1',
@@ -27,6 +32,7 @@ class CreateMenuForm extends BaseCreateForm
         'sort' => '',
         'row' => '',
         'menu_id' => '',
+        'site_page_id' => '',
         'icon_id' => '',
     ];
 
@@ -40,30 +46,10 @@ class CreateMenuForm extends BaseCreateForm
 
     public $iconPreview;
 
-    public function reloadIconPreview()
-    {
-        if (strlen($this->state['icon_id']) > 32) {
-            $this->iconPreview = (new Icon([
-                'source' => 'raw',
-                'html' => $this->state['icon_id']
-            ]))->art;
-        } else {
-            $this->iconPreview = (new Icon([
-                'source' => 'FontAwesome',
-                'class' => $this->state['icon_id']
-            ]))->art;
-        }
-    }
-
-    public function selectIcon($value)
-    {
-        $this->state['icon_id'] = $value;
-        $this->reloadIconPreview();
-    }
-
     public function createDialog($params = [])
     {
         $this->authorize('admin.access.menus');
+        $this->emit('selectIcon', Icon::first()->art);
 
         if (isset($params['item']) && $params['item']) {
             $this->state['group'] = 'hotlinks';
@@ -82,21 +68,25 @@ class CreateMenuForm extends BaseCreateForm
     {
         $this->resetErrorBag();
 
-        $valid = Validator::make($this->state, [
+        Validator::make($this->state, [
             'group' => ['string', 'required'],
             'name' => ['required', 'string'],
+            'handle' => ['required', 'string'],
             'type' => ['required', 'string'],
             'active' => ['int'],
             'title' => ['string'],
             'iframe' => ['int'],
             'sort' => ['int', 'nullable'],
             'menu_id' => ['int', 'nullable'],
+            'site_page_id' => ['int', 'nullable'],
         ])->validateWithBag('createMenuForm');
 
         $menus->store($this->state);
 
         $this->emit('refreshWithSuccess', 'Menu Created!');
         $this->emit('closeCreateDialog');
+        $this->emit('refreshMenuGrid');
+        $this->banner('Menu Created');
         $this->creatingResource = false;
     }
 

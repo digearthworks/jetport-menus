@@ -1,4 +1,4 @@
-/*! tailwindcss v2.1.2 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v2.1.4 | MIT License | https://tailwindcss.com */
 
 /*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
 
@@ -29256,6 +29256,30 @@ select {
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
+.grid-cols-16 {
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+}
+
+.grid-cols-18 {
+  grid-template-columns: repeat(18, minmax(0, 1fr));
+}
+
+.grid-cols-20 {
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+}
+
+.grid-cols-22 {
+  grid-template-columns: repeat(22, minmax(0, 1fr));
+}
+
+.grid-cols-24 {
+  grid-template-columns: repeat(24, minmax(0, 1fr));
+}
+
+.grid-cols-26 {
+  grid-template-columns: repeat(26, minmax(0, 1fr));
+}
+
 .grid-cols-none {
   grid-template-columns: none;
 }
@@ -33371,6 +33395,48 @@ select {
 
 .backdrop-sepia {
   --tw-backdrop-sepia: sepia(100%);
+}
+
+.picture-box > svg,
+.picture-box > img,
+.picture-box > i {
+  height: 100% !important;
+  width: 100% !important;
+  font-size: 70px !important;
+}
+
+.mini-box > svg,
+.mini-box > img,
+.mini-box > i {
+  height: 100% !important;
+  width: 100% !important;
+  font-size: 34px !important;
+}
+
+.picture-box > i {
+  padding-top: 15px;
+  padding-left: 10px;
+}
+
+.mini-box > i {
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.top-100 {
+  top: 100%;
+}
+
+.bottom-100 {
+  bottom: 100%;
+}
+
+.max-h-select {
+  max-height: 200px;
+}
+
+[x-cloak] {
+  display: none !important;
 }
 
 @media (min-width: 640px) {
@@ -61867,6 +61933,30 @@ select {
 
   .sm\:grid-cols-12 {
     grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-16 {
+    grid-template-columns: repeat(16, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-18 {
+    grid-template-columns: repeat(18, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-20 {
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-22 {
+    grid-template-columns: repeat(22, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-24 {
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-26 {
+    grid-template-columns: repeat(26, minmax(0, 1fr));
   }
 
   .sm\:grid-cols-none {
@@ -94325,6 +94415,30 @@ select {
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 
+  .md\:grid-cols-16 {
+    grid-template-columns: repeat(16, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-18 {
+    grid-template-columns: repeat(18, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-20 {
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-22 {
+    grid-template-columns: repeat(22, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-24 {
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-26 {
+    grid-template-columns: repeat(26, minmax(0, 1fr));
+  }
+
   .md\:grid-cols-none {
     grid-template-columns: none;
   }
@@ -126779,6 +126893,30 @@ select {
 
   .lg\:grid-cols-12 {
     grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-16 {
+    grid-template-columns: repeat(16, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-18 {
+    grid-template-columns: repeat(18, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-20 {
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-22 {
+    grid-template-columns: repeat(22, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-24 {
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-26 {
+    grid-template-columns: repeat(26, minmax(0, 1fr));
   }
 
   .lg\:grid-cols-none {
@@ -159237,6 +159375,30 @@ select {
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 
+  .xl\:grid-cols-16 {
+    grid-template-columns: repeat(16, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-18 {
+    grid-template-columns: repeat(18, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-20 {
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-22 {
+    grid-template-columns: repeat(22, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-24 {
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-26 {
+    grid-template-columns: repeat(26, minmax(0, 1fr));
+  }
+
   .xl\:grid-cols-none {
     grid-template-columns: none;
   }
@@ -191691,6 +191853,30 @@ select {
 
   .\32xl\:grid-cols-12 {
     grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .\32xl\:grid-cols-16 {
+    grid-template-columns: repeat(16, minmax(0, 1fr));
+  }
+
+  .\32xl\:grid-cols-18 {
+    grid-template-columns: repeat(18, minmax(0, 1fr));
+  }
+
+  .\32xl\:grid-cols-20 {
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+  }
+
+  .\32xl\:grid-cols-22 {
+    grid-template-columns: repeat(22, minmax(0, 1fr));
+  }
+
+  .\32xl\:grid-cols-24 {
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+  }
+
+  .\32xl\:grid-cols-26 {
+    grid-template-columns: repeat(26, minmax(0, 1fr));
   }
 
   .\32xl\:grid-cols-none {

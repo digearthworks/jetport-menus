@@ -33,6 +33,7 @@ class MenuService extends BaseService
             $menu = $this->model::create([
                 'group' => $data['group'] ?? null,
                 'name' => $data['name'] ?? null,
+                'handle' => $data['handle'] ?? null,
                 'link' => $data['link'] ?? null,
                 'type' => $data['type'] ?? null,
                 'title' => $data['title'] ?? null,
@@ -41,16 +42,12 @@ class MenuService extends BaseService
                 // 'sort' => $data['sort'] ?? null,
                 // 'row' => $data['row'] ?? null,
                 'menu_id' => $data['menu_id'] ?? null,
+                'site_page_id' => $data['site_page_id'] ?? null,
                 'icon_id' => $data['icon_id'] ?? null,
             ]);
 
-            if (isset($data['sort']) && $this->model->buildSortQuery()->where('sort', $data['sort'])->count()) {
-
-                // get the diff
-                $diff = $menu->sort - $data['sort'];
-                for ($i = 0; $i < $diff; $i ++) {
-                    $menu->moveOrderUp();
-                }
+            if (isset($data['sort']) && $data['sort'] > 0) {
+                $menu->insertAtSortPosition($data['sort']);
             }
         } catch (Exception $e) {
             DB::rollBack();
@@ -88,7 +85,7 @@ class MenuService extends BaseService
         return $this->recursiveOperation($menu, 'activate');
     }
 
-    public function update(array $data, Menu $menu)
+    public function update(array $data, Menu $menu): Menu
     {
         DB::beginTransaction();
 
@@ -96,6 +93,7 @@ class MenuService extends BaseService
             $menu->update([
                 'group' => $data['group'] ?? $menu->group,
                 'name' => $data['name'] ?? $menu->name,
+                'handle' => $data['handle'] ?? null,
                 'link' => $data['link'] ?? $menu->link,
                 'type' => $data['type'] ?? $menu->type,
                 'title' => $data['title'] ?? $menu->title,
@@ -104,31 +102,17 @@ class MenuService extends BaseService
                 // 'sort' => $data['sort'] ?? $menu->sort,
                 // 'row' => $data['row'] ?? $menu->row,
                 'menu_id' => $data['menu_id'] ?? ($menu->menu_id ?? null),
+                'site_page_id' => $data['site_page_id'] ?? ($menu->site_page_id ?? null),
                 'icon_id' => $data['icon_id'] ?? ($menu->icon_id ?? null),
             ]);
 
-            if (isset($data['sort']) && $this->model->where('sort', $data['sort'])->where('id', '!=', $menu->id)->count()) {
-                //wheth to move up or down
-                if ($menu->sort > $this->model->buildSortQuery()->where('sort', $data['sort'])->where('id', '!=', $menu->id)->first()->sort) {
-
-                    // get the diff
-                    $diff = $menu->sort - $data['sort'];
-                    for ($i = 0; $i < $diff; $i ++) {
-                        $menu->moveOrderUp();
-                    }
-                } else {
-
-                    // get the diff
-                    $diff = $data['sort'] - $menu->sort;
-                    for ($i = 0; $i < $diff; $i ++) {
-                        $menu->moveOrderDown();
-                    }
-                }
+            if (isset($data['sort']) && $data['sort'] > 0) {
+                $menu->insertAtSortPosition($data['sort']);
             }
         } catch (Exception $e) {
             DB::rollBack();
 
-            throw new GeneralException(__('There was a problem updating the Menu.'));
+            throw new GeneralException($e->getMessage());
         }
 
         DB::commit();
@@ -136,7 +120,7 @@ class MenuService extends BaseService
         return $menu;
     }
 
-    public function saveAs(array $data, Menu $menu)
+    public function saveAs(array $data, Menu $menu): Menu
     {
         DB::beginTransaction();
 
@@ -144,6 +128,7 @@ class MenuService extends BaseService
             $newMenu = $this->model->create([
                 'group' => $data['group'] ?? $menu->group,
                 'name' => (isset($data['name']) && $data['name'] === $menu->name) ? $menu->name . '-copy' : ($data['name'] ?? $menu->name . '-copy'),
+                'handle' => (isset($data['handle']) && $data['handle'] === $menu->handle) ? $menu->handle . '-copy' : ($data['handle'] ?? $menu->handle . '-copy'),
                 'link' => $data['link'] ?? $menu->link,
                 'type' => $data['type'] ?? $menu->type,
                 'title' => $data['title'] ?? $menu->title,
@@ -180,7 +165,7 @@ class MenuService extends BaseService
         return $this->recursiveOperation($menu, 'delete');
     }
 
-    private function recursiveOperation(Menu $menu, $operation)
+    private function recursiveOperation(Menu $menu, string $operation): Menu
     {
         DB::beginTransaction();
 
@@ -209,8 +194,11 @@ class MenuService extends BaseService
         return $menu;
     }
 
-    private function filterData(array $data)
+    private function querySortCollisions(Menu $menu, $sort)
     {
-        return array_filter($data, fn ($val) => $val !== "");
+        return $this->model->buildSortQuery()
+            ->where('sort', $sort)
+            ->where('id', '!=', $menu->id)
+            ->where('menu_id', $menu->menu_id);
     }
 }

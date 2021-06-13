@@ -5,14 +5,14 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center flex-shrink-0">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('index') }}">
                         <x-jet-application-mark class="block w-auto h-9" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-2 sm:-my-px sm:ml-10 sm:flex">
-                    @include('menus.header.app')
+                    @include('menus.navbar.app')
                 </div>
             </div>
 
@@ -136,7 +136,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            @include('menus.header.app')
+            @include('menus.navbar.app')
         </div>
 
         <!-- Responsive Settings Options -->

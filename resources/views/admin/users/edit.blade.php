@@ -50,51 +50,8 @@
             @endif
 
             <!-- Only shows if type is admin -->
-
-                <div x-show="userType === '{{ $model::TYPE_ADMIN }}'">
-                    @if (isset($user) && !$user->isMasterAdmin() && $logged_in_user->hasAllAccess())
-                        <x-checklist-index
-                            formIndex="roles"
-                            label="name"
-                            :childrenLabels="['permissions' => 'description', 'menus' => 'name']"
-                            :relations="['permissions', 'menus']"
-                            :form="$state ?? []"
-                            formElement="state.roles"
-                            :categories="$roles->where('type', $model::TYPE_ADMIN) ?? []"
-                            header="Roles"
-                            disableChildren="true"
-                        />
-                    @endif
-                    @if(isset($user) && $logged_in_user->isMasterAdmin() || isset($user) && !$user->isMasterAdmin())
-                        <x-checklist-index
-                            formIndex="menus"
-                            label="name_with_art"
-                            childrenLabel="link_with_art"
-                            relation="children"
-                            :form="$state ?? []"
-                            formElement="state.menus"
-                            :categories="$menus->where('group', 'admin')"
-                            header="Additional Menus"
-                            disableChildren="true"
-                        />
-                    @endif
-                    @if (isset($user) && !$user->isMasterAdmin() && $logged_in_user->hasAllAccess())
-                        <x-checklist-index
-                            formIndex="permissions"
-                            label="description"
-                            childrenLabel="description"
-                            relation="children"
-                            :form="$state ?? []"
-                            formElement="state.permissions"
-                            :categories="$permissionCategories->where('type', $model::TYPE_ADMIN) ?? []"
-                            :general="$generalPermissions->where('type', $model::TYPE_ADMIN) ?? []"
-                            header="Additional Permissions by Category"
-                        />
-                    </div>
-                    @endif
-                <!-- Only shows if type is user -->
-                <div x-show="userType === '{{ $model::TYPE_USER }}'">
-            @if (isset($user) && !$user->isMasterAdmin())
+            <div x-cloak x-show="userType === '{{ $model::TYPE_ADMIN }}'">
+                @if (isset($user) && !$user->isMasterAdmin() && $logged_in_user->hasAllAccess())
                     <x-checklist-index
                         formIndex="roles"
                         label="name"
@@ -102,25 +59,25 @@
                         :relations="['permissions', 'menus']"
                         :form="$state ?? []"
                         formElement="state.roles"
-                        :categories="$roles->where('type', $model::TYPE_USER) ?? []"
+                        :categories="$roles->where('type', $model::TYPE_ADMIN) ?? []"
                         header="Roles"
                         disableChildren="true"
                     />
-            @endif
-            @if(isset($user) && $logged_in_user->isMasterAdmin() || isset($user) && !$user->isMasterAdmin())
+                @endif
+                @if(isset($user) && $logged_in_user->isMasterAdmin() || isset($user) && !$user->isMasterAdmin())
                     <x-checklist-index
                         formIndex="menus"
-                        label="name_with_art"
+                        label="handle_with_art"
                         childrenLabel="link_with_art"
                         relation="children"
                         :form="$state ?? []"
                         formElement="state.menus"
-                        :categories="$menus->where('group', 'app')"
+                        :categories="$menus->where('group', 'admin')"
                         header="Additional Menus"
                         disableChildren="true"
                     />
-            @endif
-            @if (isset($user) && !$user->isMasterAdmin())
+                @endif
+                @if (isset($user) && !$user->isMasterAdmin() && $logged_in_user->hasAllAccess())
                     <x-checklist-index
                         formIndex="permissions"
                         label="description"
@@ -128,12 +85,55 @@
                         relation="children"
                         :form="$state ?? []"
                         formElement="state.permissions"
-                        :categories="$permissionCategories->where('type', $model::TYPE_USER) ?? []"
-                        :general="$generalPermissions->where('type', $model::TYPE_USER) ?? []"
+                        :categories="$permissionCategories->where('type', $model::TYPE_ADMIN) ?? []"
+                        :general="$generalPermissions->where('type', $model::TYPE_ADMIN) ?? []"
                         header="Additional Permissions by Category"
                     />
-            @endif
-                </div>
+                @endif
+            </div> {{-- end type admin --}}
+
+            <!-- Only shows if type is user -->
+            <div x-cloak x-show="userType === '{{ $model::TYPE_USER }}'">
+                @if (isset($user) && !$user->isMasterAdmin())
+                        <x-checklist-index
+                            formIndex="roles"
+                            label="name"
+                            :childrenLabels="['permissions' => 'description', 'menus' => 'name']"
+                            :relations="['permissions', 'menus']"
+                            :form="$state ?? []"
+                            formElement="state.roles"
+                            :categories="$roles->where('type', $model::TYPE_USER) ?? []"
+                            header="Roles"
+                            disableChildren="true"
+                        />
+                @endif
+                @if(isset($user) && $logged_in_user->isMasterAdmin() || isset($user) && !$user->isMasterAdmin())
+                        <x-checklist-index
+                            formIndex="menus"
+                            label="handle_with_art"
+                            childrenLabel="link_with_art"
+                            relation="children"
+                            :form="$state ?? []"
+                            formElement="state.menus"
+                            :categories="$menus->where('group', 'app')"
+                            header="Additional Menus"
+                            disableChildren="true"
+                        />
+                @endif
+                @if (isset($user) && !$user->isMasterAdmin())
+                        <x-checklist-index
+                            formIndex="permissions"
+                            label="description"
+                            childrenLabel="description"
+                            relation="children"
+                            :form="$state ?? []"
+                            formElement="state.permissions"
+                            :categories="$permissionCategories->where('type', $model::TYPE_USER) ?? []"
+                            :general="$generalPermissions->where('type', $model::TYPE_USER) ?? []"
+                            header="Additional Permissions by Category"
+                        />
+                @endif
+            </div>
 
         </div>
     </x-slot>

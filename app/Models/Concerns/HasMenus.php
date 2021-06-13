@@ -82,7 +82,7 @@ trait HasMenus
         return $menu;
     }
 
-    public function checkIfMenuIsPermitted(Menu $menu)
+    public function checkIfMenuIsPermitted(Menu $menu): bool
     {
         if (isset($menu->permission) && config('template.auth.check_permissions_on_menu_assignment')) {
             if (!in_array($menu->permission->name, $this->getPermissionNames()->toArray())) {
@@ -141,12 +141,12 @@ trait HasMenus
         return $menus->sort()->values();
     }
 
-    public function getAllMenusAttribute()
+    public function getAllMenusAttribute(): \Illuminate\Support\Collection
     {
         return $this->getAllMenus();
     }
 
-    public function getMenusViaRolesAttribute()
+    public function getMenusViaRolesAttribute(): \Illuminate\Support\Collection
     {
         return $this->getMenusViaRoles();
     }
@@ -177,7 +177,7 @@ trait HasMenus
         return $this->getAllMenus()->pluck('name')->implode('<br/>');
     }
 
-    public function getAppMenusAttribute()
+    public function getAppMenusAttribute(): Collection
     {
         return $this->getAllMenus()->where('group', 'app')->sortBy('sort');
     }

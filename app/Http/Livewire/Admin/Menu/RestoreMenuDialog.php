@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Menu;
 
-use App\Http\Livewire\Admin\BaseRestoreDialog;
+use App\Http\Livewire\BaseRestoreDialog;
 use App\Models\Menu;
 use App\Services\MenuService;
 
@@ -23,6 +23,9 @@ class RestoreMenuDialog extends BaseRestoreDialog
         return redirect()->route('admin.menus');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.menus.restore', [

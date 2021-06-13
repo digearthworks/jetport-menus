@@ -5,10 +5,15 @@ namespace App\Providers;
 use App\Models\Menu;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\SitePage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Jetstream\Jetstream;
+use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\Environment;
+use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -44,6 +49,31 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with([
                 'menus' => Menu::query()->where('menu_id', null)->with('children')->get(),
                 'roles' => Role::with('permissions')->get(),
+            ]);
+        });
+
+        View::composer([
+            'layouts.guest',
+            'welcome',
+        ], function ($view) {
+            if (config('template.website.managed')) {
+                $view->with([
+                    'welcomePage' => SitePage::welcomePages()->first(),
+                ]);
+            }
+            $welcomeFile = Jetstream::localizedMarkdownPath('welcome.md');
+
+            $environment = Environment::createCommonMarkEnvironment();
+            $environment->addExtension(new GithubFlavoredMarkdownExtension());
+
+            $view->with([
+                'welcome' => (new CommonMarkConverter([], $environment))->convertToHtml(file_get_contents($welcomeFile)),
+            ]);
+        });
+
+        View::composer(['guest.includes.*',], function ($view) {
+            $view->with([
+                'guestLinks' => Menu::where('handle', 'guest_links')->first()->children()->onlyActive()->get()
             ]);
         });
 

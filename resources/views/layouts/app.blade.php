@@ -11,20 +11,28 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- icons -->
-        <link href="{{ asset('css/icons/font-awesome/css/all.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/icons/fontawesome-free/css/all.css') }}" rel="stylesheet">
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <!-- Editor's Dependecy Style -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"
+        />
+        <!-- Editor's Style -->
+        <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
         @livewireStyles
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
     </head>
 
     <body class="font-sans antialiased">
 
-    <div x-data="{ open:false, sidebarOpen: '{{ session('sidebarOpen', false) }}' }" class="flex min-h-screen overflow-x-hidden bg-gray-100">
+    <div x-data="{ open:false, sidebarOpen: '{{ session('sidebarOpen', config('ui.admin_sidebar_default_open', true )) }}', designerView: false }" class="flex min-h-screen overflow-x-hidden bg-gray-100">
 
         @if($logged_in_user->isAdmin())
             @livewire('admin.sidebar-menu')
@@ -55,17 +63,20 @@
 
             <!-- Page Content -->
             <main>
-
+                <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
                 {{ $slot }}
 
             </main>
         </div>
-
+        @if($logged_in_user->isAdmin())
+            @include('admin.includes.designer-view-toggler')
+        @endif
     </div>
 
     @stack('modals')
 
         @livewireScripts
+        <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@ryangjchandler/alpine-clipboard@1.x.x/dist/alpine-clipboard.js"></script>
     </body>
 </html>

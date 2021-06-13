@@ -37,7 +37,7 @@
             <!--form-group-->
 
             <!-- Only shows if type is admin -->
-            <div x-show="userType === '{{ $model::TYPE_ADMIN }}'">
+            <div x-cloak x-show="userType === '{{ $model::TYPE_ADMIN }}'">
 
 
                 <x-checklist-index
@@ -67,11 +67,11 @@
             </div>
 
             <!-- Only shows if type is user -->
-            <div x-show="userType === '{{ $model::TYPE_USER }}'">
+            <div x-cloak x-show="userType === '{{ $model::TYPE_USER }}'">
 
                 <x-checklist-index
                     formIndex="menus"
-                    label="name_with_art"
+                    label="handle_with_art"
                     childrenLabel="link_with_art"
                     relation="children"
                     :form="$state ?? []"

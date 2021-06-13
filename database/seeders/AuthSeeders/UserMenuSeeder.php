@@ -23,12 +23,14 @@ class UserMenuSeeder extends Seeder
 
     /**
      * Run the database seed.
+     *
+     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $this->disableForeignKeys($this->connection);
 
-        $allMenus = Menu::all()->pluck('id');
+        $allMenus = Menu::whereDoesntHave('parent')->pluck('id');
 
         User::find(1)->assignMenu($allMenus);
 

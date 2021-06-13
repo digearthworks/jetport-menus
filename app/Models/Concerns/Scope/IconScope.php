@@ -13,8 +13,9 @@ trait IconScope
     public function scopeSearch($query, $term)
     {
         return $query->where(function ($query) use ($term) {
-            $query->where('html', 'like', '%'.$term.'%')
-                ->orWhere('class', 'like', '%'.$term.'%');
+            $query->where('html', 'like', '%' . $term . '%')
+                ->orWhere('class', 'like', '%' . $term . '%')
+                ->orWhere('meta', 'like', '%' . $term . '%');
         });
     }
 }

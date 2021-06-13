@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Menu;
 
-use App\Http\Livewire\Admin\BaseDeleteDialog;
+use App\Http\Livewire\BaseDeleteDialog;
 use App\Models\Menu;
 use App\Services\MenuService;
 
@@ -24,6 +24,9 @@ class DeleteMenuDialog extends BaseDeleteDialog
         return redirect()->route('admin.menus.deleted');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.menus.delete', [

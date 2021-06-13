@@ -3,28 +3,31 @@
 namespace App\Models;
 
 use App\Models\Concerns\Connection\AuthConnection;
+use App\Models\Concerns\HasIterativeQuickSort;
 use App\Models\Concerns\HasPath;
 use App\Models\Concerns\HasUuid;
 use App\Models\Concerns\Relationship\MenuRelationship;
+use App\Support\Concerns\GetsIconId;
 use Database\Factories\MenuFactory;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\EloquentSortable\Sortable;
-use Spatie\EloquentSortable\SortableTrait;
 use Wildside\Userstamps\Userstamps;
 
 class Menu extends Model implements Sortable
 {
     use AuthConnection,
         CascadeSoftDeletes,
+        GetsIconId,
         HasFactory,
+        HasIterativeQuickSort,
         HasPath,
         HasUuid,
         MenuRelationship,
         SoftDeletes,
-        SortableTrait,
         Userstamps;
 
     protected $cascadeDeletes = ['children'];
@@ -43,6 +46,7 @@ class Menu extends Model implements Sortable
         return ltrim(str_replace(array_values(config('menus.url_segments', [])), '', $slug), '/');
     }
 
+
     /**
      * Create a new factory instance for the model.
      *
@@ -51,39 +55,6 @@ class Menu extends Model implements Sortable
     protected static function newFactory()
     {
         return MenuFactory::new();
-    }
-
-    protected function getIconId($icon)
-    {
-
-        // Leave early if there is no icon
-        if (!$icon) {
-            return 1;
-        }
-
-        if (is_int($icon)) {
-            return Icon::query()->find($icon) ? $icon : null;
-        }
-
-        $id = (strlen($icon) > 32) ? Icon::query()->where('html', $icon)->value('id') : Icon::query()->where('class', $icon)->value('id');
-
-        if ($id) {
-            return $id;
-        }
-
-        $iconAttributes = (strlen($icon) > 32) ? [
-            'html' => $icon,
-            'source' => 'raw',
-        ] : [
-            'class' => $icon,
-            'source' => 'FontAwesome',
-            'version' => '5',
-        ];
-
-
-        $icon = Icon::create($iconAttributes);
-
-        return $icon->id;
     }
 
     /**
@@ -111,6 +82,18 @@ class Menu extends Model implements Sortable
      * @param $value
      * @return string
      */
+    public function getHandleWithArtAttribute(): string
+    {
+        if (isset($this->icon->art)) {
+            return "{$this->icon->art} {$this->handle}";
+        }
+        return $this->name;
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
     public function getLinkWithArtAttribute(): string
     {
         if (isset($this->icon->art)) {
@@ -119,7 +102,7 @@ class Menu extends Model implements Sortable
         return $this->link;
     }
 
-    public function getPathAttribute()
+    public function getPathAttribute(): string
     {
         return $this->path();
     }
@@ -127,6 +110,10 @@ class Menu extends Model implements Sortable
 
     public function getLinkAttribute($value)
     {
+        if (isset($this->site_page_id)) {
+            return config('menus.url_segments.pages_prefix') . $this->sitePage->slug;
+        }
+
         if (!$this->is_active) {
             return $this->disabled_link;
         }
@@ -169,7 +156,7 @@ class Menu extends Model implements Sortable
     {
         $prefix = config('menus.url_segments.external_iframe_prefix');
 
-        return '/' . $prefix . config('menus.url_segments.external_link_extension') . $this->getCleanSlug();
+        return '/' . $prefix . config('menus.url_segments.external_link_query') . $this->getCleanSlug();
     }
 
     public function getInternalLinkAttribute(): string
@@ -192,21 +179,24 @@ class Menu extends Model implements Sortable
         return ($this->attributes['iframe'] ?? 0) == 1;
     }
 
-    private function reloadWithChildren()
+    private function reloadWithChildren(): ?object
     {
         return $this->with('children', 'icon')->where('id', $this->id)->first();
     }
 
-    public function setLinkAttribute($link)
+    public function setLinkAttribute($link): void
     {
         $this->attributes['link'] = ltrim($link, '/');
     }
 
-    public function setIconIdAttribute($icon)
+    public function setIconIdAttribute($icon): void
     {
-        $this->attributes['icon_id'] = $this->getIconId($icon);
+        $this->attributes['icon_id'] = $this->getIconId($icon, $this->name);
     }
 
+    /**
+     * @return void
+     */
     public function setMenuIdAttribute($menuId)
     {
         // Safety Guard:
@@ -223,32 +213,37 @@ class Menu extends Model implements Sortable
         $this->attributes['menu_id'] = ($this->where('id', $menuId)->value('menu_id') ?: $menuId);
     }
 
-    private function getCleanSlug()
+    private function getCleanSlug(): string
     {
         return $this->cleanSlug($this->attributes['link']);
     }
 
-    public function activate()
+    public function activate(): void
     {
         $this->update(['active' => 1]);
     }
 
-    public function deactivate()
+    public function deactivate(): void
     {
         $this->update(['active' => 0]);
     }
 
-    public function makeIframe()
+    public function makeIframe(): void
     {
         $this->update(['iframe' => 1]);
     }
 
-    public function unmakeIframe()
+    public function unmakeIframe(): void
     {
         $this->update(['iframe' => 0]);
     }
 
-    public function getGroupMetaForItems()
+    /**
+     * @return (mixed|string)[]
+     *
+     * @psalm-return array{group?: string, menu_id?: mixed}
+     */
+    public function getGroupMetaForItems(): array
     {
         return $this->isParentMenu() ? ['group' => 'main', 'menu_id' => $this->id] : [];
     }
@@ -265,24 +260,30 @@ class Menu extends Model implements Sortable
 
     /**
      * Get all of the users that are assigned this menu.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
-    public function roles()
+    public function roles(): \Illuminate\Database\Eloquent\Relations\MorphToMany
     {
         return $this->morphedByMany(Role::class, 'menuable');
     }
 
     /**
      * Get all of the users that are assigned this menu.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
-    public function users()
+    public function users(): \Illuminate\Database\Eloquent\Relations\MorphToMany
     {
         return $this->morphedByMany(User::class, 'menuable');
     }
 
     /**
      * Get all of the users that are assigned this menu.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
-    public function bookmarks()
+    public function bookmarks(): self
     {
         return $this->morphedByMany(User::class, 'menuable')->wherePivot('menuable_group', 'bookmarks');
     }
@@ -401,7 +402,7 @@ class Menu extends Model implements Sortable
         return $this->ordered()->pluck('id');
     }
 
-    public function buildSortQuery()
+    public function buildSortQuery(): Builder
     {
         return static::query()->where('menu_id', $this->menu_id);
     }
@@ -414,5 +415,10 @@ class Menu extends Model implements Sortable
     public static function dashboard()
     {
         return self::where('name', 'Dashboard')->first();
+    }
+
+    public function sitePage(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(SitePage::class);
     }
 }

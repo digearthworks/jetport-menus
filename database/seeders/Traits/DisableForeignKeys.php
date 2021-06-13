@@ -33,16 +33,20 @@ trait DisableForeignKeys
 
     /**
      * Disable foreign key checks for current db driver.
+     *
+     * @return void
      */
-    protected function disableForeignKeys($connection = null)
+    protected function disableForeignKeys($connection = null): void
     {
         DB::connection($connection)->statement($this->getDisableStatement());
     }
 
     /**
      * Enable foreign key checks for current db driver.
+     *
+     * @return void
      */
-    protected function enableForeignKeys($connection = null)
+    protected function enableForeignKeys($connection = null): void
     {
         DB::connection($connection)->statement($this->getEnableStatement());
     }

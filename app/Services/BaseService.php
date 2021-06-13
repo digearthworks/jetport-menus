@@ -68,7 +68,9 @@ abstract class BaseService
     /**
      * Get all the model records in the database.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     *
+     * @psalm-return \Illuminate\Database\Eloquent\Collection|array<array-key, \Illuminate\Database\Eloquent\Builder>
      */
     public function all()
     {
@@ -94,9 +96,9 @@ abstract class BaseService
     /**
      * Get the first specified model record from the database.
      *
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return null|object
      */
-    public function first()
+    public function first(): ?object
     {
         $this->newQuery()->eagerLoad()->setClauses()->setScopes();
 
@@ -110,7 +112,7 @@ abstract class BaseService
     /**
      * Get the first specified model record from the database or throw an exception if not found.
      *
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public function firstOrFail()
     {
@@ -126,7 +128,9 @@ abstract class BaseService
     /**
      * Get all the specified model records in the database.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     *
+     * @psalm-return \Illuminate\Database\Eloquent\Collection|array<array-key, \Illuminate\Database\Eloquent\Builder>
      */
     public function get()
     {
@@ -144,7 +148,9 @@ abstract class BaseService
      *
      * @param $id
      *
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
+     *
+     * @psalm-return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|array<array-key, \Illuminate\Database\Eloquent\Builder>
      */
     public function getById($id)
     {
@@ -365,7 +371,7 @@ abstract class BaseService
         return $this;
     }
 
-    public function getTableName()
+    public function getTableName(): string
     {
         return $this->model->getConnectionName().
             '.'.
@@ -373,5 +379,10 @@ abstract class BaseService
                 $this->model->getConnectionName().
                 '.prefix').
             $this->model->getTable();
+    }
+
+    protected function filterData(array $data): array
+    {
+        return array_filter($data, fn ($val) => $val !== "");
     }
 }

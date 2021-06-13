@@ -27,14 +27,15 @@ class EditUserPasswordForm extends Component
 
     public $listeners = ['editPasswordDialog'];
 
-    public function editPasswordDialog($userId)
+    public function editPasswordDialog($userId): void
     {
+        $this->authorize('admin.access.users.change-password');
         $this->editingUserPassword = true;
         $this->modelId = $userId;
         $this->dispatchBrowserEvent('showing-edit-user-password-modal');
     }
 
-    public function updateUserPassword(UserService $users)
+    public function updateUserPassword(UserService $users): void
     {
         $this->authorize('admin.access.users.change-password');
 
@@ -48,6 +49,9 @@ class EditUserPasswordForm extends Component
         $this->editingUserPassword = false;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.users.change-password', [
