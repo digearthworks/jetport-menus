@@ -38,7 +38,12 @@ class FontAwesome
         return str_contains($icon, ' fa-') && !str_contains($icon, ' class');
     }
 
-    private static function fetchIcons()
+    /**
+     * @return Icon[]
+     *
+     * @psalm-return list<Icon>
+     */
+    private static function fetchIcons(): array
     {
         $fontAwesomeIcons = [];
 

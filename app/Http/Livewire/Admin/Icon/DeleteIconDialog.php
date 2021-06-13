@@ -9,7 +9,7 @@ class DeleteIconDialog extends BaseDeleteDialog
 {
     public $eloquentRepository = Icon::class;
 
-    public function deleteIcon()
+    public function deleteIcon(): void
     {
         $this->authorize('onlysuperadmincanddothis');
 
@@ -21,6 +21,9 @@ class DeleteIconDialog extends BaseDeleteDialog
         session()->flash('falsh.bannerStyle', 'success');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.icons.delete', [

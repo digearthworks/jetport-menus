@@ -85,7 +85,7 @@ class MenuService extends BaseService
         return $this->recursiveOperation($menu, 'activate');
     }
 
-    public function update(array $data, Menu $menu)
+    public function update(array $data, Menu $menu): Menu
     {
         DB::beginTransaction();
 
@@ -120,7 +120,7 @@ class MenuService extends BaseService
         return $menu;
     }
 
-    public function saveAs(array $data, Menu $menu)
+    public function saveAs(array $data, Menu $menu): Menu
     {
         DB::beginTransaction();
 
@@ -165,7 +165,7 @@ class MenuService extends BaseService
         return $this->recursiveOperation($menu, 'delete');
     }
 
-    private function recursiveOperation(Menu $menu, $operation)
+    private function recursiveOperation(Menu $menu, string $operation): Menu
     {
         DB::beginTransaction();
 

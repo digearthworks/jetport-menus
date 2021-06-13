@@ -9,7 +9,7 @@ class DeleteSitePageDialog extends BaseDeleteDialog
 {
     public $eloquentRepository = SitePage::class;
 
-    public function deleteSitePage()
+    public function deleteSitePage(): void
     {
         $this->authorize('is_admin');
 
@@ -19,6 +19,9 @@ class DeleteSitePageDialog extends BaseDeleteDialog
         $this->emit('refreshWithSuccess', 'Page Deleted');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.site.pages.delete', [

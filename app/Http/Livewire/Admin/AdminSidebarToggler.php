@@ -8,18 +8,21 @@ class AdminSidebarToggler extends Component
 {
     public $sidebarOpen;
 
-    public function mount()
+    public function mount(): void
     {
         $this->sidebarOpen = session('sidebarOpen', false);
     }
 
-    public function toggleSidebarOpen()
+    public function toggleSidebarOpen(): void
     {
         $sidebarOpen = session('sidebarOpen', false);
 
         session()->put('sidebarOpen', !$sidebarOpen);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.includes.sidebar-toggler');

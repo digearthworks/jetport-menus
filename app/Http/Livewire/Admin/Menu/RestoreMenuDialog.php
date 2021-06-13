@@ -23,6 +23,9 @@ class RestoreMenuDialog extends BaseRestoreDialog
         return redirect()->route('admin.menus');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.menus.restore', [

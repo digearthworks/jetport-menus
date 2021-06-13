@@ -15,13 +15,16 @@ abstract class BaseCreateButton extends Component
 
     public $params;
 
-    public function mount($value = null)
+    public function mount($value = null): void
     {
         if ($value) {
             $this->value = $value;
         }
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.includes.partials.create-button');

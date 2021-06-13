@@ -9,7 +9,7 @@ class ReactivateSitePageDialog extends BaseReactivateDialog
 {
     public $eloquentRepository = SitePage::class;
 
-    public function reactivateSitePage()
+    public function reactivateSitePage(): void
     {
         $this->authorize('is_admin');
 
@@ -20,6 +20,9 @@ class ReactivateSitePageDialog extends BaseReactivateDialog
         $this->emit('refreshWithSuccess', 'Page Reactivated!');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.site.pages.reactivate', [

@@ -24,7 +24,7 @@ abstract class BaseDataTable extends DataTableComponent
         'refreshWithSuccess' => 'refreshWithSuccess'
     ];
 
-    public function refreshWithSuccess($message)
+    public function refreshWithSuccess($message): void
     {
         $this->emit('refreshDatatable');
         $this->banner($message);

@@ -26,6 +26,9 @@ class DeactivateUserDialog extends BaseDeactivateDialog
         return redirect()->route('admin.users.deactivated');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.users.deactivate', [

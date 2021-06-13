@@ -23,12 +23,12 @@ class Icon extends Model
 
     protected $appends = ['art', 'input'];
 
-    public function menus()
+    public function menus(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Menu::class);
     }
 
-    private function repairWithoutTidy(string $html)
+    private function repairWithoutTidy(string $html): string
     {
         preg_match_all('#<(?!meta|img|br|hr|input\b)\b([a-z]+)(?: .*)?(?<![/|/ ])>#iU', $html, $result);
         $openedtags = $result[1];

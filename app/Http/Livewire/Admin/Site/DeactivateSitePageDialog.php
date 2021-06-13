@@ -9,7 +9,7 @@ class DeactivateSitePageDialog extends BaseDeactivateDialog
 {
     protected $eloquentRepository = SitePage::class;
 
-    public function deactivateSitePage()
+    public function deactivateSitePage(): void
     {
         $this->authorize('is_admin');
 
@@ -20,6 +20,9 @@ class DeactivateSitePageDialog extends BaseDeactivateDialog
         $this->emit('refreshWithSuccess', 'Page Deactivated!');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.site.pages.deactivate', [

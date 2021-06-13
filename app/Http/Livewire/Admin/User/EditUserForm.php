@@ -28,6 +28,9 @@ class EditUserForm extends BaseEditForm
     ];
 
 
+    /**
+     * @return void
+     */
     public function editDialog($resourceId, $params = null)
     {
         $this->editingResource = true;
@@ -46,7 +49,7 @@ class EditUserForm extends BaseEditForm
         $this->dispatchBrowserEvent('showing-edit-modal');
     }
 
-    public function updateUser(UserService $users)
+    public function updateUser(UserService $users): void
     {
         $this->authorize('admin.access.users');
 
@@ -77,6 +80,9 @@ class EditUserForm extends BaseEditForm
         $this->editingResource = false;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.users.edit', [

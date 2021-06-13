@@ -21,17 +21,17 @@ class MenuGrid extends Component
 
     public $designerView = false;
 
-    public function mount($menuId)
+    public function mount($menuId): void
     {
         $this->modelId = $menuId;
     }
 
-    public function designerView()
+    public function designerView(): void
     {
         $this->designerView = ! $this->designerView;
     }
 
-    public function updateSort($list)
+    public function updateSort($list): void
     {
         if ($this->designerView) {
             foreach ($list as $item) {
@@ -40,6 +40,9 @@ class MenuGrid extends Component
         }
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('menus.includes.menu-grid', [

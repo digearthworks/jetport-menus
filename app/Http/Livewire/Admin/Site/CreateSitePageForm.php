@@ -25,7 +25,7 @@ class CreateSitePageForm extends BaseCreateForm
         'meta' => [],
     ];
 
-    public function createSitePage()
+    public function createSitePage(): void
     {
         $this->authorize('is_admin');
 
@@ -55,11 +55,14 @@ class CreateSitePageForm extends BaseCreateForm
         $this->creatingResource = false;
     }
 
-    public function sluggify()
+    public function sluggify(): void
     {
         $this->state['slug'] = Str::slug($this->state['slug']);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('admin.site.pages.create');

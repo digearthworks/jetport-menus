@@ -8,14 +8,14 @@ trait HandlesDeactivateDialogInteraction
 
     public $confirmingDeactivate = false;
 
-    public function confirmDeactivate($resourceId)
+    public function confirmDeactivate($resourceId): void
     {
         $this->modelId = $resourceId;
         $this->confirmingDeactivate = true;
         $this->dispatchBrowserEvent('showing-confirm-restore-modal');
     }
 
-    public function closeConfirmDeactivate()
+    public function closeConfirmDeactivate(): void
     {
         $this->confirmingDeactivate = false;
         $this->dispatchBrowserEvent('closing-confirm-restore-modal');

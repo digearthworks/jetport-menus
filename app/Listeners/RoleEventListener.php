@@ -13,8 +13,10 @@ class RoleEventListener
 {
     /**
      * @param $event
+     *
+     * @return void
      */
-    public function onCreated($event)
+    public function onCreated($event): void
     {
         activity('role')
             ->performedOn($event->role)
@@ -30,8 +32,10 @@ class RoleEventListener
 
     /**
      * @param $event
+     *
+     * @return void
      */
-    public function onUpdated($event)
+    public function onUpdated($event): void
     {
         activity('role')
             ->performedOn($event->role)
@@ -47,8 +51,10 @@ class RoleEventListener
 
     /**
      * @param $event
+     *
+     * @return void
      */
-    public function onDeleted($event)
+    public function onDeleted($event): void
     {
         activity('role')
             ->performedOn($event->role)
@@ -59,8 +65,10 @@ class RoleEventListener
      * Register the listeners for the subscriber.
      *
      * @param \Illuminate\Events\Dispatcher $events
+     *
+     * @return void
      */
-    public function subscribe($events)
+    public function subscribe($events): void
     {
         $events->listen(
             RoleCreated::class,

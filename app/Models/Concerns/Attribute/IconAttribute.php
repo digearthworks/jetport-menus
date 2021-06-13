@@ -14,14 +14,14 @@ trait IconAttribute
         return $this->html ?? "$this->class";
     }
 
-    public function setHtmlAttribute($value)
+    public function setHtmlAttribute($value): void
     {
         if ($value) {
             $this->attributes['html'] = trim(preg_replace("/\r|\n/", "", $this->repairHtml($value)));
         }
     }
 
-    public function getHtmlAttribute($value)
+    public function getHtmlAttribute($value): ?string
     {
         return $value ? trim(preg_replace("/\r|\n/", "", $this->repairHtml($value))) : null;
     }
