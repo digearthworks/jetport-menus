@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Menus\Models\Menu;
 use App\Auth\Models\Permission;
 use App\Auth\Models\Role;
+use App\Menus\Models\Menu;
 use App\Pages\Models\SitePage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;

@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\Concerns\HasModel;
 use App\Auth\Models\User;
+use App\Http\Livewire\Concerns\HasModel;
 use App\Services\UserService;
 use App\Support\Concerns\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

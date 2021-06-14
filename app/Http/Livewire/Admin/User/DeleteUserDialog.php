@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\BaseDeleteDialog;
 use App\Auth\Models\User;
+use App\Http\Livewire\BaseDeleteDialog;
 use App\Services\UserService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 

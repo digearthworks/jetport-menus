@@ -93,9 +93,9 @@ class EditSitePageForm extends BaseEditForm
                 $this->model->insertAtSortPosition($this->state['sort']);
             }
 
-            if ( (int) $this->state['active'] === 0) {
+            if ((int) $this->state['active'] === 0) {
                 $this->model->deactivate();
-            }elseIf( (int) $this->state['active'] === 1){
+            } elseif ((int) $this->state['active'] === 1) {
                 $this->model->activate();
             }
         } catch (Exception $error) {
@@ -138,9 +138,9 @@ class EditSitePageForm extends BaseEditForm
                 $copy->insertAtSortPosition($this->state['sort']);
             }
 
-            if ( (int) $this->state['active'] === 0) {
+            if ((int) $this->state['active'] === 0) {
                 $this->model->deactivate();
-            }elseIf( (int) $this->state['active'] === 1){
+            } elseif ((int) $this->state['active'] === 1) {
                 $this->model->activate();
             }
         } catch (Exception $error) {

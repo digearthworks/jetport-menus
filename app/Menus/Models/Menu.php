@@ -3,14 +3,14 @@
 namespace App\Menus\Models;
 
 use App\Auth\Concerns\GetsAuthConnection;
+use App\Auth\Models\Role;
+use App\Auth\Models\User;
+use App\Menus\Concerns\MenuRelationship;
+use App\Pages\Models\SitePage;
+use App\Support\Concerns\GetsIconId;
 use App\Support\Concerns\HasIterativeQuickSort;
 use App\Support\Concerns\HasPath;
 use App\Support\Concerns\HasUuid;
-use App\Auth\Models\Role;
-use App\Pages\Models\SitePage;
-use App\Auth\Models\User;
-use App\Menus\Concerns\MenuRelationship;
-use App\Support\Concerns\GetsIconId;
 use Database\Factories\MenuFactory;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Builder;

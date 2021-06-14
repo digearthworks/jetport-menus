@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
+use App\Auth\Models\Role;
 use App\Events\Role\RoleCreated;
 use App\Events\Role\RoleDeleted;
 use App\Events\Role\RoleUpdated;
 use App\Exceptions\GeneralException;
-use App\Auth\Models\Role;
 use Exception;
 use Illuminate\Support\Facades\DB;
 

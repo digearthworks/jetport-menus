@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\BaseDataTable;
 use App\Auth\Models\User;
+use App\Http\Livewire\BaseDataTable;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;

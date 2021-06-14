@@ -7,7 +7,7 @@ use App\Auth\Concerns\HasPermissionsLabel;
 use App\Auth\Concerns\HasRolesLabel;
 use App\Auth\Concerns\UserAttribute;
 use App\Auth\Concerns\UserMethod;
-use App\Auth\Concerns\UserScope;
+use App\Auth\QueryBuilders\UserQueryBuilder;
 use App\Menus\Concerns\HasMenus;
 use App\Support\Concerns\HasUuid;
 use Database\Factories\UserFactory;
@@ -41,7 +41,6 @@ class User extends Authenticatable
         TwoFactorAuthenticatable,
         UserAttribute,
         UserMethod,
-        UserScope,
         Userstamps;
 
     public const TYPE_ADMIN = 'admin';
@@ -100,6 +99,11 @@ class User extends Authenticatable
     protected static function newFactory()
     {
         return UserFactory::new();
+    }
+
+    public function newEloquentBuilder($query): UserQueryBuilder
+    {
+        return new UserQueryBuilder($query);
     }
 
     protected function canEditContent(): bool
