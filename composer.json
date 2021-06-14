@@ -26,9 +26,12 @@
         "rappasoft/laravel-livewire-tables": "^1.8",
         "spatie/blink": "^1.1",
         "spatie/browsershot": "^3.46",
+        "spatie/data-transfer-object": "^2.8",
         "spatie/eloquent-sortable": "^3.11",
         "spatie/laravel-activitylog": "^3.17",
+        "spatie/laravel-model-states": "^2.1",
         "spatie/laravel-permission": "^4.0",
+        "spatie/laravel-query-builder": "^3.4",
         "wildside/userstamps": "^2.1"
     },
     "require-dev": {

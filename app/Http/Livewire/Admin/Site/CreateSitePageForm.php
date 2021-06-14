@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\site;
+namespace App\Http\Livewire\Admin\Site;
 
 use App\Http\Livewire\BaseCreateForm;
 use App\Pages\Models\SitePage;
