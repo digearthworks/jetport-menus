@@ -4,7 +4,7 @@ namespace App\Auth\Models;
 
 use App\Auth\Concerns\GetsAuthConnection;
 use App\Auth\Concerns\PermissionRelationship;
-use App\Auth\Concerns\PermissionScope;
+use App\Auth\QueryBuilders\PermissionQueryBuilder;
 use App\Support\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Models\Permission as SpatiePermission;
@@ -15,7 +15,11 @@ class Permission extends SpatiePermission
     use GetsAuthConnection,
         HasUuid,
         PermissionRelationship,
-        PermissionScope,
         SoftDeletes,
         Userstamps;
+
+    public function newEloquentBuilder($query): PermissionQueryBuilder
+    {
+        return new PermissionQueryBuilder($query);
+    }
 }

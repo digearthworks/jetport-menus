@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Role;
 
-use App\Http\Livewire\BaseEditForm;
 use App\Auth\Models\Role;
 use App\Auth\Models\User;
+use App\Http\Livewire\BaseEditForm;
 use App\Services\RoleService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;

@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Pages\Models\Post;
 use App\Auth\Models\User;
+use App\Pages\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory

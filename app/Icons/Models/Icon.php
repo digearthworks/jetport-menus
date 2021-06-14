@@ -2,8 +2,8 @@
 
 namespace App\Icons\Models;
 
-use App\Icons\Concerns\IconAttribute;
 use App\Auth\Concerns\GetsAuthConnection;
+use App\Icons\Concerns\IconAttribute;
 use App\Icons\Concerns\IconScope;
 use App\Support\Concerns\HasUuid;
 use Database\Factories\IconFactory;
@@ -24,7 +24,7 @@ class Icon extends Model
 
     protected $appends = ['art', 'input'];
 
-        /**
+    /**
      * Create a new factory instance for the model.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory

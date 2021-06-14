@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait PermissionRelationship
 {
-
     public function parent(): BelongsTo
     {
         return $this->belongsTo(__CLASS__, 'parent_id')->with('parent');

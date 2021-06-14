@@ -2,8 +2,6 @@
 
 namespace App\Auth\Concerns;
 
-use Illuminate\Support\Collection;
-
 /**
  * Trait UserMethod.
  */

@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\BaseReactivateDialog;
 use App\Auth\Models\User;
+use App\Http\Livewire\BaseReactivateDialog;
 use App\Services\UserService;
 
 class ReactivateUserDialog extends BaseReactivateDialog

@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Admin\Role;
 
-use App\Http\Livewire\BaseDataTable;
 use App\Auth\Models\Role;
+use App\Http\Livewire\BaseDataTable;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 

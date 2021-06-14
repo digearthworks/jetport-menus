@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-use App\Http\Livewire\BaseRestoreDialog;
 use App\Auth\Models\User;
+use App\Http\Livewire\BaseRestoreDialog;
 use App\Services\UserService;
 
 class RestoreUserDialog extends BaseRestoreDialog

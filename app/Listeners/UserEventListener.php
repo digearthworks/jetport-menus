@@ -18,7 +18,6 @@ use Illuminate\Events\Dispatcher;
  */
 class UserEventListener
 {
-
     public function onLoggedIn($event)
     {
         if (get_class($event->user) != config('auth.providers.users.model')) {
@@ -42,7 +41,6 @@ class UserEventListener
 
     public function onCreated($event): void
     {
-
         activity('user')
             ->performedOn($event->user)
             ->withProperties([
@@ -99,7 +97,6 @@ class UserEventListener
 
     public function onStatusChanged($event): void
     {
-
         activity('user')
             ->performedOn($event->user)
             ->log(':causer.name ' . ($event->status === 0 ? 'deactivated' : 'reactivated') . ' user :subject.name');

@@ -2,8 +2,8 @@
 
 namespace App\Menus\Concerns;
 
-use App\Icons\Models\Icon;
 use App\Auth\Models\User;
+use App\Icons\Models\Icon;
 
 trait MenuRelationship
 {

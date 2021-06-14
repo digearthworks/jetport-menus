@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Auth\Models\User;
 use App\Events\User\UserCreated;
 use App\Events\User\UserDeleted;
 use App\Events\User\UserDestroyed;
@@ -9,7 +10,6 @@ use App\Events\User\UserRestored;
 use App\Events\User\UserStatusChanged;
 use App\Events\User\UserUpdated;
 use App\Exceptions\GeneralException;
-use App\Auth\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
