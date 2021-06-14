@@ -2,8 +2,8 @@
 
 namespace App\Support\Concerns;
 
-use App\Models\Icon;
-use App\Services\Icon\FontAwesome;
+use App\Icons\Models\Icon;
+use App\Support\FontAwesome;
 use Illuminate\Support\Str;
 
 trait GetsIconId

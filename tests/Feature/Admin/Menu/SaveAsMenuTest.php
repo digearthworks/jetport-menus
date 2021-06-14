@@ -3,8 +3,8 @@
 namespace Tests\Feature\Admin\Menu;
 
 use App\Http\Livewire\Admin\Menu\EditMenuForm;
-use App\Models\Icon;
-use App\Models\Menu;
+use App\Icons\Models\Icon;
+use App\Menus\Models\Menu;
 use Livewire;
 use Tests\TestCase;
 

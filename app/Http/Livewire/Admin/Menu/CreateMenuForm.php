@@ -4,8 +4,8 @@ namespace App\Http\Livewire\Admin\Menu;
 
 use App\Http\Livewire\BaseCreateForm;
 use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
-use App\Models\Icon;
-use App\Models\Menu;
+use App\Icons\Models\Icon;
+use App\Menus\Models\Menu;
 use App\Services\MenuService;
 use App\Support\Concerns\InteractsWithBanner;
 use Illuminate\Support\Facades\Validator;

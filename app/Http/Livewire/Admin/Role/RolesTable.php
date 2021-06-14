@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Role;
 
 use App\Http\Livewire\BaseDataTable;
-use App\Models\Role;
+use App\Auth\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 

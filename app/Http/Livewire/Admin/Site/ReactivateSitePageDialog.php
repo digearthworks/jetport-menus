@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Site;
 
 use App\Http\Livewire\BaseReactivateDialog;
-use App\Models\SitePage;
+use App\Pages\Models\SitePage;
 
 class ReactivateSitePageDialog extends BaseReactivateDialog
 {

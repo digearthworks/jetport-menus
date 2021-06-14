@@ -3,7 +3,7 @@ namespace App\Http\Livewire\Concerns;
 
 /**
  * Requires Eloquent Repository (model) property
- * e.g. public $eloquentRepository = App\Models\User::class
+ * e.g. public $eloquentRepository = App\Auth\Models\User::class
  */
 trait HasModel
 {

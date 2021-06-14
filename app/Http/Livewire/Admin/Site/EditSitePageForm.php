@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Site;
 
 use App\Http\Livewire\BaseEditForm;
-use App\Models\SitePage;
+use App\Pages\Models\SitePage;
 use App\Support\Concerns\InteractsWithBanner;
 use Exception;
 use Illuminate\Support\Facades\Validator;

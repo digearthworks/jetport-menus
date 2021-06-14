@@ -2,7 +2,7 @@
 
 namespace App\Events\Role;
 
-use App\Models\Role;
+use App\Auth\Models\Role;
 use Illuminate\Queue\SerializesModels;
 
 /**

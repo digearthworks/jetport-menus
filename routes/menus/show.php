@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\MenuController;
+use App\Menus\Controllers\MenuController;
 
 Route::get('{menu:id}', [MenuController::class, 'show'])
     ->middleware('auth');

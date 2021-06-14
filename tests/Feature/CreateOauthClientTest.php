@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Livewire\OAuthClientManager;
-use App\Models\User;
+use App\Auth\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Jetstream\Features;
 use Livewire;

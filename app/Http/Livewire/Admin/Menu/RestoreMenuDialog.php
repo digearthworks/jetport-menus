@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Menu;
 
 use App\Http\Livewire\BaseRestoreDialog;
-use App\Models\Menu;
+use App\Menus\Models\Menu;
 use App\Services\MenuService;
 
 class RestoreMenuDialog extends BaseRestoreDialog

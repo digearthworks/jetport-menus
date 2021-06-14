@@ -1,7 +1,7 @@
 <x-livewire-tables::tw.table.cell>
-    @if ($row->type === \App\Models\User::TYPE_ADMIN)
+    @if ($row->type === \App\Auth\Models\User::TYPE_ADMIN)
         {{ __('Administrator') }}
-    @elseif ($row->type === \App\Models\User::TYPE_USER)
+    @elseif ($row->type === \App\Auth\Models\User::TYPE_USER)
         {{ __('User') }}
     @else
         N/A

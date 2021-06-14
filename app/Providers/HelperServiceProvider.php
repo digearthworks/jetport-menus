@@ -18,7 +18,7 @@ class HelperServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $rdi = new RecursiveDirectoryIterator(app_path('Helpers'.DIRECTORY_SEPARATOR.'Global'));
+        $rdi = new RecursiveDirectoryIterator(app_path('Support'.DIRECTORY_SEPARATOR.'Helpers'));
         $it = new RecursiveIteratorIterator($rdi);
 
         while ($it->valid()) {

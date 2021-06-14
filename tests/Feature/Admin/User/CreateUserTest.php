@@ -4,9 +4,9 @@ namespace Tests\Feature\Admin\User;
 
 use App\Events\User\UserCreated;
 use App\Http\Livewire\Admin\User\CreateUserForm;
-use App\Models\Menu;
-use App\Models\Role;
-use App\Models\User;
+use App\Menus\Models\Menu;
+use App\Auth\Models\Role;
+use App\Auth\Models\User;
 use Illuminate\Support\Facades\Event;
 use Livewire;
 use Tests\TestCase;

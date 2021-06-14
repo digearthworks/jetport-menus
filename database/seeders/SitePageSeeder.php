@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\SitePage;
+use App\Pages\Models\SitePage;
 use Illuminate\Database\Seeder;
 
 class SitePageSeeder extends Seeder

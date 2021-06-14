@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Actions\Jetstream\DeleteUser;
+use App\Auth\Actions\DeleteUser;
 use App\Http\Livewire\ApiTokenManager;
 use App\Http\Livewire\NavigationMenu;
 use App\Http\Livewire\OAuthClientManager;

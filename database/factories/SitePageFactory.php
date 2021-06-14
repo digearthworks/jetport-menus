@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\SitePage;
+use App\Pages\Models\SitePage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SitePageFactory extends Factory

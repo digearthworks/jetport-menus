@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Livewire\ApiTokenManager;
-use App\Models\User;
+use App\Auth\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Laravel\Jetstream\Features;

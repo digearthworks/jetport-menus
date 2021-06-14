@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Concerns;
 
-use App\Models\Icon;
-use App\Services\Icon\FontAwesome;
+use App\Icons\Models\Icon;
+use App\Support\FontAwesome;
 
 trait HandlesSelectIconEvent
 {

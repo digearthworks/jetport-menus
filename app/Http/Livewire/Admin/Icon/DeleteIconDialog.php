@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Icon;
 
 use App\Http\Livewire\BaseDeleteDialog;
-use App\Models\Icon;
+use App\Icons\Models\Icon;
 
 class DeleteIconDialog extends BaseDeleteDialog
 {

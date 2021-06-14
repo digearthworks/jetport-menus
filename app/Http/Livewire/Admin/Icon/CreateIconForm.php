@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin\Icon;
 
 use App\Http\Livewire\BaseCreateForm;
 use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
-use App\Models\Icon;
+use App\Icons\Models\Icon;
 use App\Services\Icon\IconService;
 use App\Support\Concerns\InteractsWithBanner;
 use Illuminate\Support\Facades\Validator;

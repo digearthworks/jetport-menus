@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\site;
 
 use App\Http\Livewire\BaseCreateForm;
-use App\Models\SitePage;
+use App\Pages\Models\SitePage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;

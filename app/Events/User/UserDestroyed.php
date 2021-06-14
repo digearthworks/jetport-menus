@@ -2,7 +2,7 @@
 
 namespace App\Events\User;
 
-use App\Models\User;
+use App\Auth\Models\User;
 use Illuminate\Queue\SerializesModels;
 
 /**

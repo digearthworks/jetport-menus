@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Site;
 
 use App\Http\Livewire\BaseDeactivateDialog;
-use App\Models\SitePage;
+use App\Pages\Models\SitePage;
 
 class DeactivateSitePageDialog extends BaseDeactivateDialog
 {

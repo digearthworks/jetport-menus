@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Site;
 
 use App\Http\Livewire\BaseDataTable;
-use App\Models\SitePage;
+use App\Pages\Models\SitePage;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 

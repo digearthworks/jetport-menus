@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Menu;
 
 use App\Http\Livewire\Concerns\HasModel;
 use App\Http\Livewire\Concerns\InteractsWithDialog;
-use App\Models\Menu;
+use App\Menus\Models\Menu;
 use Livewire\Component;
 
 class MenuGrid extends Component
