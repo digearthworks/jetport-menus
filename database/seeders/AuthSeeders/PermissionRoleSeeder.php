@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\AuthSeeders;
 
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\User;
+use App\Auth\Models\Permission;
+use App\Auth\Models\Role;
+use App\Auth\Models\User;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
 

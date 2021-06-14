@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\SiteTag;
+use App\Pages\SiteTag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SiteTagFactory extends Factory

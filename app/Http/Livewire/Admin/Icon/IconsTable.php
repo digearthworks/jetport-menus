@@ -3,8 +3,8 @@
 namespace App\Http\Livewire\Admin\Icon;
 
 use App\Http\Livewire\BaseDataTable;
-use App\Models\Icon;
-use App\Services\Icon\FontAwesome;
+use App\Icons\Models\Icon;
+use App\Support\FontAwesome;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;

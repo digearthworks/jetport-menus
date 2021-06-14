@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Icon;
-use App\Models\Menu;
+use App\Icons\Models\Icon;
+use App\Menus\Models\Menu;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MenuFactory extends Factory

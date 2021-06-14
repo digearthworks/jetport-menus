@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Site;
 
 use App\Http\Livewire\BaseRestoreDialog;
-use App\Models\SitePage;
+use App\Pages\Models\SitePage;
 
 class RestoreSitePageDialog extends BaseRestoreDialog
 {

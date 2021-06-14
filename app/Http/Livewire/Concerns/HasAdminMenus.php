@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Concerns;
 
-use App\Models\Menu;
+use App\Menus\Models\Menu;
 
 trait HasAdminMenus
 {

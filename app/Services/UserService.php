@@ -9,7 +9,7 @@ use App\Events\User\UserRestored;
 use App\Events\User\UserStatusChanged;
 use App\Events\User\UserUpdated;
 use App\Exceptions\GeneralException;
-use App\Models\User;
+use App\Auth\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

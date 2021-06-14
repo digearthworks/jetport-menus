@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\User;
 
 use App\Http\Livewire\Concerns\HasModel;
-use App\Models\User;
+use App\Auth\Models\User;
 use App\Services\UserService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;

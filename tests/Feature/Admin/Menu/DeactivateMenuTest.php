@@ -3,7 +3,7 @@
 namespace Tests\Feature\Admin\Menu;
 
 use App\Http\Livewire\Admin\Menu\DeactivateMenuDialog;
-use App\Models\Menu;
+use App\Menus\Models\Menu;
 use Livewire;
 use Tests\TestCase;
 

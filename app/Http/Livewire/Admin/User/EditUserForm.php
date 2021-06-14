@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\User;
 
 use App\Http\Livewire\BaseEditForm;
-use App\Models\User;
+use App\Auth\Models\User;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;

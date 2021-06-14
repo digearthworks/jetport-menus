@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Exceptions\GeneralException;
-use App\Models\Menu;
+use App\Menus\Models\Menu;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;

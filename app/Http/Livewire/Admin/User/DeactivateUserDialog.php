@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\User;
 
 use App\Http\Livewire\BaseDeactivateDialog;
-use App\Models\User;
+use App\Auth\Models\User;
 use App\Services\UserService;
 
 class DeactivateUserDialog extends BaseDeactivateDialog

@@ -4,9 +4,9 @@ namespace Tests\Feature\Admin\Role;
 
 use App\Events\Role\RoleCreated;
 use App\Http\Livewire\Admin\Role\CreateRoleForm;
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\User;
+use App\Auth\Models\Permission;
+use App\Auth\Models\Role;
+use App\Auth\Models\User;
 use Illuminate\Support\Facades\Event;
 use Livewire;
 use Tests\TestCase;

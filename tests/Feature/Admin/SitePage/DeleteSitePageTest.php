@@ -3,7 +3,7 @@
 namespace Tests\Feature\Admin\SitePage;
 
 use App\Http\Livewire\Admin\Site\DeleteSitePageDialog;
-use App\Models\SitePage;
+use App\Pages\Models\SitePage;
 use Livewire;
 use Tests\TestCase;
 

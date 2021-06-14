@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Icon;
+use App\Icons\Models\Icon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

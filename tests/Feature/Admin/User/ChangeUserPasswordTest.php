@@ -3,7 +3,7 @@
 namespace Tests\Feature\Admin\User;
 
 use App\Http\Livewire\Admin\User\EditUserPasswordForm;
-use App\Models\User;
+use App\Auth\Models\User;
 use Hash;
 use Livewire;
 use Tests\TestCase;

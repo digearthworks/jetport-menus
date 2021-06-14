@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Site;
 
 use App\Http\Livewire\BaseDeleteDialog;
-use App\Models\SitePage;
+use App\Pages\Models\SitePage;
 
 class DeleteSitePageDialog extends BaseDeleteDialog
 {

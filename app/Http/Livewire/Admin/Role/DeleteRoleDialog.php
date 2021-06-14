@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Role;
 
 use App\Http\Livewire\BaseDeleteDialog;
-use App\Models\Role;
+use App\Auth\Models\Role;
 use App\Services\RoleService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 

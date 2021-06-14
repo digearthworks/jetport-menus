@@ -3,7 +3,7 @@
 namespace App\Services\Icon;
 
 use App\Exceptions\GeneralException;
-use App\Models\Icon;
+use App\Icons\Models\Icon;
 use App\Services\BaseService;
 use App\Support\Concerns\GetsIconId;
 use Exception;
