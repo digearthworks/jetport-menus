@@ -4,11 +4,12 @@ namespace App\Icons\Models;
 
 use App\Auth\Concerns\GetsAuthConnection;
 use App\Icons\Concerns\IconAttribute;
-use App\Icons\Concerns\IconScope;
+use App\Icons\QueryBuilders\IconQueryBuilder;
 use App\Support\Concerns\HasUuid;
 use Database\Factories\IconFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Wildside\Userstamps\Userstamps;
 
 class Icon extends Model
@@ -17,7 +18,6 @@ class Icon extends Model
         HasFactory,
         HasUuid,
         IconAttribute,
-        IconScope,
         Userstamps;
 
     protected $guarded = [];
@@ -34,7 +34,13 @@ class Icon extends Model
         return IconFactory::new();
     }
 
-    public function menus(): \Illuminate\Database\Eloquent\Relations\HasMany
+
+    public function newEloquentBuilder($query): IconQueryBuilder
+    {
+        return new IconQueryBuilder($query);
+    }
+
+    public function menus(): HasMany
     {
         return $this->hasMany(Menu::class);
     }

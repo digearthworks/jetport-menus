@@ -4,7 +4,6 @@ namespace App\Auth\Models;
 
 use App\Auth\Concerns\GetsAuthConnection;
 use App\Auth\Concerns\HasPermissionsLabel;
-use App\Auth\Concerns\RoleMethod;
 use App\Menus\Concerns\HasMenus;
 use App\Support\Concerns\HasUuid;
 use Database\Factories\RoleFactory;
@@ -23,7 +22,6 @@ class Role extends SpatieRole
         HasUuid,
         GetsAuthConnection,
         HasPermissionsLabel,
-        RoleMethod,
         SoftDeletes,
         Userstamps;
 
@@ -35,8 +33,6 @@ class Role extends SpatieRole
         'users'
     ];
 
-    protected $appends = ['users_list'];
-
     /**
      * Create a new factory instance for the model.
      *
@@ -47,8 +43,8 @@ class Role extends SpatieRole
         return RoleFactory::new();
     }
 
-    public function getUsersListAttribute()
+    public function isAdmin(): bool
     {
-        return $this->users;
+        return $this->name === config('template.auth.access.role.admin');
     }
 }

@@ -6,6 +6,14 @@ use App\Auth\Concerns\GetsAuthConnection;
 use App\Auth\Models\Role;
 use App\Auth\Models\User;
 use App\Menus\Concerns\MenuRelationship;
+use App\Menus\DisabledLink;
+use App\Menus\ExternalIframeLink;
+use App\Menus\ExternalLink;
+use App\Menus\InternalIframeLink;
+use App\Menus\InternalLink;
+use App\Menus\MainMenuLink;
+use App\Menus\PageLink;
+use App\Menus\QueryBuilders\MenuQueryBuilder;
 use App\Pages\Models\SitePage;
 use App\Support\Concerns\GetsIconId;
 use App\Support\Concerns\HasIterativeQuickSort;
@@ -42,15 +50,6 @@ class Menu extends Model implements Sortable
     protected $with = 'icon';
 
     /**
-     * remove dirty segmens from the slug
-     */
-    private function cleanSlug($slug): string
-    {
-        return ltrim(str_replace(array_values(config('menus.url_segments', [])), '', $slug), '/');
-    }
-
-
-    /**
      * Create a new factory instance for the model.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
@@ -58,6 +57,11 @@ class Menu extends Model implements Sortable
     protected static function newFactory()
     {
         return MenuFactory::new();
+    }
+
+    public function newEloquentBuilder($query): MenuQueryBuilder
+    {
+        return new MenuQueryBuilder($query);
     }
 
     /**
@@ -113,63 +117,45 @@ class Menu extends Model implements Sortable
 
     public function getLinkAttribute($value)
     {
+        return $this->getLink($value);
+    }
+
+
+    public function getLink($value)
+    {
         if (isset($this->site_page_id)) {
-            return config('menus.url_segments.pages_prefix') . $this->sitePage->slug;
+            return (new PageLink($this))->getLink();
         }
 
         if (!$this->is_active) {
-            return $this->disabled_link;
+            return (new DisabledLink($this))->getLink();
         }
 
         if ($this->type === 'main_menu' && !$this->menu_id > 0) {
-            return $this->path();
+            return (new MainMenuLink($this))->getLink();
         }
 
         if ($this->type === 'main_menu' && $this->menu_id > 0) {
-            return $this->parent->path;
+            return (new MainMenuLink($this->parent));
         }
 
         if ($this->isIframe && $this->type === 'internal_link') {
-            return $this->internal_iframe;
+            return (new InternalIframeLink($this))->getLink();
         }
 
         if ($this->isIframe && $this->type === 'external_link') {
-            return $this->external_iframe;
+            return (new ExternalIframeLink($this))->getLink();
         }
 
         if ($this->type === 'internal_link') {
-            return $this->internal_link;
+            return (new InternalLink($this))->getLink();
         }
 
         if ($this->type === 'external_link') {
-            return $this->cleanSlug($value);
+            return (new ExternalLink($this))->getLink();
         }
 
         return $value;
-    }
-
-    public function getInternalIframeAttribute(): string
-    {
-        $prefix = config('menus.url_segments.internal_iframe_prefix');
-
-        return '/' . $prefix . $this->internal_link;
-    }
-
-    public function getExternalIframeAttribute(): string
-    {
-        $prefix = config('menus.url_segments.external_iframe_prefix');
-
-        return '/' . $prefix . config('menus.url_segments.external_link_query') . $this->getCleanSlug();
-    }
-
-    public function getInternalLinkAttribute(): string
-    {
-        return '/' . $this->getCleanSlug();
-    }
-
-    public function getDisabledLinkAttribute(): string
-    {
-        return config('menus.url_segments.disabled_link_prefix') . $this->getCleanSlug();
     }
 
     public function getIsActiveAttribute(): bool
@@ -216,11 +202,6 @@ class Menu extends Model implements Sortable
         $this->attributes['menu_id'] = ($this->where('id', $menuId)->value('menu_id') ?: $menuId);
     }
 
-    private function getCleanSlug(): string
-    {
-        return $this->cleanSlug($this->attributes['link']);
-    }
-
     public function activate(): void
     {
         $this->update(['active' => 1]);
@@ -241,21 +222,6 @@ class Menu extends Model implements Sortable
         $this->update(['iframe' => 0]);
     }
 
-    public function getGroupMetaForItems(): array
-    {
-        return $this->isParentMenu() ? ['group' => 'main', 'menu_id' => $this->id] : [];
-    }
-
-    public function scopeAdmin($query)
-    {
-        return $query->where('group', 'admin');
-    }
-
-    public function scopeApp($query)
-    {
-        return $query->where('group', 'app');
-    }
-
     public function roles(): \Illuminate\Database\Eloquent\Relations\MorphToMany
     {
         return $this->morphedByMany(Role::class, 'menuable');
@@ -265,7 +231,6 @@ class Menu extends Model implements Sortable
     {
         return $this->morphedByMany(User::class, 'menuable');
     }
-
 
     public function usersFromRoles()
     {
@@ -287,85 +252,6 @@ class Menu extends Model implements Sortable
         return $this->getAllUsers()->count();
     }
 
-    /**
-     * @param $query
-     * @param $term
-     *
-     * @return mixed
-     */
-    public function scopeSearch($query, $search)
-    {
-        $search = is_array($search) ? $search : [$search];
-
-        $fields = ['children' => ['name', 'link', 'group'], 'name', 'link', 'group'];
-
-
-        // orWhereHas will use joins, so we'll start with fields foreach
-        foreach ($fields as $relation => $field) {
-            if (is_array($field)) {
-                // here we join table for each relation
-                $query->orWhereHas($relation, function ($q) use ($field, $search) {
-
-                    // here we need to use nested where like: ... WHERE key = fk AND (x LIKE y OR z LIKE y)
-                    $q->where(function ($q) use ($field, $search) {
-                        foreach ($field as $relatedField) {
-                            foreach ($search as $term) {
-                                $q->orWhere($relatedField, 'like', "%{$term}%");
-                            }
-                        }
-                    });
-                });
-                $query->with($relation, function ($q) use ($field, $search) {
-
-                    // here we need to use nested where like: ... WHERE key = fk AND (x LIKE y OR z LIKE y)
-                    $q->where(function ($q) use ($field, $search) {
-                        foreach ($field as $relatedField) {
-                            foreach ($search as $term) {
-                                $q->orWhere($relatedField, 'like', "%{$term}%");
-                            }
-                        }
-                    });
-                });
-            } else {
-                foreach ($search as $term) {
-                    $query->orWhere($field, 'like', "%{$term}%");
-                }
-            }
-        }
-        return $query;
-    }
-
-    /**
-     * @param $query
-     *
-     * @return mixed
-     */
-    public function scopeOnlyDeactivated($query)
-    {
-        return $query->whereActive(false);
-    }
-
-    /**
-     * @param $query
-     *
-     * @return mixed
-     */
-    public function scopeOnlyActive($query)
-    {
-        return $query->whereActive(true);
-    }
-
-    /**
-     * @param $query
-     * @param $type
-     *
-     * @return mixed
-     */
-    public function scopeByType($query, $type)
-    {
-        return $query->where('type', $type);
-    }
-
     public function isActive(): bool
     {
         return $this->active;
@@ -384,11 +270,6 @@ class Menu extends Model implements Sortable
     public function buildSortQuery(): Builder
     {
         return static::query()->where('menu_id', $this->menu_id);
-    }
-
-    public function scopeSortGroup($query)
-    {
-        return $query()->where('menu_id', $this->menu_id)->where('group', $this->group);
     }
 
     public static function dashboard()
