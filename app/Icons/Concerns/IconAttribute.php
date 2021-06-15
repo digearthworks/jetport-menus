@@ -2,6 +2,8 @@
 
 namespace App\Icons\Concerns;
 
+use App\Support\TidyHtml;
+
 trait IconAttribute
 {
     public function getArtAttribute(): string
@@ -17,13 +19,13 @@ trait IconAttribute
     public function setHtmlAttribute($value): void
     {
         if ($value) {
-            $this->attributes['html'] = trim(preg_replace("/\r|\n/", "", $this->repairHtml($value)));
+            $this->attributes['html'] = trim(preg_replace("/\r|\n/", "", (new TidyHtml($value))->html));
         }
     }
 
     public function getHtmlAttribute($value): ?string
     {
-        return $value ? trim(preg_replace("/\r|\n/", "", $this->repairHtml($value))) : null;
+        return $value ? trim(preg_replace("/\r|\n/", "", (new TidyHtml($value))->html)) : null;
     }
 
     /**
