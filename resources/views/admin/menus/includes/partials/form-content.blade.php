@@ -10,7 +10,12 @@
 
     @include('admin.menus.includes.form.title')
 
-    @include('admin.menus.includes.form.select-type')
+    @if(isset($item) && $item)
+        @include('admin.menus.includes.form.select-item-type')
+    @else
+        @include('admin.menus.includes.form.select-type')
+    @endif
+
 
 
     <div x-cloak x-show="menuType !='main_menu' && menuType !='page' ">
