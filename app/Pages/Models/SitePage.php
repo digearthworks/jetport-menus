@@ -2,11 +2,18 @@
 
 namespace App\Pages\Models;
 
+use App\Menus\Models\Menu;
+use App\Pages\QueryBuilders\PageQueryBuilder;
+use App\Support\Concerns\CascadeDeactivates;
 use App\Support\Concerns\HasIterativeQuickSort;
 use App\Support\Concerns\HasUuid;
 use Database\Factories\SitePageFactory;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
@@ -15,7 +22,9 @@ use Wildside\Userstamps\Userstamps;
 
 class SitePage extends Model implements Sortable
 {
-    use HasFactory,
+    use CascadeDeactivates,
+        CascadeSoftDeletes,
+        HasFactory,
         HasIterativeQuickSort,
         HasUuid,
         Userstamps,
@@ -27,6 +36,10 @@ class SitePage extends Model implements Sortable
 
     protected $cascadeDeactivates = ['menus'];
 
+    protected $cascadeDeletes = ['menus'];
+
+    protected $cascadeRestores = ['menus'];
+
     /**
      * Create a new factory instance for the model.
      *
@@ -37,40 +50,28 @@ class SitePage extends Model implements Sortable
         return SitePageFactory::new();
     }
 
-    public function scopeOnlyDeactivated($query)
+    public function newEloquentBuilder($query): PageQueryBuilder
     {
-        return $query->whereActive(false);
+        return new PageQueryBuilder($query);
     }
 
-    public function scopeOnlyActive($query)
-    {
-        return $query->whereActive(true);
-    }
-
-    public function scopeSearch($query, $term)
-    {
-        return $query->where(function ($query) use ($term) {
-            $query->where('title', 'like', '%' . $term . '%')
-                ->orWhere('slug', 'like', '%' . $term . '%');
-        });
-    }
-
-    public function scopeWelcomePages($query)
-    {
-        return $query->where('title', 'like', 'Welcome%')->ordered();
-    }
 
     public function isActive(): bool
     {
         return $this->active ?? false;
     }
 
-    public function group(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function menus(): HasMany
+    {
+        return $this->hasMany(Menu::class, 'site_page_id', 'id');
+    }
+
+    public function group(): BelongsTo
     {
         return $this->belongsTo(SiteTag::class, 'site_tag_id');
     }
 
-    public function tags(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    public function tags(): MorphToMany
     {
         return $this->morphToMany(SiteTag::class, 'site_taggable');
     }
@@ -78,6 +79,11 @@ class SitePage extends Model implements Sortable
     public function author()
     {
         return $this->editor()->exists() ? $this->editor() : $this->creator();
+    }
+
+    public function getNameAttribute(): Stringable
+    {
+        return Str::of($this->slug)->replace(['_', '-'], ' ')->title();
     }
 
     public function getAuthorAttribute()
@@ -90,59 +96,5 @@ class SitePage extends Model implements Sortable
         return $this->body;
     }
 
-    public function getNameAttribute(): Stringable
-    {
-        return Str::of($this->slug)->replace(['_', '-'], ' ')->title();
-    }
 
-    public function activate(): void
-    {
-        $this->update(['active' => 1]);
-
-        foreach ($this->cascadeReactivates as $relationship) {
-            $this->cascadeReactivate($relationship);
-        }
-    }
-
-    public function deactivate(): void
-    {
-        $this->update(['active' => 0]);
-
-        foreach ($this->cascadeDeactivates as $relationship) {
-            $this->cascadeDeactivate($relationship);
-        }
-    }
-
-    /**
-     * Cascade deactivate the given relationship on the given mode.
-     *
-     * @param string  $relationship
-     *
-     * @return void
-     */
-    protected function cascadeDeactivate($relationship): void
-    {
-        foreach ($this->{$relationship}()->get() as $model) {
-            $model->pivot ? $model->pivot->deactivate() : $model->deactivate();
-        }
-    }
-
-    /**
-     * Cascade deactivate the given relationship on the given mode.
-     *
-     * @param string  $relationship
-     *
-     * @return void
-     */
-    protected function cascadeReactivate($relationship): void
-    {
-        foreach ($this->{$relationship}()->get() as $model) {
-            $model->pivot ? $model->pivot->activate() : $model->activate();
-        }
-    }
-
-    public function menus(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(Menu::class, 'site_page_id', 'id');
-    }
 }

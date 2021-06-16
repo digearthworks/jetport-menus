@@ -134,7 +134,6 @@ class Menu extends Model implements Sortable
             return (new MenuItemGroup($value));
         }
 
-
         return (new MenuGroup($value));
     }
 
