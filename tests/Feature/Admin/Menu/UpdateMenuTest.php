@@ -15,7 +15,9 @@ class UpdateMenuTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $menu = Menu::factory()->create();
+        $menu = Menu::factory()->create(['group' => 'app', 'menu_id' => null ]);
+
+        // dd($menu);
 
         $this->assertDatabaseMissing('menus', [
             'type' => 'main_menu',

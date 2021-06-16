@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Menus\Options;
+namespace App\Menus\Enums;
 
 use Spatie\Enum\Enum;
 
@@ -10,7 +10,7 @@ use Spatie\Enum\Enum;
  * @method static self external_link()
  * @method static self page()
  */
-class MenuLinkType extends Enum
+class MenuType extends Enum
 {
     protected static function labels(): array
     {

@@ -10,7 +10,7 @@
         @if(isset($model->group))
             <option value="{{$model->group}}">
                 @switch($model->group)
-                    @case('hotlinks')
+                    @case('navigation')
                         Navigation
                         @break
                     @case('main')
@@ -20,7 +20,7 @@
             </option>
         @endif
         <option value="main">Menu Page</option>
-        <option value="hotlinks">Navigation</option>
+        <option value="navigation">Navigation</option>
     </select>
     <x-input-error for="group" class="mt-2" />
 </div>

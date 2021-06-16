@@ -135,7 +135,7 @@ class MenuSeeder extends Seeder
 
             $guestLinks->children()->saveMany([
                 new Menu([
-                    'group' => 'hotlinks',
+                    'group' => 'navigation',
                     'name' => 'Example Page',
                     'handle' => 'example_page',
                     'type' => 'page',

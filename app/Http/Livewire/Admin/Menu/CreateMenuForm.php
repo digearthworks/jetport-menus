@@ -52,7 +52,7 @@ class CreateMenuForm extends BaseCreateForm
         $this->emit('selectIcon', Icon::first()->art);
 
         if (isset($params['item']) && $params['item']) {
-            $this->state['group'] = 'hotlinks';
+            $this->state['group'] = 'navigation';
             $this->state['menu_id'] = isset($params['menu_id']) ? $params['menu_id'] : Menu::first()->id;
         } else {
             $this->state['group'] = 'app';

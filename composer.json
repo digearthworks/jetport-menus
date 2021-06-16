@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "arcanedev/log-viewer": "^8.1",
+        "calebporzio/parental": "^0.11.0",
         "dyrynda/laravel-cascade-soft-deletes": "^4.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",

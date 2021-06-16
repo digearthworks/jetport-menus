@@ -6,7 +6,10 @@ use App\Auth\Concerns\GetsAuthConnection;
 use App\Auth\Models\Role;
 use App\Auth\Models\User;
 use App\Menus\Concerns\MenuRelationship;
+use App\Menus\Contracts\MenuLinkContract;
 use App\Menus\DisabledLink;
+use App\Menus\Enums\MenuGroup;
+use App\Menus\Enums\MenuItemGroup;
 use App\Menus\ExternalIframeLink;
 use App\Menus\ExternalLink;
 use App\Menus\InternalIframeLink;
@@ -117,22 +120,37 @@ class Menu extends Model implements Sortable
 
     public function getLinkAttribute($value)
     {
-        return $this->getLink($value);
+        return $this->getLink($value)->getPath();
+    }
+
+    public function getGroupAttribute($value)
+    {
+       return $this->getGroup($value);
+    }
+
+    public function getGroup($value)
+    {
+        if($this->menu_id){
+            return (new MenuItemGroup($value));
+        }
+
+
+        return (new MenuGroup($value));
     }
 
 
-    public function getLink($value)
+    public function getLink($value): MenuLinkContract
     {
         if (isset($this->site_page_id)) {
-            return (new PageLink($this))->getLink();
+            return (new PageLink($this));
         }
 
         if (!$this->is_active) {
-            return (new DisabledLink($this))->getLink();
+            return (new DisabledLink($this));
         }
 
         if ($this->type === 'main_menu' && !$this->menu_id > 0) {
-            return (new MainMenuLink($this))->getLink();
+            return (new MainMenuLink($this));
         }
 
         if ($this->type === 'main_menu' && $this->menu_id > 0) {
@@ -140,19 +158,19 @@ class Menu extends Model implements Sortable
         }
 
         if ($this->isIframe && $this->type === 'internal_link') {
-            return (new InternalIframeLink($this))->getLink();
+            return (new InternalIframeLink($this));
         }
 
         if ($this->isIframe && $this->type === 'external_link') {
-            return (new ExternalIframeLink($this))->getLink();
+            return (new ExternalIframeLink($this));
         }
 
         if ($this->type === 'internal_link') {
-            return (new InternalLink($this))->getLink();
+            return (new InternalLink($this));
         }
 
         if ($this->type === 'external_link') {
-            return (new ExternalLink($this))->getLink();
+            return (new ExternalLink($this));
         }
 
         return $value;

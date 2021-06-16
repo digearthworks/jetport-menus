@@ -4,7 +4,7 @@
             <a href="{{ $menu->link }}" @if($menu->type == 'external_link') target="_blank" @endif >{{ $menu->name }}</a>
         </x-slot>
 
-        @forelse($menu->hotlinks as $item)
+        @forelse($menu->navigation as $item)
             <x-navbar-menu-item>
                 <x-navbar-item-link href="{{ $item->link }}" :target="($item->type == 'external_link') ? '_blank' : null" :active="requestPathIs($item->link)">
                     {!! $item->icon->art !!}

@@ -6,7 +6,7 @@ use App\Menus\Contracts\MenuLinkContract;
 
 class ExternalLink extends MenuLink implements MenuLinkContract
 {
-    public function getLink() : string
+    public function getPath() : string
     {
         return $this->getCleanSlug();
     }
