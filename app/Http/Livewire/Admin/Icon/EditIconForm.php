@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Icon;
 
 use App\Http\Livewire\BaseEditForm;
 use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
+use App\Icons\Actions\GetIconFromInputAction;
 use App\Icons\Models\Icon;
 use App\Services\Icon\IconService;
 use App\Support\Concerns\InteractsWithBanner;
@@ -46,7 +47,7 @@ class EditIconForm extends BaseEditForm
         $this->dispatchBrowserEvent('showing-edit-modal');
     }
 
-    public function updateIcon(IconService $icons)
+    public function updateIcon(GetIconFromInputAction $getIconFromInputAction)
     {
         $this->authorize('is_admin');
         $this->resetErrorBag();
@@ -57,7 +58,7 @@ class EditIconForm extends BaseEditForm
 
         $this->state['name'] = str_replace($this->model->meta, '', $this->state['name']);
 
-        $icons->createFromInput($this->state);
+        $getIconFromInputAction($this->state);
 
         $this->emit('refreshWithSuccess', 'Menu Updated!');
         $this->emit('refreshMenuGrid');

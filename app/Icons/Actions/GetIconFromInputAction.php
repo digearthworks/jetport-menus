@@ -1,32 +1,27 @@
 <?php
 
-namespace App\Services\Icon;
+namespace App\Icons\Actions;
 
 use App\Exceptions\GeneralException;
 use App\Icons\Models\Icon;
-use App\Services\BaseService;
-use App\Support\Concerns\GetsIconId;
+use App\Support\Concerns\FiltersData;
+use DB;
 use Exception;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-/**
- * Class PermissionService.
- */
-class IconService extends BaseService
+class GetIconFromInputAction
 {
-    use GetsIconId;
-    /**
-     * PermissionService constructor.
-     *
-     * @param  Menu  $menu
-     */
-    public function __construct(Icon $icon)
-    {
-        $this->model = $icon;
+    use FiltersData;
+
+    public GetOrCreateIconAction $getOrCreateIconAction;
+
+    public function __construct(
+        GetOrCreateIconAction $getOrCreateIconAction
+    ) {
+        $this->getOrCreateIconAction = $getOrCreateIconAction;
     }
 
-    public function createFromInput(array $data = []): Icon
+    public function __invoke($data) : Icon
     {
         $data = $this->filterData($data);
 
@@ -37,7 +32,7 @@ class IconService extends BaseService
         DB::beginTransaction();
 
         try {
-            $icon = $this->model->find($this->getIconId($input, $meta));
+            $icon = ($this->getOrCreateIconAction)($input, $meta);
         } catch (Exception $e) {
             DB::rollBack();
 
