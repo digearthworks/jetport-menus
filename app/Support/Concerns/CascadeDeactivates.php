@@ -4,7 +4,6 @@ namespace App\Support\Concerns;
 
 trait CascadeDeactivates
 {
-
     public function activate(): void
     {
         $this->update(['active' => 1]);
@@ -50,5 +49,4 @@ trait CascadeDeactivates
             $model->pivot ? $model->pivot->activate() : $model->activate();
         }
     }
-
 }

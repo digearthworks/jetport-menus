@@ -4,7 +4,6 @@ namespace App\Support\Concerns;
 
 trait CascadeRestores
 {
-
     public function restore()
     {
         parent::restore();

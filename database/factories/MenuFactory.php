@@ -74,7 +74,6 @@ class MenuFactory extends Factory
             'fab fa-internet-explorer',
             'fab fa-git',
         ];
-
     }
 
     public function getParent()
@@ -160,5 +159,4 @@ class MenuFactory extends Factory
             ];
         });
     }
-
 }

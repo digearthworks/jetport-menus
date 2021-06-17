@@ -2,13 +2,18 @@
 
 namespace App\Http\Livewire\Admin\User;
 
+use App\Auth\Concerns\GetsAuthConnection;
 use App\Http\Livewire\BaseCreateForm;
-use App\Services\UserService;
+use Exception;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
+use PhpParser\Node\Expr\Throw_;
 
 class CreateUserForm extends BaseCreateForm
 {
+    use GetsAuthConnection;
+
     public array $state = [
         'type' => 'user',
         'name' => '',
@@ -25,7 +30,7 @@ class CreateUserForm extends BaseCreateForm
         'email_verified' => '1',
     ];
 
-    public function createUser(UserService $users): void
+    public function createUser(CreatesNewUsers $users): void
     {
         $this->authorize('admin.access.users');
 
@@ -34,7 +39,7 @@ class CreateUserForm extends BaseCreateForm
         Validator::make($this->state, [
             'type' => ['string'],
             'name' => ['required'],
-            'email' => ['required','email', 'max:255', Rule::unique($users->getTableName())],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
             'password' => ['required'],
             'active' => ['integer'],
             'roles' => ['array'],
@@ -44,7 +49,11 @@ class CreateUserForm extends BaseCreateForm
             'email_verified' => ['integer'],
         ])->validateWithBag('creatUserForm');
 
-        $users->store($this->state);
+        try{
+            $users->create($this->state);
+        } catch(Exception $e){
+            throw $e;
+        }
         $this->emit('closeCreateDialog');
         $this->emit('refreshWithSuccess', 'User Created');
         $this->creatingResource = false;

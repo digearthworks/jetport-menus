@@ -29,5 +29,4 @@ class PageQueryBuilder extends Builder
     {
         return $this->whereActive(true);
     }
-
 }

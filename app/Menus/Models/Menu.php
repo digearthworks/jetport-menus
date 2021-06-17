@@ -125,12 +125,12 @@ class Menu extends Model implements Sortable
 
     public function getGroupAttribute($value)
     {
-       return $this->getGroup($value);
+        return $this->getGroup($value);
     }
 
     public function getGroup($value)
     {
-        if($this->menu_id){
+        if ($this->menu_id) {
             return (new MenuItemGroup($value));
         }
 

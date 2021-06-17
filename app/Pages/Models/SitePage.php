@@ -95,6 +95,4 @@ class SitePage extends Model implements Sortable
     {
         return $this->body;
     }
-
-
 }

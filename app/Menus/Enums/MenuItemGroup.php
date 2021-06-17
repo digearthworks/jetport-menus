@@ -13,7 +13,7 @@ class MenuItemGroup extends Enum
 {
     protected static function labels(): Closure
     {
-        return function(string $name): string {
+        return function (string $name): string {
             return ucfirst($name);
         };
     }
