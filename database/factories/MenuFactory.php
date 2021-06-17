@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Icons\Models\Icon;
+use App\Menus\Enums\MenuGroup;
+use App\Menus\Enums\MenuItemGroup;
 use App\Menus\Models\Menu;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +24,12 @@ class MenuFactory extends Factory
      */
     public function definition()
     {
-        $icons = [
+        return $this->faker->randomElement([$this->getParent(), $this->getItem()]);
+    }
+
+    public function getIcons()
+    {
+        return [
             'fab fa-blogger',
             'far fa-plus-square',
             'far fa-eye',
@@ -67,9 +74,12 @@ class MenuFactory extends Factory
             'fab fa-internet-explorer',
             'fab fa-git',
         ];
+    }
 
+    public function getParent()
+    {
         return [
-            'group' => $this->faker->randomElement(['office', 'admin', 'menu_page', 'hotlinks']),
+            'group' => $this->faker->randomElement(MenuGroup::toValues()),
             'type' => $this->faker->randomElement(['internal_link', 'external_link', 'main_menu']),
             'name' => $this->faker->word(),
             'handle' => $this->faker->word(),
@@ -78,11 +88,34 @@ class MenuFactory extends Factory
             'iframe' => $this->faker->randomElement([1, 0]),
             'sort' => $this->faker->randomNumber(),
             'row' => $this->faker->randomElement([1, 2, 3, 4]),
-            'menu_id' => Menu::count() % 2 ? $this->faker->randomElement(Menu::all()->pluck('id')) : null,
+            'menu_id' => null,
             'icon_id' => Icon::firstOrCreate([
-                'class' => $this->faker->randomElement($icons),
+                'class' => $this->faker->randomElement($this->getIcons()),
             ], [
-                'class' => $this->faker->randomElement($icons),
+                'class' => $this->faker->randomElement($this->getIcons()),
+                'source' => 'FontAwesome',
+                'version' => '5',
+            ]),
+        ];
+    }
+
+    public function getItem()
+    {
+        return [
+            'group' => $this->faker->randomElement(MenuItemGroup::toValues()),
+            'type' => $this->faker->randomElement(['internal_link', 'external_link', 'main_menu']),
+            'name' => $this->faker->word(),
+            'handle' => $this->faker->word(),
+            'link' => $this->faker->word(),
+            'active' => $this->faker->randomElement([1, 0]),
+            'iframe' => $this->faker->randomElement([1, 0]),
+            'sort' => $this->faker->randomNumber(),
+            'row' => $this->faker->randomElement([1, 2, 3, 4]),
+            'menu_id' => $this->faker->randomElement(Menu::all()->pluck('id')),
+            'icon_id' => Icon::firstOrCreate([
+                'class' => $this->faker->randomElement($this->getIcons()),
+            ], [
+                'class' => $this->faker->randomElement($this->getIcons()),
                 'source' => 'FontAwesome',
                 'version' => '5',
             ]),
@@ -97,6 +130,32 @@ class MenuFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'deleted_at' => now(),
+            ];
+        });
+    }
+
+    /**
+     * @return UserFactory
+     */
+    public function parent()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'group' => $this->faker->randomElement(MenuGroup::toValues()),
+                'menu_id' => null,
+            ];
+        });
+    }
+
+    /**
+     * @return UserFactory
+     */
+    public function item()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'group' => $this->faker->randomElement(MenuItemGroup::toValues()),
+                'menu_id' => $this->faker->randomElement(Menu::all()->pluck('id')),
             ];
         });
     }

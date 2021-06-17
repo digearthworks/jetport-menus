@@ -13,4 +13,9 @@ trait GetsAuthConnection
     {
         return config('template.auth.database_connection');
     }
+
+    public function getFullTableName()
+    {
+        return $this->getConnection()->getTablePrefix() . $this->getTable();
+    }
 }

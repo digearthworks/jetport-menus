@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Auth;
 
 use App\Auth\Models\User;
 use App\Events\User\UserCreated;
@@ -10,6 +10,7 @@ use App\Events\User\UserRestored;
 use App\Events\User\UserStatusChanged;
 use App\Events\User\UserUpdated;
 use App\Exceptions\GeneralException;
+use App\Support\EloquentRepository;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Hash;
 /**
  * Class UserService.
  */
-class UserService extends BaseService
+class UserRepository extends EloquentRepository
 {
     /**
      * UserService constructor.

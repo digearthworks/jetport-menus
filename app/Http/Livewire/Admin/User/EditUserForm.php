@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\User;
 
+use App\Auth\Actions\UpdateUserAction;
 use App\Auth\Models\User;
 use App\Http\Livewire\BaseEditForm;
-use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -49,7 +49,7 @@ class EditUserForm extends BaseEditForm
         $this->dispatchBrowserEvent('showing-edit-modal');
     }
 
-    public function updateUser(UserService $users): void
+    public function updateUser(UpdateUserAction $updateUserAction): void
     {
         $this->authorize('admin.access.users');
 
@@ -66,7 +66,7 @@ class EditUserForm extends BaseEditForm
         Validator::make($this->state, [
             'type' => ['string'],
             'name' => ['required'],
-            'email' => ['required', 'email', 'max:255', Rule::unique($users->getTableName())->ignore($this->modelId)],
+            'email' => ['required', 'email', 'max:255', Rule::unique('users')],
             'active' => ['integer'],
             'roles' => ['array'],
             'permissions' => ['array'],
@@ -75,7 +75,8 @@ class EditUserForm extends BaseEditForm
             'email_verified' => ['integer'],
         ])->validateWithBag('updatedUserForm');
 
-        $users->update($this->model, $this->state);
+        $updateUserAction($this->model, $this->state);
+
         $this->emit('refreshWithSuccess', 'User Updated');
         $this->editingResource = false;
     }

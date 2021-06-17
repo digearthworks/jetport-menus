@@ -105,9 +105,9 @@ trait HasMenus
         return $this->morphedMenuable()->withTimestamps();
     }
 
-    public function hotlinks()
+    public function navigation()
     {
-        return $this->morphedMenuable()->where('group', 'hotlinks');
+        return $this->morphedMenuable()->where('group', 'navigation');
     }
 
     private function morphedMenuable()

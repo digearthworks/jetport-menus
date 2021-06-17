@@ -2,19 +2,19 @@
 
 namespace App\Http\Livewire\Admin\User;
 
+use App\Auth\Actions\ChangeUserStatusAction;
 use App\Auth\Models\User;
 use App\Http\Livewire\BaseDeactivateDialog;
-use App\Services\UserService;
 
 class DeactivateUserDialog extends BaseDeactivateDialog
 {
     protected $eloquentRepository = User::class;
 
-    public function deactivateUser(UserService $users)
+    public function deactivateUser(ChangeUserStatusAction $changeUserStatusAction)
     {
         $this->authorize('admin.access.users.deactivate');
 
-        $users->mark($this->model, (int) 0);
+        $changeUserStatusAction($this->model, (int) 0);
 
         $this->emit('userDeactivated');
 

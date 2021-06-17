@@ -32,9 +32,9 @@ trait MenuRelationship
         return $this->hasMany(__CLASS__, 'menu_id')->ordered();
     }
 
-    public function hotlinks()
+    public function navigation()
     {
-        return $this->getChildrenQuery()->where('group', 'hotlinks');
+        return $this->getChildrenQuery()->where('group', 'navigation');
     }
 
     public function items()

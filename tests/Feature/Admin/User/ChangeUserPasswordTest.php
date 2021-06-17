@@ -19,11 +19,11 @@ class ChangeUserPasswordTest extends TestCase
 
         Livewire::test(EditUserPasswordForm::class)
             ->set('modelId', $user->id)
-            ->set('state.password', '1234567')
-            ->set('state.password_confirmation', '1234567')
+            ->set('state.password', 'New-pa55word')
+            ->set('state.password_confirmation', 'New-pa55word')
             ->call('updateUserPassword');
 
-        $this->assertTrue(Hash::check('1234567', $user->fresh()->password));
+        $this->assertTrue(Hash::check('New-pa55word', $user->fresh()->password));
     }
 
     /** @test */
@@ -34,7 +34,7 @@ class ChangeUserPasswordTest extends TestCase
         $user = User::factory()->create();
 
         Livewire::test(EditUserPasswordForm::class)
-            ->set('state.password', '1234567')
+            ->set('state.password', 'New-pa55word')
             ->set('state.password_confirmation', '123456')
             ->call('updateUserPassword')
             ->assertHasErrors(['password']);

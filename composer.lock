@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aadd8e8ca52779937456562883f70062",
+    "content-hash": "9b376499809c174451ec8d2f5a78eb4e",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -308,6 +308,57 @@
                 }
             ],
             "time": "2021-01-20T22:51:39+00:00"
+        },
+        {
+            "name": "calebporzio/parental",
+            "version": "v0.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/calebporzio/parental.git",
+                "reference": "33344dae4069236ea65f525f605ccf08cac47729"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/calebporzio/parental/zipball/33344dae4069236ea65f525f605ccf08cac47729",
+                "reference": "33344dae4069236ea65f525f605ccf08cac47729",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.6.0|~5.7.0|~5.8.0|^6.0.0|^7.0.0|^8.0.0",
+                "illuminate/events": "~5.6.0|~5.7.0|~5.8.0|^6.0.0|^7.0.0|^8.0.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.6.0|~3.7.0|~3.8.0|^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Parental\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "A simple eloquent trait that allows relationships to be accessed through child models.",
+            "support": {
+                "issues": "https://github.com/calebporzio/parental/issues",
+                "source": "https://github.com/calebporzio/parental/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/calebporzio",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-09-08T20:04:29+00:00"
         },
         {
             "name": "dasprid/enum",

@@ -1,8 +1,16 @@
 <?php
 
-namespace App\Menus\Options;
+namespace App\Menus\Enums;
 
-class MenuItemLinkType extends MenuLinkType
+use Spatie\Enum\Enum;
+
+/**
+ * @method static self main_menu()
+ * @method static self internal_link()
+ * @method static self external_link()
+ * @method static self page()
+ */
+class MenuType extends Enum
 {
     protected static function labels(): array
     {

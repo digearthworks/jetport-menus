@@ -16,11 +16,11 @@ abstract class MenuLink implements MenuLinkContract
     public function __construct(Menu $menu)
     {
         $this->menu = $menu;
-        $this->link = $this->getLink();
+        $this->link = $this->getPath();
         $this->target = $this->getTarget();
     }
 
-    public function getLink() : string
+    public function getPath() : string
     {
         return $this->menu->link;
     }
