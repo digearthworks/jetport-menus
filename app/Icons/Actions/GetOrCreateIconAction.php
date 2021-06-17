@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Support\Concerns;
+namespace App\Icons\Actions;
 
 use App\Icons\Models\Icon;
 use App\Support\FontAwesome;
 use Illuminate\Support\Str;
 
-trait GetsIconId
+class GetOrCreateIconAction
 {
     /**
      * Return first icon matching input
@@ -18,12 +18,11 @@ trait GetsIconId
      * @param mixed $icon
      * @return integer
      */
-    protected function getIconId($icon, $meta = null) : int
+    public function __invoke($icon, $meta = null) : Icon
     {
-
         // Leave early if there is no icon
         if (!$icon) {
-            return 1;
+            return Icon::first();
         }
         if ($meta) {
             $meta = Str::snake($meta);
@@ -32,7 +31,7 @@ trait GetsIconId
         $fontAwesome = FontAwesome::wantsFontAwesome($icon);
 
         if (is_int($icon)) {
-            return Icon::query()->find($icon) ? $icon : null;
+            return Icon::query()->find($icon) ? Icon::query()->find($icon) : null;
         }
 
         $id = (!$fontAwesome) ? Icon::query()->where('html', $icon)->value('id') : Icon::query()->where('class', $icon)->value('id');
@@ -43,22 +42,22 @@ trait GetsIconId
                 $iconFromId->meta  =  $iconFromId->meta ? $iconFromId->meta . ' ' . $meta : $meta;
                 $iconFromId->save();
             }
-            return $id;
+            return $iconFromId;
         }
 
         $iconAttributes = (!$fontAwesome) ? [
-            'html' => $icon,
-            'source' => 'raw',
-            'meta' => $meta,
-        ] : [
-            'class' => $icon,
-            'source' => 'FontAwesome',
-            'version' => config('fontawesome.version'),
-            'meta' => $meta,
-        ];
+                'html' => $icon,
+                'source' => 'raw',
+                'meta' => $meta,
+            ] : [
+                'class' => $icon,
+                'source' => 'FontAwesome',
+                'version' => config('fontawesome.version'),
+                'meta' => $meta,
+            ];
 
         $icon = Icon::create($iconAttributes);
 
-        return $icon->id;
+        return $icon;
     }
 }

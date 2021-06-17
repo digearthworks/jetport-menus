@@ -3,18 +3,19 @@
 namespace App\Http\Livewire\Admin\Menu;
 
 use App\Http\Livewire\BaseReactivateDialog;
+use App\Menus\Actions\ReactivateMenuAction;
 use App\Menus\Models\Menu;
-use App\Services\MenuService;
 
 class ReactivateMenuDialog extends BaseReactivateDialog
 {
     public $eloquentRepository = Menu::class;
 
-    public function reactivateMenu(MenuService $menus)
+    public function reactivateMenu(ReactivateMenuAction $reactivateMenuAction)
     {
         $this->authorize('admin.access.menus');
 
-        $menus->reactivate($this->model);
+        $reactivateMenuAction($this->model);
+
         $this->confirmingReactivate = false;
 
         session()->flash('flash.banner', 'Menu Reactivated!.');

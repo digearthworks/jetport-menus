@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Admin\Role;
 
+use App\Auth\Actions\CreateRoleAction;
 use App\Http\Livewire\BaseCreateForm;
-use App\Services\RoleService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -22,18 +22,19 @@ class CreateRoleForm extends BaseCreateForm
         'menus' => [],
     ];
 
-    public function createRole(RoleService $roles): void
+    public function createRole(CreateRoleAction $createRoleAction): void
     {
         $this->resetErrorBag();
 
         Validator::make($this->state, [
             'type' => ['string'],
-            'name' => ['required', Rule::unique($roles->getTableName())],
+            'name' => ['required', Rule::unique('roles')],
             'permissions' => ['array'],
             'menus' => ['array'],
         ])->validateWithBag('createdRoleForm');
 
-        $roles->store($this->state);
+        $createRoleAction($this->state);
+
         $this->emit('refreshWithSuccess', 'Role Created!');
         $this->creatingResource = false;
     }

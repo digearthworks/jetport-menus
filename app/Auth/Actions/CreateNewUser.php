@@ -58,7 +58,7 @@ class CreateNewUser implements CreatesNewUsers
         } catch (Exception $e) {
             DB::rollBack();
 
-            Log::error($e);
+            Log::error($e->getMessage());
         }
 
         event(new UserCreated($user));

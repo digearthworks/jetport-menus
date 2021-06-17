@@ -5,6 +5,7 @@ namespace App\Menus\Models;
 use App\Auth\Concerns\GetsAuthConnection;
 use App\Auth\Models\Role;
 use App\Auth\Models\User;
+use App\Icons\Actions\GetOrCreateIconAction;
 use App\Menus\Concerns\MenuRelationship;
 use App\Menus\Contracts\MenuLinkContract;
 use App\Menus\DisabledLink;
@@ -18,7 +19,8 @@ use App\Menus\MainMenuLink;
 use App\Menus\PageLink;
 use App\Menus\QueryBuilders\MenuQueryBuilder;
 use App\Pages\Models\SitePage;
-use App\Support\Concerns\GetsIconId;
+use App\Support\Concerns\CascadeDeactivates;
+use App\Support\Concerns\CascadeRestores;
 use App\Support\Concerns\HasIterativeQuickSort;
 use App\Support\Concerns\HasPath;
 use App\Support\Concerns\HasUuid;
@@ -35,7 +37,8 @@ class Menu extends Model implements Sortable
 {
     use GetsAuthConnection,
         CascadeSoftDeletes,
-        GetsIconId,
+        CascadeDeactivates,
+        CascadeRestores,
         HasFactory,
         HasIterativeQuickSort,
         HasPath,
@@ -45,6 +48,12 @@ class Menu extends Model implements Sortable
         Userstamps;
 
     protected $cascadeDeletes = ['children'];
+
+    protected $cascadeRestores = ['children', 'parent'];
+
+    protected $cascadeDeactivates = ['children'];
+
+    protected $cascadeReactivates = ['children', 'parent'];
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
@@ -66,6 +75,37 @@ class Menu extends Model implements Sortable
     {
         return new MenuQueryBuilder($query);
     }
+
+    public function restore()
+    {
+        //sanity check
+        if ($this->{$this->getDeletedAtColumn()} === null) {
+            return false;
+        }
+
+        // If the restoring event does not return false, we will proceed with this
+        // restore operation. Otherwise, we bail out so the developer will stop
+        // the restore totally. We will clear the deleted timestamp and save.
+        if ($this->fireModelEvent('restoring') === false) {
+            return false;
+        }
+
+        $this->{$this->getDeletedAtColumn()} = null;
+
+        // Once we have saved the model, we will fire the "restored" event so this
+        // developer will do anything they need to after a restore operation is
+        // totally finished. Then we will return the result of the save call.
+        $this->exists = true;
+
+        $result = $this->save();
+
+        $this->fireModelEvent('restored', false);
+
+        foreach ($this->cascadeRestores as $relationship) {
+            $this->cascadeRestore($relationship);
+        }
+    }
+
 
     /**
      * @param $value
@@ -197,7 +237,7 @@ class Menu extends Model implements Sortable
 
     public function setIconIdAttribute($icon): void
     {
-        $this->attributes['icon_id'] = $this->getIconId($icon, $this->name);
+        $this->attributes['icon_id'] = ((new GetOrCreateIconAction)($icon, $this->name))->id;
     }
 
     /**
@@ -217,16 +257,6 @@ class Menu extends Model implements Sortable
          * just attach it to the parent
          */
         $this->attributes['menu_id'] = ($this->where('id', $menuId)->value('menu_id') ?: $menuId);
-    }
-
-    public function activate(): void
-    {
-        $this->update(['active' => 1]);
-    }
-
-    public function deactivate(): void
-    {
-        $this->update(['active' => 0]);
     }
 
     public function makeIframe(): void

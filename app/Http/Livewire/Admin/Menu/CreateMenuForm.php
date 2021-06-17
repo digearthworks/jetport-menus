@@ -5,8 +5,8 @@ namespace App\Http\Livewire\Admin\Menu;
 use App\Http\Livewire\BaseCreateForm;
 use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
 use App\Icons\Models\Icon;
+use App\Menus\Actions\CreateMenuAction;
 use App\Menus\Models\Menu;
-use App\Services\MenuService;
 use App\Support\Concerns\InteractsWithBanner;
 use Illuminate\Support\Facades\Validator;
 
@@ -64,7 +64,7 @@ class CreateMenuForm extends BaseCreateForm
         $this->data = $params;
     }
 
-    public function createMenu(MenuService $menus)
+    public function createMenu(CreateMenuAction $createMenuAction)
     {
         $this->resetErrorBag();
 
@@ -81,7 +81,7 @@ class CreateMenuForm extends BaseCreateForm
             'site_page_id' => ['int', 'nullable'],
         ])->validateWithBag('createMenuForm');
 
-        $menus->store($this->state);
+        $createMenuAction($this->state);
 
         $this->emit('refreshWithSuccess', 'Menu Created!');
         $this->emit('closeCreateDialog');

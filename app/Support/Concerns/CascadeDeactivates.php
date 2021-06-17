@@ -6,6 +6,9 @@ trait CascadeDeactivates
 {
     public function activate(): void
     {
+        if ($this->active == 1) {
+            return;
+        }
         $this->update(['active' => 1]);
 
         foreach ($this->cascadeReactivates as $relationship) {
@@ -15,6 +18,10 @@ trait CascadeDeactivates
 
     public function deactivate(): void
     {
+        if ($this->active == 0) {
+            return;
+        }
+
         $this->update(['active' => 0]);
 
         foreach ($this->cascadeDeactivates as $relationship) {

@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Role;
 
+use App\Auth\Actions\DeleteRoleAction;
 use App\Auth\Models\Role;
 use App\Http\Livewire\BaseDeleteDialog;
-use App\Services\RoleService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class DeleteRoleDialog extends BaseDeleteDialog
@@ -13,11 +13,12 @@ class DeleteRoleDialog extends BaseDeleteDialog
 
     protected $eloquentRepository = Role::class;
 
-    public function deleteRole(RoleService $roles): void
+    public function deleteRole(DeleteRoleAction $deleteRoleAction): void
     {
         $this->authorize('onlysuperadmincanddothis');
 
-        $roles->destroy($this->model);
+        $deleteRoleAction($this->model);
+
         $this->emit('roleDeleted');
         $this->confirmingDeleteRole = false;
     }

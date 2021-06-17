@@ -4,8 +4,8 @@ namespace App\Http\Livewire\Admin\Icon;
 
 use App\Http\Livewire\BaseCreateForm;
 use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
+use App\Icons\Actions\GetIconFromInputAction;
 use App\Icons\Models\Icon;
-use App\Services\Icon\IconService;
 use App\Support\Concerns\InteractsWithBanner;
 use Illuminate\Support\Facades\Validator;
 
@@ -43,7 +43,7 @@ class CreateIconForm extends BaseCreateForm
         $this->creatingResource = true;
     }
 
-    public function createIcon(IconService $icons)
+    public function createIcon(GetIconFromInputAction $getIconFromInputAction)
     {
         $this->resetErrorBag();
 
@@ -51,7 +51,7 @@ class CreateIconForm extends BaseCreateForm
             'meta' => ['string', 'nullable'],
         ])->validateWithBag('createIconForm');
 
-        $icons->createFromInput($this->state);
+        $getIconFromInputAction($this->state);
 
         $this->emit('refreshWithSuccess', 'Icon Created!');
         $this->emit('closeCreateDialog');

@@ -99,7 +99,7 @@ class EditSitePageForm extends BaseEditForm
                 $this->model->activate();
             }
         } catch (Exception $error) {
-            Log::error($error);
+            Log::error($error->getMessage());
         }
 
         $this->emit('refreshWithSuccess', 'Page Updated!');
@@ -144,7 +144,7 @@ class EditSitePageForm extends BaseEditForm
                 $this->model->activate();
             }
         } catch (Exception $error) {
-            Log::error($error);
+            Log::error($error->getMessage());
         }
 
 

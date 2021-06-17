@@ -3,18 +3,19 @@
 namespace App\Http\Livewire\Admin\Menu;
 
 use App\Http\Livewire\BaseDeactivateDialog;
+use App\Menus\Actions\DeactivateMenuAction;
 use App\Menus\Models\Menu;
-use App\Services\MenuService;
 
 class DeactivateMenuDialog extends BaseDeactivateDialog
 {
     public $eloquentRepository = Menu::class;
 
-    public function deactivateMenu(MenuService $menus)
+    public function deactivateMenu(DeactivateMenuAction $deactivateMenuAction)
     {
         $this->authorize('admin.access.menus');
 
-        $menus->deactivate($this->model);
+        $deactivateMenuAction($this->model);
+
         $this->confirmingDeactivate = false;
 
 

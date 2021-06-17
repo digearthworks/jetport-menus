@@ -4,12 +4,11 @@ namespace App\Http\Livewire\Admin\Menu;
 
 use App\Http\Livewire\BaseEditForm;
 use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
+use App\Menus\Actions\SaveAsMenuAction;
+use App\Menus\Actions\UpdateMenuAction;
 use App\Menus\Models\Menu;
-use App\Services\MenuService;
 use App\Support\Concerns\InteractsWithBanner;
-use Exception;
 use Illuminate\Support\Facades\Validator;
-use Log;
 
 class EditMenuForm extends BaseEditForm
 {
@@ -83,7 +82,7 @@ class EditMenuForm extends BaseEditForm
         $this->data = $params;
     }
 
-    public function updateMenu(MenuService $menus)
+    public function updateMenu(UpdateMenuAction $updateMenuAction)
     {
         $this->authorize('is_admin');
 
@@ -101,11 +100,7 @@ class EditMenuForm extends BaseEditForm
             'sort' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
-        try {
-            $menus->update($this->state, $this->model);
-        } catch (Exception $e) {
-            Log::error($e);
-        }
+        $updateMenuAction($this->state, $this->model);
 
         $this->emit('refreshWithSuccess', 'Menu Updated!');
         $this->emit('refreshMenuGrid');
@@ -113,7 +108,7 @@ class EditMenuForm extends BaseEditForm
         $this->editingResource = false;
     }
 
-    public function saveMenuAs(MenuService $menus)
+    public function saveMenuAs(SaveAsMenuAction $saveAsMenuAction)
     {
         $this->authorize('is_admin');
 
@@ -131,7 +126,7 @@ class EditMenuForm extends BaseEditForm
             'menu_id' => ['int', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
-        $menus->saveAs($this->state, $this->model);
+        $saveAsMenuAction($this->state, $this->model);
 
         $this->emit('refreshWithSuccess', 'Menu Saved!');
         $this->editingResource = false;

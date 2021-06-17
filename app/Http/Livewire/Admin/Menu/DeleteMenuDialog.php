@@ -3,18 +3,18 @@
 namespace App\Http\Livewire\Admin\Menu;
 
 use App\Http\Livewire\BaseDeleteDialog;
+use App\Menus\Actions\DeleteMenuAction;
 use App\Menus\Models\Menu;
-use App\Services\MenuService;
 
 class DeleteMenuDialog extends BaseDeleteDialog
 {
     public $eloquentRepository = Menu::class;
 
-    public function deleteMenu(MenuService $menus)
+    public function deleteMenu(DeleteMenuAction $deleteMenuAction)
     {
         $this->authorize('onlysuperadmincanddothis');
 
-        $menus->destroy($this->model);
+        $deleteMenuAction($this->model);
 
         $this->confirmingDelete = false;
 
