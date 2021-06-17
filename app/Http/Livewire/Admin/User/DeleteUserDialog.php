@@ -4,8 +4,8 @@ namespace App\Http\Livewire\Admin\User;
 
 use App\Auth\Models\User;
 use App\Http\Livewire\BaseDeleteDialog;
-use App\Services\UserService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Laravel\Jetstream\Contracts\DeletesUsers;
 
 class DeleteUserDialog extends BaseDeleteDialog
 {
@@ -13,11 +13,15 @@ class DeleteUserDialog extends BaseDeleteDialog
 
     protected $eloquentRepository = User::class;
 
-    public function deleteUser(UserService $users)
+    public function deleteUser(DeletesUsers $deleteUser)
     {
         $this->authorize('admin.access.users');
 
-        $users->delete($this->model);
+        if ($this->model->id === auth()->id()) {
+            abort(403, 'You cannot delete yourself here. Please delete your account from your user profile.');
+        }
+
+        $deleteUser->delete($this->model);
 
         $this->confirmingDelete = false;
 

@@ -7,10 +7,11 @@ use App\Events\User\UserUpdated;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateUserAction
 {
-    private UpdateUserProfileInformation $updateUserProfileInformation;
+    private UpdatesUserProfileInformation $updatesUserProfileInformation;
 
     private UpdateUserTypeAction $updateUserTypeAction;
 
@@ -19,12 +20,12 @@ class UpdateUserAction
     private UpdateUserPermissionsAction $updateUserPermissionsAction;
 
     public function __construct(
-        UpdateUserProfileInformation $updateUserProfileInformation,
+        UpdatesUserProfileInformation $updatesUserProfileInformation,
         UpdateUserMenusAction $updateUserMenusAction,
         UpdateUserPermissionsAction $updateUserPermissionsAction,
         UpdateUserTypeAction $updateUserTypeAction
     ) {
-        $this->updateUserProfileInformation = $updateUserProfileInformation;
+        $this->updatesUserProfileInformation = $updatesUserProfileInformation;
         $this->updateUserMenusAction = $updateUserMenusAction;
         $this->updateUserPermissionsAction = $updateUserPermissionsAction;
         $this->updateUserTypeAction = $updateUserTypeAction;
@@ -35,7 +36,7 @@ class UpdateUserAction
         DB::beginTransaction();
 
         try {
-            $profile = ($this->updateUserProfileInformation)->update($user, $input);
+            $profile = ($this->updatesUserProfileInformation)->update($user, $input);
 
             $menus = ($this->updateUserMenusAction)($user, $input['menus'] ?? []);
 

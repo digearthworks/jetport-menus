@@ -4,9 +4,9 @@ namespace App\Http\Livewire\Admin\User;
 
 use App\Auth\Models\User;
 use App\Http\Livewire\Concerns\HasModel;
-use App\Services\UserService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Fortify\Contracts\ResetsUserPasswords;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
@@ -35,7 +35,7 @@ class EditUserPasswordForm extends Component
         $this->dispatchBrowserEvent('showing-edit-user-password-modal');
     }
 
-    public function updateUserPassword(UserService $users): void
+    public function updateUserPassword(ResetsUserPasswords $resetsUserPasswords): void
     {
         $this->authorize('admin.access.users.change-password');
 
@@ -44,7 +44,8 @@ class EditUserPasswordForm extends Component
             'password' => 'confirmed',
         ])->validateWithBag('updatePasswordForm');
 
-        $users->updatePassword($this->model, $this->state);
+        $resetsUserPasswords->reset($this->model, $this->state);
+
         $this->emit('refreshWithSuccess', 'Successfully changed password for ' . $this->model->name);
         $this->editingUserPassword = false;
     }

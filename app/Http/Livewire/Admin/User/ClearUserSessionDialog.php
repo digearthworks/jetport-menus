@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\User;
 
+use App\Auth\Actions\ClearUserSessionsAction;
 use App\Auth\Models\User;
 use App\Http\Livewire\Concerns\HasModel;
-use App\Services\UserService;
 use App\Support\Concerns\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
@@ -29,10 +29,12 @@ class ClearUserSessionDialog extends Component
         $this->dispatchBrowserEvent('showing-clear-sessions-modal');
     }
 
-    public function clearSessions(UserService $users): void
+    public function clearSessions(ClearUserSessionsAction $clearUserSessionsAction): void
     {
         $this->authorize('admin.access.users.clear-session');
-        $users->clearSessions($this->model);
+
+        $clearUserSessionsAction($this->model);
+
         $this->banner('User Sessions Cleared!');
         $this->confirmingClearSessions = false;
     }

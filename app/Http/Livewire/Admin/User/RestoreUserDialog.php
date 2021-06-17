@@ -2,19 +2,19 @@
 
 namespace App\Http\Livewire\Admin\User;
 
+use App\Auth\Actions\RestoreUserAction;
 use App\Auth\Models\User;
 use App\Http\Livewire\BaseRestoreDialog;
-use App\Services\UserService;
 
 class RestoreUserDialog extends BaseRestoreDialog
 {
     protected $eloquentRepository = User::class;
 
-    public function restoreUser(UserService $users)
+    public function restoreUser(RestoreUserAction $restoreUserAction)
     {
         $this->authorize('admin.access.users');
 
-        $users->restore($this->model, true);
+        $restoreUserAction($this->model, true);
 
         $this->confirmingRestore = false;
 

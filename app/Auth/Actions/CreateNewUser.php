@@ -6,6 +6,7 @@ use App\Auth\Models\User;
 use App\Events\User\UserCreated;
 use DB;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -24,7 +25,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        if (auth()->user() && auth()->user()->isAdmin()) {
+        if (Auth::user() && Auth::user()->isAdmin()) {
             $input['email_verified_at'] = isset($input['email_verified']) && $input['email_verified'] === '1' ? now() : null;
             $input['password_confirmation'] = $input['password'];
             $input['terms'] = 1;
@@ -45,8 +46,10 @@ class CreateNewUser implements CreatesNewUsers
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'password' => $input['password'],
+                'provider' => $input['provider'] ?? null,
+                'provider_id' => $input['provider_id'] ?? null,
                 'email_verified_at' => $input['email_verified_at'] ?? null,
-                'active' => isset($input['active']) && $input['active'] === '1',
+                'active' => $input['active'] ?? true,
             ]);
 
             $user->syncRoles($input['roles'] ?? []);

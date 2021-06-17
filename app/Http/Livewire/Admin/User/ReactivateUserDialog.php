@@ -2,19 +2,19 @@
 
 namespace App\Http\Livewire\Admin\User;
 
+use App\Auth\Actions\ChangeUserStatusAction;
 use App\Auth\Models\User;
 use App\Http\Livewire\BaseReactivateDialog;
-use App\Services\UserService;
 
 class ReactivateUserDialog extends BaseReactivateDialog
 {
     protected $eloquentRepository = User::class;
 
-    public function reactivateUser(UserService $users)
+    public function reactivateUser(ChangeUserStatusAction $changeUserStatusAction)
     {
         $this->authorize('admin.access.users.reactivate');
 
-        $users->mark($this->model, (int) 1);
+        $changeUserStatusAction($this->model, (int) 1);
 
         $this->emit('userReactivated');
 
