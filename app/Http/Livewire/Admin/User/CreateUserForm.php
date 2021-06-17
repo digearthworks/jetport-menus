@@ -8,7 +8,6 @@ use Exception;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use PhpParser\Node\Expr\Throw_;
 
 class CreateUserForm extends BaseCreateForm
 {
@@ -49,9 +48,9 @@ class CreateUserForm extends BaseCreateForm
             'email_verified' => ['integer'],
         ])->validateWithBag('creatUserForm');
 
-        try{
+        try {
             $users->create($this->state);
-        } catch(Exception $e){
+        } catch (Exception $e) {
             throw $e;
         }
         $this->emit('closeCreateDialog');

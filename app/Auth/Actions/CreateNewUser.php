@@ -24,8 +24,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-
-        if(auth()->user() && auth()->user()->isAdmin()){
+        if (auth()->user() && auth()->user()->isAdmin()) {
             $input['email_verified_at'] = isset($input['email_verified']) && $input['email_verified'] === '1' ? now() : null;
             $input['password_confirmation'] = $input['password'];
             $input['terms'] = 1;
@@ -53,9 +52,7 @@ class CreateNewUser implements CreatesNewUsers
             $user->syncRoles($input['roles'] ?? []);
 
             $user->syncMenus($input['menus'] ?? []);
-
         } catch (Exception $e) {
-
             DB::rollBack();
 
             Log::error($e);
