@@ -44,6 +44,6 @@ class SitePagesTable extends BaseDataTable
 
     public function rowView(): string
     {
-        return 'admin.site.pages.includes.row';
+        return 'admin.pages.row';
     }
 }

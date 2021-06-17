@@ -15,5 +15,5 @@
 </x-livewire-tables::tw.table.cell>
 
 <x-livewire-tables::tw.table.cell>
-    @include('admin.site.pages.includes.actions', ['page' => $row])
+    @include('admin.pages.actions', ['page' => $row])
 </x-livewire-tables::tw.table.cell>

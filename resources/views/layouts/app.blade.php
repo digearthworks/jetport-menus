@@ -69,7 +69,7 @@
             </main>
         </div>
         @if($logged_in_user->isAdmin())
-            @include('admin.includes.designer-view-toggler')
+            @include('admin.designer-view-toggler')
         @endif
     </div>
 

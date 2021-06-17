@@ -49,7 +49,7 @@ class MenusTable extends BaseDataTable
 
     public function rowView(): string
     {
-        return 'admin.menus.includes.row';
+        return 'admin.menus.row';
     }
 
     /**

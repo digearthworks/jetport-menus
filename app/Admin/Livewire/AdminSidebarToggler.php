@@ -25,6 +25,6 @@ class AdminSidebarToggler extends Component
      */
     public function render()
     {
-        return view('admin.includes.sidebar-toggler');
+        return view('admin.sidebar-toggler');
     }
 }

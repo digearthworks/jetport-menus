@@ -17,6 +17,6 @@ class CreateMenuButton extends BaseCreateButton
      */
     public function render()
     {
-        return view('admin.menus.includes.partials.create-menu-button');
+        return view('admin.menus.create-menu-button');
     }
 }

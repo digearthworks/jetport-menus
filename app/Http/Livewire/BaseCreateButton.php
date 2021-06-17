@@ -27,6 +27,6 @@ abstract class BaseCreateButton extends Component
      */
     public function render()
     {
-        return view('admin.includes.partials.create-button');
+        return view('livewire.create-button');
     }
 }

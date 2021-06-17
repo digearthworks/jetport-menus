@@ -39,6 +39,6 @@ class IconGrid extends Component
      */
     public function render()
     {
-        return view('admin.icons.includes.icon-grid');
+        return view('admin.icons.icon-grid');
     }
 }

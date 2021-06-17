@@ -40,7 +40,7 @@ class IconsTable extends BaseDataTable
 
     public function rowView(): string
     {
-        return 'admin.icons.includes.row';
+        return 'admin.icons.row';
     }
 
     public function tempIconTable()

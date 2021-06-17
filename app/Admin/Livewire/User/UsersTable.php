@@ -114,7 +114,7 @@ class UsersTable extends BaseDataTable
      */
     public function rowView(): string
     {
-        return 'admin.users.includes.row';
+        return 'admin.users.row';
     }
 
     /**

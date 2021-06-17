@@ -4,10 +4,10 @@
     </x-slot>
 
     <x-slot name="headerActions">
-        @include('admin.site.includes.header-actions')
+        @include('admin.pages.header-actions')
     </x-slot>
 
-    @include('admin.site.pages.includes.table')
+    @include('admin.pages.table')
 
     <livewire:admin.site.pages.create />
     <livewire:admin.site.pages.edit />

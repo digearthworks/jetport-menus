@@ -1,6 +1,9 @@
-<tbody x-data="{ open : false }">
-  <x-livewire-tables::tw.table.cell>
-        {{ $row->group }}
+    <x-livewire-tables::tw.table.cell>
+        @if($row->parent()->exists())
+            {{ $row->parent->group }}.{{ $row->group }}
+        @else
+            {{ $row->group }}
+        @endif
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
@@ -12,19 +15,19 @@
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
-        {{ $row->roles_count }}
+        {{ $parent->roles_count }}
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
-        {{ $row->all_users_count }}
+        {{ $parent->all_users_count }}
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
-        @include('admin.menus.includes.actions', ['model' => $row])
+        @include('admin.menus.actions', ['model' => $row])
     </x-livewire-tables::tw.table.cell>
 
-    <x-livewire-tables::tw.table.cell>
-        @include('admin.menus.includes.has-children', ['menu' => $row])
+    <x-livewire-tables::tw.table.cell wire:key="table-row-{{ $child->uuid }}-column-6">
+        @include('admin.menus.has-children', ['menu' => $row])
     </x-livewire-tables::tw.table.cell>
 @if($row->children()->exists())
 
@@ -35,10 +38,9 @@
             wire:loading.class.delay="opacity-50"
             wire:key="table-row-{{ $child->uuid }}"
         >
-            @include('admin.menus.includes.children-row', [ 'row' => $child, 'parent' => $row ])
+            @include('admin.menus.children-row', [ 'row' => $child, 'parent' => $row ])
 
         </x-livewire-tables::tw.table.row>
     @endforeach
 
 @endif
-</tbody>

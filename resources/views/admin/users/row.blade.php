@@ -1,5 +1,5 @@
 <x-admin.users.livewire-tables.tw.table.cell>
-    @include('admin.users.includes.type', ['user' => $row])
+    @include('admin.users.type', ['user' => $row])
 </x-admin.users.livewire-tables.tw.table.cell>
 
 <x-admin.users.livewire-tables.tw.table.cell>
@@ -11,7 +11,7 @@
 </x-admin.users.livewire-tables.tw.table.cell>
 
 {{-- <x-admin.users.livewire-tables.tw.table.cell>
-    @include('admin.users.includes.verified', ['user' => $row])
+    @include('admin.users.verified', ['user' => $row])
 </x-admin.users.livewire-tables.tw.table.cell> --}}
 
 <x-admin.users.livewire-tables.tw.table.cell>
@@ -31,5 +31,5 @@
 </x-admin.users.livewire-tables.tw.table.cell>
 
 <x-admin.users.livewire-tables.tw.table.cell>
-    @include('admin.users.includes.actions', ['user' => $row])
+    @include('admin.users.actions', ['user' => $row])
 </x-admin.users.livewire-tables.tw.table.cell>

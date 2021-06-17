@@ -11,6 +11,6 @@ class CreateSitePageButton extends BaseCreateButton
      */
     public function render()
     {
-        return view('admin.site.pages.includes.partials.create-site-page-button');
+        return view('admin.pages.create-page-button');
     }
 }

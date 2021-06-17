@@ -25,5 +25,5 @@
 </x-livewire-tables::tw.table.cell>
 
 <x-livewire-tables::tw.table.cell>
-    @include('admin.roles.includes.actions', ['model' => $row])
+    @include('admin.roles.actions', ['model' => $row])
 </x-livewire-tables::tw.table.cell>

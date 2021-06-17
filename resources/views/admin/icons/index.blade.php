@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="headerActions">
-        @include('admin.icons.includes.header-actions')
+        @include('admin.icons.header-actions')
     </x-slot>
 
     <livewire:admin.icons.livewire-datatable.datatable />

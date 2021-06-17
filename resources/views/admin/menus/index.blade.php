@@ -4,10 +4,10 @@
     </x-slot>
 
     <x-slot name="headerActions">
-        @include('admin.menus.includes.header-actions')
+        @include('admin.menus.header-actions')
     </x-slot>
 
-    @include('admin.menus.includes.table')
+    @include('admin.menus.table')
 </x-7xl>
 <livewire:admin.menus.create />
 <livewire:admin.menus.edit />

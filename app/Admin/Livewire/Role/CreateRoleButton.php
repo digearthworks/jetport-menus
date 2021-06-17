@@ -11,6 +11,6 @@ class CreateRoleButton extends BaseCreateButton
      */
     public function render()
     {
-        return view('admin.roles.includes.partials.create-role-button');
+        return view('admin.roles.create-role-button');
     }
 }

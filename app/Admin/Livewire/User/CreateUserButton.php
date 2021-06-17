@@ -11,6 +11,6 @@ class CreateUserButton extends BaseCreateButton
      */
     public function render()
     {
-        return view('admin.users.includes.partials.create-user-button');
+        return view('admin.users.create-user-button');
     }
 }

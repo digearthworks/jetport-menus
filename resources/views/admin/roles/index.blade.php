@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="headerActions">
-        @include('admin.roles.includes.header-actions')
+        @include('admin.roles.header-actions')
     </x-slot>
 
     <livewire:admin.roles.livewire-datatable.datatable />

@@ -9,6 +9,6 @@
     </x-jet-nav-link>
 
     @if(! str_contains(url()->current(), 'deactivated') && ! str_contains(url()->current(), 'deleted'))
-        <livewire:admin.icon.create-icon-button value="New Icon" />
+        <livewire:admin.icons.create-icon-button value="New Icon" />
     @endif
 </div>
