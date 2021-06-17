@@ -49,7 +49,7 @@ class UpdateUserAction
         } catch (Exception $e) {
             DB::rollBack();
 
-            Log::error($e);
+            Log::error($e->getMessage());
         }
 
         DB::commit();

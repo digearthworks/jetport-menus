@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Role;
 
+use App\Auth\Actions\UpdateRoleAction;
 use App\Auth\Models\Role;
 use App\Auth\Models\User;
 use App\Http\Livewire\BaseEditForm;
-use App\Services\RoleService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -38,7 +38,7 @@ class EditRoleForm extends BaseEditForm
         $this->dispatchBrowserEvent('showing-edit-role-modal');
     }
 
-    public function updateRole(RoleService $roles)
+    public function updateRole(UpdateRoleAction $updateRoleAction)
     {
         if ($this->model->type == User::TYPE_ADMIN) {
             $this->authorize('onlysuperadmincandothis');
@@ -57,12 +57,13 @@ class EditRoleForm extends BaseEditForm
 
         Validator::make($this->state, [
             'type' => ['string'],
-            'name' => ['required', Rule::unique($roles->getTableName())->ignore($this->modelId)],
+            'name' => ['required', Rule::unique('roles')->ignore($this->modelId)],
             'permissions' => ['array'],
             'menus' => ['array'],
         ])->validateWithBag('updateRoleForm');
 
-        $roles->update($this->model, $this->state);
+        $updateRoleAction($this->model, $this->state);
+
         $this->emit('refreshWithSuccess', 'Role Updated!');
         $this->editingResource = false;
     }

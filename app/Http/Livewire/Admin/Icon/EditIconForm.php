@@ -6,7 +6,6 @@ use App\Http\Livewire\BaseEditForm;
 use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
 use App\Icons\Actions\GetIconFromInputAction;
 use App\Icons\Models\Icon;
-use App\Services\Icon\IconService;
 use App\Support\Concerns\InteractsWithBanner;
 use Illuminate\Support\Facades\Validator;
 

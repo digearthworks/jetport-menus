@@ -8,6 +8,16 @@ use Illuminate\Support\Str;
 
 class GetOrCreateIconAction
 {
+    /**
+     * Return first icon matching input
+     * by class, html, or id. Never
+     * empty. Returns default icon
+     * in null case, creates icon
+     * if there is no match
+     *
+     * @param mixed $icon
+     * @return integer
+     */
     public function __invoke($icon, $meta = null) : Icon
     {
         // Leave early if there is no icon

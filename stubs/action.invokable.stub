@@ -1,8 +1,8 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
-class {{ class }}
+class DummyClass
 {
 
     public function __invoke()
