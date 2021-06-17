@@ -7,7 +7,7 @@
         @include('admin.icons.includes.header-actions')
     </x-slot>
 
-    <livewire:admin.icon.icons-table />
+    <livewire:admin.icons.livewire-datatable.datatable />
 </x-7xl>
 
 <livewire:admin.icons.create />

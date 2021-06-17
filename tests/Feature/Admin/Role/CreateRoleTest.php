@@ -6,7 +6,7 @@ use App\Auth\Models\Permission;
 use App\Auth\Models\Role;
 use App\Auth\Models\User;
 use App\Events\Role\RoleCreated;
-use App\Http\Livewire\Admin\Role\CreateRoleForm;
+use App\Admin\Livewire\Role\CreateRoleForm;
 use Illuminate\Support\Facades\Event;
 use Livewire;
 use Tests\TestCase;

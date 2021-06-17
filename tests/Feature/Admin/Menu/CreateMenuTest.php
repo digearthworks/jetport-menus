@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Menu;
 
-use App\Http\Livewire\Admin\Menu\CreateMenuForm;
+use App\Admin\Livewire\Menu\CreateMenuForm;
 use App\Icons\Models\Icon;
 use Livewire;
 use Tests\TestCase;

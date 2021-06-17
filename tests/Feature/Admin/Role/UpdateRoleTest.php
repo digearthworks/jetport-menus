@@ -6,7 +6,7 @@ use App\Auth\Models\Permission;
 use App\Auth\Models\Role;
 use App\Auth\Models\User;
 use App\Events\Role\RoleUpdated;
-use App\Http\Livewire\Admin\Role\EditRoleForm;
+use App\Admin\Livewire\Role\EditRoleForm;
 use Illuminate\Support\Facades\Event;
 use Livewire;
 use Tests\TestCase;

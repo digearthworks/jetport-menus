@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Menu;
 
-use App\Http\Livewire\Admin\Menu\EditMenuForm;
+use App\Admin\Livewire\Menu\EditMenuForm;
 use App\Icons\Models\Icon;
 use App\Menus\Models\Menu;
 use Livewire;

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\SitePage;
 
-use App\Http\Livewire\Admin\Site\DeleteSitePageDialog;
+use App\Admin\Livewire\Site\DeleteSitePageDialog;
 use App\Pages\Models\SitePage;
 use Livewire;
 use Tests\TestCase;

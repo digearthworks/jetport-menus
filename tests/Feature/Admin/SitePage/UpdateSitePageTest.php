@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\SitePage;
 
-use App\Http\Livewire\Admin\Site\EditSitePageForm;
+use App\Admin\Livewire\Site\EditSitePageForm;
 use App\Pages\Models\SitePage;
 use Livewire;
 use Tests\TestCase;

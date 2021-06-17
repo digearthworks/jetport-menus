@@ -5,7 +5,7 @@ namespace Tests\Feature\Admin\User;
 use App\Auth\Models\Role;
 use App\Auth\Models\User;
 use App\Events\User\UserUpdated;
-use App\Http\Livewire\Admin\User\EditUserForm;
+use App\Admin\Livewire\User\EditUserForm;
 use App\Menus\Models\Menu;
 use Illuminate\Support\Facades\Event;
 use Livewire;
