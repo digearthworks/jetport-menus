@@ -14,7 +14,7 @@ class Webpage extends Component
         if (!$this->page->isActive()) {
             abort(404);
         }
-        return view('webpage')
+        return view('livewire.webpage')
             ->layout($this->page->layout ?? 'layouts.guest');
     }
 }

@@ -56,11 +56,11 @@ class ComposerServiceProvider extends ServiceProvider
             'layouts.guest',
             'welcome',
         ], function ($view) {
-            if (config('template.website.managed')) {
-                $view->with([
-                    'welcomePage' => Page::welcomePages()->first(),
-                ]);
-            }
+
+            $view->with([
+                'welcomePage' => Page::welcomePages()->first(),
+            ]);
+
             $welcomeFile = Jetstream::localizedMarkdownPath('welcome.md');
 
             $environment = Environment::createCommonMarkEnvironment();

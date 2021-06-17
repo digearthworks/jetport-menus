@@ -19,13 +19,8 @@ class DatabaseSeeder extends Seeder
 
         if (app()->environment(['local', 'testing'])) {
             $this->call(ClientSeederExample::class);
-            if (config('template.website.managed')) {
-                $this->call(PageSeeder::class);
-            }
-            if (config('template.posts.active')) {
-                $this->call(PostSeeder::class);
-            }
         }
+        $this->call(PageSeeder::class);
         $this->call(AuthSeeder::class);
 
         Model::reguard();
