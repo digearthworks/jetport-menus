@@ -9,10 +9,10 @@
 
     @include('admin.pages.table')
 
-    <livewire:admin.site.pages.create />
-    <livewire:admin.site.pages.edit />
-    <livewire:admin.site.pages.delete />
-    <livewire:admin.site.pages.deactivate />
+    <livewire:admin.pages.create />
+    <livewire:admin.pages.edit />
+    <livewire:admin.pages.delete />
+    <livewire:admin.pages.deactivate />
 </x-7xl>
 
 

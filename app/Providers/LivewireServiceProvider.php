@@ -93,13 +93,13 @@ class LivewireServiceProvider extends ServiceProvider
         Livewire::component('includes.dashboard-grid', DashboardGrid::class);
         Livewire::component('menu.includes.menu-grid', MenuGrid::class);
 
-        Livewire::component('admin.site.pages.livewire-datatable.datatable', SitePagesTable::class);
-        Livewire::component('admin.site.pages.create', CreateSitePageForm::class);
-        Livewire::component('admin.site.pages.edit', EditSitePageForm::class);
-        Livewire::component('admin.site.pages.delete', DeleteSitePageDialog::class);
-        Livewire::component('admin.site.pages.restore', RestoreSitePageDialog::class);
-        Livewire::component('admin.site.pages.deactivate', DeactivateSitePageDialog::class);
-        Livewire::component('admin.site.pages.reactivate', ReactivateSitePageDialog::class);
+        Livewire::component('admin.pages.livewire-datatable.datatable', SitePagesTable::class);
+        Livewire::component('admin.pages.create', CreateSitePageForm::class);
+        Livewire::component('admin.pages.edit', EditSitePageForm::class);
+        Livewire::component('admin.pages.delete', DeleteSitePageDialog::class);
+        Livewire::component('admin.pages.restore', RestoreSitePageDialog::class);
+        Livewire::component('admin.pages.deactivate', DeactivateSitePageDialog::class);
+        Livewire::component('admin.pages.reactivate', ReactivateSitePageDialog::class);
         Livewire::component('admin.pages.create-page-button', CreateSitePageButton::class);
     }
 }

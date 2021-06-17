@@ -9,7 +9,7 @@
 
     @include('admin.pages.table', [ 'status' => 'deactivated' ])
 
-    <livewire:admin.site.pages.reactivate />
+    <livewire:admin.pages.reactivate />
 </x-7xl>
 
 

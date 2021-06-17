@@ -163,6 +163,6 @@ class EditSitePageForm extends BaseEditForm
             'page' => $this->model,
         ], $this->data ?? []);
 
-        return view('admin.site.pages.edit', $this->data);
+        return view('admin.pages.edit', $this->data);
     }
 }

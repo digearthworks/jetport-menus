@@ -65,6 +65,6 @@ class CreateSitePageForm extends BaseCreateForm
      */
     public function render()
     {
-        return view('admin.site.pages.create');
+        return view('admin.pages.create');
     }
 }
