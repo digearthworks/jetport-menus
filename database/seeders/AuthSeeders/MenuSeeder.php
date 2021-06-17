@@ -3,7 +3,7 @@
 namespace Database\Seeders\AuthSeeders;
 
 use App\Menus\Models\Menu;
-use App\Pages\Models\SitePage;
+use App\Pages\Models\Page;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
 
@@ -141,7 +141,7 @@ class MenuSeeder extends Seeder
                     'type' => 'page',
                     'title' => 'Link to the example page',
                     'active' => 1,
-                    'site_page_id' => SitePage::where('slug', 'example-page')->first()->id,
+                    'page_id' => Page::where('slug', 'example-page')->first()->id,
                     'icon_id' => 1,
                 ]),
             ]);

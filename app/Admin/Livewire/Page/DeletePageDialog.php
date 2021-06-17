@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Livewire\Site;
+namespace App\Admin\Livewire\Page;
 
 use App\Http\Livewire\BaseDeleteDialog;
-use App\Pages\Models\SitePage;
+use App\Pages\Models\Page;
 
-class DeleteSitePageDialog extends BaseDeleteDialog
+class DeletePageDialog extends BaseDeleteDialog
 {
-    public $eloquentRepository = SitePage::class;
+    public $eloquentRepository = Page::class;
 
-    public function deleteSitePage(): void
+    public function deletePage(): void
     {
         $this->authorize('is_admin');
 

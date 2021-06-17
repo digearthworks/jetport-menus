@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Admin\Livewire\Site;
+namespace App\Admin\Livewire\Page;
 
 use App\Http\Livewire\BaseCreateForm;
-use App\Pages\Models\SitePage;
+use App\Pages\Models\Page;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
-class CreateSitePageForm extends BaseCreateForm
+class CreatePageForm extends BaseCreateForm
 {
 
     /**
@@ -25,7 +25,7 @@ class CreateSitePageForm extends BaseCreateForm
         'meta' => [],
     ];
 
-    public function createSitePage(): void
+    public function createPage(): void
     {
         $this->authorize('is_admin');
 
@@ -34,16 +34,16 @@ class CreateSitePageForm extends BaseCreateForm
         Validator::make($this->state, [
 
             'title' => ['string', 'nullable'],
-            'slug' => ['required', 'min:1', 'max:100', Rule::unique('site_pages')],
+            'slug' => ['required', 'min:1', 'max:100', Rule::unique('pages')],
             'body' => ['string'],
             'layout' => ['string', 'min:1', 'max:100', 'nullable'],
             'active' => ['int', 'nullable'],
             'sort' => ['int', 'nullable'],
             'meta' => ['array', 'nullable'],
 
-        ])->validateWithBag('createdsitePageForm');
+        ])->validateWithBag('createdPageForm');
 
-        SitePage::create([
+        Page::create([
             'title' => $this->state['title'],
             'slug' => $this->state['slug'],
             'body' => $this->state['body'],

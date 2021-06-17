@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Admin\Livewire\Site;
+namespace App\Admin\Livewire\Page;
 
 use App\Http\Livewire\BaseEditForm;
-use App\Pages\Models\SitePage;
+use App\Pages\Models\Page;
 use App\Support\Concerns\InteractsWithBanner;
 use Exception;
 use Illuminate\Support\Facades\Validator;
@@ -11,11 +11,11 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Log;
 
-class EditSitePageForm extends BaseEditForm
+class EditPageForm extends BaseEditForm
 {
     use InteractsWithBanner;
 
-    protected $eloquentRepository = SitePage::class;
+    protected $eloquentRepository = Page::class;
 
     public $listeners = [
         'editDialog',
@@ -62,7 +62,7 @@ class EditSitePageForm extends BaseEditForm
         $this->data = $params;
     }
 
-    public function updateSitePage()
+    public function updatePage()
     {
         $this->authorize('is_admin');
 
@@ -71,7 +71,7 @@ class EditSitePageForm extends BaseEditForm
         $this->resetErrorBag();
         Validator::make($this->state, [
             'title' => ['string', 'nullable'],
-            'slug' => ['required', 'min:1', 'max:100', Rule::unique('site_pages')->ignore($this->modelId)],
+            'slug' => ['required', 'min:1', 'max:100', Rule::unique('pages')->ignore($this->modelId)],
             'body' => ['string'],
             'layout' => ['string', 'min:1', 'max:100', 'nullable'],
             'active' => ['int', 'nullable'],
@@ -113,7 +113,7 @@ class EditSitePageForm extends BaseEditForm
         $this->resetErrorBag();
         Validator::make($this->state, [
             'title' => ['string', 'nullable'],
-            'slug' => ['required', 'min:1', 'max:100', Rule::unique('site_pages')->ignore($this->modelId)],
+            'slug' => ['required', 'min:1', 'max:100', Rule::unique('pages')->ignore($this->modelId)],
             'body' => ['string'],
             'layout' => ['string', 'min:1', 'max:100', 'nullable'],
             'active' => ['int', 'nullable'],

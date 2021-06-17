@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Admin\Livewire\Site;
+namespace App\Admin\Livewire\Page;
 
 use App\Http\Livewire\BaseCreateButton;
 
-class CreateSitePageButton extends BaseCreateButton
+class CreatePageButton extends BaseCreateButton
 {
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View

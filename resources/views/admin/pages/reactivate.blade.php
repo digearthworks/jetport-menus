@@ -12,7 +12,7 @@
             {{ __('Cancel') }}
         </x-jet-secondary-button>
 
-        <x-danger-button class="ml-2" wire:click="reactivateSitePage"
+        <x-danger-button class="ml-2" wire:click="reactivatePage"
             wire:loading.attr="disabled">
             {{ __('Reactivate') }}
         </x-danger-button>

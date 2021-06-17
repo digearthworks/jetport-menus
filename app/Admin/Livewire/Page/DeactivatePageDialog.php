@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Livewire\Site;
+namespace App\Admin\Livewire\Page;
 
 use App\Http\Livewire\BaseDeactivateDialog;
-use App\Pages\Models\SitePage;
+use App\Pages\Models\Page;
 
-class DeactivateSitePageDialog extends BaseDeactivateDialog
+class DeactivatePageDialog extends BaseDeactivateDialog
 {
-    protected $eloquentRepository = SitePage::class;
+    protected $eloquentRepository = Page::class;
 
-    public function deactivateSitePage(): void
+    public function deactivatePage(): void
     {
         $this->authorize('is_admin');
 

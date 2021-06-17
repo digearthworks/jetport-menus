@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Admin\Livewire\Site;
+namespace App\Admin\Livewire\Page;
 
 use App\Http\Livewire\BaseDataTable;
-use App\Pages\Models\SitePage;
+use App\Pages\Models\Page;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 /**
  * Class RolesTable.
  */
-class SitePagesTable extends BaseDataTable
+class PagesTable extends BaseDataTable
 {
 
     /**
@@ -18,7 +18,7 @@ class SitePagesTable extends BaseDataTable
      */
     public function query(): Builder
     {
-        $query = SitePage::query();
+        $query = Page::query();
 
         if ($this->status === 'deleted') {
             $query = $query->onlyTrashed();

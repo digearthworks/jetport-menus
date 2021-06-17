@@ -13,7 +13,7 @@
             {{ __('Cancel') }}
         </x-jet-secondary-button>
 
-        <x-jet-button class="ml-2" wire:click="createSitePage" wire:loading.attr="disabled">
+        <x-jet-button class="ml-2" wire:click="createPage" wire:loading.attr="disabled">
             {{ __('Save') }}
         </x-jet-button>
     </x-slot>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSitePagesTable extends Migration
+class CreatePagesTable extends Migration
 {
 
     /**
@@ -41,7 +41,7 @@ class CreateSitePagesTable extends Migration
      */
     public function up()
     {
-        $this->schema->create('site_tags', function (Blueprint $table) {
+        $this->schema->create('tags', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
             $table->boolean('active')->nullable();
@@ -57,7 +57,7 @@ class CreateSitePagesTable extends Migration
             $table->unsignedBigInteger('deleted_by')->nullable();
         });
 
-        $this->schema->create('site_pages', function (Blueprint $table) {
+        $this->schema->create('pages', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
             $table->boolean('active')->nullable();
@@ -72,25 +72,25 @@ class CreateSitePagesTable extends Migration
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
-            $table->unsignedBigInteger('site_tag_id')->nullable();
+            $table->unsignedBigInteger('tag_id')->nullable();
 
-            $table->foreign('site_tag_id')
+            $table->foreign('tag_id')
             ->references('id')
-            ->on('site_tags')
+            ->on('tags')
             ->onDelete('cascade');
         });
 
-        $this->schema->create('site_taggables', function (Blueprint $table) {
-            $table->unsignedBigInteger('site_tag_id');
-            $table->morphs('site_taggable');
+        $this->schema->create('taggables', function (Blueprint $table) {
+            $table->unsignedBigInteger('tag_id');
+            $table->morphs('taggable');
 
-            $table->foreign('site_tag_id')
+            $table->foreign('tag_id')
                 ->references('id')
-                ->on('site_tags')
+                ->on('tags')
                 ->onDelete('cascade');
 
-            $table->primary(['site_tag_id', 'site_taggable_id'], 'site_taggable_site_tag_id_site_taggable_id_primary');
-            $table->unique(['site_tag_id', 'site_taggable_id']);
+            $table->primary(['tag_id', 'taggable_id'], 'taggable_tag_id_taggable_id_primary');
+            $table->unique(['tag_id', 'taggable_id']);
         });
     }
 
@@ -101,8 +101,8 @@ class CreateSitePagesTable extends Migration
      */
     public function down()
     {
-        $this->schema->dropIfExists('site_taggables');
-        $this->schema->dropIfExists('site_tags');
-        $this->schema->dropIfExists('site_pages');
+        $this->schema->dropIfExists('taggables');
+        $this->schema->dropIfExists('tags');
+        $this->schema->dropIfExists('pages');
     }
 }

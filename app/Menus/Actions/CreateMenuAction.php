@@ -32,7 +32,7 @@ class CreateMenuAction
                 // 'sort' => $data['sort'] ?? null,
                 // 'row' => $data['row'] ?? null,
                 'menu_id' => $data['menu_id'] ?? null,
-                'site_page_id' => $data['site_page_id'] ?? null,
+                'page_id' => $data['page_id'] ?? null,
                 'icon_id' => $data['icon_id'] ?? null,
             ]);
 

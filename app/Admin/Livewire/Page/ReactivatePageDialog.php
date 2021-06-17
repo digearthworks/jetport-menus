@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Livewire\Site;
+namespace App\Admin\Livewire\Page;
 
 use App\Http\Livewire\BaseReactivateDialog;
-use App\Pages\Models\SitePage;
+use App\Pages\Models\Page;
 
-class ReactivateSitePageDialog extends BaseReactivateDialog
+class ReactivatePageDialog extends BaseReactivateDialog
 {
-    public $eloquentRepository = SitePage::class;
+    public $eloquentRepository = Page::class;
 
-    public function reactivateSitePage(): void
+    public function reactivatePage(): void
     {
         $this->authorize('is_admin');
 

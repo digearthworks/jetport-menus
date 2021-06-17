@@ -3,14 +3,14 @@
 namespace App\Pages\Models;
 
 use App\Support\Concerns\HasUuid;
-use Database\Factories\SiteTagFactory;
+use Database\Factories\TagFactory;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\EloquentSortable\SortableTrait;
 
-class SiteTag extends Model
+class Tag extends Model
 {
     use CascadeSoftDeletes,
         HasFactory,
@@ -18,11 +18,11 @@ class SiteTag extends Model
         SoftDeletes,
         SortableTrait;
 
-    protected $cascadeDeletes = ['sitePages'];
+    protected $cascadeDeletes = ['Pages'];
 
-    protected $cascadeDeactivates = ['sitePages'];
+    protected $cascadeDeactivates = ['Pages'];
 
-    protected $cascadeReactivates = ['sitePages'];
+    protected $cascadeReactivates = ['Pages'];
 
     protected $casts = ['active' => 'boolean'];
 
@@ -34,17 +34,17 @@ class SiteTag extends Model
      */
     protected static function newFactory()
     {
-        return SiteTagFactory::new();
+        return TagFactory::new();
     }
 
-    public function taggedSitePages()
+    public function taggedPages()
     {
-        return $this->morphedByMany(SitePage::class, 'site_taggable')->ordered();
+        return $this->morphedByMany(Page::class, 'taggable')->ordered();
     }
 
-    public function sitePages()
+    public function Pages()
     {
-        return $this->hasMany(SitePage::class)->ordered();
+        return $this->hasMany(Page::class)->ordered();
     }
 
     public function activate(): void

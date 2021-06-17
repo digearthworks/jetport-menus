@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\Feature\Admin\SitePage;
+namespace Tests\Feature\Admin\Page;
 
-use App\Admin\Livewire\Site\CreateSitePageForm;
-use App\Pages\Models\SitePage;
+use App\Admin\Livewire\Page\CreatePageForm;
+use App\Pages\Models\Page;
 use Livewire;
 use Tests\TestCase;
 
-class CreateSitePageTest extends TestCase
+class CreatePageTest extends TestCase
 {
     /** @test */
-    public function an_admin_can_access_the_site_pages_page()
+    public function an_admin_can_access_the_pages_page()
     {
         $this->loginAsAdmin();
 
@@ -20,21 +20,21 @@ class CreateSitePageTest extends TestCase
     }
 
     /** @test */
-    public function create_site_page_requires_validation()
+    public function create_page_requires_validation()
     {
         $this->loginAsAdmin();
 
-        Livewire::test(CreateSitePageForm::class)
-            ->call('createSitePage')
+        Livewire::test(CreatePageForm::class)
+            ->call('createPage')
             ->assertHasErrors(['slug']);
     }
 
     /** @test */
-    public function admin_can_create_a_site_page()
+    public function admin_can_create_a_page()
     {
         $this->loginAsAdmin();
 
-        Livewire::test(CreateSitePageForm::class)
+        Livewire::test(CreatePageForm::class)
                 ->set(['state' => [
                     'title' => 'test page',
                     'slug' => 'test-page',
@@ -42,10 +42,10 @@ class CreateSitePageTest extends TestCase
                     'layout' => 'layouts.guest',
                     'active' => 1,
                 ]])
-                ->call('createSitePage');
+                ->call('createPage');
 
         $this->assertDatabaseHas(
-            'site_pages',
+            'pages',
             [
                     'title' => 'test page',
                     'slug' => 'test-page',
@@ -55,7 +55,7 @@ class CreateSitePageTest extends TestCase
                 ]
         );
 
-        $response = $this->get('/pages/'. SitePage::where('slug', 'test-page')->first()->slug);
+        $response = $this->get('/pages/'. Page::where('slug', 'test-page')->first()->slug);
 
         $response->assertOk();
     }

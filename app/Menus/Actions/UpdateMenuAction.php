@@ -27,7 +27,7 @@ class UpdateMenuAction
                 // 'sort' => $data['sort'] ?? $menu->sort,
                 // 'row' => $data['row'] ?? $menu->row,
                 'menu_id' => $data['menu_id'] ?? ($menu->menu_id ?? null),
-                'site_page_id' => $data['site_page_id'] ?? ($menu->site_page_id ?? null),
+                'page_id' => $data['page_id'] ?? ($menu->page_id ?? null),
                 'icon_id' => $data['icon_id'] ?? ($menu->icon_id ?? null),
             ]);
 

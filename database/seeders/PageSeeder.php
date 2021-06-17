@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Pages\Models\SitePage;
+use App\Pages\Models\Page;
 use Illuminate\Database\Seeder;
 
-class SitePageSeeder extends Seeder
+class PageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class SitePageSeeder extends Seeder
      */
     public function run()
     {
-        SitePage::create([
+        Page::create([
             'slug' => 'welcome',
             'title' => 'Welcome to Jetport',
             'body' => '<div class="inline_html" contenteditable="false"><!--?xml version="1.0" encoding="iso-8859-1"?-->
@@ -246,7 +246,7 @@ class SitePageSeeder extends Seeder
             'active' => 1,
         ]);
 
-        SitePage::factory()->create([
+        Page::factory()->create([
             'slug' => 'example-page',
             'layout' => 'layouts.guest',
             'active' => 1,

@@ -1,37 +1,37 @@
 <?php
 
-namespace Tests\Feature\Admin\SitePage;
+namespace Tests\Feature\Admin\Page;
 
-use App\Admin\Livewire\Site\EditSitePageForm;
-use App\Pages\Models\SitePage;
+use App\Admin\Livewire\Page\EditPageForm;
+use App\Pages\Models\Page;
 use Livewire;
 use Tests\TestCase;
 
-class UpdateSitePageTest extends TestCase
+class UpdatePageTest extends TestCase
 {
     /** @test */
-    public function a_site_page_can_be_updated()
+    public function a_page_can_be_updated()
     {
         $this->loginAsAdmin();
 
-        $page = SitePage::factory()->create();
+        $page = Page::factory()->create();
 
-        $this->assertDatabaseMissing('site_pages', [
+        $this->assertDatabaseMissing('pages', [
             'id' => $page->id,
             'title' => 'updated title',
             'body' => '</p>updated body</p>',
         ]);
 
-        Livewire::test(EditSitePageForm::class)
+        Livewire::test(EditPageForm::class)
             ->set('modelId', $page->id)
             ->set(['state' => [
                 'slug' => $page->slug,
                 'title' => 'updated title',
                 'body' => '</p>updated body</p>',
             ]])
-            ->call('updateSitePage');
+            ->call('updatePage');
 
-        $this->assertDatabaseHas('site_pages', [
+        $this->assertDatabaseHas('pages', [
             'id' => $page->id,
             'title' => 'updated title',
             'body' => '</p>updated body</p>',

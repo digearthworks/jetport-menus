@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Auth\Models\Permission;
 use App\Auth\Models\Role;
 use App\Menus\Models\Menu;
-use App\Pages\Models\SitePage;
+use App\Pages\Models\Page;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
@@ -58,7 +58,7 @@ class ComposerServiceProvider extends ServiceProvider
         ], function ($view) {
             if (config('template.website.managed')) {
                 $view->with([
-                    'welcomePage' => SitePage::welcomePages()->first(),
+                    'welcomePage' => Page::welcomePages()->first(),
                 ]);
             }
             $welcomeFile = Jetstream::localizedMarkdownPath('welcome.md');

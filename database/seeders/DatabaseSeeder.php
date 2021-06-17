@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         if (app()->environment(['local', 'testing'])) {
             $this->call(ClientSeederExample::class);
             if (config('template.website.managed')) {
-                $this->call(SitePageSeeder::class);
+                $this->call(PageSeeder::class);
             }
             if (config('template.posts.active')) {
                 $this->call(PostSeeder::class);

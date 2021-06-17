@@ -1,5 +1,5 @@
 <div class="flex items-center">
-@if($menu->menu_id || $menu->site_page_id)
+@if($menu->menu_id || $menu->page_id)
     <div x-data="{ input: '{{ url($menu->link) }}' }">
         <input type="hidden" x-model="input">
         <button x-on:click="$clipboard(input)" class="flex items-center p-0.5 font-semibold text-gray-800  border border-gray-400 rounded shadow bg-gray-100"><i class="fa fa-link"></i></button>

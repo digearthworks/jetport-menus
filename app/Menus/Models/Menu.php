@@ -18,7 +18,7 @@ use App\Menus\InternalLink;
 use App\Menus\MainMenuLink;
 use App\Menus\PageLink;
 use App\Menus\QueryBuilders\MenuQueryBuilder;
-use App\Pages\Models\SitePage;
+use App\Pages\Models\Page;
 use App\Support\Concerns\CascadeDeactivates;
 use App\Support\Concerns\CascadeRestores;
 use App\Support\Concerns\HasIterativeQuickSort;
@@ -180,7 +180,7 @@ class Menu extends Model implements Sortable
 
     public function getLink($value): MenuLinkContract
     {
-        if (isset($this->site_page_id)) {
+        if (isset($this->page_id)) {
             return (new PageLink($this));
         }
 
@@ -324,8 +324,8 @@ class Menu extends Model implements Sortable
         return self::where('name', 'Dashboard')->first();
     }
 
-    public function sitePage(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function page(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(SitePage::class);
+        return $this->belongsTo(Page::class);
     }
 }

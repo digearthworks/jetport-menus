@@ -7,7 +7,7 @@ use App\Pages\QueryBuilders\PageQueryBuilder;
 use App\Support\Concerns\CascadeDeactivates;
 use App\Support\Concerns\HasIterativeQuickSort;
 use App\Support\Concerns\HasUuid;
-use Database\Factories\SitePageFactory;
+use Database\Factories\PageFactory;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +20,7 @@ use Illuminate\Support\Stringable;
 use Spatie\EloquentSortable\Sortable;
 use Wildside\Userstamps\Userstamps;
 
-class SitePage extends Model implements Sortable
+class Page extends Model implements Sortable
 {
     use CascadeDeactivates,
         CascadeSoftDeletes,
@@ -47,7 +47,7 @@ class SitePage extends Model implements Sortable
      */
     protected static function newFactory()
     {
-        return SitePageFactory::new();
+        return PageFactory::new();
     }
 
     public function newEloquentBuilder($query): PageQueryBuilder
@@ -63,17 +63,17 @@ class SitePage extends Model implements Sortable
 
     public function menus(): HasMany
     {
-        return $this->hasMany(Menu::class, 'site_page_id', 'id');
+        return $this->hasMany(Menu::class, 'page_id', 'id');
     }
 
     public function group(): BelongsTo
     {
-        return $this->belongsTo(SiteTag::class, 'site_tag_id');
+        return $this->belongsTo(Tag::class, 'tag_id');
     }
 
     public function tags(): MorphToMany
     {
-        return $this->morphToMany(SiteTag::class, 'site_taggable');
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 
     public function author()

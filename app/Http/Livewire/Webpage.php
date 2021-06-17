@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use App\Pages\Models\SitePage;
+use App\Pages\Models\Page;
 use Livewire\Component;
 
 class Webpage extends Component
 {
-    public SitePage $page;
+    public Page $page;
 
     public function render()
     {

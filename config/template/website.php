@@ -10,8 +10,8 @@ return [
 
     'drivers' => [
         'site' => [
-            'pages_model' => \App\SitePage::class,
-            'page_handler' => \App\Http\Livewire\SitePage::class,
+            'pages_model' => \App\Page::class,
+            'page_handler' => \App\Http\Livewire\Page::class,
         ],
     ],
 ];

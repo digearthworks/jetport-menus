@@ -16,8 +16,6 @@
         @include('admin.menus.select-type')
     @endif
 
-
-
     <div x-cloak x-show="menuType !='main_menu' && menuType !='page' ">
         @include('admin.menus.link')
     </div>

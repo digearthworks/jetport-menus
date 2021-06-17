@@ -25,14 +25,14 @@ use App\Admin\Livewire\Role\CreateRoleForm;
 use App\Admin\Livewire\Role\DeleteRoleDialog;
 use App\Admin\Livewire\Role\EditRoleForm;
 use App\Admin\Livewire\Role\RolesTable;
-use App\Admin\Livewire\Site\CreateSitePageButton;
-use App\Admin\Livewire\Site\CreateSitePageForm;
-use App\Admin\Livewire\Site\DeactivateSitePageDialog;
-use App\Admin\Livewire\Site\DeleteSitePageDialog;
-use App\Admin\Livewire\Site\EditSitePageForm;
-use App\Admin\Livewire\Site\ReactivateSitePageDialog;
-use App\Admin\Livewire\Site\RestoreSitePageDialog;
-use App\Admin\Livewire\Site\SitePagesTable;
+use App\Admin\Livewire\Page\CreatePageButton;
+use App\Admin\Livewire\Page\CreatePageForm;
+use App\Admin\Livewire\Page\DeactivatePageDialog;
+use App\Admin\Livewire\Page\DeletePageDialog;
+use App\Admin\Livewire\Page\EditPageForm;
+use App\Admin\Livewire\Page\ReactivatePageDialog;
+use App\Admin\Livewire\Page\RestorePageDialog;
+use App\Admin\Livewire\Page\PagesTable;
 use App\Admin\Livewire\User\ClearUserSessionDialog;
 use App\Admin\Livewire\User\CreateUserButton;
 use App\Admin\Livewire\User\CreateUserForm;
@@ -93,13 +93,13 @@ class LivewireServiceProvider extends ServiceProvider
         Livewire::component('includes.dashboard-grid', DashboardGrid::class);
         Livewire::component('menu.includes.menu-grid', MenuGrid::class);
 
-        Livewire::component('admin.pages.livewire-datatable.datatable', SitePagesTable::class);
-        Livewire::component('admin.pages.create', CreateSitePageForm::class);
-        Livewire::component('admin.pages.edit', EditSitePageForm::class);
-        Livewire::component('admin.pages.delete', DeleteSitePageDialog::class);
-        Livewire::component('admin.pages.restore', RestoreSitePageDialog::class);
-        Livewire::component('admin.pages.deactivate', DeactivateSitePageDialog::class);
-        Livewire::component('admin.pages.reactivate', ReactivateSitePageDialog::class);
-        Livewire::component('admin.pages.create-page-button', CreateSitePageButton::class);
+        Livewire::component('admin.pages.livewire-datatable.datatable', PagesTable::class);
+        Livewire::component('admin.pages.create', CreatePageForm::class);
+        Livewire::component('admin.pages.edit', EditPageForm::class);
+        Livewire::component('admin.pages.delete', DeletePageDialog::class);
+        Livewire::component('admin.pages.restore', RestorePageDialog::class);
+        Livewire::component('admin.pages.deactivate', DeactivatePageDialog::class);
+        Livewire::component('admin.pages.reactivate', ReactivatePageDialog::class);
+        Livewire::component('admin.pages.create-page-button', CreatePageButton::class);
     }
 }

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Livewire\Site;
+namespace App\Admin\Livewire\Page;
 
 use App\Http\Livewire\BaseRestoreDialog;
-use App\Pages\Models\SitePage;
+use App\Pages\Models\Page;
 
-class RestoreSitePageDialog extends BaseRestoreDialog
+class RestorePageDialog extends BaseRestoreDialog
 {
-    public $eloquentRepository = SitePage::class;
+    public $eloquentRepository = Page::class;
 
-    public function restoreSitePage(): void
+    public function restorePage(): void
     {
         $this->authorize('is_admin');
 
