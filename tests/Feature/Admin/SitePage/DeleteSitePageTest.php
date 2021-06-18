@@ -1,26 +1,26 @@
 <?php
 
-namespace Tests\Feature\Admin\SitePage;
+namespace Tests\Feature\Admin\Page;
 
-use App\Http\Livewire\Admin\Site\DeleteSitePageDialog;
-use App\Pages\Models\SitePage;
+use App\Core\Admin\Livewire\Page\DeletePageDialog;
+use App\Core\Pages\Models\Page;
 use Livewire;
 use Tests\TestCase;
 
-class DeleteSitePageTest extends TestCase
+class DeletePageTest extends TestCase
 {
     /** @test */
-    public function a_site_page_can_be_deleted()
+    public function a_page_can_be_deleted()
     {
         $this->loginAsAdmin();
 
-        $page = SitePage::factory()->create();
+        $page = Page::factory()->create();
 
-        Livewire::test(DeleteSitePageDialog::class)
+        Livewire::test(DeletePageDialog::class)
            ->set('modelId', $page->id)
-           ->call('deleteSitePage');
+           ->call('deletePage');
 
-        $this->assertSoftDeleted('site_pages', ['id' => $page->id]);
+        $this->assertSoftDeleted('pages', ['id' => $page->id]);
 
         $response = $this->get('/pages/' . $page->slug);
         $response->assertStatus(404);

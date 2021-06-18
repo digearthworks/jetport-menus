@@ -56,5 +56,5 @@ Route::group([
 *  Public Website Routes
 */
 Route::group([], function () {
-    includeRouteFiles(__DIR__ . '/website/');
+    includeRouteFiles(__DIR__ . '/pages/');
 });

@@ -170,14 +170,14 @@ return [
         /*
          * Application Service Providers...
          */
+        App\Core\Providers\BladeServiceProvider::class,
+        App\Core\Providers\ComposerServiceProvider::class,
+        App\Core\Providers\LivewireServiceProvider::class,
+        App\Core\Providers\HelperServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        App\Providers\BladeServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\ComposerServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\HelperServiceProvider::class,
-        App\Providers\LivewireServiceProvider::class,
         App\Providers\LocaleServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,

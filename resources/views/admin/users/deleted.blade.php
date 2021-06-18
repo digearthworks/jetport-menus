@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="headerActions">
-        @include('admin.users.includes.header-actions')
+        @include('admin.users.header-actions')
     </x-slot>
 
     <livewire:admin.users.livewire-datatable.datatable status="deleted" />

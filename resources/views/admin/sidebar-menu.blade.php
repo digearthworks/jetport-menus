@@ -2,7 +2,7 @@
 
     <div class="flex items-center justify-around h-16 bg-white border-b border-gray-100">
         <div>
-            @livewire('admin.includes.sidebar-toggler')
+            @livewire('admin.sidebar-toggler')
         </div>
         <div class="flex items-center flex-shrink-0">
         <a href="{{ route('dashboard') }}">

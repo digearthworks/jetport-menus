@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Icons\Models\Icon;
+use App\Core\Icons\Models\Icon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class IconFactory extends Factory

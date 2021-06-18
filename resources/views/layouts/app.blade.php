@@ -57,7 +57,7 @@
                 </header>
             @endif
 
-            @include('includes.logged-in-as')
+            @include('admin.logged-in-as')
 
             <x-banner/>
 
@@ -69,7 +69,7 @@
             </main>
         </div>
         @if($logged_in_user->isAdmin())
-            @include('admin.includes.designer-view-toggler')
+            @include('admin.designer-view-toggler')
         @endif
     </div>
 

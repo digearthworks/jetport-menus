@@ -9,7 +9,7 @@
         </div>
 
     </x-slot>
-        <livewire:includes.dashboard-grid />
+        <livewire:dashboard-grid />
 
         @if($logged_in_user->isAdmin())
             <livewire:admin.menus.edit />

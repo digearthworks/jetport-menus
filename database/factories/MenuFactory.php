@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Icons\Models\Icon;
-use App\Menus\Enums\MenuGroup;
-use App\Menus\Enums\MenuItemGroup;
-use App\Menus\Models\Menu;
+use App\Core\Icons\Models\Icon;
+use App\Core\Menus\Enums\MenuGroup;
+use App\Core\Menus\Enums\MenuItemGroup;
+use App\Core\Menus\Models\Menu;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MenuFactory extends Factory

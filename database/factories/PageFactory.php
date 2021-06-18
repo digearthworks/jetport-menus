@@ -1,0 +1,32 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Core\Pages\Models\Page;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class PageFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Page::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'slug' => $this->faker->unique()->slug(2),
+            'title' => $this->faker->unique()->sentence(3),
+            'body' => $this->faker->randomHtml(),
+            'layout' => $this->faker->randomElement(['layouts.guest', 'layouts.welcome']),
+            'active' => 1,
+        ];
+    }
+}

@@ -4,10 +4,10 @@
     </x-slot>
 
     <x-slot name="headerActions">
-        @include('admin.roles.includes.header-actions')
+        @include('admin.roles.header-actions')
     </x-slot>
 
-    <livewire:admin.role.roles-table />
+    <livewire:admin.roles.livewire-datatable.datatable />
 </x-7xl>
 
 <livewire:admin.roles.create />

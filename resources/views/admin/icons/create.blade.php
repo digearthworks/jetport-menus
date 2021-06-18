@@ -6,9 +6,9 @@
 
     <x-slot name="content">
         <div class="pb-4">
-            @include('admin.icons.includes.form.name')
+            @include('admin.icons.name')
         </div>
-        @include('admin.icons.includes.form.icon-editor')
+        @include('admin.icons.icon-editor')
     </x-slot>
 
     <x-slot name="footer">

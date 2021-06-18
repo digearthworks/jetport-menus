@@ -5,7 +5,7 @@
     </x-slot>
 
     <x-slot name="content">
-        @include('admin.menus.includes.partials.form-content')
+        @include('admin.menus.form-content')
     </x-slot>
 
     <x-slot name="footer">

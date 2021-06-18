@@ -18,9 +18,9 @@
     </head>
     <body class="antialiased">
 
-        @include('guest.includes.nav-top-left')
+        @include('nav-top-left')
 
-        @include('guest.includes.nav-top-right')
+        @include('nav-top-right')
 
         <div class="font-sans antialiased text-gray-900">
             {{ $slot }}

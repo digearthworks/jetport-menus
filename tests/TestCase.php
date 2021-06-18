@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use App\Auth\Models\Role;
-use App\Auth\Models\User;
+use App\Core\Auth\Models\Role;
+use App\Core\Auth\Models\User;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;

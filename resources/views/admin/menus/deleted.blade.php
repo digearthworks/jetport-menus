@@ -4,10 +4,10 @@
     </x-slot>
 
     <x-slot name="headerActions">
-        @include('admin.menus.includes.header-actions')
+        @include('admin.menus.header-actions')
     </x-slot>
 
-    @include('admin.menus.includes.table', ['status' => 'deleted'])
+    @include('admin.menus.table', ['status' => 'deleted'])
 </x-7xl>
 
 <livewire:admin.menus.restore />

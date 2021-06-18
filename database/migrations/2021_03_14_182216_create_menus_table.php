@@ -27,7 +27,7 @@ class CreateMenusTable extends Migration
             $table->integer('sort')->nullable();
             $table->integer('row')->nullable();
             $table->unsignedBigInteger('menu_id')->nullable();
-            $table->unsignedBigInteger('site_page_id')->nullable();
+            $table->unsignedBigInteger('page_id')->nullable();
             $table->integer('icon_id')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

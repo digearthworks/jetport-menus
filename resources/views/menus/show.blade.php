@@ -11,7 +11,7 @@
     @if($logged_in_user->isAdmin())
         <x-slot name="headerActions">
             <div x-cloak x-show="designerView" class="flex items-center">
-                <livewire:admin.menus.includes.partials.create-menu-button value="Add Item" :params="['item' => true, 'menu_id' => $menu->id ]" wire:key="table-row-{{ $menu->uuid }}-column-6-button" />
+                <livewire:admin.menus.create-menu-button value="Add Item" :params="['item' => true, 'menu_id' => $menu->id ]" wire:key="table-row-{{ $menu->uuid }}-column-6-button" />
         </x-slot>
     @endif
 

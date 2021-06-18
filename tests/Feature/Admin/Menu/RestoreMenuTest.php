@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Admin\Menu;
 
-use App\Http\Livewire\Admin\Menu\RestoreMenuDialog;
-use App\Menus\Models\Menu;
+use App\Core\Admin\Livewire\Menu\RestoreMenuDialog;
+use App\Core\Menus\Models\Menu;
 use Livewire;
 use Tests\TestCase;
 

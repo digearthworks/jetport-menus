@@ -27,15 +27,15 @@
     <body class="antialiased">
         <div class="relative flex justify-center min-h-screen py-4 bg-gray-100 items-top dark:bg-gray-900 sm:items-center sm:pt-0">
 
-            @include('guest.includes.nav-top-left')
+            @include('nav-top-left')
 
-            @include('guest.includes.nav-top-right')
+            @include('nav-top-right')
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
 
                 {{ $slot }}
 
-                @include('includes.logged-in-as')
+                @include('admin.logged-in-as')
                 <x-banner/>
             </div>
         </div>

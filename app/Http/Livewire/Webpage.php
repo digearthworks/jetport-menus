@@ -2,19 +2,19 @@
 
 namespace App\Http\Livewire;
 
-use App\Pages\Models\SitePage;
+use App\Core\Pages\Models\Page;
 use Livewire\Component;
 
 class Webpage extends Component
 {
-    public SitePage $page;
+    public Page $page;
 
     public function render()
     {
         if (!$this->page->isActive()) {
             abort(404);
         }
-        return view('webpage')
+        return view('livewire.webpage')
             ->layout($this->page->layout ?? 'layouts.guest');
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\AuthSeeders;
 
-use App\Auth\Models\User;
-use App\Events\User\UserUpdated;
+use App\Core\Auth\Models\User;
+use App\Core\Events\User\UserUpdated;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
 

@@ -4,9 +4,9 @@
     </x-slot>
 
     <x-slot name="headerActions">
-        @include('admin.icons.includes.header-actions')
+        @include('admin.icons.header-actions')
     </x-slot>
 
-    <livewire:admin.icons.includes.icon-grid />
+    <livewire:admin.icons.icon-grid />
 </x-7xl>
 <livewire:admin.icons.create />
