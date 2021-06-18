@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Menu;
 
-use App\Http\Livewire\Concerns\HasModel;
-use App\Http\Livewire\Concerns\InteractsWithDialog;
+use App\Core\Livewire\Concerns\HasModel;
+use App\Core\Livewire\Concerns\InteractsWithDialog;
 use App\Core\Menus\Models\Menu;
 use Livewire\Component;
 

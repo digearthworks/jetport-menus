@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Livewire\Concerns\InteractsWithDialog;
+use App\Core\Livewire\Concerns\InteractsWithDialog;
 use App\Core\Menus\Models\Menu;
 use Livewire\Component;
 

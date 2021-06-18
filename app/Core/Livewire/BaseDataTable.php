@@ -2,7 +2,7 @@
 
 namespace App\Core\Livewire;
 
-use App\Http\Livewire\Concerns\InteractsWithDialog;
+use App\Core\Livewire\Concerns\InteractsWithDialog;
 use App\Core\Support\Concerns\InteractsWithBanner;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 

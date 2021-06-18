@@ -3,7 +3,7 @@
 namespace App\Core\Admin\Livewire\Menu;
 
 use App\Core\Livewire\BaseEditForm;
-use App\Http\Livewire\Concerns\HandlesSelectIconEvent;
+use App\Core\Livewire\Concerns\HandlesSelectIconEvent;
 use App\Core\Menus\Actions\SaveAsMenuAction;
 use App\Core\Menus\Actions\UpdateMenuAction;
 use App\Core\Menus\Models\Menu;

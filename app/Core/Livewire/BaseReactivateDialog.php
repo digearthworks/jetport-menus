@@ -2,7 +2,7 @@
 
 namespace App\Core\Livewire;
 
-use App\Http\Livewire\Concerns\HandlesReactivateDialogInteraction;
+use App\Core\Livewire\Concerns\HandlesReactivateDialogInteraction;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 

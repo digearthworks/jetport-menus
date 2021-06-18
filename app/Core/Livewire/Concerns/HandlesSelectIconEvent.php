@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Concerns;
+namespace App\Core\Livewire\Concerns;
 
 use App\Core\Icons\Models\Icon;
 use App\Core\Support\FontAwesome;

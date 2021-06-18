@@ -2,8 +2,8 @@
 
 namespace App\Core\Admin\Livewire;
 
-use App\Http\Livewire\Concerns\HasAdminMenus;
-use App\Http\Livewire\Concerns\HasAppMenus;
+use App\Core\Livewire\Concerns\HasAdminMenus;
+use App\Core\Livewire\Concerns\HasAppMenus;
 use Livewire\Component;
 
 class AdminSidebarMenu extends Component

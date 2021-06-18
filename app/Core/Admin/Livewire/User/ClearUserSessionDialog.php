@@ -4,7 +4,7 @@ namespace App\Core\Admin\Livewire\User;
 
 use App\Core\Auth\Actions\ClearUserSessionsAction;
 use App\Core\Auth\Models\User;
-use App\Http\Livewire\Concerns\HasModel;
+use App\Core\Livewire\Concerns\HasModel;
 use App\Core\Support\Concerns\InteractsWithBanner;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
