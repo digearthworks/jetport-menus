@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\AuthSeeders;
 
-use App\Menus\Models\Menu;
-use App\Pages\Models\Page;
+use App\Core\Menus\Models\Menu;
+use App\Core\Pages\Models\Page;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
 

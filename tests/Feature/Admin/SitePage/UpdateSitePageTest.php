@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Admin\Page;
 
-use App\Admin\Livewire\Page\EditPageForm;
-use App\Pages\Models\Page;
+use App\Core\Admin\Livewire\Page\EditPageForm;
+use App\Core\Pages\Models\Page;
 use Livewire;
 use Tests\TestCase;
 

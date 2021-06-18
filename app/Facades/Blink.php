@@ -2,7 +2,7 @@
 
 namespace App\Facades;
 
-use App\Support\Blink as AppBlink;
+use App\Core\Support\Blink as AppBlink;
 use Illuminate\Support\Facades\Facade;
 
 /**

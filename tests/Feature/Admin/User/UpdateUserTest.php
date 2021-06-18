@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Admin\User;
 
-use App\Auth\Models\Role;
-use App\Auth\Models\User;
-use App\Events\User\UserUpdated;
-use App\Admin\Livewire\User\EditUserForm;
-use App\Menus\Models\Menu;
+use App\Core\Auth\Models\Role;
+use App\Core\Auth\Models\User;
+use App\Core\Events\User\UserUpdated;
+use App\Core\Admin\Livewire\User\EditUserForm;
+use App\Core\Menus\Models\Menu;
 use Illuminate\Support\Facades\Event;
 use Livewire;
 use Tests\TestCase;

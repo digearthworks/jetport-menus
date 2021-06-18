@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Auth\Models\User;
+use App\Core\Auth\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Laravel\Jetstream\Features;

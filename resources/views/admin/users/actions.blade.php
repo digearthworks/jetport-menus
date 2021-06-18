@@ -1,5 +1,5 @@
 <div class="flex items-center">
-    @inject('model', '\App\Auth\Models\User')
+    @inject('model', '\App\Core\Auth\Models\User')
 
     @if ($user->trashed() && $logged_in_user->hasAllAccess())
         <x-button wire:click="confirm('restore',{{ $user->id }})">

@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Admin\Menu;
 
-use App\Admin\Livewire\Menu\DeleteMenuDialog;
-use App\Menus\Models\Menu;
+use App\Core\Admin\Livewire\Menu\DeleteMenuDialog;
+use App\Core\Menus\Models\Menu;
 use Livewire;
 use Tests\TestCase;
 

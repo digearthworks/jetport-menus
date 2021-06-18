@@ -12,7 +12,7 @@
                         <rect x="12" y="-10" width="8" height="8" transform="rotate(45)" />
                     </svg>
                 </div>
-                <div class="w-12 h-12 mini-box @isset($item['id']) @if($item['id'] === 1 || in_array($item['id'], \App\Menus\Models\Menu::pluck('icon_id')->toArray())) bg-indigo-300 @endif @endisset">
+                <div class="w-12 h-12 mini-box @isset($item['id']) @if($item['id'] === 1 || in_array($item['id'], \App\Core\Menus\Models\Menu::pluck('icon_id')->toArray())) bg-indigo-300 @endif @endisset">
                     {!! $item['art'] !!}
                 </div>
 

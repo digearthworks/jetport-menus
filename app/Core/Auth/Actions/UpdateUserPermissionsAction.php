@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Core\Auth\Actions;
+
+use App\Core\Auth\Models\User;
+use Illuminate\Support\Facades\Validator;
+
+class UpdateUserPermissionsAction
+{
+    public function __invoke(User $user, array $input)
+    {
+        Validator::make($input, [
+            'roles' => ['array', 'nullable'],
+        ])->validateWithBag('updateRoles');
+
+        if (! $user->isMasterAdmin()) {
+            $user->syncRoles($input['roles'] ?? []);
+            $user->syncPermissions($input['permissions'] ?? []);
+        }
+    }
+}

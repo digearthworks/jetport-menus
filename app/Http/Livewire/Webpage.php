@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Pages\Models\Page;
+use App\Core\Pages\Models\Page;
 use Livewire\Component;
 
 class Webpage extends Component

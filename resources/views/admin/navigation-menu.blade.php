@@ -21,7 +21,7 @@
                 </div>
                 <!-- Navigation Links -->
                 <div class="hidden space-x-2 sm:-my-px sm:ml-10 sm:flex">
-                    @include('menus.navbar.app')
+                    @include('menus.navbar-menu')
                 </div>
             </div>
 
@@ -145,7 +145,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            @include('menus.navbar.app')
+            @include('menus.navbar-menu')
         </div>
 
         <!-- Responsive Settings Options -->

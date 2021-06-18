@@ -57,7 +57,7 @@
                 </header>
             @endif
 
-            @include('includes.logged-in-as')
+            @include('admin.logged-in-as')
 
             <x-banner/>
 

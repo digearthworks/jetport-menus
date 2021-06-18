@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Admin\Menu;
 
-use App\Admin\Livewire\Menu\EditMenuForm;
-use App\Icons\Models\Icon;
-use App\Menus\Models\Menu;
+use App\Core\Admin\Livewire\Menu\EditMenuForm;
+use App\Core\Icons\Models\Icon;
+use App\Core\Menus\Models\Menu;
 use Livewire;
 use Tests\TestCase;
 

@@ -1,4 +1,4 @@
-@inject('userModel', '\App\Auth\Models\User')
+@inject('userModel', '\App\Core\Auth\Models\User')
 @if (!$model->isAdmin() && ($logged_in_user->hasAllAccess() || $model->type == $userModel::TYPE_USER))
     <div class="flex items-center">
         <!-- todo: edit action -->

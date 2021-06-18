@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Auth\Models\Role;
-use App\Auth\Models\User;
+use App\Core\Auth\Models\Role;
+use App\Core\Auth\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

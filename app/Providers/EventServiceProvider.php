@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Listeners\RoleEventListener;
-use App\Listeners\UserEventListener;
+use App\Core\Listeners\RoleEventListener;
+use App\Core\Listeners\UserEventListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Pages\Models\Page;
+use App\Core\Pages\Models\Page;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PageFactory extends Factory

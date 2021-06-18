@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Http\Livewire\Concerns\InteractsWithDialog;
-use App\Menus\Models\Menu;
+use App\Core\Menus\Models\Menu;
 use Livewire\Component;
 
 class DashboardGrid extends Component
@@ -36,6 +36,6 @@ class DashboardGrid extends Component
      */
     public function render()
     {
-        return view('includes.dashboard-grid');
+        return view('dashboard-grid');
     }
 }

@@ -1,4 +1,4 @@
-@inject('model', '\App\Auth\Models\User')
+@inject('model', '\App\Core\Auth\Models\User')
 
 <x-dialog-modal maxWidth="2xl" wire:model="creatingResource">
 
