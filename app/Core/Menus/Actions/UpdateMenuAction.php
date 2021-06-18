@@ -7,11 +7,25 @@ use App\Core\Menus\Models\Menu;
 use DB;
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Validator;
 
 class UpdateMenuAction
 {
     public function __invoke(array $data, Menu $menu): Menu
     {
+
+
+        Validator::make($data, [
+            'group' => ['string'],
+            'name' => ['required', 'string'],
+            'handle' => ['required', 'string'],
+            'type' => ['required', 'string'],
+            'active' => ['int'],
+            'title' => ['string', 'nullable'],
+            'iframe' => ['boolean', 'nullable'],
+            'sort' => ['int', 'nullable'],
+        ])->validateWithBag('editMenuForm');
+
         DB::beginTransaction();
 
         try {

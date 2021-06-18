@@ -8,6 +8,7 @@ use App\Core\Support\Concerns\FiltersData;
 use DB;
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Validator;
 
 class GetIconFromInputAction
 {
@@ -23,6 +24,11 @@ class GetIconFromInputAction
 
     public function __invoke($data) : Icon
     {
+
+        Validator::make($data, [
+            'meta' => ['string', 'nullable'],
+        ])->validateWithBag('createIconForm');
+
         $data = $this->filterData($data);
 
         $input = $data['icon_id'] ?? null;

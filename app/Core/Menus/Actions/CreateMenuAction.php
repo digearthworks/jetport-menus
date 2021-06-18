@@ -8,6 +8,7 @@ use App\Core\Support\Concerns\FiltersData;
 use DB;
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Validator;
 
 class CreateMenuAction
 {
@@ -16,6 +17,19 @@ class CreateMenuAction
     public function __invoke(array $data = []): Menu
     {
         $data = $this->filterData($data);
+
+        Validator::make($data, [
+            'group' => ['string', 'required'],
+            'name' => ['required', 'string'],
+            'handle' => ['required', 'string'],
+            'type' => ['required', 'string'],
+            'active' => ['int'],
+            'title' => ['string'],
+            'iframe' => ['int'],
+            'sort' => ['int', 'nullable'],
+            'menu_id' => ['int', 'nullable'],
+            'page_id' => ['int', 'nullable'],
+        ])->validateWithBag('createMenuForm');
 
         DB::beginTransaction();
 

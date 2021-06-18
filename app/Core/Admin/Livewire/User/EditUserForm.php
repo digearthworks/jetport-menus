@@ -55,25 +55,12 @@ class EditUserForm extends BaseEditForm
 
         $this->resetErrorBag();
 
-
         // We will allow lower level admins to assign admin
         // menus and links, but we will not allow
         // them to change the type
         if (!Auth::user()->hasAllAccess()) {
             $this->state['type'] = $this->model->type;
         }
-
-        Validator::make($this->state, [
-            'type' => ['string'],
-            'name' => ['required'],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')],
-            'active' => ['integer'],
-            'roles' => ['array'],
-            'permissions' => ['array'],
-            'menus' => ['array'],
-            'send_confirmation_email' => ['integer'],
-            'email_verified' => ['integer'],
-        ])->validateWithBag('updatedUserForm');
 
         $updateUserAction($this->model, $this->state);
 

@@ -32,7 +32,6 @@ class CreatePageForm extends BaseCreateForm
         $this->resetErrorBag();
 
         Validator::make($this->state, [
-
             'title' => ['string', 'nullable'],
             'slug' => ['required', 'min:1', 'max:100', Rule::unique('pages')],
             'body' => ['string'],
@@ -40,7 +39,6 @@ class CreatePageForm extends BaseCreateForm
             'active' => ['int', 'nullable'],
             'sort' => ['int', 'nullable'],
             'meta' => ['array', 'nullable'],
-
         ])->validateWithBag('createdPageForm');
 
         Page::create([

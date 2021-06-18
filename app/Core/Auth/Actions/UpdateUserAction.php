@@ -7,7 +7,9 @@ use App\Core\Events\User\UserUpdated;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
+use Validator;
 
 class UpdateUserAction
 {
@@ -33,6 +35,19 @@ class UpdateUserAction
 
     public function __invoke(User $user, array $input): User
     {
+
+        Validator::make($input, [
+            'type' => ['string'],
+            'name' => ['string'],
+            'email' => ['email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'active' => ['integer'],
+            'roles' => ['array'],
+            'permissions' => ['array'],
+            'menus' => ['array'],
+            'send_confirmation_email' => ['integer'],
+            'email_verified' => ['integer'],
+        ])->validateWithBag('updatedUserForm');
+
         DB::beginTransaction();
 
         try {

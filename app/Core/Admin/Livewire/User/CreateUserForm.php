@@ -29,30 +29,14 @@ class CreateUserForm extends BaseCreateForm
         'email_verified' => '1',
     ];
 
-    public function createUser(CreatesNewUsers $users): void
+    public function createUser(CreatesNewUsers $createsNewUsers): void
     {
         $this->authorize('admin.access.users');
 
         $this->resetErrorBag();
 
-        Validator::make($this->state, [
-            'type' => ['string'],
-            'name' => ['required'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
-            'password' => ['required'],
-            'active' => ['integer'],
-            'roles' => ['array'],
-            'permissions' => ['array'],
-            'menus' => ['array'],
-            'send_confirmation_email' => ['integer'],
-            'email_verified' => ['integer'],
-        ])->validateWithBag('creatUserForm');
+        $createsNewUsers->create($this->state);
 
-        try {
-            $users->create($this->state);
-        } catch (Exception $e) {
-            throw $e;
-        }
         $this->emit('closeCreateDialog');
         $this->emit('refreshWithSuccess', 'User Created');
         $this->creatingResource = false;

@@ -47,10 +47,6 @@ class CreateIconForm extends BaseCreateForm
     {
         $this->resetErrorBag();
 
-        Validator::make($this->state, [
-            'meta' => ['string', 'nullable'],
-        ])->validateWithBag('createIconForm');
-
         $getIconFromInputAction($this->state);
 
         $this->emit('refreshWithSuccess', 'Icon Created!');

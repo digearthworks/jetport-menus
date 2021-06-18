@@ -8,11 +8,21 @@ use App\Core\Exceptions\GeneralException;
 use DB;
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
+use Validator;
 
 class UpdateRoleAction
 {
     public function __invoke(Role $role, array $data = []): Role
     {
+
+        Validator::make($data, [
+            'type' => ['string'],
+            'name' => [ Rule::unique('roles')->ignore($role->id)],
+            'permissions' => ['array'],
+            'menus' => ['array'],
+        ])->validateWithBag('updateRoleForm');
+
         DB::beginTransaction();
 
         try {

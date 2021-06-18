@@ -49,11 +49,8 @@ class EditIconForm extends BaseEditForm
     public function updateIcon(GetIconFromInputAction $getIconFromInputAction)
     {
         $this->authorize('is_admin');
-        $this->resetErrorBag();
 
-        Validator::make($this->state, [
-            'name' => ['string', 'nullable'],
-        ])->validateWithBag('createIconForm');
+        $this->resetErrorBag();
 
         $this->state['name'] = str_replace($this->model->meta, '', $this->state['name']);
 

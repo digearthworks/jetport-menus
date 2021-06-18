@@ -55,13 +55,6 @@ class EditRoleForm extends BaseEditForm
             $this->state['type'] = $this->model->type;
         }
 
-        Validator::make($this->state, [
-            'type' => ['string'],
-            'name' => ['required', Rule::unique('roles')->ignore($this->modelId)],
-            'permissions' => ['array'],
-            'menus' => ['array'],
-        ])->validateWithBag('updateRoleForm');
-
         $updateRoleAction($this->model, $this->state);
 
         $this->emit('refreshWithSuccess', 'Role Updated!');

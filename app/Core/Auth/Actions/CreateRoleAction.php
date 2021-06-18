@@ -7,11 +7,21 @@ use App\Core\Events\Role\RoleCreated;
 use App\Core\Exceptions\GeneralException;
 use DB;
 use Exception;
+use Illuminate\Validation\Rule;
+use Validator;
 
 class CreateRoleAction
 {
     public function __invoke(array $data = []): Role
     {
+
+        Validator::make($data, [
+            'type' => ['string'],
+            'name' => ['required', Rule::unique('roles')],
+            'permissions' => ['array'],
+            'menus' => ['array'],
+        ])->validateWithBag('createdRoleForm');
+
         DB::beginTransaction();
 
         try {

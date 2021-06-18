@@ -86,19 +86,7 @@ class EditMenuForm extends BaseEditForm
     {
         $this->authorize('is_admin');
 
-        // dd($this->state);
-
         $this->resetErrorBag();
-        Validator::make($this->state, [
-            'group' => ['string'],
-            'name' => ['required', 'string'],
-            'handle' => ['required', 'string'],
-            'type' => ['required', 'string'],
-            'active' => ['int'],
-            'title' => ['string', 'nullable'],
-            'iframe' => ['boolean', 'nullable'],
-            'sort' => ['int', 'nullable'],
-        ])->validateWithBag('editMenuForm');
 
         $updateMenuAction($this->state, $this->model);
 

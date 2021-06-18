@@ -68,19 +68,6 @@ class CreateMenuForm extends BaseCreateForm
     {
         $this->resetErrorBag();
 
-        Validator::make($this->state, [
-            'group' => ['string', 'required'],
-            'name' => ['required', 'string'],
-            'handle' => ['required', 'string'],
-            'type' => ['required', 'string'],
-            'active' => ['int'],
-            'title' => ['string'],
-            'iframe' => ['int'],
-            'sort' => ['int', 'nullable'],
-            'menu_id' => ['int', 'nullable'],
-            'page_id' => ['int', 'nullable'],
-        ])->validateWithBag('createMenuForm');
-
         $createMenuAction($this->state);
 
         $this->emit('refreshWithSuccess', 'Menu Created!');

@@ -26,13 +26,6 @@ class CreateRoleForm extends BaseCreateForm
     {
         $this->resetErrorBag();
 
-        Validator::make($this->state, [
-            'type' => ['string'],
-            'name' => ['required', Rule::unique('roles')],
-            'permissions' => ['array'],
-            'menus' => ['array'],
-        ])->validateWithBag('createdRoleForm');
-
         $createRoleAction($this->state);
 
         $this->emit('refreshWithSuccess', 'Role Created!');
