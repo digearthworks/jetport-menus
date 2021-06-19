@@ -2,6 +2,8 @@
 
 namespace App\Core\Auth\Concerns;
 
+use App\Core\Auth\Enums\UserType;
+
 /**
  * Trait UserMethod.
  */
@@ -14,12 +16,12 @@ trait UserMethod
 
     public function isAdmin(): bool
     {
-        return $this->type === self::TYPE_ADMIN;
+        return $this->type->equals(UserType::admin());
     }
 
     public function isUser(): bool
     {
-        return $this->type === self::TYPE_USER;
+        return $this->type->equals(UserType::user());
     }
 
     public function hasAllAccess(): bool
@@ -34,7 +36,7 @@ trait UserMethod
      */
     public function isType($type): bool
     {
-        return $this->type === $type;
+        return $this->type->equals($type);
     }
 
     public function isActive(): bool

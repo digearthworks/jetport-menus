@@ -2,6 +2,7 @@
 
 namespace App\Core\Auth\Actions;
 
+use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\User;
 use App\Core\Events\User\UserCreated;
 use DB;
@@ -42,7 +43,7 @@ class CreateNewUser implements CreatesNewUsers
 
         try {
             $user = User::create([
-                'type' => $input['type'] ?? User::TYPE_USER,
+                'type' => $input['type'] ?? UserType::user(),
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'password' => $input['password'],

@@ -7,6 +7,7 @@ use App\Core\Auth\Models\Role;
 use App\Core\Auth\Models\User;
 use App\Core\Events\Role\RoleUpdated;
 use App\Core\Admin\Livewire\Role\EditRoleForm;
+use App\Core\Auth\Enums\UserType;
 use Illuminate\Support\Facades\Event;
 use Livewire;
 use Tests\TestCase;
@@ -28,14 +29,14 @@ class UpdateRoleTest extends TestCase
 
         $this->assertDatabaseMissing('roles', [
             'id' => $role->id,
-            'type' => User::TYPE_ADMIN,
+            'type' => UserType::admin(),
             'name' => 'Test Role',
         ]);
 
         Livewire::test(EditRoleForm::class)
             ->set('modelId', $role->id)
             ->set(['state' => [
-                'type' => User::TYPE_ADMIN,
+                'type' => UserType::admin(),
                 'name' => 'Test Role',
                 'permissions' => [
                     $permission->id
@@ -45,7 +46,7 @@ class UpdateRoleTest extends TestCase
 
         $this->assertDatabaseHas('roles', [
             'id' => $role->id,
-            'type' => User::TYPE_ADMIN,
+            'type' => UserType::admin(),
             'name' => 'Test Role',
         ]);
 

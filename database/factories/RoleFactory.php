@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\Role;
 use App\Core\Auth\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -26,7 +27,7 @@ class RoleFactory extends Factory
     public function definition()
     {
         return [
-            'type' => $this->faker->randomElement([User::TYPE_ADMIN, User::TYPE_USER]),
+            'type' => $this->faker->randomElement(UserType::toValues()),
             'name' => $this->faker->word,
         ];
     }

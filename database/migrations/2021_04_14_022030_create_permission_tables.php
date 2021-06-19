@@ -20,7 +20,7 @@ class CreatePermissionTables extends Migration
         Schema::connection(config('template.auth.database_connection'))->create($tableNames['permissions'], function (Blueprint $table) use ($tableNames) {
             $table->bigIncrements('id');
             $table->uuid('uuid')->nullable()->unique();
-            $table->enum('type', [User::TYPE_ADMIN, User::TYPE_USER]);
+            $table->string('type');
             $table->string('guard_name');
             $table->string('name');
             $table->string('description')->nullable();
@@ -41,7 +41,7 @@ class CreatePermissionTables extends Migration
         Schema::connection(config('template.auth.database_connection'))->create($tableNames['roles'], function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid')->nullable()->unique();
-            $table->enum('type', [User::TYPE_ADMIN, User::TYPE_USER]);
+            $table->string('type');
             $table->string('name');
             $table->string('guard_name');
             $table->integer('created_by')->nullable();

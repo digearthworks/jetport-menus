@@ -2,6 +2,7 @@
 
 namespace App\Core\Auth\Actions;
 
+use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\Role;
 use App\Core\Events\Role\RoleUpdated;
 use App\Core\Exceptions\GeneralException;
@@ -9,6 +10,7 @@ use DB;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
+use Spatie\Enum\Laravel\Rules\EnumRule;
 use Validator;
 
 class UpdateRoleAction
@@ -17,7 +19,7 @@ class UpdateRoleAction
     {
 
         Validator::make($data, [
-            'type' => ['string'],
+            'type' => [new EnumRule(UserType::class)],
             'name' => [ Rule::unique('roles')->ignore($role->id)],
             'permissions' => ['array'],
             'menus' => ['array'],

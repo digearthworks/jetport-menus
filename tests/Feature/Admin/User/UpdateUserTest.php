@@ -6,6 +6,7 @@ use App\Core\Auth\Models\Role;
 use App\Core\Auth\Models\User;
 use App\Core\Events\User\UserUpdated;
 use App\Core\Admin\Livewire\User\EditUserForm;
+use App\Core\Auth\Enums\UserType;
 use App\Core\Menus\Models\Menu;
 use Illuminate\Support\Facades\Event;
 use Livewire;
@@ -26,7 +27,7 @@ class UpdateUserTest extends TestCase
 
         $this->assertDatabaseMissing('users', [
             'id' => $user->id,
-            'type' => User::TYPE_ADMIN,
+            'type' => UserType::admin(),
             'name' => 'John Doe',
             'email' => 'john@example.com',
         ]);
@@ -34,7 +35,7 @@ class UpdateUserTest extends TestCase
         Livewire::test(EditUserForm::class)
             ->set('modelId', $user->id)
             ->set(['state' => [
-                'type' => User::TYPE_ADMIN,
+                'type' => UserType::admin(),
                 'name' => 'John Doe',
                 'email' => 'john@example.com',
                 'roles' => [
@@ -49,7 +50,7 @@ class UpdateUserTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
-            'type' => User::TYPE_ADMIN,
+            'type' => UserType::admin(),
             'name' => 'John Doe',
             'email' => 'john@example.com',
         ]);

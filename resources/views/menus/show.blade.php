@@ -15,7 +15,7 @@
         </x-slot>
     @endif
 
-        <livewire:menu.includes.menu-grid :menuId="$menu->id" />
+        <livewire:menus.grid-menu :menuId="$menu->id" />
 </x-7xl>
 @if($logged_in_user->isAdmin())
     <livewire:admin.menus.create />

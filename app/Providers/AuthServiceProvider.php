@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -34,7 +35,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('is_admin', function ($user = null) {
-            return $user->type  === User::TYPE_ADMIN;
+            return $user->type  === UserType::admin();
         });
 
         Passport::routes();

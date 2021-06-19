@@ -3,6 +3,7 @@
 namespace App\Core\Admin\Livewire\Role;
 
 use App\Core\Auth\Actions\UpdateRoleAction;
+use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\Role;
 use App\Core\Auth\Models\User;
 use App\Core\Livewire\BaseEditForm;
@@ -40,7 +41,7 @@ class EditRoleForm extends BaseEditForm
 
     public function updateRole(UpdateRoleAction $updateRoleAction)
     {
-        if ($this->model->type == User::TYPE_ADMIN) {
+        if ($this->model->type->equals(UserType::admin())) {
             $this->authorize('onlysuperadmincandothis');
         } else {
             $this->authorize('admin.access.users');

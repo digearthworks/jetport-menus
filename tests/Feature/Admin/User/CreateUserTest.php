@@ -6,6 +6,7 @@ use App\Core\Auth\Models\Role;
 use App\Core\Auth\Models\User;
 use App\Core\Events\User\UserCreated;
 use App\Core\Admin\Livewire\User\CreateUserForm;
+use App\Core\Auth\Enums\UserType;
 use App\Core\Menus\Models\Menu;
 use Illuminate\Support\Facades\Event;
 use Livewire;
@@ -57,7 +58,7 @@ class CreateUserTest extends TestCase
 
         Livewire::test(CreateUserForm::class)
             ->set(['state' => [
-                'type' => User::TYPE_ADMIN,
+                'type' => UserType::admin(),
                 'name' => 'John Doe',
                 'email' => 'john@example.com',
                 'password' => 'OC4Nzu270N!QBVi%U%qX',
@@ -76,7 +77,7 @@ class CreateUserTest extends TestCase
         $this->assertDatabaseHas(
             'users',
             [
-                'type' => User::TYPE_ADMIN,
+                'type' => UserType::admin(),
                 'name' => 'John Doe',
                 'email' => 'john@example.com',
                 'active' => true,

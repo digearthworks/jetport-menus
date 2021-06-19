@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\User;
 use Closure;
 
@@ -18,7 +19,7 @@ class UserCheck
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user() && $request->user()->isType(User::TYPE_USER)) {
+        if ($request->user() && $request->user()->isType(UserType::user())) {
             return $next($request);
         }
 
