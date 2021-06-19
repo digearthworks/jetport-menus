@@ -2,13 +2,12 @@
 
 namespace App\Core\Admin\Livewire\Menu;
 
+use App\Core\Icons\Models\Icon;
 use App\Core\Livewire\BaseCreateForm;
 use App\Core\Livewire\Concerns\HandlesSelectIconEvent;
-use App\Core\Icons\Models\Icon;
 use App\Core\Menus\Actions\CreateMenuAction;
 use App\Core\Menus\Models\Menu;
 use App\Core\Support\Concerns\InteractsWithBanner;
-use Illuminate\Support\Facades\Validator;
 
 class CreateMenuForm extends BaseCreateForm
 {

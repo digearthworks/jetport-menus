@@ -2,8 +2,8 @@
 
 namespace App\Core\Admin\Livewire\Icon;
 
-use App\Core\Livewire\BaseDataTable;
 use App\Core\Icons\Models\Icon;
+use App\Core\Livewire\BaseDataTable;
 use App\Core\Support\FontAwesome;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Schema\Blueprint;

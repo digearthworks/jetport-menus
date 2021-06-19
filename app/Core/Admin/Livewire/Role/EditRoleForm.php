@@ -5,11 +5,8 @@ namespace App\Core\Admin\Livewire\Role;
 use App\Core\Auth\Actions\UpdateRoleAction;
 use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\Role;
-use App\Core\Auth\Models\User;
 use App\Core\Livewire\BaseEditForm;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class EditRoleForm extends BaseEditForm
 {

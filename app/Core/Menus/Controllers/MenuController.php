@@ -2,8 +2,8 @@
 
 namespace App\Core\Menus\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Core\Menus\Models\Menu;
+use App\Http\Controllers\Controller;
 
 class MenuController extends Controller
 {

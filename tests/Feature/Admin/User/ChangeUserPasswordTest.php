@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Admin\User;
 
-use App\Core\Auth\Models\User;
 use App\Core\Admin\Livewire\User\EditUserPasswordForm;
+use App\Core\Auth\Models\User;
 use Hash;
 use Livewire;
 use Tests\TestCase;

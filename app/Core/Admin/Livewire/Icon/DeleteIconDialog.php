@@ -2,8 +2,8 @@
 
 namespace App\Core\Admin\Livewire\Icon;
 
-use App\Core\Livewire\BaseDeleteDialog;
 use App\Core\Icons\Models\Icon;
+use App\Core\Livewire\BaseDeleteDialog;
 
 class DeleteIconDialog extends BaseDeleteDialog
 {

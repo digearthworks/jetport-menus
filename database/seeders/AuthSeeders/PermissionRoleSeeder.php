@@ -5,7 +5,6 @@ namespace Database\Seeders\AuthSeeders;
 use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\Permission;
 use App\Core\Auth\Models\Role;
-use App\Core\Auth\Models\User;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
 

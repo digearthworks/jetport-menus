@@ -56,7 +56,6 @@ class ComposerServiceProvider extends ServiceProvider
             'layouts.guest',
             'welcome',
         ], function ($view) {
-
             $view->with([
                 'welcomePage' => Page::welcomePages()->first(),
             ]);

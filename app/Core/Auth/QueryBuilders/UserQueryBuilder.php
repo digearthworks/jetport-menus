@@ -3,7 +3,6 @@
 namespace App\Core\Auth\QueryBuilders;
 
 use App\Core\Auth\Enums\UserType;
-use App\Core\Auth\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
 class UserQueryBuilder extends Builder

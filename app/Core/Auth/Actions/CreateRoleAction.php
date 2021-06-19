@@ -16,7 +16,6 @@ class CreateRoleAction
 {
     public function __invoke(array $data = []): Role
     {
-
         Validator::make($data, [
             'type' => [new EnumRule(UserType::class)],
             'name' => ['required', Rule::unique('roles')],

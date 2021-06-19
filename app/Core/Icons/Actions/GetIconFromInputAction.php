@@ -24,7 +24,6 @@ class GetIconFromInputAction
 
     public function __invoke($data) : Icon
     {
-
         Validator::make($data, [
             'meta' => ['string', 'nullable'],
         ])->validateWithBag('createIconForm');
