@@ -4,6 +4,7 @@ namespace App\Core\Auth\Models;
 
 use App\Core\Auth\Concerns\GetsAuthConnection;
 use App\Core\Auth\Concerns\HasPermissionsLabel;
+use App\Core\Auth\Enums\UserType;
 use App\Core\Menus\Concerns\HasMenus;
 use App\Core\Support\Concerns\HasUuid;
 use Database\Factories\RoleFactory;
@@ -31,6 +32,10 @@ class Role extends SpatieRole
     protected $with = [
         'permissions',
         'users'
+    ];
+
+    protected $casts = [
+        'type' => UserType::class,
     ];
 
     /**

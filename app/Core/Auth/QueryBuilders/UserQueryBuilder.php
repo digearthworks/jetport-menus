@@ -2,6 +2,7 @@
 
 namespace App\Core\Auth\QueryBuilders;
 
+use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -39,7 +40,7 @@ class UserQueryBuilder extends Builder
 
     public function admins() :self
     {
-        return $this->where('type', User::TYPE_ADMIN);
+        return $this->where('type', UserType::admin());
     }
 
     /**
@@ -49,6 +50,6 @@ class UserQueryBuilder extends Builder
      */
     public function users() :self
     {
-        return $this->where('type', User::TYPE_USER);
+        return $this->where('type', UserType::user());
     }
 }

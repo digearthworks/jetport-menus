@@ -2,12 +2,14 @@
 
 namespace App\Core\Auth\Actions;
 
+use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\Role;
 use App\Core\Events\Role\RoleCreated;
 use App\Core\Exceptions\GeneralException;
 use DB;
 use Exception;
 use Illuminate\Validation\Rule;
+use Spatie\Enum\Laravel\Rules\EnumRule;
 use Validator;
 
 class CreateRoleAction
@@ -16,7 +18,7 @@ class CreateRoleAction
     {
 
         Validator::make($data, [
-            'type' => ['string'],
+            'type' => [new EnumRule(UserType::class)],
             'name' => ['required', Rule::unique('roles')],
             'permissions' => ['array'],
             'menus' => ['array'],

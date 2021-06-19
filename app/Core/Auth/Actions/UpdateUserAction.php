@@ -2,6 +2,7 @@
 
 namespace App\Core\Auth\Actions;
 
+use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\User;
 use App\Core\Events\User\UserUpdated;
 use Exception;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
+use Spatie\Enum\Laravel\Rules\EnumRule;
 use Validator;
 
 class UpdateUserAction
@@ -37,7 +39,7 @@ class UpdateUserAction
     {
 
         Validator::make($input, [
-            'type' => ['string'],
+            'type' => [new EnumRule(UserType::class)],
             'name' => ['string'],
             'email' => ['email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'active' => ['integer'],

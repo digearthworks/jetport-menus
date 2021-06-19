@@ -1,6 +1,4 @@
 
-
-@inject('model', '\App\Core\Auth\Models\User')
 <div>
     <x-dialog-modal maxWidth="2xl" wire:model="creatingResource">
 
@@ -9,7 +7,7 @@
         </x-slot>
 
         <x-slot name="content">
-            <div x-data="{userType : '{{ $model::TYPE_USER }}'}">
+            <div x-data="{userType : '{{ UserType::user() }}'}">
                 <div class="col-span-6 sm:col-span-4">
 
                     <div>
@@ -52,15 +50,15 @@
                             class="block w-full mb-2 border-gray-300 rounded-md shadow-sm form-select focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                             x-on:change="userType = $event.target.value" wire:model.defer="state.type"
                             required>
-                            <option value="{{ $model::TYPE_USER }}">@lang('User')</option>
-                            <option value="{{ $model::TYPE_ADMIN }}">@lang('Administrator')</option>
+                            <option value="{{ UserType::user() }}">@lang('User')</option>
+                            <option value="{{ UserType::admin() }}">@lang('Administrator')</option>
                         </select>
                     </div>
                 </div>
                     <!--form-group-->
 
                 <!-- Only shows if type is admin -->
-                <div x-cloak x-show="userType === '{{ $model::TYPE_ADMIN }}'">
+                <div x-cloak x-show="userType === '{{ UserType::admin() }}'">
 
                     @if($logged_in_user->hasAllAccess())
                         <x-checklist-index
@@ -70,7 +68,7 @@
                             :relations="['permissions', 'menus']"
                             :form="$state ?? []"
                             formElement="state.roles"
-                            :categories="$roles->where('type', $model::TYPE_ADMIN) ?? []"
+                            :categories="$roles->where('type', UserType::admin()) ?? []"
                             header="Roles"
                             disableChildren="true"
                         />
@@ -97,15 +95,15 @@
                             relation="children"
                             :form="$state ?? []"
                             formElement="state.permissions"
-                            :categories="$permissionCategories->where('type', $model::TYPE_ADMIN) ?? []"
-                            :general="$generalPermissions->where('type', $model::TYPE_ADMIN) ?? []"
+                            :categories="$permissionCategories->where('type', UserType::admin()) ?? []"
+                            :general="$generalPermissions->where('type', UserType::admin()) ?? []"
                             header="Additional Permissions by Category"
                         />
                     @endif
                 </div>
 
                 <!-- Only shows if type is user -->
-                <div x-cloak x-show="userType === '{{ $model::TYPE_USER }}'">
+                <div x-cloak x-show="userType === '{{ UserType::user() }}'">
 
                     <x-checklist-index
                         formIndex="roles"
@@ -114,7 +112,7 @@
                         :relations="['permissions', 'menus']"
                         :form="$state ?? []"
                         formElement="state.roles"
-                        :categories="$roles->where('type', $model::TYPE_USER) ?? []"
+                        :categories="$roles->where('type', UserType::user()) ?? []"
                         header="Roles"
                         disableChildren="true"
                     />
@@ -139,8 +137,8 @@
                         relation="children"
                         :form="$state ?? []"
                         formElement="state.permissions"
-                        :categories="$permissionCategories->where('type', $model::TYPE_USER) ?? []"
-                        :general="$generalPermissions->where('type', $model::TYPE_USER) ?? []"
+                        :categories="$permissionCategories->where('type', UserType::user()) ?? []"
+                        :general="$generalPermissions->where('type', UserType::user()) ?? []"
                         header="Additional Permissions by Category"
                     />
                 </div>

@@ -1,5 +1,5 @@
-@inject('userModel', '\App\Core\Auth\Models\User')
-@if (!$model->isAdmin() && ($logged_in_user->hasAllAccess() || $model->type == $userModel::TYPE_USER))
+
+@if (!$model->isAdmin() && ($logged_in_user->hasAllAccess() || $model->type == UserType::user()))
     <div class="flex items-center">
         <!-- todo: edit action -->
         <x-edit-button wire:click="dialog('edit', {{ $model->id }})"

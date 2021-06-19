@@ -7,6 +7,7 @@ use App\Core\Auth\Models\Role;
 use App\Core\Auth\Models\User;
 use App\Core\Events\Role\RoleCreated;
 use App\Core\Admin\Livewire\Role\CreateRoleForm;
+use App\Core\Auth\Enums\UserType;
 use Illuminate\Support\Facades\Event;
 use Livewire;
 use Tests\TestCase;
@@ -60,7 +61,7 @@ class CreateRoleTest extends TestCase
 
         Livewire::test(CreateRoleForm::class)
             ->set(['state' => [
-                'type' => User::TYPE_ADMIN,
+                'type' => UserType::admin(),
                 'name' => 'Test Role',
 
                 'permissions' => [
@@ -72,7 +73,7 @@ class CreateRoleTest extends TestCase
         $this->assertDatabaseHas(
             'roles',
             [
-                'type' => User::TYPE_ADMIN,
+                'type' => UserType::admin(),
                 'name' => 'Test Role',
             ]
         );

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\User;
 use Closure;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class AdminCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user() && $request->user()->isType(User::TYPE_ADMIN)) {
+        if ($request->user() && $request->user()->isType(UserType::admin())) {
             return $next($request);
         }
 

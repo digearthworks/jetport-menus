@@ -2,6 +2,7 @@
 
 namespace App\Core\Admin\Livewire\User;
 
+use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\User;
 use App\Core\Livewire\BaseDataTable;
 use Illuminate\Database\Eloquent\Builder;
@@ -68,8 +69,8 @@ class UsersTable extends BaseDataTable
             'type' => Filter::make('User Type')
                 ->select([
                     '' => 'Any',
-                    User::TYPE_ADMIN => 'Administrators',
-                    User::TYPE_USER => 'Users',
+                    UserType::admin()->value => 'Administrators',
+                    UserType::user()->value => 'Users',
                 ]),
             'active' => Filter::make('Active')
                 ->select([

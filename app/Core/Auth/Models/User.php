@@ -7,6 +7,7 @@ use App\Core\Auth\Concerns\HasPermissionsLabel;
 use App\Core\Auth\Concerns\HasRolesLabel;
 use App\Core\Auth\Concerns\UserAttribute;
 use App\Core\Auth\Concerns\UserMethod;
+use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\QueryBuilders\UserQueryBuilder;
 use App\Core\Menus\Concerns\HasMenus;
 use App\Core\Support\Concerns\HasUuid;
@@ -43,10 +44,6 @@ class User extends Authenticatable
         UserMethod,
         Userstamps;
 
-    public const TYPE_ADMIN = 'admin';
-
-    public const TYPE_USER = 'user';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -80,6 +77,7 @@ class User extends Authenticatable
         'active' => 'boolean',
         'last_login_at' => 'datetime',
         'to_be_logged_out' => 'boolean',
+        'type' => UserType::class,
     ];
 
     /**
