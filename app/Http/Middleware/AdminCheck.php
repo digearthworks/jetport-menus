@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use App\Core\Auth\Enums\UserType;
-use App\Core\Auth\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 

@@ -37,7 +37,6 @@ class UpdateUserAction
 
     public function __invoke(User $user, array $input): User
     {
-
         Validator::make($input, [
             'type' => [new EnumRule(UserType::class)],
             'name' => ['string'],

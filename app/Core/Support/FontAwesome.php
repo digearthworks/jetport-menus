@@ -2,8 +2,8 @@
 
 namespace App\Core\Support;
 
-use App\Facades\Blink;
 use App\Core\Icons\Models\Icon;
+use App\Facades\Blink;
 use Illuminate\Support\Facades\Http;
 
 class FontAwesome

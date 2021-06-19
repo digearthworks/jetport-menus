@@ -10,5 +10,4 @@ use Spatie\Enum\Laravel\Enum;
  */
 class UserType extends Enum
 {
-
 }

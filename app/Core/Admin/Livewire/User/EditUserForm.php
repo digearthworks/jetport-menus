@@ -6,8 +6,6 @@ use App\Core\Auth\Actions\UpdateUserAction;
 use App\Core\Auth\Models\User;
 use App\Core\Livewire\BaseEditForm;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class EditUserForm extends BaseEditForm
 {

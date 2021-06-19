@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Core\Auth\Enums\UserType;
 use App\Core\Auth\Models\Role;
-use App\Core\Auth\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

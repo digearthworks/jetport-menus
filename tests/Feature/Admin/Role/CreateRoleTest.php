@@ -2,12 +2,11 @@
 
 namespace Tests\Feature\Admin\Role;
 
-use App\Core\Auth\Models\Permission;
-use App\Core\Auth\Models\Role;
-use App\Core\Auth\Models\User;
-use App\Core\Events\Role\RoleCreated;
 use App\Core\Admin\Livewire\Role\CreateRoleForm;
 use App\Core\Auth\Enums\UserType;
+use App\Core\Auth\Models\Permission;
+use App\Core\Auth\Models\Role;
+use App\Core\Events\Role\RoleCreated;
 use Illuminate\Support\Facades\Event;
 use Livewire;
 use Tests\TestCase;

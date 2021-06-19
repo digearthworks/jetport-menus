@@ -13,8 +13,6 @@ class UpdateMenuAction
 {
     public function __invoke(array $data, Menu $menu): Menu
     {
-
-
         Validator::make($data, [
             'group' => ['string'],
             'name' => ['required', 'string'],

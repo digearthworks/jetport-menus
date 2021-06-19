@@ -17,7 +17,6 @@ class UpdateRoleAction
 {
     public function __invoke(Role $role, array $data = []): Role
     {
-
         Validator::make($data, [
             'type' => [new EnumRule(UserType::class)],
             'name' => [ Rule::unique('roles')->ignore($role->id)],

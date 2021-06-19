@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Admin\Role;
 
+use App\Core\Admin\Livewire\Role\DeleteRoleDialog;
 use App\Core\Auth\Models\Role;
 use App\Core\Events\Role\RoleDeleted;
-use App\Core\Admin\Livewire\Role\DeleteRoleDialog;
 use Illuminate\Support\Facades\Event;
 use Livewire;
 use Tests\TestCase;
