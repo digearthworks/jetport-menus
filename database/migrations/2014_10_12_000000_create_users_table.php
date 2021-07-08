@@ -1,12 +1,39 @@
 <?php
 
-use App\Core\Auth\Enums\UserType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
 {
+
+        /**
+     * The database schema.
+     *
+     * @var \Illuminate\Database\Schema\Builder
+     */
+    protected $schema;
+
+    /**
+     * Create a new migration instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->schema = Schema::connection($this->getConnection());
+    }
+
+    /**
+     * Get the migration connection name.
+     *
+     * @return string|null
+     */
+    public function getConnection()
+    {
+        return config('database.default');
+    }
+
     /**
      * Run the migrations.
      *
@@ -14,10 +41,10 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::connection(config('template.auth.database_connection'))->create('users', function (Blueprint $table) {
+        $this->schema->create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid')->nullable()->unique();
-            $table->string('type')->default(UserType::user());
+            $table->string('type')->default('user');
             $table->string('name');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
@@ -51,6 +78,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::connection(config('template.auth.database_connection'))->dropIfExists('users');
+        $this->schema->dropIfExists('users');
     }
 }

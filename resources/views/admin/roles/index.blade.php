@@ -7,9 +7,10 @@
         @include('admin.roles.header-actions')
     </x-slot>
 
-    <livewire:admin.roles.livewire-datatable.datatable />
+    <livewire:turbine.auth.roles-table />
+    
+    <livewire:turbine.auth.create-role-form />
+    <livewire:turbine.auth.edit-role-form />
+    <livewire:turbine.auth.delete-role-dialog />
+    
 </x-7xl>
-
-<livewire:admin.roles.create />
-<livewire:admin.roles.edit />
-<livewire:admin.roles.delete />

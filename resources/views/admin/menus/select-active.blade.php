@@ -9,5 +9,5 @@
         <option value="1">Yes</option>
         <option value="0">No</option>
     </select>
-    <x-input-error for="active" class="mt-2" />
+    <x-jet-input-error for="active" class="mt-2" />
 </div>

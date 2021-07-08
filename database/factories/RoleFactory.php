@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Core\Auth\Enums\UserType;
-use App\Core\Auth\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Turbine\Auth\Enums\UserTypeEnum;
+use Turbine\Auth\Models\Role;
 
 /**
  * Class RoleFactory.
@@ -26,7 +26,7 @@ class RoleFactory extends Factory
     public function definition()
     {
         return [
-            'type' => $this->faker->randomElement(UserType::toValues()),
+            'type' => $this->faker->randomElement(UserTypeEnum::toValues()),
             'name' => $this->faker->word,
         ];
     }

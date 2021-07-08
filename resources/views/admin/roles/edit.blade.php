@@ -15,7 +15,7 @@
                     <x-jet-input type="text" name="name" class="block w-full mb-1" placeholder="{{ __('Name') }}"
                         value="{{ old('name') ?? ($role->name ?? '') }}" maxlength="100"
                         wire:model.defer="state.name" required />
-                    <x-input-error for="name" class="mt-2" />
+                    <x-jet-input-error for="name" class="mt-2" />
                 </div>
             </div>
             <!--form-group-->
@@ -29,70 +29,14 @@
                         class="block w-full mb-2 border-gray-300 rounded-md shadow-sm form-select focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         x-on:change="userType = $event.target.value" wire:model.defer="state.type"
                         required>
-                        <option value="{{ UserType::user() }}">@lang('User')</option>
-                        <option value="{{ UserType::user() }}">@lang('Administrator')</option>
+                        <option value="{{ \Turbine\Auth\Enums\UserTypeEnum::user() }}">@lang('User')</option>
+                        <option value="{{ \Turbine\Auth\Enums\UserTypeEnum::admin() }}">@lang('Administrator')</option>
                     </select>
                 </div>
             </div>
             <!--form-group-->
 
-            <!-- Only shows if type is admin -->
-            <div x-cloak x-show="userType === '{{ UserType::user() }}'">
-
-
-                <x-checklist-index
-                    formIndex="menus"
-                    label="name_with_art"
-                    childrenLabel="link_with_art"
-                    relation="children"
-                    :form="$state ?? []"
-                    formElement="state.menus"
-                    :categories="$menus->where('group', 'admin')"
-                    header="Menus"
-                    disableChildren="true"
-                />
-                @if($logged_in_user->hasAllAccess())
-                    <x-checklist-index
-                        formIndex="permissions"
-                        label="description"
-                        childrenLabel="description"
-                        relation="children"
-                        :form="$state ?? []"
-                        formElement="state.permissions"
-                        :categories="$permissionCategories->where('type', UserType::user()) ?? []"
-                        :general="$generalPermissions->where('type', UserType::user()) ?? []"
-                        header="Permissions"
-                    />
-                @endif
-            </div>
-
-            <!-- Only shows if type is user -->
-            <div x-cloak x-show="userType === '{{ UserType::user() }}'">
-
-                <x-checklist-index
-                    formIndex="menus"
-                    label="handle_with_art"
-                    childrenLabel="link_with_art"
-                    relation="children"
-                    :form="$state ?? []"
-                    formElement="state.menus"
-                    :categories="$menus->where('group', 'app')"
-                    header="Menus"
-                    disableChildren="true"
-                />
-
-                <x-checklist-index
-                    formIndex="permissions"
-                    label="description"
-                    childrenLabel="description"
-                    relation="children"
-                    :form="$state ?? []"
-                    formElement="state.permissions"
-                    :categories="$permissionCategories->where('type', UserType::user()) ?? []"
-                    :general="$generalPermissions->where('type', UserType::user()) ?? []"
-                    header="Permissions"
-                />
-            </div>
+            @include('admin.roles.checklists')
 
         </div>
     </x-slot>

@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Core\Pages\Models\Page;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Turbine\Pages\Models\Page;
 
 class PageFactory extends Factory
 {
@@ -24,8 +24,9 @@ class PageFactory extends Factory
         return [
             'slug' => $this->faker->unique()->slug(2),
             'title' => $this->faker->unique()->sentence(3),
-            'body' => $this->faker->randomHtml(),
-            'layout' => $this->faker->randomElement(['layouts.guest', 'layouts.welcome']),
+            'html' => $this->faker->randomHtml(),
+            'css' => $this->faker->randomElement(['*{ color : red; }', '*{ color : blue; }', '*{ color : green; }']),
+            'layout' => $this->faker->randomElement(['layouts.guest']),
             'active' => 1,
         ];
     }

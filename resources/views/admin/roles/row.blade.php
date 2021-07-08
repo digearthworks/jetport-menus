@@ -1,7 +1,7 @@
 <x-livewire-tables::tw.table.cell>
-    @if ($row->type === \App\Core\Auth\Enums\UserType::admin())
+    @if ($row->type === \Turbine\Auth\Enums\UserTypeEnum::admin())
         {{ __('Administrator') }}
-    @elseif ($row->type === \App\Core\Auth\Enums\UserType::user())
+    @elseif ($row->type === \Turbine\Auth\Enums\UserTypeEnum::user())
         {{ __('User') }}
     @else
         N/A

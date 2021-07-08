@@ -1,11 +1,11 @@
 <div class="flex items-center">
-@if($menu->menu_id || $menu->page_id)
-    <div x-data="{ input: '{{ url($menu->link) }}' }">
+@if($menu->parent_id || $menu->page_id)
+    <div x-data="{ input: '{{ url($menu->uri) }}' }">
         <input type="hidden" x-model="input">
-        <button x-on:click="$clipboard(input)" class="flex items-center p-0.5 font-semibold text-gray-800  border border-gray-400 rounded shadow bg-gray-100"><i class="fa fa-link"></i></button>
+        <button x-on:click="$clipboard(input)" class="flex items-center p-0.5 font-semibold text-gray-800  border border-gray-400 rounded shadow bg-gray-100"> @svg('heroicon-o-link', 'w-4 h-4')</button>
     </div>
-@else
-    <livewire:admin.menus.create-menu-button value="" :params="['item' => true, 'menu_id' => $menu->id ]" wire:key="table-row-{{ $menu->uuid }}-column-6-button" />
+@elseif($menu->isActive() && !$menu->trashed())
+    <livewire:turbine.menus.admin.create-menu-item-button value="" :params="['item' => true, 'parent_id' => $menu->id ]" wire:key="table-row-{{ $menu->uuid }}-column-6-button" />
 @endif
 @if($menu->children()->exists())
 <div wire:ignore.self>

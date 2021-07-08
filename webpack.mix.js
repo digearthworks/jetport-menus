@@ -1,4 +1,5 @@
-const mix = require('laravel-mix');
+
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,13 +12,31 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
-    ]);
+mix.js("resources/js/app.js", "public/js").postCss(
+    "resources/css/app.css",
+    "public/css",
+    [require("postcss-import"), require("tailwindcss")]
+);
 
 if (mix.inProduction()) {
     mix.version();
 }
-mix.copyDirectory("node_modules/@fortawesome/fontawesome-free/", "public/vendor/icons/fontawesome-free");
+mix.copyDirectory(
+    "node_modules/grapesjs/dist",
+    "public/grapesjs"
+);
+
+mix.copyDirectory(
+    "node_modules/grapesjs-plugin-ckeditor/dist",
+    "public/grapesjs-plugin-ckeditor"
+);
+
+mix.copyDirectory(
+    "node_modules/grapesjs-preset-webpage/dist",
+    "public/grapesjs-preset-webpage"
+);
+
+mix.copyDirectory(
+    "node_modules/grapesjs-tabs/dist",
+    "public/grapesjs-tabs"
+);
