@@ -33,6 +33,5 @@ trait RegistersPagesLivewireComponents
         Livewire::component('turbine.pages.create-page-template-form', CreatePageTemplateForm::class);
         Livewire::component('turbine.pages.edit-page-template-form', EditPageTemplateForm::class);
         Livewire::component('turbine.pages.page-templates-table', PageTemplatesTable::class);
-
     }
 }

@@ -4,9 +4,9 @@ namespace Turbine\Auth\Http\Livewire;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use Turbine\Concerns\InteractsWithBanner;
 use Turbine\Auth\Actions\ClearUserSessionsAction;
 use Turbine\Auth\Models\User;
+use Turbine\Concerns\InteractsWithBanner;
 use Turbine\Livewire\Concerns\HasModel;
 
 class ClearUserSessionDialog extends Component
