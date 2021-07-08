@@ -192,13 +192,12 @@ class MenuSeeder extends Seeder
                 'icon_id' => 'sui-circle-menu',
             ]),
 
-            new InternalLink([
+            new InternalIframe([
                 'template' => MenuItemTemplateEnum::default(),
                 'target' => MenuItemTargetEnum::self(),
-                'route' => 'admin.icons',
                 'name' => 'Icons',
                 'handle' => 'icon_manager',
-                'uri' => '/admin/icons',
+                'uri' => '/blade-icons',
                 'active' => true,
                 'title' => 'Icons',
                 'icon_id' => 'fas-icons',
