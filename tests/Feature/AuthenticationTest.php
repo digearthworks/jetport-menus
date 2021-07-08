@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Core\Auth\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Turbine\Auth\Models\User;
 
 class AuthenticationTest extends TestCase
 {

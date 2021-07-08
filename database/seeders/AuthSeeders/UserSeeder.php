@@ -2,10 +2,11 @@
 
 namespace Database\Seeders\AuthSeeders;
 
-use App\Core\Auth\Enums\UserType;
-use App\Core\Auth\Models\User;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
+use Turbine\Auth\Enums\UserTypeEnum;
+use Turbine\Auth\Models\Admin;
+use Turbine\Auth\Models\User;
 
 /**
  * Class UserTableSeeder.
@@ -18,7 +19,7 @@ class UserSeeder extends Seeder
 
     public function __construct()
     {
-        $this->connection = config('template.auth.database_connection');
+        $this->connection = config('turbine.auth.connection');
     }
 
     /**
@@ -31,8 +32,8 @@ class UserSeeder extends Seeder
         $this->disableForeignKeys($this->connection);
 
         // Add the master administrator, user id of 1
-        User::create([
-            'type' => UserType::admin(),
+        Admin::create([
+            'type' => UserTypeEnum::admin(),
             'name' => 'Super Admin',
             'email' => 'admin@admin.com',
             'password' => 'secret',
@@ -42,7 +43,7 @@ class UserSeeder extends Seeder
 
         if (app()->environment(['local', 'testing'])) {
             User::create([
-                'type' => UserType::user(),
+                'type' => UserTypeEnum::user(),
                 'name' => 'Test User',
                 'email' => 'user@user.com',
                 'password' => 'secret',

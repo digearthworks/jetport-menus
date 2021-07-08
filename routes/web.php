@@ -1,16 +1,27 @@
 <?php
 
-use App\Http\Controllers\LocaleController;
 use Illuminate\Support\Facades\Route;
+use Turbine\Menus\Http\Controllers\MenuController;
 
-// Switch between the included languages
-Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.change');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
-Route::view('/', 'welcome')->name('index');
+Route::get('/', function () {
+    return view('welcome');
+})->name('index');
 
-Route::view('/dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
 
 /*
  * Admin Routes
@@ -22,39 +33,21 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
 });
 
 /*
- * Menu Routes
+ *  Menu Routes
  */
-Route::group(['prefix' => 'menus', 'as' => 'menus.', 'middleware' => 'auth'], function () {
+Route::group([
+    'prefix' => config('turbine.menus.route_prefix'),
+    'as' => 'menus.',
+], function () {
     includeRouteFiles(__DIR__ . '/menus/');
 });
 
 /*
- *  Local Iframe Routes
+ *  Page Routes
  */
 Route::group([
-    'prefix' => config('menus.url_segments.internal_iframe_prefix'),
-    'as' => config('menus.url_segments.internal_iframe_prefix') . '.',
-    'middleware' => 'auth'
+    'prefix' => config('turbine.pages.route_prefix'),
+    'as' => 'pages.',
 ], function () {
-    includeRouteFiles(__DIR__ . '/iframes/');
-});
-
-/*
- *  External Iframe Routes
- */
-Route::group([
-    'prefix' => config('menus.url_segments.external_iframe_prefix'),
-    'as' => config('menus.url_segments.external_iframe_prefix') . '.',
-    'middleware' => 'auth'
-], function () {
-    includeRouteFiles(__DIR__ . '/extras/');
-});
-
-
-
-/*
-*  Public Website Routes
-*/
-Route::group([], function () {
     includeRouteFiles(__DIR__ . '/pages/');
 });

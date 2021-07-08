@@ -1,15 +1,15 @@
 <div class="col-span-6 sm:col-span-4">
     <x-jet-label for="group" value="{{ __('Group') }}" />
     <select
+        wire:model="state.menu_id"
         x-on:change="menuGroup = $event.target.value"
-        id="group"
-        name="group"
-        wire:model="state.group"
+        id="menu_id"
         class="block w-full mb-2 border-gray-300 rounded-md shadow-sm form-select focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
     >
-        @foreach(\App\Core\Menus\Enums\MenuItemGroup::toArray() as $value => $label)
-            <option value="{{ $value }}">{{ $label }}</option>
+        @foreach(\Turbine\Menus\Models\Menu::all() as $group)
+
+            <option value="{{ (string) $group->id }}">{{ $group->name }}</option>
         @endforeach
     </select>
-    <x-input-error for="group" class="mt-2" />
+    <x-jet-input-error for="menu_id" class="mt-2" />
 </div>

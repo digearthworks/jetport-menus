@@ -1,6 +1,6 @@
 <tbody x-data="{ open : false }">
   <x-livewire-tables::tw.table.cell>
-        {{ $row->group }}
+        {{ isset($row->menu->type) ? $row->menu->type : $row->parentItem->menu->type }}
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
@@ -8,7 +8,7 @@
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
-        <div class="flex items-center">{!! $row->link_with_art !!}</div>
+        <div class="flex items-center w-40 overflow-y-auto">{!! $row->uri_with_art !!}</div>
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
@@ -35,7 +35,7 @@
             wire:loading.class.delay="opacity-50"
             wire:key="table-row-{{ $child->uuid }}"
         >
-            @include('admin.menus.children-row', [ 'row' => $child, 'parent' => $row ])
+            @include('admin.menus.children-row', [ 'row' => $child, 'parentItem' => $row ])
 
         </x-livewire-tables::tw.table.row>
     @endforeach

@@ -9,4 +9,4 @@
 
     @include('admin.menus.table', ['status' => 'deactivated'])
 </x-7xl>
-<livewire:admin.menus.reactivate />
+<livewire:turbine.menus.admin.reactivate-menu-item-dialog />

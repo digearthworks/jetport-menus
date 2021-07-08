@@ -1,7 +1,11 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/vendor/icons/fontawesome-free/LICENSE.txt": "/vendor/icons/fontawesome-free/LICENSE.txt",
-    "/vendor/icons/fontawesome-free/attribution.js": "/vendor/icons/fontawesome-free/attribution.js",
-    "/vendor/icons/fontawesome-free/package.json": "/vendor/icons/fontawesome-free/package.json"
+    "/grapesjs/grapes.min.js": "/grapesjs/grapes.min.js",
+    "/grapesjs/grapes.min.js.map": "/grapesjs/grapes.min.js.map",
+    "/grapesjs-plugin-ckeditor/grapesjs-plugin-ckeditor.min.js": "/grapesjs-plugin-ckeditor/grapesjs-plugin-ckeditor.min.js",
+    "/grapesjs-preset-webpage/grapesjs-preset-webpage.min.css": "/grapesjs-preset-webpage/grapesjs-preset-webpage.min.css",
+    "/grapesjs-preset-webpage/grapesjs-preset-webpage.min.js": "/grapesjs-preset-webpage/grapesjs-preset-webpage.min.js",
+    "/grapesjs-tabs/grapesjs-tabs.min.js": "/grapesjs-tabs/grapesjs-tabs.min.js",
+    "/grapesjs-tabs/grapesjs-tabs.min.js.map": "/grapesjs-tabs/grapesjs-tabs.min.js.map"
 }

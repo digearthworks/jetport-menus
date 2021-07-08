@@ -4,6 +4,6 @@
         <x-jet-input type="number" name="sort" class="block w-full mb-1" placeholder="{{ __('Sort') }}"
             maxlength="100"
             wire:model.defer="state.sort" required />
-        <x-input-error for="sort" class="mt-2" />
+        <x-jet-input-error for="sort" class="mt-2" />
     </div>
 @endif

@@ -13,17 +13,17 @@ class CreateMenuablesTable extends Migration
      */
     public function up()
     {
-        Schema::connection(config('template.auth.database_connection'))->create('menuables', function (Blueprint $table) {
-            $table->unsignedBigInteger('menu_id');
+        Schema::connection(config('core.auth.connection'))->create('menuables', function (Blueprint $table) {
+            $table->unsignedBigInteger('menu_item_id');
             $table->integer('menuable_id');
             $table->string('menuable_type');
             $table->string('menuable_group')->nullable();
             $table->timestamps();
 
-            $table->foreign('menu_id')
-            ->references('id')
-            ->on('menus')
-            ->onDelete('cascade');
+            // $table->foreign('menu_item_id')
+            // ->references('id')
+            // ->on('menu_items')
+            // ->onDelete('cascade');
         });
     }
 
@@ -34,6 +34,6 @@ class CreateMenuablesTable extends Migration
      */
     public function down()
     {
-        Schema::connection(config('template.auth.database_connection'))->dropIfExists('menuables');
+        Schema::connection(config('core.auth.connection'))->dropIfExists('menuables');
     }
 }

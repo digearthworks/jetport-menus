@@ -1,16 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Turbine\Menus\Http\Controllers\Admin\AdminMenuController;
 
-Route::view('/auth/menus', 'admin.menus.index')
+Route::get('/menus', AdminMenuController::class)
     // ->middleware('password.confirm')
     ->middleware('can:admin.access.menus')
     ->name('menus');
 
-Route::view('/auth/menus/deleted', 'admin.menus.deleted')
+Route::view('/menus/deleted', 'admin.menus.deleted')
     // ->middleware('password.confirm')
     ->name('menus.deleted');
 
-Route::view('/auth/menus/deactivated', 'admin.menus.deactivated')
+Route::view('/menus/deactivated', 'admin.menus.deactivated')
     // ->middleware('password.confirm')
     ->name('menus.deactivated');

@@ -9,7 +9,7 @@
 
     @include('admin.pages.table', [ 'status' => 'deleted' ])
 
-    <livewire:admin.pages.restore />
+    <livewire:turbine.pages.restore-page-dialog />
 </x-7xl>
 
 

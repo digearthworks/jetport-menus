@@ -1,8 +1,8 @@
     <x-livewire-tables::tw.table.cell>
-        @if($row->parent()->exists())
-            {{ $row->parent->group }}.{{ $row->group }}
+        @if($row->parentItem()->exists())
+            {{ $row->parentItem->menu->type }}.{{ $row->type }}
         @else
-            {{ $row->group }}
+            {{ $row->type }}
         @endif
     </x-livewire-tables::tw.table.cell>
 
@@ -11,15 +11,15 @@
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
-        <div class="flex items-center">{!! $row->link_with_art !!}</div>
+        <div class="flex items-center w-40 overflow-y-auto">{!! $row->uri_with_art !!}</div>
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
-        {{ $parent->roles_count }}
+        {{ $parentItem->roles_count }}
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
-        {{ $parent->all_users_count }}
+        {{ $parentItem->all_users_count }}
     </x-livewire-tables::tw.table.cell>
 
     <x-livewire-tables::tw.table.cell>
@@ -38,7 +38,7 @@
             wire:loading.class.delay="opacity-50"
             wire:key="table-row-{{ $child->uuid }}"
         >
-            @include('admin.menus.children-row', [ 'row' => $child, 'parent' => $row ])
+            @include('admin.menus.children-row', [ 'row' => $child, 'parentItem' => $row ])
 
         </x-livewire-tables::tw.table.row>
     @endforeach

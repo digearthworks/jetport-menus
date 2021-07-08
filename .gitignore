@@ -11,6 +11,9 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+/.idea
+/.vscode
+/laravel-turbine
 supervisord.log
 supervisord.pid
 .php_cs.cache
@@ -19,3 +22,7 @@ _ide_helper.php
 .idea
 Envoy*
 !Envoy.blade.php
+node_modules
+.php-cs-fixer.cache
+resources/legacy
+installer.bash

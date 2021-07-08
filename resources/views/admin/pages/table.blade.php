@@ -1,7 +1,7 @@
 <div x-data="{ expand : '' }">
     @isset($status)
-        <livewire:admin.pages.livewire-datatable.datatable :status="$status" />
+        <livewire:turbine.pages.pages-table :status="$status" />
     @else
-        <livewire:admin.pages.livewire-datatable.datatable />
+        <livewire:turbine.pages.pages-table />
     @endisset
 </div>

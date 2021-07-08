@@ -11,6 +11,6 @@
         </x-jet-nav-link>
 
     @if(! str_contains(url()->current(), 'deactivated') && ! str_contains(url()->current(), 'deleted'))
-        <livewire:admin.users.create-user-button />
+        <livewire:turbine.auth.create-user-button />
     @endif
 </div>

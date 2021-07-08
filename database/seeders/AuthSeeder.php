@@ -18,14 +18,16 @@ use Spatie\Permission\PermissionRegistrar;
  */
 class AuthSeeder extends Seeder
 {
-    use DisableForeignKeys, TruncateTable;
+    use DisableForeignKeys;
+    use TruncateTable;
 
     protected $connection;
 
     public function __construct()
     {
-        $this->connection = config('template.auth.database_connection');
+        $this->connection = config('turbine.auth.connection');
     }
+
     /**
      * Run the database seeds.
      *
@@ -50,9 +52,9 @@ class AuthSeeder extends Seeder
 
         $this->call(UserSeeder::class);
         $this->call(PermissionRoleSeeder::class);
-        $this->call(MenuSeeder::class);
+        // $this->call(MenuSeeder::class);
         $this->call(UserRoleSeeder::class);
-        $this->call(UserMenuSeeder::class);
+        // $this->call(UserMenuSeeder::class);
 
         $this->enableForeignKeys($this->connection);
 

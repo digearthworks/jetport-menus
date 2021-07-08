@@ -1,6 +1,6 @@
 @if (count($bulkActions) && (($selectPage && $rows->total() > $rows->count()) || count($selected)))
-    <x-admin.users.livewire-tables.bs5.table.row wire:key="row-message">
-        <x-admin.users.livewire-tables.bs5.table.cell colspan="{{ count($bulkActions) ? count($columns) + 1 : count($columns) }}">
+    <x-turbine-auth::livewire-tables.bs5.table.row wire:key="row-message">
+        <x-turbine-auth::livewire-tables.bs5.table.cell colspan="{{ count($bulkActions) ? count($columns) + 1 : count($columns) }}">
             @if (count($selected) && !$selectAll && !$selectPage)
                 <div>
                     <span>
@@ -82,6 +82,6 @@
                     </div>
                 @endif
             @endif
-        </x-admin.users.livewire-tables.bs5.table.cell>
-    </x-admin.users.livewire-tables.bs5.table.row>
+        </x-turbine-auth::livewire-tables.bs5.table.cell>
+    </x-turbine-auth::livewire-tables.bs5.table.row>
 @endif

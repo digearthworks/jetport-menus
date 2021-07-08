@@ -1,25 +1,19 @@
-<x-dialog-modal maxWidth="2xl" :overflowHidden="false" wire:model="editingResource">
+<x-app-layout>
+    <x-slot name="header">
 
-    <x-slot name="title">
-        {{ __('Edit Web Page') }}
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            {{__('Pages')}}
+
+            <div class="flex items-center float-right">
+                @include('admin.pages.header-actions')
+            </div>
+        </h2>
+
     </x-slot>
 
-    <x-slot name="content">
-        @include('admin.pages.form-content')
-    </x-slot>
+    <livewire:turbine.pages.edit-page-form :resourceId="$page->id" />
+</x-app-layout>
 
-    <x-slot name="footer">
-        <x-jet-secondary-button wire:click="closeEditDialog" wire:loading.attr="disabled">
-            {{ __('Cancel') }}
-        </x-jet-secondary-button>
 
-        <x-jet-button class="ml-2" wire:click="updatePage" wire:loading.attr="disabled">
-            {{ __('Save') }}
-        </x-jet-button>
 
-        <x-jet-secondary-button class="ml-2" wire:click="savePageAs" wire:loading.attr="disabled">
-            {{ __('Save As') }}
-        </x-jet-secondary-button>
-    </x-slot>
 
-</x-dialog-modal>

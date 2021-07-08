@@ -36,6 +36,6 @@ return [
      * Only used in the built-in controller.
      * Use 'back' to redirect to the previous page
      */
-    'leave_redirect_to' => '/admin/auth/users',
+    'leave_redirect_to' => '/admin/users',
 
 ];

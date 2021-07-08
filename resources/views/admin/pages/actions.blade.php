@@ -10,8 +10,9 @@
         <a href="/iframes/pages/{{ $page->slug }}">
             <x-show-button />
         </a>
-
-        <x-edit-button wire:click="dialog('edit', {{ $page->id }})" id="editPageButton_{{ $page->id }}" />
+        <a href="{{ route('admin.pages.edit', ['page' => $page]) }}">
+            <x-edit-button id="editPageButton_{{ $page->id }}"/>
+        </a>
 
         <x-delete-button wire:click="confirm('delete', {{ $page->id }})" />
 

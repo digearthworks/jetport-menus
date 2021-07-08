@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Core\Auth\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Jetstream\Http\Livewire\LogoutOtherBrowserSessionsForm;
 use Livewire\Livewire;
 use Tests\TestCase;
+use Turbine\Auth\Models\User;
 
 class BrowserSessionsTest extends TestCase
 {
