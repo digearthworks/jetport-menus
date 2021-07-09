@@ -1,6 +1,6 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 .picture-box > svg,
 .picture-box > img,
@@ -16,6 +16,18 @@
     height: 100% !important;
     width: 100% !important;
     font-size: 34px !important;
+}
+
+
+.nav-box > i {
+
+    font-size: 15px !important;
+}
+
+.nav-box > svg,
+.nav-box > img {
+
+    width: 20px !important;
 }
 
 .picture-box > i {

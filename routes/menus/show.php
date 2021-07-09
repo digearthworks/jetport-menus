@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\MenuController;
+use Illuminate\Support\Facades\Route;
+use Turbine\Menus\Http\Controllers\MenuController;
 
-Route::get('{menu:id}', [MenuController::class, 'show'])
+Route::get('{menuItem}', [MenuController::class, 'show'])
+    ->name('show')
     ->middleware('auth');

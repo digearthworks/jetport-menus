@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'America/New_York',
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,19 +166,15 @@ return [
          * Package Service Providers...
          */
         Onecentlin\Adminer\ServiceProvider::class,
-
         /*
          * Application Service Providers...
          */
+
+        Turbine\TurbineServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        App\Providers\BladeServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\ComposerServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\HelperServiceProvider::class,
-        App\Providers\LivewireServiceProvider::class,
-        App\Providers\LocaleServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,

@@ -1,24 +1,29 @@
 <x-7xl>
     <x-slot name="header">
-        <div class="inline-flex items-center">
-            {!! $menu->name_with_art !!}
-            @if($logged_in_user->isAdmin())
-                <x-edit-button class="z-50" x-cloak x-show="designerView" onclick="window.livewire.emit('editDialog', {{ $menu->id }})" id="editMenuButton_{{ $menu->id }}" />
-                <x-delete-button class="z-50" x-cloak x-show="designerView" onclick="window.livewire.emit('confirmDelete', {{ $menu->id }})" />
+        <div class="inline-flex items-center w-full">
+            <div>
+                {!! $parent->name !!}
+            </div>
+            @if($logged_in_user->isAdmin() || is_impersonating())
+                <div x-cloak x-show="designerView === 'true'" class="ml-auto">
+                    <x-edit-button class="z-50" onclick="window.livewire.emit('editDialog', {{ $parent->id }})" id="editMenuButton_{{ $parent->id }}" />
+                    <x-delete-button class="z-50" onclick="window.livewire.emit('confirmDelete', {{ $parent->id }})" />
+
+                    <livewire:turbine.menus.admin.create-menu-item-button
+                        value="New Menu"
+                        :params="[ 'item' => false, 'attach_for_user' => true ]"
+                    />
+
+                    <livewire:turbine.menus.admin.create-menu-item-button
+                        value="New Item"
+                        :params="[ 'item' => true, 'parent_id' => $parent->id, 'attach_for_user' => true ]"
+                    />
+                </div>
             @endif
         </div>
     </x-slot>
-    @if($logged_in_user->isAdmin())
-        <x-slot name="headerActions">
-            <div x-cloak x-show="designerView" class="flex items-center">
-                <livewire:admin.menus.includes.partials.create-menu-button value="Add Item" :params="['item' => true, 'menu_id' => $menu->id ]" wire:key="table-row-{{ $menu->uuid }}-column-6-button" />
-        </x-slot>
-    @endif
-
-        <livewire:menu.includes.menu-grid :menuId="$menu->id" />
+        <livewire:turbine.menus.main-menu :parentId="$parent->id" :designerView="request()->has('designerView')" />
+        <livewire:turbine.menus.admin.create-menu-item-form />
+        <livewire:turbine.menus.admin.edit-menu-item-form />
+        <livewire:turbine.menus.admin.delete-menu-item-dialog />
 </x-7xl>
-@if($logged_in_user->isAdmin())
-    <livewire:admin.menus.create />
-    <livewire:admin.menus.edit />
-    <livewire:admin.menus.delete />
-@endif

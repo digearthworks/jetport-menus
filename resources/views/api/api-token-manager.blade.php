@@ -13,10 +13,8 @@
             <!-- Token Name -->
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="name" value="{{ __('Token Name') }}" />
-                <x-jet-input id="name" type="text" class="block w-full mt-1" wire:model.defer="createApiTokenForm.name"
-                    autofocus />
+                <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="createApiTokenForm.name" autofocus />
                 <x-jet-input-error for="name" class="mt-2" />
-                <x-form-help-text class="mt-2" value="{{ __('Something to remember the token by.') }}" />
             </div>
 
             <!-- Token Permissions -->
@@ -24,10 +22,10 @@
                 <div class="col-span-6">
                     <x-jet-label for="permissions" value="{{ __('Permissions') }}" />
 
-                    <div class="grid grid-cols-1 gap-4 mt-2 md:grid-cols-2">
+                    <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
                         @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
                             <label class="flex items-center">
-                                <x-jet-checkbox wire:model.defer="createApiTokenForm.scopes" :value="$permission" />
+                                <x-jet-checkbox wire:model.defer="createApiTokenForm.permissions" :value="$permission"/>
                                 <span class="ml-2 text-sm text-gray-600">{{ $permission }}</span>
                             </label>
                         @endforeach
@@ -67,32 +65,23 @@
                         @foreach ($this->user->tokens->sortBy('name') as $token)
                             <div class="flex items-center justify-between">
                                 <div>
-                                    {{ $token->name ?? $token->client->name }}
+                                    {{ $token->name }}
                                 </div>
 
                                 <div class="flex items-center">
-
-                                    {{-- @if(app()->environment(['local', 'testing']))
-                                        <div class="mr-2 text-xs text-gray-400">
-                                            {{ $token->client_id }}
-                                        </div>
-                                    @endif --}}
-
-                                    @if ($token->expires_at)
+                                    @if ($token->last_used_at)
                                         <div class="text-sm text-gray-400">
-                                            {{ __('Expires') }} {{ $token->expires_at->diffForHumans() }}
+                                            {{ __('Last used') }} {{ $token->last_used_at->diffForHumans() }}
                                         </div>
                                     @endif
 
                                     @if (Laravel\Jetstream\Jetstream::hasPermissions())
-                                        <button class="ml-6 text-sm text-gray-400 underline cursor-pointer"
-                                            wire:click="manageApiTokenPermissions({{ '"' . $token->id . '"' }})">
+                                        <button class="cursor-pointer ml-6 text-sm text-gray-400 underline" wire:click="manageApiTokenPermissions({{ $token->id }})">
                                             {{ __('Permissions') }}
                                         </button>
                                     @endif
 
-                                    <button class="ml-6 text-sm text-red-500 cursor-pointer"
-                                        wire:click="confirmApiTokenDeletion({{ '"' . $token->id . '"' }})">
+                                    <button class="cursor-pointer ml-6 text-sm text-red-500" wire:click="confirmApiTokenDeletion({{ $token->id }})">
                                         {{ __('Delete') }}
                                     </button>
                                 </div>
@@ -115,10 +104,11 @@
                 {{ __('Please copy your new API token. For your security, it won\'t be shown again.') }}
             </div>
 
-            <x-textarea x-ref="plaintextToken" type="text" readonly :value="$plainTextToken"
-                class="w-full px-4 py-2 mt-4 font-mono text-sm text-gray-500 bg-gray-100 rounded" autofocus
-                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                @showing-token-modal.window="setTimeout(() => $refs.plaintextToken.select(), 250)" />
+            <x-jet-input x-ref="plaintextToken" type="text" readonly :value="$plainTextToken"
+                class="mt-4 bg-gray-100 px-4 py-2 rounded font-mono text-sm text-gray-500 w-full"
+                autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                @showing-token-modal.window="setTimeout(() => $refs.plaintextToken.select(), 250)"
+            />
         </x-slot>
 
         <x-slot name="footer">
@@ -135,10 +125,10 @@
         </x-slot>
 
         <x-slot name="content">
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
                     <label class="flex items-center">
-                        <x-jet-checkbox wire:model.defer="updateApiTokenForm.scopes" :value="$permission" />
+                        <x-jet-checkbox wire:model.defer="updateApiTokenForm.permissions" :value="$permission"/>
                         <span class="ml-2 text-sm text-gray-600">{{ $permission }}</span>
                     </label>
                 @endforeach
@@ -146,8 +136,7 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$set('managingApiTokenPermissions', false)"
-                wire:loading.attr="disabled">
+            <x-jet-secondary-button wire:click="$set('managingApiTokenPermissions', false)" wire:loading.attr="disabled">
                 {{ __('Cancel') }}
             </x-jet-secondary-button>
 

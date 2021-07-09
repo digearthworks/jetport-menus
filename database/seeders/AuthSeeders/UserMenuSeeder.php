@@ -2,10 +2,10 @@
 
 namespace Database\Seeders\AuthSeeders;
 
-use App\Models\Menu;
-use App\Models\User;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
+use Turbine\Auth\Models\User;
+use Turbine\Menus\Models\MenuItem;
 
 /**
  * Class UserRoleTableSeeder.
@@ -18,7 +18,7 @@ class UserMenuSeeder extends Seeder
 
     public function __construct()
     {
-        $this->connection = config('template.auth.database_connection');
+        $this->connection = config('turbine.auth.connection');
     }
 
     /**
@@ -30,12 +30,14 @@ class UserMenuSeeder extends Seeder
     {
         $this->disableForeignKeys($this->connection);
 
-        $allMenus = Menu::whereDoesntHave('parent')->pluck('id');
+        $menus = MenuItem::pluck('id');
 
-        User::find(1)->assignMenu($allMenus);
+        User::find(1)->assignMenuItem($menus);
 
         if (app()->environment(['local', 'testing'])) {
-            User::find(2)->assignMenu(Menu::dashboard()->id);
+            User::find(2)->assignMenuItem([
+                MenuItem::where('handle', 'dashboard_link')->first(),
+            ]);
         }
 
 

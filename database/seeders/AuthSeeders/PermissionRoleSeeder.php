@@ -2,11 +2,11 @@
 
 namespace Database\Seeders\AuthSeeders;
 
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\User;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
+use Turbine\Auth\Enums\UserTypeEnum;
+use Turbine\Auth\Models\Permission;
+use Turbine\Auth\Models\Role;
 
 /**
  * Class PermissionRoleTableSeeder.
@@ -19,7 +19,7 @@ class PermissionRoleSeeder extends Seeder
 
     public function __construct()
     {
-        $this->connection = config('template.auth.database_connection');
+        $this->connection = config('turbine.auth.connection');
     }
 
     /**
@@ -34,14 +34,14 @@ class PermissionRoleSeeder extends Seeder
         // Create Roles
         Role::create([
             'id' => 1,
-            'type' => User::TYPE_ADMIN,
-            'name' => 'Administrator',
+            'type' => UserTypeEnum::admin(),
+            'name' => config('turbine.admin.role'),
         ]);
 
         // Non Grouped Permissions
         // Menu Management
         $menus = Permission::create([
-            'type' => User::TYPE_ADMIN,
+            'type' => UserTypeEnum::admin(),
             'name' => 'admin.access.menus',
             'description' => 'Manage the Application\'s Menus',
         ]);
@@ -49,43 +49,43 @@ class PermissionRoleSeeder extends Seeder
         // Grouped permissions
         // Users category
         $users = Permission::create([
-            'type' => User::TYPE_ADMIN,
+            'type' => UserTypeEnum::admin(),
             'name' => 'admin.access.users',
             'description' => 'All User Permissions',
         ]);
 
         $users->children()->saveMany([
             new Permission([
-                'type' => User::TYPE_ADMIN,
+                'type' => UserTypeEnum::admin(),
                 'name' => 'admin.access.users.list',
                 'description' => 'View Users',
             ]),
             new Permission([
-                'type' => User::TYPE_ADMIN,
+                'type' => UserTypeEnum::admin(),
                 'name' => 'admin.access.users.deactivate',
                 'description' => 'Deactivate Users',
                 'sort' => 2,
             ]),
             new Permission([
-                'type' => User::TYPE_ADMIN,
+                'type' => UserTypeEnum::admin(),
                 'name' => 'admin.access.users.reactivate',
                 'description' => 'Reactivate Users',
                 'sort' => 3,
             ]),
             new Permission([
-                'type' => User::TYPE_ADMIN,
+                'type' => UserTypeEnum::admin(),
                 'name' => 'admin.access.users.clear-session',
                 'description' => 'Clear User Sessions',
                 'sort' => 4,
             ]),
             new Permission([
-                'type' => User::TYPE_ADMIN,
+                'type' => UserTypeEnum::admin(),
                 'name' => 'admin.access.users.impersonate',
                 'description' => 'Impersonate Users',
                 'sort' => 5,
             ]),
             new Permission([
-                'type' => User::TYPE_ADMIN,
+                'type' => UserTypeEnum::admin(),
                 'name' => 'admin.access.users.change-password',
                 'description' => 'Change User Passwords',
                 'sort' => 6,

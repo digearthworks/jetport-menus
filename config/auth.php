@@ -36,7 +36,6 @@ return [
     */
 
     'guards' => [
-
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -47,11 +46,6 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
-
-        // 'sanctum' => [
-        //     'driver' => 'session',
-        //     'provider' => 'users'
-        // ],
     ],
 
     /*
@@ -74,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => \Turbine\Auth\Models\User::class,
         ],
 
         // 'users' => [

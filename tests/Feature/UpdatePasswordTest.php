@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Jetstream\Http\Livewire\UpdatePasswordForm;
 use Livewire\Livewire;
 use Tests\TestCase;
+use Turbine\Auth\Models\User;
 
 class UpdatePasswordTest extends TestCase
 {
@@ -46,7 +46,6 @@ class UpdatePasswordTest extends TestCase
 
     public function test_new_passwords_must_match()
     {
-        $this->withoutExceptionHandling();
         $this->actingAs($user = User::factory()->create());
 
         Livewire::test(UpdatePasswordForm::class)

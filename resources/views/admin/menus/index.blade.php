@@ -4,13 +4,13 @@
     </x-slot>
 
     <x-slot name="headerActions">
-        @include('admin.menus.includes.header-actions')
+        @include('admin.menus.header-actions')
     </x-slot>
 
-    @include('admin.menus.includes.table')
+    @include('admin.menus.table')
+    <livewire:turbine.menus.admin.create-menu-item-form />
+    <livewire:turbine.menus.admin.edit-menu-item-form />
+    <livewire:turbine.menus.admin.delete-menu-item-dialog />
+    <livewire:turbine.menus.admin.deactivate-menu-item-dialog />
 </x-7xl>
-<livewire:admin.menus.create />
-<livewire:admin.menus.edit />
-<livewire:admin.menus.delete />
-<livewire:admin.menus.deactivate />
 

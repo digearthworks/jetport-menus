@@ -2,27 +2,25 @@
 
 namespace Tests;
 
-use App\Models\Role;
-use App\Models\User;
+use Database\Seeders\AuthSeeder;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Turbine\Auth\Models\Role;
+use Turbine\Auth\Models\User;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, RefreshDatabase;
+    use CreatesApplication;
+    use RefreshDatabase;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        if (config('template.cms.cms') && config('template.cms.driver') === 'wink') {
-            Artisan::call('wink:migrate');
-        }
-
-        Artisan::call('db:seed');
+        Artisan::call('db:seed', ['--class' => AuthSeeder::class]);
 
         $this->withoutMiddleware(RequirePassword::class);
     }
@@ -39,7 +37,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function loginAsAdmin($admin = false)
     {
-        if (!$admin) {
+        if (! $admin) {
             $admin = $this->getMasterAdmin();
         }
 

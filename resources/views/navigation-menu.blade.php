@@ -5,14 +5,16 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center flex-shrink-0">
-                    <a href="{{ route('index') }}">
+                    <a href="{{ route('dashboard') }}">
                         <x-jet-application-mark class="block w-auto h-9" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-2 sm:-my-px sm:ml-10 sm:flex">
-                    @include('menus.navbar.app')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @foreach($menus as $menu)
+                        @include('menu.navbar.'.$menu->template.'.index', ['menuItems' => $menu->authChildren])
+                    @endforeach
                 </div>
             </div>
 
@@ -136,7 +138,9 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            @include('menus.navbar.app')
+            <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
+            </x-jet-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

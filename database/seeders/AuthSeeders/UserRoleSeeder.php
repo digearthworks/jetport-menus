@@ -2,10 +2,11 @@
 
 namespace Database\Seeders\AuthSeeders;
 
-use App\Events\User\UserUpdated;
-use App\Models\User;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
+use Turbine\Auth\Events\User\UserUpdated;
+use Turbine\Auth\Models\Admin;
+use ReflectionException;
 
 /**
  * Class UserRoleTableSeeder.
@@ -18,7 +19,7 @@ class UserRoleSeeder extends Seeder
 
     public function __construct()
     {
-        $this->connection = config('template.auth.database_connection');
+        $this->connection = config('turbine.auth.connection');
     }
 
     /**
@@ -30,7 +31,14 @@ class UserRoleSeeder extends Seeder
     {
         $this->disableForeignKeys($this->connection);
 
-        $admin = User::find(1)->assignRole(config('template.auth.access.role.admin'));
+        try {
+            // Flush the Request Cache
+            app()->make('cache')->store('request')->flush();
+        } catch (ReflectionException $e) {
+            // Do nothing
+        }
+
+        $admin = Admin::first()->assignRole(config('turbine.admin.role'));
 
         event(new UserUpdated($admin));
 

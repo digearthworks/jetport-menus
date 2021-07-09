@@ -125,11 +125,15 @@ Or follow steps in `dev` task in Envoy.blade.php:
 ```blade
 @task('dev', ['on'=> 'localhost'])
     php artisan key:generate
-    npm install && npm run dev
+    yarn && yarn run dev
     php artisan storage:link
     php artisan passport:keys
     php artisan db:wipe
-    php artisan migrate:refresh --seed
+    @if((config('template.cms.cms') && config('template.cms.driver') === 'wink'))
+        php artisan wink:install
+        php artisan wink:migrate
+    @endif
+    php artisan migrate --seed
     {{ isset($test) ? 'php artisan test' : '' }}
 @endtask
 ```
@@ -149,7 +153,7 @@ composer test
 ```
 composer format
 ```
-[Contributing](https://github.com/digearthworks/laravel-jetport/blob/main/.github/CONTRIBUTING.md)
+[Contributing](https://github.com/digearthworks/jetport-menus/blob/main/.github/CONTRIBUTING.md)
 
 ### Reference
 - https://laravel.com/docs/8.x/envoy
@@ -158,7 +162,3 @@ composer format
 - https://laravel.com/docs/8.x/passport
 - https://github.com/laravel/passport/pull/1352
 - https://github.com/laravel/passport/tree/4e53f1b237a9e51ac10f0b30c6ebedd68f6848ab/resources
-
-
-
-

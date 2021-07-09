@@ -4,12 +4,13 @@
     </x-slot>
 
     <x-slot name="headerActions">
-        @include('admin.roles.includes.header-actions')
+        @include('admin.roles.header-actions')
     </x-slot>
 
-    <livewire:admin.role.roles-table />
+    <livewire:turbine.auth.roles-table />
+    
+    <livewire:turbine.auth.create-role-form />
+    <livewire:turbine.auth.edit-role-form />
+    <livewire:turbine.auth.delete-role-dialog />
+    
 </x-7xl>
-
-<livewire:admin.roles.create />
-<livewire:admin.roles.edit />
-<livewire:admin.roles.delete />

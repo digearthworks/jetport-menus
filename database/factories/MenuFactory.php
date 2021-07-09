@@ -2,12 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Icon;
-use App\Models\Menu;
+use Database\Factories\Concerns\GetsIcons;
+use HeaderX\BukuIcons\Models\Icon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Turbine\Menus\Enums\MenuTemplateEnum;
+use Turbine\Menus\Enums\MenuTypeEnum;
+use Turbine\Menus\Models\Menu;
 
 class MenuFactory extends Factory
 {
+    use GetsIcons;
+
     /**
      * The name of the factory's corresponding model.
      *
@@ -22,81 +27,70 @@ class MenuFactory extends Factory
      */
     public function definition()
     {
-        $icons = [
-            'fab fa-blogger',
-            'far fa-plus-square',
-            'far fa-eye',
-            'fas fa-piggy-bank',
-            'far fa-list-alt',
-            'fas fa-info-circle',
-            'fas fa-edit',
-            'fas fa-plus-square',
-            'fas fa-barcode',
-            'fas fa-calculator',
-            'fas fa-file-invoice',
-            'fas fa-money-check-alt',
-            'fas fa-project-diagram',
-            'fas fa-chart-line',
-            'fas fa-business-time',
-            'fas fa-address-book',
-            'far fa-clock',
-            'fas fa-user-clock',
-            'fas fa-people-carry',
-            'fas fa-balance-scale',
-            'fas fa-chart-bar',
-            'fas fa-table',
-            'fas fa-drafting-compass',
-            'fas fa-file-invoice-dollar',
-            'fas fa-database',
-            'fas fa-trash-alt',
-            'fas fa-camera-retro',
-            'fas fa-desktop',
-            'fas fa-file-import',
-            'fas fa-sticky-note',
-            'fab fa-angellist',
-            'fas fa-money-bill-wave',
-            'fas fa-cogs',
-            'fas fa-list',
-            'fas fa-list-ol',
-            'fab fa-researchgate',
-            'fas fa-search',
-            'fas fa-dumbbell',
-            'fas fa-hourglass-start',
-            'fas fa-home',
-            'fas fa-laptop-code',
-            'fab fa-internet-explorer',
-            'fab fa-git',
-        ];
-
         return [
-            'group' => $this->faker->randomElement(['office', 'admin', 'menu_page', 'hotlinks']),
-            'type' => $this->faker->randomElement(['internal_link', 'external_link', 'main_menu']),
             'name' => $this->faker->word(),
             'handle' => $this->faker->word(),
-            'link' => $this->faker->word(),
-            'active' => $this->faker->randomElement([1, 0]),
-            'iframe' => $this->faker->randomElement([1, 0]),
-            'sort' => $this->faker->randomNumber(),
-            'row' => $this->faker->randomElement([1, 2, 3, 4]),
-            'menu_id' => Menu::count() % 2 ? $this->faker->randomElement(Menu::all()->pluck('id')) : null,
-            'icon_id' => Icon::firstOrCreate([
-                'class' => $this->faker->randomElement($icons),
+            'type' => $this->faker->randomElement(MenuTypeEnum::toValues()),
+            'template' => $this->faker->randomElement(MenuTemplateEnum::toValues()),
+            'active' => rand(0, 1),
+            'icon_id' => (Icon::firstOrCreate([
+                'name' => $this->faker->randomElement($this->getIcons()),
             ], [
-                'class' => $this->faker->randomElement($icons),
-                'source' => 'FontAwesome',
-                'version' => '5',
-            ]),
+                'name' => $this->faker->randomElement($this->getIcons()),
+            ]))->id,
         ];
     }
 
-    /**
-     * @return MenuFactory
-     */
     public function deleted()
     {
         return $this->state(function (array $attributes) {
             return [
                 'deleted_at' => now(),
+            ];
+        });
+    }
+
+    public function active()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'active' => true,
+            ];
+        });
+    }
+
+    public function inactive()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'active' => false,
+            ];
+        });
+    }
+
+    public function admin()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => $this->faker->randomElement(MenuTypeEnum::admin()),
+            ];
+        });
+    }
+
+    public function user()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => $this->faker->randomElement(MenuTypeEnum::user()),
+            ];
+        });
+    }
+
+    public function guest()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => $this->faker->randomElement(MenuTypeEnum::user()),
             ];
         });
     }

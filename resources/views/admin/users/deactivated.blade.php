@@ -4,12 +4,12 @@
     </x-slot>
 
     <x-slot name="headerActions">
-        @include('admin.users.includes.header-actions')
+        @include('admin.users.header-actions')
     </x-slot>
 
-    <livewire:admin.users.livewire-datatable.datatable status="deactivated" />
+    <livewire:turbine.auth.users-table status="deactivated" />
 </x-7xl>
 
-<livewire:admin.users.reactivate />
-<livewire:admin.users.delete />
-<livewire:admin.users.edit />
+<livewire:turbine.auth.reactivate-user-dialog />
+<livewire:turbine.auth.delete-user-dialog />
+<livewire:turbine.auth.edit-user-form />

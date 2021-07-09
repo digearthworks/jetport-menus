@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Jetstream\Features;
 use Laravel\Jetstream\Http\Livewire\DeleteUserForm;
 use Livewire\Livewire;
 use Tests\TestCase;
+use Turbine\Auth\Models\User;
 
 class DeleteAccountTest extends TestCase
 {
@@ -25,7 +25,7 @@ class DeleteAccountTest extends TestCase
                         ->set('password', 'password')
                         ->call('deleteUser');
 
-        $this->assertNotNull($user->fresh()->deleted_at);
+        $this->assertSoftDeleted($user->fresh());
     }
 
     public function test_correct_password_must_be_provided_before_account_can_be_deleted()
