@@ -9,7 +9,6 @@ use Illuminate\Contracts\View\View;
 
 class IconSelect extends IconSearch
 {
-   
     public function render(): View
     {
         return view('admin.menus.select-icon', [

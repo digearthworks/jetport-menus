@@ -4,7 +4,6 @@ namespace Tests\Feature\Menu\Admin;
 
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Icons\Models\Icon;
 use Turbine\Menus\Enums\MenuItemTypeEnum;
 use Turbine\Menus\Http\Livewire\Admin\EditMenuItemForm;
 use Turbine\Menus\Models\MenuItem;

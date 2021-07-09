@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Blade;
 
 class BootComponentProviderAction
 {
-
     public function __invoke()
     {
         Blade::component('admin.users.livewire-tables.tailwind.components.table.table', 'turbine-auth::livewire-tables.table');

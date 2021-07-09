@@ -2,8 +2,8 @@
 
 namespace Turbine\Auth\Actions;
 
-use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Spatie\Enum\Laravel\Rules\EnumRule;
@@ -11,7 +11,6 @@ use Turbine\Auth\Enums\UserTypeEnum;
 use Turbine\Auth\Events\Role\RoleCreated;
 use Turbine\Auth\Models\Role;
 use Turbine\Exceptions\GeneralException;
-
 
 class CreateRoleAction
 {
