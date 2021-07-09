@@ -124,16 +124,13 @@ Or follow steps in `dev` task in Envoy.blade.php:
 
 ```blade
 @task('dev', ['on'=> 'localhost'])
+    php artisan icon:cache
     php artisan key:generate
-    yarn && yarn run dev
+    npm install && npm run dev
     php artisan storage:link
     php artisan passport:keys
     php artisan db:wipe
-    @if((config('template.cms.cms') && config('template.cms.driver') === 'wink'))
-        php artisan wink:install
-        php artisan wink:migrate
-    @endif
-    php artisan migrate --seed
+    php artisan migrate:refresh --seed
     {{ isset($test) ? 'php artisan test' : '' }}
 @endtask
 ```
