@@ -2,14 +2,14 @@
 
 namespace Turbine\Auth\Actions;
 
-use DB;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
-use Log;
 use Turbine\Auth\Enums\UserTypeEnum;
 use Turbine\Auth\Events\User\UserCreated;
 use Turbine\Auth\Models\User;
@@ -18,12 +18,6 @@ class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
 
-    /**
-     * Validate and create a newly registered user.
-     *
-     * @param  array  $input
-     * @return \Auth\Models\User
-     */
     public function create(array $input)
     {
         if (Auth::user() && Auth::user()->isAdmin()) {

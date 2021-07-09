@@ -11,7 +11,7 @@ use Spatie\Enum\Laravel\Rules\EnumRule;
 use Turbine\Auth\Enums\UserTypeEnum;
 use Turbine\Auth\Events\User\UserUpdated;
 use Turbine\Auth\Models\User;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class UpdateUserAction
 {

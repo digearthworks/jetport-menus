@@ -3,7 +3,7 @@
 namespace Turbine\Menus\Actions;
 
 use Exception;
-use Log;
+use Illuminate\Support\Facades\Log;
 use Turbine\Exceptions\GeneralException;
 use Turbine\Menus\Models\MenuItem;
 

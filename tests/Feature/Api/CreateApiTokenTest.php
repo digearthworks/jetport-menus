@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Api;
 
-use HeaderX\JetstreamPassport\Http\Livewire\ApiTokenManager;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Laravel\Jetstream\Features;
 use Livewire\Livewire;
+use HeaderX\JetstreamPassport\Http\Livewire\ApiTokenManager;
 use Tests\TestCase;
 use Turbine\Auth\Models\User;
 

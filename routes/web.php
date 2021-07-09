@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Turbine\Menus\Http\Controllers\MenuController;
+use Turbine\Pages\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,7 @@ use Turbine\Menus\Http\Controllers\MenuController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('index');
+Route::get('/', WelcomeController::class)->name('index');
 
 Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

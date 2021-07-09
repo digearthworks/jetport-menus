@@ -2,7 +2,8 @@
 
 namespace Tests\Feature\Menu\Admin;
 
-use Livewire;
+use HeaderX\BukuIcons\Models\Icon;
+use Livewire\Livewire;
 use Tests\TestCase;
 use Turbine\Menus\Enums\MenuItemTypeEnum;
 use Turbine\Menus\Http\Livewire\Admin\CreateMenuItemForm;

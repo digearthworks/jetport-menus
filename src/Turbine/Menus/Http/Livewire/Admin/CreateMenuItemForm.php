@@ -2,6 +2,7 @@
 
 namespace Turbine\Menus\Http\Livewire\Admin;
 
+use HeaderX\BukuIcons\Models\Icon;
 use Turbine\Concerns\InteractsWithBanner;
 use Turbine\Livewire\BaseCreateForm;
 use Turbine\Livewire\Concerns\HandlesSelectIconEvent;

@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use Exception;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use Schema;
@@ -56,15 +58,20 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(function (Router $router) {
                     $router->impersonate();
                 });
-            
-            // if (app()->environment(['production'])) {
 
-            //     if (Schema::hasTable('pages')) {
-            //         foreach (Page::onlyActive()->get() as $page) {
-            //             Route::get($page->slug, [PageController::class, 'show']);
-            //         }
-            //     }
-            // }
+            try {
+                // Just check if we have DB connection! This is to avoid
+                // exceptions on new projects before configuring database options
+                DB::connection()->getPdo();
+
+                if (Schema::hasTable('pages')) {
+                    foreach (Page::onlyActive()->where('layout', 'layouts.blank')->get() as $page) {
+                        Route::get($page->slug, [PageController::class, 'show']);
+                    }
+                }
+            } catch (Exception $e) {
+                // Be quite! Do not do or say anything!!
+            }
         });
     }
 

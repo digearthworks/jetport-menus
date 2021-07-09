@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 use Turbine\Concerns\FiltersData;
 use Turbine\Pages\Models\Page;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class UpdatePageAction
 {

@@ -2,7 +2,7 @@
 
 namespace Turbine\Pages\Concerns;
 
-use Livewire;
+use Livewire\Livewire;
 use Turbine\Pages\Http\Livewire\CreatePageButton;
 use Turbine\Pages\Http\Livewire\CreatePageForm;
 use Turbine\Pages\Http\Livewire\CreatePageTemplateForm;
@@ -33,5 +33,6 @@ trait RegistersPagesLivewireComponents
         Livewire::component('turbine.pages.create-page-template-form', CreatePageTemplateForm::class);
         Livewire::component('turbine.pages.edit-page-template-form', EditPageTemplateForm::class);
         Livewire::component('turbine.pages.page-templates-table', PageTemplatesTable::class);
+
     }
 }

@@ -5,7 +5,7 @@ namespace Turbine\Menus\Actions;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
-use Log;
+use Illuminate\Support\Facades\Log;
 use Spatie\Enum\Laravel\Rules\EnumRule;
 use Str;
 use Turbine\Exceptions\GeneralException;
@@ -13,7 +13,7 @@ use Turbine\Menus\Enums\MenuItemTargetEnum;
 use Turbine\Menus\Enums\MenuItemTemplateEnum;
 use Turbine\Menus\Enums\MenuItemTypeEnum;
 use Turbine\Menus\Models\MenuItem;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class SaveAsMenuItemAction
 {

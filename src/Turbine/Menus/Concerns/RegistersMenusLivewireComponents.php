@@ -2,7 +2,7 @@
 
 namespace Turbine\Menus\Concerns;
 
-use Livewire;
+use Livewire\Livewire;
 use Turbine\Menus\Http\Livewire\Admin\AdminNavigationMenu;
 use Turbine\Menus\Http\Livewire\Admin\AdminSidebarMenu;
 use Turbine\Menus\Http\Livewire\Admin\AdminSidebarToggler;
@@ -17,6 +17,7 @@ use Turbine\Menus\Http\Livewire\Admin\ReactivateMenuItemDialog;
 use Turbine\Menus\Http\Livewire\Admin\RestoreMenuItemDialog;
 use Turbine\Menus\Http\Livewire\DashboardMenu;
 use Turbine\Menus\Http\Livewire\MainMenu;
+use Turbine\Menus\Http\Livewire\NavigationMenu;
 
 trait RegistersMenusLivewireComponents
 {
@@ -36,8 +37,10 @@ trait RegistersMenusLivewireComponents
         Livewire::component('turbine.menus.admin.admin-navigation-menu', AdminNavigationMenu::class);
         Livewire::component('turbine.menus.admin.admin-sidebar-menu', AdminSidebarMenu::class);
         Livewire::component('turbine.menus.admin.admin-sidebar-toggler', AdminSidebarToggler::class);
-
+        
         Livewire::component('turbine.menus.dashboard-menu', DashboardMenu::class);
         Livewire::component('turbine.menus.main-menu', MainMenu::class);
+
+        Livewire::component('turbine.menus.navigation-menu', NavigationMenu::class);
     }
 }

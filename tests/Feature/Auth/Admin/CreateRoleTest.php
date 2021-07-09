@@ -3,7 +3,7 @@
 namespace Tests\Feature\Auth\Admin;
 
 use Event;
-use Livewire;
+use Livewire\Livewire;
 use Tests\TestCase;
 use Turbine\Auth\Enums\UserTypeEnum;
 use Turbine\Auth\Events\Role\RoleCreated;

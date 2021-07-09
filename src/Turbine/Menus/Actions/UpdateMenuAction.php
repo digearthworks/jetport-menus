@@ -4,14 +4,14 @@ namespace Turbine\Menus\Actions;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Log;
+use Illuminate\Support\Facades\Log;
 use Spatie\Enum\Laravel\Rules\EnumRule;
-use Turbine\Concerns\FiltersData;
 use Turbine\Exceptions\GeneralException;
+use Turbine\Concerns\FiltersData;
 use Turbine\Menus\Enums\MenuTemplateEnum;
 use Turbine\Menus\Enums\MenuTypeEnum;
 use Turbine\Menus\Models\Menu;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class UpdateMenuAction
 {

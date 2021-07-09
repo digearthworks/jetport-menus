@@ -2,7 +2,7 @@
 
 namespace Turbine\Auth\Actions;
 
-use DB;
+use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
@@ -11,7 +11,7 @@ use Turbine\Auth\Enums\UserTypeEnum;
 use Turbine\Auth\Events\Role\RoleUpdated;
 use Turbine\Auth\Models\Role;
 use Turbine\Exceptions\GeneralException;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class UpdateRoleAction
 {

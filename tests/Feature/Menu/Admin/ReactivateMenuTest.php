@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Menu\Admin;
 
-use Livewire;
+use Livewire\Livewire;
 use Tests\TestCase;
 use Turbine\Menus\Http\Livewire\Admin\ReactivateMenuItemDialog;
 use Turbine\Menus\Models\MenuItem;

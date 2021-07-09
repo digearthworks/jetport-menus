@@ -2,7 +2,7 @@
 
 namespace Turbine\Auth\Concerns;
 
-use Livewire;
+use Livewire\Livewire;
 use Turbine\Auth\Http\Livewire\ClearUserSessionDialog;
 use Turbine\Auth\Http\Livewire\CreateRoleButton;
 use Turbine\Auth\Http\Livewire\CreateRoleForm;
