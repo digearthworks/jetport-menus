@@ -4,10 +4,10 @@ namespace Turbine\Pages\Actions;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Turbine\Concerns\FiltersData;
 use Turbine\Pages\Models\Page;
-use Validator;
 
 class SaveAsPageAction
 {

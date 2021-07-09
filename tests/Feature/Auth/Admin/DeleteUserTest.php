@@ -3,7 +3,7 @@
 namespace Tests\Feature\Auth\Admin;
 
 use Illuminate\Support\Facades\Event;
-use Livewire;
+use Livewire\Livewire;
 use Tests\TestCase;
 use Turbine\Auth\Events\User\UserDeleted;
 use Turbine\Auth\Http\Livewire\DeleteUserDialog;

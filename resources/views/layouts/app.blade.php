@@ -36,7 +36,7 @@
                 @if($logged_in_user->isAdmin())
                     @livewire('turbine.menus.admin.admin-navigation-menu')
                 @else
-                    @livewire('navigation-menu')
+                    @livewire('turbine.menus.navigation-menu')
                 @endif
     
                 <!-- Page Heading -->

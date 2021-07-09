@@ -2,7 +2,7 @@
 
 namespace Turbine\Pages\Concerns;
 
-use Livewire;
+use Livewire\Livewire;
 use Turbine\Pages\Http\Livewire\CreatePageButton;
 use Turbine\Pages\Http\Livewire\CreatePageForm;
 use Turbine\Pages\Http\Livewire\CreatePageTemplateForm;

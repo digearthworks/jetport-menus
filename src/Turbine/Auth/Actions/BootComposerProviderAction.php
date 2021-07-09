@@ -2,12 +2,12 @@
 
 namespace Turbine\Auth\Actions;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Turbine\Auth\Enums\UserTypeEnum;
 use Turbine\Auth\Models\Permission;
 use Turbine\Auth\Models\Role;
 use Turbine\Menus\Models\MenuItem;
-use View;
 
 class BootComposerProviderAction
 {

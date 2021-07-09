@@ -14,19 +14,19 @@ class RegisterProviderAction
 
     public function __invoke(CreateNewUser $createNewUser, $info, $provider): User
     {
-        $user = $this->model::where('provider_id', $info->id)->first();
+        $user = User::where('provider_id', $info->id)->first();
 
         if (! $user) {
             DB::beginTransaction();
 
             try {
-                $user = $createNewUser([
+                $user = ($createNewUser([
                     'name' => $info->name,
                     'email' => $info->email,
                     'provider' => $provider,
                     'provider_id' => $info->id,
                     'email_verified_at' => now(),
-                ]);
+                ]));
             } catch (Exception $e) {
                 DB::rollBack();
 

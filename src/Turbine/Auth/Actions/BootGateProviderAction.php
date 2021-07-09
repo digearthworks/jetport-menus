@@ -2,7 +2,7 @@
 
 namespace Turbine\Auth\Actions;
 
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Turbine\Auth\Enums\UserTypeEnum;
 
 class BootGateProviderAction

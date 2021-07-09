@@ -47,8 +47,8 @@ class CreatePagesTable extends Migration
             $table->boolean('active')->nullable();
             $table->string('slug')->unique();
             $table->string('title');
-            $table->text('html');
-            $table->text('css')->nullable();
+            $table->longText('html');
+            $table->longText('css')->nullable();
             $table->string('layout')->nullable();
             $table->integer('sort')->nullable();
             $table->text('meta')->nullable();
@@ -65,8 +65,8 @@ class CreatePagesTable extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->string('name');
-            $table->text('html');
-            $table->text('css')->nullable();
+            $table->longText('html');
+            $table->longText('css')->nullable();
             $table->integer('sort')->nullable();
             $table->text('meta')->nullable();
             $table->timestamps();

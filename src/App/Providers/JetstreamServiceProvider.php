@@ -9,8 +9,6 @@ use Laravel\Jetstream\Jetstream;
 use Laravel\Passport\Passport;
 use Livewire\Livewire;
 use Turbine\Auth\Actions\DeleteUser;
-use Turbine\Passport\ApiTokenManager;
-use Turbine\Passport\OAuthClientManager;
 
 class JetstreamServiceProvider extends ServiceProvider
 {
@@ -31,8 +29,6 @@ class JetstreamServiceProvider extends ServiceProvider
                 // Livewire::component('profile.delete-user-form', DeleteUserForm::class);
 
                 if (Features::hasApiFeatures()) {
-                    Livewire::component('passport-views::api-token-manager', ApiTokenManager::class);
-                    Livewire::component('passport-views::client-manager', OAuthClientManager::class);
                 }
 
                 // if (Features::hasTeamFeatures()) {

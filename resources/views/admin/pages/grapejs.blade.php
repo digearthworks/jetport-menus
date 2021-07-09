@@ -40,6 +40,8 @@ document.addEventListener('livewire:load', function () {
     // CKEDITOR.dtd.$editable.tr = 1
     // CKEDITOR.dtd.$editable.table = 1
 
+    let ckeConfig = {!! json_encode(array_merge(config('turbine.ckeditor.grapejs'), ['filebrowserUploadUrl' => route('admin.ckeditor.upload', ['_token' => csrf_token() ]), 'filebrowserUploadMethod' => 'form'])) !!} 
+
     window.grapesjsEditor = grapesjs.init({
         container : '#gjs',
         components: {!! json_encode(isset($state['html']) ? $state['html'] : '') !!},
@@ -52,7 +54,7 @@ document.addEventListener('livewire:load', function () {
         ],
      
         pluginsOpts: {
-            'gjs-plugin-ckeditor': {!! json_encode(config('turbine.ckeditor.grapejs')) !!}
+            'gjs-plugin-ckeditor': ckeConfig
         },
     
 

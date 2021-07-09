@@ -3,9 +3,9 @@
 namespace Turbine\Pages\Http\Livewire;
 
 use Exception;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Log;
 use Turbine\Concerns\InteractsWithBanner;
 use Turbine\Livewire\BaseEditForm;
 use Turbine\Pages\Models\PageTemplate;

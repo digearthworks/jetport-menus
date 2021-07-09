@@ -2,7 +2,7 @@
 
 namespace Turbine\Auth\Actions;
 
-use Blade;
+use Illuminate\Support\Facades\Blade;
 
 class BootComponentProviderAction
 {

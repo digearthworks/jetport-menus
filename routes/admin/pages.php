@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Turbine\Pages\Http\Controllers\CkeditorController;
 use Turbine\Pages\Http\Controllers\PageController;
 use Turbine\Pages\Http\Controllers\PageTemplateController;
 
@@ -33,3 +34,5 @@ Route::get('/pages/templates/edit/{template}', [PageTemplateController::class, '
 
 Route::get('/pages/templates/create', [PageTemplateController::class, 'create'])
     ->name('pages.templates.create');
+
+Route::post('/uploads', CkeditorController::class)->name('ckeditor.upload');

@@ -5,13 +5,13 @@ namespace Turbine\Auth\Actions;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 use Spatie\Enum\Laravel\Rules\EnumRule;
 use Turbine\Auth\Enums\UserTypeEnum;
 use Turbine\Auth\Events\User\UserUpdated;
 use Turbine\Auth\Models\User;
-use Validator;
 
 class UpdateUserAction
 {
