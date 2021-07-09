@@ -2,7 +2,6 @@
 
 namespace Turbine\Pages\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CkeditorController
@@ -15,7 +14,7 @@ class CkeditorController
      */
     public function __invoke(Request $request)
     {
-        if($request->hasFile('upload')) {
+        if ($request->hasFile('upload')) {
             $origin_Name = $request->file('upload')->getClientOriginalName();
             $File_Name = pathinfo($origin_Name, PATHINFO_FILENAME);
             $extension_Name = $request->file('upload')->getClientOriginalExtension();
@@ -24,11 +23,11 @@ class CkeditorController
             $request->file('upload')->move(public_path('images'), $File_Name);
    
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('images/'.$File_Name); 
-            $msg = 'Image uploaded successfully'; 
+            $url = asset('images/'.$File_Name);
+            $msg = 'Image uploaded successfully';
             $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
                
-            @header('Content-type: text/html; charset=utf-8'); 
+            @header('Content-type: text/html; charset=utf-8');
             echo $response;
         }
     }

@@ -29,7 +29,6 @@ class JetstreamServiceProvider extends ServiceProvider
                 // Livewire::component('profile.delete-user-form', DeleteUserForm::class);
 
                 if (Features::hasApiFeatures()) {
-
                 }
 
                 // if (Features::hasTeamFeatures()) {
