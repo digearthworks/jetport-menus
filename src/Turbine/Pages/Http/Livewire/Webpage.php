@@ -16,7 +16,7 @@ class Webpage extends Component
         }
 
         if ($this->page->layout == 'layouts.blank') {
-            redirect($this->page->slug);
+           return redirect($this->page->slug);
         }
 
         return view('pages.webpage')
