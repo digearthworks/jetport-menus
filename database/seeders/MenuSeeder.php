@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
-use Turbine\Icons\Models\Icon;
 use Turbine\Menus\Enums\MenuItemTargetEnum;
 use Turbine\Menus\Enums\MenuItemTemplateEnum;
 use Turbine\Menus\Enums\MenuItemTypeEnum;
