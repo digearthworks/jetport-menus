@@ -13,7 +13,7 @@ class DomainModelMakeCommand extends ModelMakeCommand
      *
      * @var string
      */
-    protected $name = 'make:turbo-model';
+    protected $name = 'make:domain-model';
 
     /**
      * Get the default namespace for the class.
