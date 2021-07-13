@@ -39,6 +39,6 @@ trait GeneratesDomainClass
     {
         $name = Str::replaceFirst('Domain', '', $name);
 
-        return $this->laravel['path'].'/../Turbine'.str_replace('\\', '/', $name).'.php';
+        return $this->laravel['path'].'/../Domain'.str_replace('\\', '/', $name).'.php';
     }
 }
