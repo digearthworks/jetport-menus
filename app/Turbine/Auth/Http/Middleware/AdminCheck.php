@@ -2,9 +2,9 @@
 
 namespace App\Turbine\Auth\Http\Middleware;
 
+use App\Turbine\Auth\Enums\UserTypeEnum;
 use Closure;
 use Illuminate\Http\Request;
-use App\Turbine\Auth\Enums\UserTypeEnum;
 
 class AdminCheck
 {

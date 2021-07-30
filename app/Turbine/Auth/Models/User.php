@@ -2,17 +2,6 @@
 
 namespace App\Turbine\Auth\Models;
 
-use Database\Factories\UserFactory;
-use Illuminate\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Lab404\Impersonate\Models\Impersonate;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Passport\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
 use App\Turbine\Auth\Concerns\GetsAuthConnection;
 use App\Turbine\Auth\Concerns\HasPermissionsLabel;
 use App\Turbine\Auth\Concerns\HasRolesLabel;
@@ -24,6 +13,17 @@ use App\Turbine\Concerns\CachesQueries;
 use App\Turbine\Concerns\HasChildren;
 use App\Turbine\Concerns\HasUuid;
 use App\Turbine\Menus\Concerns\HasMenuItems;
+use Database\Factories\UserFactory;
+use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Lab404\Impersonate\Models\Impersonate;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Passport\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 use Wildside\Userstamps\Userstamps;
 
 class User extends Authenticatable

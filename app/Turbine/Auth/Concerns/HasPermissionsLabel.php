@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\Concerns;
 
-use Illuminate\Support\Collection;
 use App\Turbine\Auth\Models\Permission;
+use Illuminate\Support\Collection;
 
 trait HasPermissionsLabel
 {

@@ -2,7 +2,6 @@
 
 namespace App\Turbine\Menus\Concerns;
 
-use Livewire\Livewire;
 use App\Turbine\Menus\Http\Livewire\Admin\AdminNavigationMenu;
 use App\Turbine\Menus\Http\Livewire\Admin\AdminSidebarMenu;
 use App\Turbine\Menus\Http\Livewire\Admin\AdminSidebarToggler;
@@ -18,6 +17,7 @@ use App\Turbine\Menus\Http\Livewire\Admin\RestoreMenuItemDialog;
 use App\Turbine\Menus\Http\Livewire\DashboardMenu;
 use App\Turbine\Menus\Http\Livewire\MainMenu;
 use App\Turbine\Menus\Http\Livewire\NavigationMenu;
+use Livewire\Livewire;
 
 trait RegistersMenusLivewireComponents
 {

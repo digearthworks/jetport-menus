@@ -2,13 +2,13 @@
 
 namespace Tests\Feature\Api;
 
+use App\Turbine\Auth\Models\User;
 use HeaderX\JetstreamPassport\Http\Livewire\ApiTokenManager;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Laravel\Jetstream\Features;
 use Livewire\Livewire;
 use Tests\TestCase;
-use App\Turbine\Auth\Models\User;
 
 class DeleteApiTokenTest extends TestCase
 {

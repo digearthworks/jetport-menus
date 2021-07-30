@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Page\Admin;
 
-use Livewire\Livewire;
-use Tests\TestCase;
 use App\Turbine\Pages\Http\Livewire\DeletePageTemplateDialog;
 use App\Turbine\Pages\Models\PageTemplate;
+use Livewire\Livewire;
+use Tests\TestCase;
 
 class DeleteTemplateTest extends TestCase
 {

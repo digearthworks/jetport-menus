@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use App\Providers\RouteServiceProvider;
+use App\Turbine\Auth\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Turbine\Auth\Models\User;
 
 class AuthenticationTest extends TestCase
 {

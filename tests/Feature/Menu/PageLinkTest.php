@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Menu;
 
-use Tests\TestCase;
 use App\Turbine\Menus\Enums\MenuItemTypeEnum;
 use App\Turbine\Menus\Models\MenuItem;
 use App\Turbine\Pages\Models\Page;
+use Tests\TestCase;
 
 class PageLinkTest extends TestCase
 {

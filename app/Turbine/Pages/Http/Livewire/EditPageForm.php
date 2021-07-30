@@ -2,13 +2,13 @@
 
 namespace App\Turbine\Pages\Http\Livewire;
 
-use Illuminate\Support\Str;
 use App\Turbine\Concerns\InteractsWithBanner;
 use App\Turbine\Livewire\BaseEditForm;
 use App\Turbine\Pages\Actions\SaveAsPageAction;
 use App\Turbine\Pages\Actions\UpdatePageAction;
 use App\Turbine\Pages\Models\Page;
 use App\Turbine\Pages\Models\PageTemplate;
+use Illuminate\Support\Str;
 
 class EditPageForm extends BaseEditForm
 {

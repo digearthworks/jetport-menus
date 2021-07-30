@@ -2,12 +2,12 @@
 
 namespace App\Turbine\Auth\Http\Livewire;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Livewire\Component;
 use App\Turbine\Auth\Actions\ClearUserSessionsAction;
 use App\Turbine\Auth\Models\User;
 use App\Turbine\Concerns\InteractsWithBanner;
 use App\Turbine\Livewire\Concerns\HasModel;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Livewire\Component;
 
 class ClearUserSessionDialog extends Component
 {

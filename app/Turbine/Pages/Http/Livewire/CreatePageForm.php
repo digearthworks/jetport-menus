@@ -2,11 +2,11 @@
 
 namespace App\Turbine\Pages\Http\Livewire;
 
-use Illuminate\Support\Str;
 use App\Turbine\Concerns\FlashesBanner;
 use App\Turbine\Livewire\BaseCreateForm;
 use App\Turbine\Pages\Actions\CreatePageAction;
 use App\Turbine\Pages\Models\PageTemplate;
+use Illuminate\Support\Str;
 
 class CreatePageForm extends BaseCreateForm
 {

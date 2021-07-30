@@ -2,7 +2,6 @@
 
 namespace App\Turbine\Auth\Concerns;
 
-use Livewire\Livewire;
 use App\Turbine\Auth\Http\Livewire\ClearUserSessionDialog;
 use App\Turbine\Auth\Http\Livewire\CreateRoleButton;
 use App\Turbine\Auth\Http\Livewire\CreateRoleForm;
@@ -18,6 +17,7 @@ use App\Turbine\Auth\Http\Livewire\ReactivateUserDialog;
 use App\Turbine\Auth\Http\Livewire\RestoreUserDialog;
 use App\Turbine\Auth\Http\Livewire\RolesTable;
 use App\Turbine\Auth\Http\Livewire\UsersTable;
+use Livewire\Livewire;
 
 trait RegistersAuthLivewireComponents
 {

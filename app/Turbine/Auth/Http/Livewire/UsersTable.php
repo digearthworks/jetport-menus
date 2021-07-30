@@ -2,12 +2,12 @@
 
 namespace App\Turbine\Auth\Http\Livewire;
 
-use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Filter;
 use App\Turbine\Auth\Enums\UserTypeEnum;
 use App\Turbine\Auth\Models\User;
 use App\Turbine\Livewire\BaseDataTable;
+use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 /**
  * Class UsersTable.

@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Menu\Admin;
 
-use Livewire\Livewire;
-use Tests\TestCase;
 use App\Turbine\Menus\Enums\MenuItemTypeEnum;
 use App\Turbine\Menus\Http\Livewire\Admin\CreateMenuItemForm;
+use Livewire\Livewire;
+use Tests\TestCase;
 
 class CreateMenuItemTest extends TestCase
 {

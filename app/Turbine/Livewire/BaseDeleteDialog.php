@@ -2,9 +2,9 @@
 
 namespace App\Turbine\Livewire;
 
+use App\Turbine\Livewire\Concerns\HandlesDeleteDialogInteraction;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use App\Turbine\Livewire\Concerns\HandlesDeleteDialogInteraction;
 
 class BaseDeleteDialog extends Component
 {

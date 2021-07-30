@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Menus\Http\Livewire\Admin;
 
-use Livewire\Component;
 use App\Turbine\Menus\Models\Menu;
+use Livewire\Component;
 
 class AdminSidebarMenu extends Component
 {

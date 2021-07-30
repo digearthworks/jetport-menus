@@ -2,10 +2,10 @@
 
 namespace App\Turbine\Menus\Http\Livewire\Admin;
 
-use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Turbine\Livewire\BaseDataTable;
 use App\Turbine\Menus\Models\MenuItem;
+use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class MenuItemsTable extends BaseDataTable
 {

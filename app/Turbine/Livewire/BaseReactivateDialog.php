@@ -2,9 +2,9 @@
 
 namespace App\Turbine\Livewire;
 
+use App\Turbine\Livewire\Concerns\HandlesReactivateDialogInteraction;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use App\Turbine\Livewire\Concerns\HandlesReactivateDialogInteraction;
 
 abstract class BaseReactivateDialog extends Component
 {

@@ -2,7 +2,6 @@
 
 namespace App\Turbine\Pages\Concerns;
 
-use Livewire\Livewire;
 use App\Turbine\Pages\Http\Livewire\CreatePageButton;
 use App\Turbine\Pages\Http\Livewire\CreatePageForm;
 use App\Turbine\Pages\Http\Livewire\CreatePageTemplateForm;
@@ -15,6 +14,7 @@ use App\Turbine\Pages\Http\Livewire\PagesTable;
 use App\Turbine\Pages\Http\Livewire\PageTemplatesTable;
 use App\Turbine\Pages\Http\Livewire\ReactivatePageDialog;
 use App\Turbine\Pages\Http\Livewire\RestorePageDialog;
+use Livewire\Livewire;
 
 trait RegistersPagesLivewireComponents
 {

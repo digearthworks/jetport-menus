@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Menus\QueryBuilders;
 
-use Illuminate\Database\Eloquent\Builder;
 use App\Turbine\Menus\Enums\MenuTypeEnum;
+use Illuminate\Database\Eloquent\Builder;
 
 class MenuQueryBuilder extends Builder
 {

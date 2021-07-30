@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Laravel\Passport\Passport;
 use App\Turbine\Auth\Actions\BootComponentProviderAction;
 use App\Turbine\Auth\Actions\BootComposerProviderAction;
 use App\Turbine\Auth\Actions\BootGateProviderAction;
 use App\Turbine\Auth\Concerns\RegistersAuthLivewireComponents;
 use App\Turbine\Auth\Contracts\RegistersAuthLivewire;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider implements RegistersAuthLivewire
 {

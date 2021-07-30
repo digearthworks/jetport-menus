@@ -2,9 +2,9 @@
 
 namespace App\Turbine\Auth\Http\Livewire;
 
-use Laravel\Fortify\Contracts\CreatesNewUsers;
 use App\Turbine\Auth\Concerns\GetsAuthConnection;
 use App\Turbine\Livewire\BaseCreateForm;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateUserForm extends BaseCreateForm
 {

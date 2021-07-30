@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Menus\Casts;
 
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use App\Turbine\Menus\Concerns\GetsCleanUri;
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 class InternalIframeUriCast implements CastsAttributes
 {

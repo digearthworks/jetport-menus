@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Console\Commands;
 
-use Illuminate\Console\GeneratorCommand;
 use App\Turbine\Console\Concerns\GeneratesDomainClass;
+use Illuminate\Console\GeneratorCommand;
 
 abstract class DomainGeneratorCommand extends GeneratorCommand
 {

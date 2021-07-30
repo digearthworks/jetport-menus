@@ -2,13 +2,13 @@
 
 namespace App\Turbine\Menus\Models;
 
-use Database\Factories\InternalIframeFactory;
-use HeaderX\BukuIcons\Concerns\HasIcon;
 use App\Turbine\Concerns\HasParent;
 use App\Turbine\Menus\Casts\InternalIframeUriCast;
 use App\Turbine\Menus\Casts\SnakeCast;
 use App\Turbine\Menus\Enums\MenuItemTemplateEnum;
 use App\Turbine\Menus\Enums\MenuItemTypeEnum;
+use Database\Factories\InternalIframeFactory;
+use HeaderX\BukuIcons\Concerns\HasIcon;
 
 class InternalIframe extends MenuItem
 {

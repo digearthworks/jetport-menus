@@ -2,7 +2,6 @@
 
 namespace App\Turbine\Menus\Enums;
 
-use Spatie\Enum\Laravel\Enum;
 use App\Turbine\Menus\Models\DropdownLink;
 use App\Turbine\Menus\Models\ExternalIframe;
 use App\Turbine\Menus\Models\ExternalLink;
@@ -11,6 +10,7 @@ use App\Turbine\Menus\Models\InternalLink;
 use App\Turbine\Menus\Models\MenuItem;
 use App\Turbine\Menus\Models\MenuLink;
 use App\Turbine\Menus\Models\PageLink;
+use Spatie\Enum\Laravel\Enum;
 
 /**
  * @method static self menu_item()

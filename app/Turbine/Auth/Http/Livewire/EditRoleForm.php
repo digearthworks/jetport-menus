@@ -2,11 +2,11 @@
 
 namespace App\Turbine\Auth\Http\Livewire;
 
-use Illuminate\Support\Facades\Auth;
 use App\Turbine\Auth\Actions\UpdateRoleAction;
 use App\Turbine\Auth\Enums\UserTypeEnum;
 use App\Turbine\Auth\Models\Role;
 use App\Turbine\Livewire\BaseEditForm;
+use Illuminate\Support\Facades\Auth;
 
 class EditRoleForm extends BaseEditForm
 {

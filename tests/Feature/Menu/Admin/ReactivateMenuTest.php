@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Menu\Admin;
 
-use Livewire\Livewire;
-use Tests\TestCase;
 use App\Turbine\Menus\Http\Livewire\Admin\ReactivateMenuItemDialog;
 use App\Turbine\Menus\Models\MenuItem;
+use Livewire\Livewire;
+use Tests\TestCase;
 
 class ReactivateMenuTest extends TestCase
 {

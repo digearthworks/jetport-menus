@@ -2,11 +2,11 @@
 
 namespace App\Turbine\Auth\Actions;
 
+use App\Turbine\Auth\Models\User;
+use App\Turbine\Exceptions\GeneralException;
 use Exception;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
-use App\Turbine\Auth\Models\User;
-use App\Turbine\Exceptions\GeneralException;
 
 class RegisterProviderAction
 {

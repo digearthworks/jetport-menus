@@ -2,9 +2,9 @@
 
 namespace App\Turbine\Livewire;
 
-use Livewire\Component;
 use App\Turbine\Livewire\Concerns\HandlesCreateDialogInteraction;
 use App\Turbine\Livewire\Concerns\InteractsWithDialog;
+use Livewire\Component;
 
 abstract class BaseCreateButton extends Component
 {

@@ -2,6 +2,9 @@
 
 namespace App\Turbine\Auth\Actions;
 
+use App\Turbine\Auth\Enums\UserTypeEnum;
+use App\Turbine\Auth\Events\User\UserUpdated;
+use App\Turbine\Auth\Models\User;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -9,9 +12,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 use Spatie\Enum\Laravel\Rules\EnumRule;
-use App\Turbine\Auth\Enums\UserTypeEnum;
-use App\Turbine\Auth\Events\User\UserUpdated;
-use App\Turbine\Auth\Models\User;
 
 class UpdateUserAction
 {

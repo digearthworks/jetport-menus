@@ -2,18 +2,6 @@
 
 namespace App\Turbine\Menus\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
-use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
-use Database\Factories\MenuItemFactory;
-use Dyrynda\Database\Support\CascadeSoftDeletes;
-use HeaderX\BukuIcons\Concerns\HasIcon;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-use Spatie\EloquentSortable\Sortable;
 use App\Turbine\Auth\Models\Role;
 use App\Turbine\Auth\Models\User;
 use App\Turbine\Concerns\CachesQueries;
@@ -28,6 +16,18 @@ use App\Turbine\Menus\Enums\MenuItemTemplateEnum;
 use App\Turbine\Menus\Enums\MenuItemTypeEnum;
 use App\Turbine\Menus\QueryBuilders\MenuItemQueryBuilder;
 use App\Turbine\Pages\Models\Page;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Database\Factories\MenuItemFactory;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
+use HeaderX\BukuIcons\Concerns\HasIcon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Spatie\EloquentSortable\Sortable;
 
 class MenuItem extends Model implements Sortable, HasPath
 {

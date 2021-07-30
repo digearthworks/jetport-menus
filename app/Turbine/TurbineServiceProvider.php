@@ -2,7 +2,6 @@
 
 namespace App\Turbine;
 
-use Illuminate\Support\ServiceProvider;
 use App\Turbine\Console\Commands\DomainActionMakeCommand;
 use App\Turbine\Console\Commands\DomainCastMakeCommand;
 use App\Turbine\Console\Commands\DomainConsoleMakeCommand;
@@ -13,6 +12,7 @@ use App\Turbine\Console\Commands\TurbineCastMakeCommand;
 use App\Turbine\Console\Commands\TurbineConsoleMakeCommand;
 use App\Turbine\Console\Commands\TurbineControllerMakeCommand;
 use App\Turbine\Console\Commands\TurbineModelMakeCommand;
+use Illuminate\Support\ServiceProvider;
 
 class TurbineServiceProvider extends ServiceProvider
 {

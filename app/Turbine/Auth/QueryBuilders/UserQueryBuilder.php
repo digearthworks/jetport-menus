@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\QueryBuilders;
 
-use Illuminate\Database\Eloquent\Builder;
 use App\Turbine\Auth\Enums\UserTypeEnum;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserQueryBuilder extends Builder
 {

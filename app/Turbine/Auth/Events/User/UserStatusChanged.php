@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\Events\User;
 
-use Illuminate\Queue\SerializesModels;
 use App\Turbine\Auth\Models\User;
+use Illuminate\Queue\SerializesModels;
 
 /**
  * Class UserStatusChanged.

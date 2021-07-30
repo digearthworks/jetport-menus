@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Menus\QueryBuilders;
 
-use Illuminate\Database\Eloquent\Builder;
 use App\Turbine\Menus\Models\Menu;
+use Illuminate\Database\Eloquent\Builder;
 
 class MenuItemQueryBuilder extends Builder
 {

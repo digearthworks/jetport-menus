@@ -2,10 +2,10 @@
 
 namespace App\Turbine\Auth\Http\Livewire;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Laravel\Jetstream\Contracts\DeletesUsers;
 use App\Turbine\Auth\Models\User;
 use App\Turbine\Livewire\BaseDeleteDialog;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Laravel\Jetstream\Contracts\DeletesUsers;
 
 class DeleteUserDialog extends BaseDeleteDialog
 {

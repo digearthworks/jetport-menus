@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Pages\Http\Livewire;
 
-use Livewire\Component;
 use App\Turbine\Pages\Models\Page;
+use Livewire\Component;
 
 class Webpage extends Component
 {

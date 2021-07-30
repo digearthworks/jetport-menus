@@ -2,13 +2,13 @@
 
 namespace App\Turbine\Pages\Http\Livewire;
 
+use App\Turbine\Concerns\InteractsWithBanner;
+use App\Turbine\Livewire\BaseEditForm;
+use App\Turbine\Pages\Models\PageTemplate;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use App\Turbine\Concerns\InteractsWithBanner;
-use App\Turbine\Livewire\BaseEditForm;
-use App\Turbine\Pages\Models\PageTemplate;
 
 class EditPageTemplateForm extends BaseEditForm
 {

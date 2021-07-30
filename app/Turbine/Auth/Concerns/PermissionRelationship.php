@@ -2,9 +2,9 @@
 
 namespace App\Turbine\Auth\Concerns;
 
+use App\Turbine\Auth\Models\Permission;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Turbine\Auth\Models\Permission;
 
 trait PermissionRelationship
 {

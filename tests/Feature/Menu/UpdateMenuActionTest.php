@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Menu;
 
-use Tests\TestCase;
 use App\Turbine\Menus\Actions\UpdateMenuAction;
 use App\Turbine\Menus\Models\Menu;
+use Tests\TestCase;
 
 class UpdateMenuActionTest extends TestCase
 {

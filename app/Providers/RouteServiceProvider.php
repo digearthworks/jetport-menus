@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Turbine\Pages\Http\Controllers\PageController;
+use App\Turbine\Pages\Models\Page;
 use Exception;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -11,8 +13,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use Schema;
-use App\Turbine\Pages\Http\Controllers\PageController;
-use App\Turbine\Pages\Models\Page;
 
 class RouteServiceProvider extends ServiceProvider
 {

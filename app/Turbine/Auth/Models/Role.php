@@ -2,15 +2,15 @@
 
 namespace App\Turbine\Auth\Models;
 
-use Database\Factories\RoleFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Spatie\Permission\Models\Role as SpatieRole;
 use App\Turbine\Auth\Concerns\GetsAuthConnection;
 use App\Turbine\Auth\Concerns\HasPermissionsLabel;
 use App\Turbine\Auth\Enums\UserTypeEnum;
 use App\Turbine\Concerns\CachesQueries;
 use App\Turbine\Concerns\HasUuid;
 use App\Turbine\Menus\Concerns\HasMenuItems;
+use Database\Factories\RoleFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Permission\Models\Role as SpatieRole;
 use Wildside\Userstamps\Userstamps;
 
 /**

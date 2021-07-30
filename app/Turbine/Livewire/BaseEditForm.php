@@ -2,9 +2,9 @@
 
 namespace App\Turbine\Livewire;
 
+use App\Turbine\Livewire\Concerns\HandlesEditDialogInteraction;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use App\Turbine\Livewire\Concerns\HandlesEditDialogInteraction;
 
 class BaseEditForm extends Component
 {

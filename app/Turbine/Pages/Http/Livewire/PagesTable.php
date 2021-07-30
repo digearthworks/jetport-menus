@@ -2,10 +2,10 @@
 
 namespace App\Turbine\Pages\Http\Livewire;
 
-use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Turbine\Livewire\BaseDataTable;
 use App\Turbine\Pages\Models\Page;
+use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 /**
  * Class RolesTable.

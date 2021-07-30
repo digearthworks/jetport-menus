@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Menus\Models;
 
-use Database\Factories\MenuLinkFactory;
 use App\Turbine\Concerns\HasParent;
+use Database\Factories\MenuLinkFactory;
 
 class MenuLink extends MenuItem
 {

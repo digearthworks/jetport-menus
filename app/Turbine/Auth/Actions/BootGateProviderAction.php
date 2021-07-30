@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\Actions;
 
-use Illuminate\Support\Facades\Gate;
 use App\Turbine\Auth\Enums\UserTypeEnum;
+use Illuminate\Support\Facades\Gate;
 
 class BootGateProviderAction
 {

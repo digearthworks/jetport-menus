@@ -2,10 +2,10 @@
 
 namespace App\Turbine\Menus\Http\Livewire;
 
-use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
 use App\Turbine\Livewire\Concerns\InteractsWithDialog;
 use App\Turbine\Menus\Models\MenuItem;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class DashboardMenu extends Component
 {

@@ -2,6 +2,13 @@
 
 namespace App\Turbine\Pages\Models;
 
+use App\Turbine\Concerns\CachesQueries;
+use App\Turbine\Concerns\CascadeDeactivates;
+use App\Turbine\Concerns\HasIterativeQuickSort;
+use App\Turbine\Concerns\HasUuid;
+use App\Turbine\Menus\Contracts\HasPath;
+use App\Turbine\Menus\Models\MenuItem;
+use App\Turbine\Pages\QueryBuilders\PageQueryBuilder;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Database\Factories\PageFactory;
@@ -15,13 +22,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 use Spatie\EloquentSortable\Sortable;
-use App\Turbine\Concerns\CachesQueries;
-use App\Turbine\Concerns\CascadeDeactivates;
-use App\Turbine\Concerns\HasIterativeQuickSort;
-use App\Turbine\Concerns\HasUuid;
-use App\Turbine\Menus\Contracts\HasPath;
-use App\Turbine\Menus\Models\MenuItem;
-use App\Turbine\Pages\QueryBuilders\PageQueryBuilder;
 use Wildside\Userstamps\Userstamps;
 
 class Page extends Model implements Sortable, HasPath

@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Console\Commands;
 
-use Illuminate\Foundation\Console\ConsoleMakeCommand;
 use App\Turbine\Console\Concerns\GeneratesDomainClass;
+use Illuminate\Foundation\Console\ConsoleMakeCommand;
 
 class DomainConsoleMakeCommand extends ConsoleMakeCommand
 {

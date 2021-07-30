@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Menu;
 
-use Tests\TestCase;
 use App\Turbine\Menus\Enums\MenuItemTypeEnum;
 use App\Turbine\Menus\Models\DropdownLink;
 use App\Turbine\Menus\Models\ExternalIframe;
@@ -12,6 +11,7 @@ use App\Turbine\Menus\Models\InternalLink;
 use App\Turbine\Menus\Models\MenuItem;
 use App\Turbine\Menus\Models\MenuLink;
 use App\Turbine\Menus\Models\PageLink;
+use Tests\TestCase;
 
 class MenuItemTest extends TestCase
 {

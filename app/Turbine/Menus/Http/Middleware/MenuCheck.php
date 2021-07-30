@@ -2,10 +2,10 @@
 
 namespace App\Turbine\Menus\Http\Middleware;
 
-use Closure;
-use Illuminate\Http\Request;
 use App\Turbine\Concerns\InteractsWithBanner;
 use App\Turbine\Menus\Models\MenuItem;
+use Closure;
+use Illuminate\Http\Request;
 
 class MenuCheck
 {

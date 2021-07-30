@@ -2,6 +2,9 @@
 
 namespace App\Turbine\Auth\Actions;
 
+use App\Turbine\Auth\Enums\UserTypeEnum;
+use App\Turbine\Auth\Events\User\UserCreated;
+use App\Turbine\Auth\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -10,9 +13,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
-use App\Turbine\Auth\Enums\UserTypeEnum;
-use App\Turbine\Auth\Events\User\UserCreated;
-use App\Turbine\Auth\Models\User;
 
 class CreateNewUser implements CreatesNewUsers
 {

@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\Http\Middleware;
 
-use Closure;
 use App\Turbine\Auth\Enums\UserTypeEnum;
+use Closure;
 
 /**
  * Class UserCheck.

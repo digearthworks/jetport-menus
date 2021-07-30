@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\Events\Role;
 
-use Illuminate\Queue\SerializesModels;
 use App\Turbine\Auth\Models\Role;
+use Illuminate\Queue\SerializesModels;
 
 /**
  * Class RoleDeleted.

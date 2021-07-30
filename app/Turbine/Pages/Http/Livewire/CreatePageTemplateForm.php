@@ -2,11 +2,11 @@
 
 namespace App\Turbine\Pages\Http\Livewire;
 
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use App\Turbine\Concerns\InteractsWithBanner;
 use App\Turbine\Livewire\BaseCreateForm;
 use App\Turbine\Pages\Models\PageTemplate;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class CreatePageTemplateForm extends BaseCreateForm
 {

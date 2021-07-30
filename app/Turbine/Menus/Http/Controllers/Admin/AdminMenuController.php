@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Menus\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Turbine\Menus\Models\Menu;
+use Illuminate\Http\Request;
 
 class AdminMenuController
 {

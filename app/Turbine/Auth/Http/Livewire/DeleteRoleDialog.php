@@ -2,10 +2,10 @@
 
 namespace App\Turbine\Auth\Http\Livewire;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Turbine\Auth\Actions\DeleteRoleAction;
 use App\Turbine\Auth\Models\Role;
 use App\Turbine\Livewire\BaseDeleteDialog;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class DeleteRoleDialog extends BaseDeleteDialog
 {

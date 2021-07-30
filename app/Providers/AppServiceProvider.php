@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\Turbine\Menus\Concerns\RegistersMenusLivewireComponents;
 use App\Turbine\Menus\Contracts\RegistersMenusLivewire;
 use App\Turbine\Pages\Concerns\RegistersPagesLivewireComponents;
 use App\Turbine\Pages\Contracts\RegistersPagesLivewire;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider implements RegistersMenusLivewire, RegistersPagesLivewire
 {

@@ -2,14 +2,14 @@
 
 namespace Tests;
 
+use App\Turbine\Auth\Models\Role;
+use App\Turbine\Auth\Models\User;
 use Database\Seeders\AuthSeeder;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
-use App\Turbine\Auth\Models\Role;
-use App\Turbine\Auth\Models\User;
 
 abstract class TestCase extends BaseTestCase
 {

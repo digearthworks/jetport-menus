@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Console\Commands;
 
-use Illuminate\Routing\Console\ControllerMakeCommand;
 use App\Turbine\Console\Concerns\GeneratesTurbineClass;
+use Illuminate\Routing\Console\ControllerMakeCommand;
 
 class TurbineControllerMakeCommand extends ControllerMakeCommand
 {

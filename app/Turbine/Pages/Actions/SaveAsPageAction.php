@@ -2,12 +2,12 @@
 
 namespace App\Turbine\Pages\Actions;
 
+use App\Turbine\Concerns\FiltersData;
+use App\Turbine\Pages\Models\Page;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use App\Turbine\Concerns\FiltersData;
-use App\Turbine\Pages\Models\Page;
 
 class SaveAsPageAction
 {

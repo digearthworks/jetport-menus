@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\Actions;
 
-use Laravel\Jetstream\Contracts\DeletesUsers;
 use App\Turbine\Auth\Events\User\UserDeleted;
+use Laravel\Jetstream\Contracts\DeletesUsers;
 
 class DeleteUser implements DeletesUsers
 {

@@ -2,13 +2,13 @@
 
 namespace App\Turbine\Pages\Models;
 
+use App\Turbine\Concerns\HasIterativeQuickSort;
+use App\Turbine\Concerns\HasUuid;
 use Database\Factories\PageTemplateFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\EloquentSortable\Sortable;
-use App\Turbine\Concerns\HasIterativeQuickSort;
-use App\Turbine\Concerns\HasUuid;
 use Wildside\Userstamps\Userstamps;
 
 class PageTemplate extends Model implements Sortable

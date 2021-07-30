@@ -2,9 +2,6 @@
 
 namespace App\Turbine\Auth\Listeners;
 
-use Illuminate\Auth\Events\Login;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Events\Dispatcher;
 use App\Turbine\Auth\Events\User\UserCreated;
 use App\Turbine\Auth\Events\User\UserDeleted;
 use App\Turbine\Auth\Events\User\UserDestroyed;
@@ -12,6 +9,9 @@ use App\Turbine\Auth\Events\User\UserLoggedIn;
 use App\Turbine\Auth\Events\User\UserRestored;
 use App\Turbine\Auth\Events\User\UserStatusChanged;
 use App\Turbine\Auth\Events\User\UserUpdated;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Events\Dispatcher;
 
 /**
  * Class UserEventListener.

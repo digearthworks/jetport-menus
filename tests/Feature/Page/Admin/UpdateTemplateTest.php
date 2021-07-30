@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Page\Admin;
 
-use Livewire\Livewire;
-use Tests\TestCase;
 use App\Turbine\Pages\Http\Livewire\EditPageTemplateForm;
 use App\Turbine\Pages\Models\PageTemplate;
+use Livewire\Livewire;
+use Tests\TestCase;
 
 class UpdateTemplateTest extends TestCase
 {

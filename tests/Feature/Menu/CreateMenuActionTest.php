@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Menu;
 
-use Database\Factories\Concerns\GetsIcons;
-use Tests\TestCase;
 use App\Turbine\Menus\Actions\CreateMenuAction;
 use App\Turbine\Menus\Models\Menu;
+use Database\Factories\Concerns\GetsIcons;
+use Tests\TestCase;
 
 class CreateMenuActionTest extends TestCase
 {

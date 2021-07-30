@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\Actions;
 
-use Illuminate\Support\Facades\Validator;
 use App\Turbine\Auth\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class UpdateUserPermissionsAction
 {

@@ -2,16 +2,6 @@
 
 namespace App\Turbine\Menus\Models;
 
-use Database\Factories\MenuFactory;
-use Dyrynda\Database\Support\CascadeSoftDeletes;
-use HeaderX\BukuIcons\Concerns\HasIcon;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-use Spatie\EloquentSortable\Sortable;
 use App\Turbine\Concerns\CachesQueries;
 use App\Turbine\Concerns\CascadeDeactivates;
 use App\Turbine\Concerns\CascadeRestores;
@@ -22,6 +12,16 @@ use App\Turbine\Menus\Enums\MenuItemTypeEnum;
 use App\Turbine\Menus\Enums\MenuTemplateEnum;
 use App\Turbine\Menus\Enums\MenuTypeEnum;
 use App\Turbine\Menus\QueryBuilders\MenuQueryBuilder;
+use Database\Factories\MenuFactory;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
+use HeaderX\BukuIcons\Concerns\HasIcon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Spatie\EloquentSortable\Sortable;
 
 class Menu extends Model implements Sortable
 {

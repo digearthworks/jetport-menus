@@ -2,13 +2,13 @@
 
 namespace App\Turbine\Menus\Models;
 
-use Database\Factories\ExternalIframeFactory;
 use App\Turbine\Concerns\HasIcon;
 use App\Turbine\Concerns\HasParent;
 use App\Turbine\Menus\Casts\ExternalIframeUriCast;
 use App\Turbine\Menus\Casts\SnakeCast;
 use App\Turbine\Menus\Enums\MenuItemTemplateEnum;
 use App\Turbine\Menus\Enums\MenuItemTypeEnum;
+use Database\Factories\ExternalIframeFactory;
 
 class ExternalIframe extends MenuItem
 {

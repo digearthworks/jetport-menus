@@ -2,13 +2,13 @@
 
 namespace App\Turbine\Menus\Models;
 
-use Database\Factories\ExternalLinkFactory;
-use HeaderX\BukuIcons\Concerns\HasIcon;
 use App\Turbine\Concerns\HasParent;
 use App\Turbine\Menus\Casts\ExternalLinkUriCast;
 use App\Turbine\Menus\Casts\SnakeCast;
 use App\Turbine\Menus\Enums\MenuItemTemplateEnum;
 use App\Turbine\Menus\Enums\MenuItemTypeEnum;
+use Database\Factories\ExternalLinkFactory;
+use HeaderX\BukuIcons\Concerns\HasIcon;
 
 class ExternalLink extends MenuItem
 {

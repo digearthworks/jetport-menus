@@ -2,11 +2,11 @@
 
 namespace App\Turbine\Menus\Models;
 
-use Database\Factories\PageLinkFactory;
-use HeaderX\BukuIcons\Concerns\HasIcon;
 use App\Turbine\Concerns\CachesQueries;
 use App\Turbine\Concerns\HasParent;
 use App\Turbine\Pages\Models\Page;
+use Database\Factories\PageLinkFactory;
+use HeaderX\BukuIcons\Concerns\HasIcon;
 
 class PageLink extends MenuItem
 {

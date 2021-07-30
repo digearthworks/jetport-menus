@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Menus\Models;
 
-use Database\Factories\DropdownLinkFactory;
 use App\Turbine\Concerns\HasParent;
+use Database\Factories\DropdownLinkFactory;
 
 class DropdownLink extends MenuItem
 {

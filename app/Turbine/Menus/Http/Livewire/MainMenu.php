@@ -2,10 +2,10 @@
 
 namespace App\Turbine\Menus\Http\Livewire;
 
-use Livewire\Component;
 use App\Turbine\Livewire\Concerns\HasModel;
 use App\Turbine\Livewire\Concerns\InteractsWithDialog;
 use App\Turbine\Menus\Models\MenuItem;
+use Livewire\Component;
 
 class MainMenu extends Component
 {

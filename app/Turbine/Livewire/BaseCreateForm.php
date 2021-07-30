@@ -2,9 +2,9 @@
 
 namespace App\Turbine\Livewire;
 
+use App\Turbine\Livewire\Concerns\HandlesCreateDialogInteraction;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use App\Turbine\Livewire\Concerns\HandlesCreateDialogInteraction;
 
 abstract class BaseCreateForm extends Component
 {

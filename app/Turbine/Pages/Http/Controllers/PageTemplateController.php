@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Pages\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Turbine\Pages\Models\PageTemplate;
+use Illuminate\Http\Request;
 
 class PageTemplateController
 {

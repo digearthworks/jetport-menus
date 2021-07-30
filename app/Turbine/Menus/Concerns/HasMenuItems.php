@@ -2,10 +2,10 @@
 
 namespace App\Turbine\Menus\Concerns;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Collection;
 use App\Turbine\Menus\Models\Menu;
 use App\Turbine\Menus\Models\MenuItem;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 trait HasMenuItems
 {

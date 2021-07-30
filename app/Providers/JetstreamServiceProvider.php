@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
+use App\Turbine\Auth\Actions\DeleteUser;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Laravel\Jetstream\Features;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Passport\Passport;
 use Livewire\Livewire;
-use App\Turbine\Auth\Actions\DeleteUser;
 
 class JetstreamServiceProvider extends ServiceProvider
 {
