@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 use Laravel\Jetstream\Features;
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Auth\Models\User;
+use App\Turbine\Auth\Models\User;
 
 class CreateApiTokenTest extends TestCase
 {

@@ -7,7 +7,7 @@ use Laravel\Jetstream\Features;
 use Laravel\Jetstream\Http\Livewire\DeleteUserForm;
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Auth\Models\User;
+use App\Turbine\Auth\Models\User;
 
 class DeleteAccountTest extends TestCase
 {

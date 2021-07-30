@@ -4,8 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Turbine\Auth\Enums\UserTypeEnum;
-use Turbine\Auth\Models\User;
+use App\Turbine\Auth\Enums\UserTypeEnum;
+use App\Turbine\Auth\Models\User;
 
 /**
  * Class UserFactory.

@@ -3,15 +3,15 @@
 namespace Tests\Feature\Menu;
 
 use Tests\TestCase;
-use Turbine\Menus\Enums\MenuItemTypeEnum;
-use Turbine\Menus\Models\DropdownLink;
-use Turbine\Menus\Models\ExternalIframe;
-use Turbine\Menus\Models\ExternalLink;
-use Turbine\Menus\Models\InternalIframe;
-use Turbine\Menus\Models\InternalLink;
-use Turbine\Menus\Models\MenuItem;
-use Turbine\Menus\Models\MenuLink;
-use Turbine\Menus\Models\PageLink;
+use App\Turbine\Menus\Enums\MenuItemTypeEnum;
+use App\Turbine\Menus\Models\DropdownLink;
+use App\Turbine\Menus\Models\ExternalIframe;
+use App\Turbine\Menus\Models\ExternalLink;
+use App\Turbine\Menus\Models\InternalIframe;
+use App\Turbine\Menus\Models\InternalLink;
+use App\Turbine\Menus\Models\MenuItem;
+use App\Turbine\Menus\Models\MenuLink;
+use App\Turbine\Menus\Models\PageLink;
 
 class MenuItemTest extends TestCase
 {

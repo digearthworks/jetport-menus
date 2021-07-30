@@ -3,9 +3,9 @@
 namespace Tests\Feature\Menu;
 
 use Tests\TestCase;
-use Turbine\Menus\Enums\MenuItemTypeEnum;
-use Turbine\Menus\Models\MenuItem;
-use Turbine\Pages\Models\Page;
+use App\Turbine\Menus\Enums\MenuItemTypeEnum;
+use App\Turbine\Menus\Models\MenuItem;
+use App\Turbine\Pages\Models\Page;
 
 class PageLinkTest extends TestCase
 {

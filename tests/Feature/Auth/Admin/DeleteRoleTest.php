@@ -5,9 +5,9 @@ namespace Tests\Feature\Auth\Admin;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Auth\Events\Role\RoleDeleted;
-use Turbine\Auth\Http\Livewire\DeleteRoleDialog;
-use Turbine\Auth\Models\Role;
+use App\Turbine\Auth\Events\Role\RoleDeleted;
+use App\Turbine\Auth\Http\Livewire\DeleteRoleDialog;
+use App\Turbine\Auth\Models\Role;
 
 class DeleteRoleTest extends TestCase
 {

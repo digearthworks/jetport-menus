@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Database\Factories\Concerns\GetsIcons;
 use HeaderX\BukuIcons\Models\Icon;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Turbine\Menus\Enums\MenuTemplateEnum;
-use Turbine\Menus\Enums\MenuTypeEnum;
-use Turbine\Menus\Models\Menu;
+use App\Turbine\Menus\Enums\MenuTemplateEnum;
+use App\Turbine\Menus\Enums\MenuTypeEnum;
+use App\Turbine\Menus\Models\Menu;
 
 class MenuFactory extends Factory
 {

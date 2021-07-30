@@ -4,8 +4,8 @@ namespace Tests\Feature\Page\Admin;
 
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Pages\Http\Livewire\EditPageForm;
-use Turbine\Pages\Models\Page;
+use App\Turbine\Pages\Http\Livewire\EditPageForm;
+use App\Turbine\Pages\Models\Page;
 
 class UpdatePageTest extends TestCase
 {

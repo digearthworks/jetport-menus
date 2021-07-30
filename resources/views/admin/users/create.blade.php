@@ -7,7 +7,7 @@
         </x-slot>
 
         <x-slot name="content">
-            <div x-data="{userType : '{{ \Turbine\Auth\Enums\UserTypeEnum::user() }}'}">
+            <div x-data="{userType : '{{ \App\Turbine\Auth\Enums\UserTypeEnum::user() }}'}">
                 <div class="col-span-6 sm:col-span-4">
 
                     <div>
@@ -50,8 +50,8 @@
                             class="block w-full mb-2 border-gray-300 rounded-md shadow-sm form-select focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                             x-on:change="userType = $event.target.value" wire:model.defer="state.type"
                             required>
-                            <option value="{{ \Turbine\Auth\Enums\UserTypeEnum::user() }}">@lang('User')</option>
-                            <option value="{{ \Turbine\Auth\Enums\UserTypeEnum::admin() }}">@lang('Administrator')</option>
+                            <option value="{{ \App\Turbine\Auth\Enums\UserTypeEnum::user() }}">@lang('User')</option>
+                            <option value="{{ \App\Turbine\Auth\Enums\UserTypeEnum::admin() }}">@lang('Administrator')</option>
                         </select>
                     </div>
                 </div>

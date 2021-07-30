@@ -8,7 +8,7 @@ use Laravel\Jetstream\Features;
 use Laravel\Passport\ClientRepository;
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Auth\Models\User;
+use App\Turbine\Auth\Models\User;
 
 class DeleteOauthClientTest extends TestCase
 {

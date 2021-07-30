@@ -4,9 +4,9 @@ namespace Tests\Feature\Menu\Admin;
 
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Menus\Enums\MenuItemTypeEnum;
-use Turbine\Menus\Http\Livewire\Admin\EditMenuItemForm;
-use Turbine\Menus\Models\MenuItem;
+use App\Turbine\Menus\Enums\MenuItemTypeEnum;
+use App\Turbine\Menus\Http\Livewire\Admin\EditMenuItemForm;
+use App\Turbine\Menus\Models\MenuItem;
 
 class UpdateMenuTest extends TestCase
 {

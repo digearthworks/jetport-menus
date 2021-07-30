@@ -1,4 +1,4 @@
-<div x-data="{ menuType: '{{isset($state['type']) ? $state['type'] : \Turbine\Menus\Enums\MenuItemTypeEnum::menu_item() }}' }">
+<div x-data="{ menuType: '{{isset($state['type']) ? $state['type'] : \App\Turbine\Menus\Enums\MenuItemTypeEnum::menu_item() }}' }">
 
     @include('admin.menus.name')
 
@@ -16,13 +16,13 @@
 
     @include('admin.menus.select-item-type')
 
-    <div x-cloak x-show="menuType !='{{ \Turbine\Menus\Enums\MenuItemTypeEnum::menu_link() }}' && menuType !='{{ \Turbine\Menus\Enums\MenuItemTypeEnum::page_link() }}'">
+    <div x-cloak x-show="menuType !='{{ \App\Turbine\Menus\Enums\MenuItemTypeEnum::menu_link() }}' && menuType !='{{ \App\Turbine\Menus\Enums\MenuItemTypeEnum::page_link() }}'">
         @include('admin.menus.link')
 
         @include('admin.menus.select-target')
     </div>
 
-    <div x-cloak x-show="menuType ==='{{ \Turbine\Menus\Enums\MenuItemTypeEnum::page_link() }}' ">
+    <div x-cloak x-show="menuType ==='{{ \App\Turbine\Menus\Enums\MenuItemTypeEnum::page_link() }}' ">
         @include('admin.menus.select-page')
     </div>
 

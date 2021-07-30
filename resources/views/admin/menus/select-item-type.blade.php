@@ -7,7 +7,7 @@
     id="type"
     class="block w-full mb-2 border-gray-300 rounded-md shadow-sm form-select focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
     >
-        @foreach(\Turbine\Menus\Enums\MenuItemTypeEnum::toArray() as $value => $label)
+        @foreach(\App\Turbine\Menus\Enums\MenuItemTypeEnum::toArray() as $value => $label)
             <option value="{{ $value }}">{{ $label }}</option>
         @endforeach
     </select>

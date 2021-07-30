@@ -5,10 +5,10 @@ namespace Tests\Feature\Auth\Admin;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Auth\Events\User\UserDeleted;
-use Turbine\Auth\Http\Livewire\DeleteUserDialog;
-use Turbine\Auth\Http\Livewire\RestoreUserDialog;
-use Turbine\Auth\Models\User;
+use App\Turbine\Auth\Events\User\UserDeleted;
+use App\Turbine\Auth\Http\Livewire\DeleteUserDialog;
+use App\Turbine\Auth\Http\Livewire\RestoreUserDialog;
+use App\Turbine\Auth\Models\User;
 
 class DeleteUserTest extends TestCase
 {

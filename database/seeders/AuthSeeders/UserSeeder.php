@@ -4,9 +4,9 @@ namespace Database\Seeders\AuthSeeders;
 
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
-use Turbine\Auth\Enums\UserTypeEnum;
-use Turbine\Auth\Models\Admin;
-use Turbine\Auth\Models\User;
+use App\Turbine\Auth\Enums\UserTypeEnum;
+use App\Turbine\Auth\Models\Admin;
+use App\Turbine\Auth\Models\User;
 
 /**
  * Class UserTableSeeder.

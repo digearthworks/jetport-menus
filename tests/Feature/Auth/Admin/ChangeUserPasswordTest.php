@@ -5,8 +5,8 @@ namespace Tests\Feature\Auth\Admin;
 use Hash;
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Auth\Http\Livewire\EditUserPasswordForm;
-use Turbine\Auth\Models\User;
+use App\Turbine\Auth\Http\Livewire\EditUserPasswordForm;
+use App\Turbine\Auth\Models\User;
 
 class ChangeUserPasswordTest extends TestCase
 {

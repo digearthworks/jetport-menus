@@ -3,8 +3,8 @@
 namespace Tests\Feature\Menu;
 
 use Tests\TestCase;
-use Turbine\Menus\Actions\CreateMenuItemAction;
-use Turbine\Menus\Models\MenuItem;
+use App\Turbine\Menus\Actions\CreateMenuItemAction;
+use App\Turbine\Menus\Models\MenuItem;
 
 class CreateMenuItemActionTest extends TestCase
 {

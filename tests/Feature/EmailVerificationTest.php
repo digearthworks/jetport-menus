@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
 use Laravel\Fortify\Features;
 use Tests\TestCase;
-use Turbine\Auth\Models\User;
+use App\Turbine\Auth\Models\User;
 
 class EmailVerificationTest extends TestCase
 {

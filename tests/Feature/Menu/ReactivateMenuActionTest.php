@@ -3,8 +3,8 @@
 namespace Tests\Feature\Menu;
 
 use Tests\TestCase;
-use Turbine\Menus\Actions\ReactivateMenuAction;
-use Turbine\Menus\Models\Menu;
+use App\Turbine\Menus\Actions\ReactivateMenuAction;
+use App\Turbine\Menus\Models\Menu;
 
 class ReactivateMenuActionTest extends TestCase
 {

@@ -5,12 +5,12 @@ namespace Tests\Feature\Auth\Admin;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Auth\Enums\UserTypeEnum;
-use Turbine\Auth\Events\User\UserUpdated;
-use Turbine\Auth\Http\Livewire\EditUserForm;
-use Turbine\Auth\Models\Role;
-use Turbine\Auth\Models\User;
-use Turbine\Menus\Models\MenuItem;
+use App\Turbine\Auth\Enums\UserTypeEnum;
+use App\Turbine\Auth\Events\User\UserUpdated;
+use App\Turbine\Auth\Http\Livewire\EditUserForm;
+use App\Turbine\Auth\Models\Role;
+use App\Turbine\Auth\Models\User;
+use App\Turbine\Menus\Models\MenuItem;
 
 class UpdateUserTest extends TestCase
 {

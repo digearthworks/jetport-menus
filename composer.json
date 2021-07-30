@@ -75,10 +75,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/App/",
-            "Domain\\": "src/Domain/",
-            "Turbine\\": "src/Turbine/",
-            "Support\\": "src/Support/",
+            "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }

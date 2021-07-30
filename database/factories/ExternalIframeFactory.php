@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Turbine\Menus\Models\MenuItem;
+use App\Turbine\Menus\Models\MenuItem;
 
 class ExternalIframeFactory extends Factory
 {

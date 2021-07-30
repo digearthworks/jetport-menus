@@ -4,8 +4,8 @@ namespace Tests\Feature\Page\Admin;
 
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Pages\Http\Livewire\DeletePageTemplateDialog;
-use Turbine\Pages\Models\PageTemplate;
+use App\Turbine\Pages\Http\Livewire\DeletePageTemplateDialog;
+use App\Turbine\Pages\Models\PageTemplate;
 
 class DeleteTemplateTest extends TestCase
 {
