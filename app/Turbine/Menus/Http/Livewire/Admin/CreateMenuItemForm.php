@@ -44,9 +44,16 @@ class CreateMenuItemForm extends BaseCreateForm
         'selectIcon',
     ];
 
+    public $showLinkInput = true;
+
+    public $showPageDropdown = false;
+
+
     public $data;
 
     public $iconPreview;
+
+    public $linkType = '';
 
     public function createDialog($params = [])
     {
@@ -93,10 +100,23 @@ class CreateMenuItemForm extends BaseCreateForm
         if ($this->state['type'] === MenuItemTypeEnum::page_link()->value) {
             $this->state['page_id'] = $this->state['page_id'] ? $this->state['page_id'] : Page::first()->id;
         }
+
+        $this->setUpDropdowns();
     }
 
     public function render()
     {
         return view('admin.menus.create-item', $this->data ?? []);
+    }
+
+    public function setUpDropdowns()
+    {
+        if ($this->state['type'] != MenuItemTypeEnum::menu_link() && $this->state['type'] != MenuItemTypeEnum::page_link()) {
+            $this->showLinkInput = true;
+            $this->showPageDropdown = false;
+        } elseif ($this->state['type'] == MenuItemTypeEnum::page_link()) {
+            $this->showPageDropdown = true;
+            $this->showLinkInput = false;
+        }
     }
 }

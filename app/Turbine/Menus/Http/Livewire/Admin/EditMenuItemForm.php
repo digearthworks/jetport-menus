@@ -47,6 +47,10 @@ class EditMenuItemForm extends BaseEditForm
         'icon_id' => '',
     ];
 
+    public $showLinkInput = true;
+
+    public $showPageDropdown = false;
+
     public $item;
 
     public $data;
@@ -55,7 +59,7 @@ class EditMenuItemForm extends BaseEditForm
     {
         $params = (array) json_decode($params);
 
-        if (! is_impersonating()) {
+        if (!is_impersonating()) {
             $this->authorize('onlysuperadmincandothis');
         }
 
@@ -64,7 +68,7 @@ class EditMenuItemForm extends BaseEditForm
         $this->state['name'] = $this->model->name;
         $this->state['handle'] = $this->model->handle;
         $this->state['uri'] = $this->model->uri;
-        $this->state['type'] = $this->model->type;
+        $this->state['type'] = $this->model->type->value;
         $this->state['template'] = $this->model->template;
         $this->state['active'] = $this->model->active;
         $this->state['title'] = $this->model->title;
@@ -77,6 +81,8 @@ class EditMenuItemForm extends BaseEditForm
 
         $this->iconPreview = $this->model->icon->name ?? 'carbon-no-image-32';
 
+        $this->setUpDropdowns();
+
         if ($this->model->parent_id) {
             $this->item = true;
         }
@@ -88,7 +94,7 @@ class EditMenuItemForm extends BaseEditForm
 
     public function updateMenu(UpdateMenuItemAction $updateMenuItemAction)
     {
-        if (! is_impersonating()) {
+        if (!is_impersonating()) {
             $this->authorize('is_admin');
         }
 
@@ -125,9 +131,11 @@ class EditMenuItemForm extends BaseEditForm
 
     public function setUpSelects()
     {
+
         if ($this->state['type'] === MenuItemTypeEnum::page_link()->value) {
             $this->state['page_id'] = $this->state['page_id'] ? $this->state['page_id'] : Page::first()->id;
         }
+        $this->setUpDropdowns();
     }
 
     public function render()
@@ -136,6 +144,19 @@ class EditMenuItemForm extends BaseEditForm
             'menuItem' => $this->model,
         ], $this->data ?? []);
 
+        $this->linkType = isset($this->state['type']) ? $this->state['type'] : \App\Turbine\Menus\Enums\MenuItemTypeEnum::menu_item()->value;
+
         return view('admin.menus.edit-item', $this->data);
+    }
+
+    public function setUpDropdowns()
+    { 
+        if ($this->state['type'] != MenuItemTypeEnum::menu_link() && $this->state['type'] != MenuItemTypeEnum::page_link()) {
+            $this->showLinkInput = true;
+            $this->showPageDropdown = false;
+        } elseif ($this->state['type'] == MenuItemTypeEnum::page_link()) {
+            $this->showPageDropdown = true;
+            $this->showLinkInput = false;
+        }
     }
 }
