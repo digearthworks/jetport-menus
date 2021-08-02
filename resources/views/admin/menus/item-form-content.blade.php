@@ -1,28 +1,29 @@
-<div x-data="{ menuType: '{{isset($state['type']) ? $state['type'] : \Turbine\Menus\Enums\MenuItemTypeEnum::menu_item() }}' }">
 
     @include('admin.menus.name')
-
+    
     @include('admin.menus.handle')
-
+    
     @if(isset($item) && $item)
-        @include('admin.menus.select-menu')
+    @include('admin.menus.select-menu')
     @else
-        @include('admin.menus.select-item-group')
-        
-        @include('admin.menus.select-item-template')
+    @include('admin.menus.select-item-group')
+    
+    @include('admin.menus.select-item-template')
     @endif
-
+    
     @include('admin.menus.title')
+
+    <div x-data="{ showPageDropdown: @entangle('showPageDropdown'), showLinkInput: @entangle('showLinkInput')  }">
 
     @include('admin.menus.select-item-type')
 
-    <div x-cloak x-show="menuType !='{{ \Turbine\Menus\Enums\MenuItemTypeEnum::menu_link() }}' && menuType !='{{ \Turbine\Menus\Enums\MenuItemTypeEnum::page_link() }}'">
+    <div x-cloak x-show="showLinkInput">
         @include('admin.menus.link')
 
         @include('admin.menus.select-target')
     </div>
 
-    <div x-cloak x-show="menuType ==='{{ \Turbine\Menus\Enums\MenuItemTypeEnum::page_link() }}' ">
+    <div x-cloak x-show="showPageDropdown">
         @include('admin.menus.select-page')
     </div>
 

@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Menu;
 
+use App\Turbine\Menus\Actions\ReactivateMenuAction;
+use App\Turbine\Menus\Models\Menu;
 use Tests\TestCase;
-use Turbine\Menus\Actions\ReactivateMenuAction;
-use Turbine\Menus\Models\Menu;
 
 class ReactivateMenuActionTest extends TestCase
 {

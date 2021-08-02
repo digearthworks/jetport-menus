@@ -3,8 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Turbine\Pages\Models\Page;
-use Turbine\Pages\Models\PageTemplate;
+use App\Turbine\Pages\Models\Page;
+use App\Turbine\Pages\Models\PageTemplate;
 
 class PageTemplateFactory extends Factory
 {

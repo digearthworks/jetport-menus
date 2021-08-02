@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Menu;
 
+use App\Turbine\Menus\Enums\MenuItemTypeEnum;
+use App\Turbine\Menus\Enums\MenuTemplateEnum;
+use App\Turbine\Menus\Models\Menu;
+use App\Turbine\Menus\Models\MenuItem;
 use Tests\TestCase;
-use Turbine\Menus\Enums\MenuItemTypeEnum;
-use Turbine\Menus\Enums\MenuTemplateEnum;
-use Turbine\Menus\Models\Menu;
-use Turbine\Menus\Models\MenuItem;
 
 class MenuLinkTest extends TestCase
 {

@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Turbine\Pages\Models\Page;
-use Turbine\Pages\Models\PageTemplate;
+use App\Turbine\Pages\Models\Page;
+use App\Turbine\Pages\Models\PageTemplate;
 
 class PageSeeder extends Seeder
 {

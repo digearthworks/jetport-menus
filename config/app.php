@@ -170,7 +170,7 @@ return [
          * Application Service Providers...
          */
 
-        Turbine\TurbineServiceProvider::class,
+        App\Turbine\TurbineServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

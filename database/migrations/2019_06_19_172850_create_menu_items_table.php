@@ -3,8 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Turbine\Menus\Enums\MenuItemTargetEnum;
-use Turbine\Menus\Enums\MenuItemTemplateEnum;
+use App\Turbine\Menus\Enums\MenuItemTargetEnum;
+use App\Turbine\Menus\Enums\MenuItemTemplateEnum;
 
 class CreateMenuItemsTable extends Migration
 {
@@ -46,7 +46,7 @@ class CreateMenuItemsTable extends Migration
         $this->schema->create('menu_items', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
-            $table->string('type')->default('App\\\Turbine\\\Menus\\\MenuItem');
+            $table->string('type')->default('App\\\App\Turbine\\Menus\\\MenuItem');
             $table->string('template')->default(MenuItemTemplateEnum::default());
             $table->string('route')->nullable()->default(null);
             $table->string('uri')->nullable();

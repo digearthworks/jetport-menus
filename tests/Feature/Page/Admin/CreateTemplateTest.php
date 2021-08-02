@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Page\Admin;
 
+use App\Turbine\Pages\Http\Livewire\CreatePageTemplateForm;
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Pages\Http\Livewire\CreatePageTemplateForm;
 
 class CreateTemplateTest extends TestCase
 {

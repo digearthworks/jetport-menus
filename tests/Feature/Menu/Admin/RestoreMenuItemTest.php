@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Menu\Admin;
 
+use App\Turbine\Menus\Http\Livewire\Admin\RestoreMenuItemDialog;
+use App\Turbine\Menus\Models\MenuItem;
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Menus\Http\Livewire\Admin\RestoreMenuItemDialog;
-use Turbine\Menus\Models\MenuItem;
 
 class RestoreMenuItemTest extends TestCase
 {

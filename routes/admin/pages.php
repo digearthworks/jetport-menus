@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Turbine\Pages\Http\Controllers\CkeditorController;
-use Turbine\Pages\Http\Controllers\PageController;
-use Turbine\Pages\Http\Controllers\PageTemplateController;
+use App\Turbine\Pages\Http\Controllers\CkeditorController;
+use App\Turbine\Pages\Http\Controllers\PageController;
+use App\Turbine\Pages\Http\Controllers\PageTemplateController;
 
 Route::get('/pages/create', [PageController::class, 'create'])
     ->name('pages.create');

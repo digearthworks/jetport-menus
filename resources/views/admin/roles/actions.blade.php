@@ -1,5 +1,5 @@
 
-@if (!$model->isAdmin() && ($logged_in_user->hasAllAccess() || $model->type == \Turbine\Auth\Enums\UserTypeEnum::user()))
+@if (!$model->isAdmin() && ($logged_in_user->hasAllAccess() || $model->type == \App\Turbine\Auth\Enums\UserTypeEnum::user()))
     <div class="flex items-center">
         <!-- todo: edit action -->
         <x-edit-button wire:click="dialog('edit', {{ $model->id }})"

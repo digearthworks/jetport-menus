@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Turbine\Menus\Http\Controllers\MenuController;
-use Turbine\Pages\Http\Controllers\WelcomeController;
+use App\Turbine\Menus\Http\Controllers\MenuController;
+use App\Turbine\Pages\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------

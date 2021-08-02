@@ -6,7 +6,7 @@
         id="menu_id"
         class="block w-full mb-2 border-gray-300 rounded-md shadow-sm form-select focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
     >
-        @foreach(\Turbine\Menus\Models\Menu::all() as $group)
+        @foreach(\App\Turbine\Menus\Models\Menu::all() as $group)
 
             <option value="{{ (string) $group->id }}">{{ $group->name }}</option>
         @endforeach

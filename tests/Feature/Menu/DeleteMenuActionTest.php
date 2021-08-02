@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Menu;
 
+use App\Turbine\Menus\Actions\DeleteMenuAction;
+use App\Turbine\Menus\Models\Menu;
 use Tests\TestCase;
-use Turbine\Menus\Actions\DeleteMenuAction;
-use Turbine\Menus\Models\Menu;
 
 class DeleteMenuActionTest extends TestCase
 {

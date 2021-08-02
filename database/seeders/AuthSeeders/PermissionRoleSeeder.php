@@ -4,9 +4,9 @@ namespace Database\Seeders\AuthSeeders;
 
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
-use Turbine\Auth\Enums\UserTypeEnum;
-use Turbine\Auth\Models\Permission;
-use Turbine\Auth\Models\Role;
+use App\Turbine\Auth\Enums\UserTypeEnum;
+use App\Turbine\Auth\Models\Permission;
+use App\Turbine\Auth\Models\Role;
 
 /**
  * Class PermissionRoleTableSeeder.

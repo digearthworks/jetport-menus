@@ -2,15 +2,15 @@
 
 namespace Tests\Feature\Auth\Admin;
 
+use App\Turbine\Auth\Enums\UserTypeEnum;
+use App\Turbine\Auth\Events\User\UserCreated;
+use App\Turbine\Auth\Http\Livewire\CreateUserForm;
+use App\Turbine\Auth\Models\Role;
+use App\Turbine\Auth\Models\User;
+use App\Turbine\Menus\Models\MenuItem;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Auth\Enums\UserTypeEnum;
-use Turbine\Auth\Events\User\UserCreated;
-use Turbine\Auth\Http\Livewire\CreateUserForm;
-use Turbine\Auth\Models\Role;
-use Turbine\Auth\Models\User;
-use Turbine\Menus\Models\MenuItem;
 
 class CreateUserTest extends TestCase
 {

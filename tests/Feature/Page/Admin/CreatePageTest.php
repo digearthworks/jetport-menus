@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Page\Admin;
 
+use App\Turbine\Pages\Http\Livewire\CreatePageForm;
+use App\Turbine\Pages\Models\Page;
 use Livewire\Livewire;
 use Tests\TestCase;
-use Turbine\Pages\Http\Livewire\CreatePageForm;
-use Turbine\Pages\Models\Page;
 
 class CreatePageTest extends TestCase
 {

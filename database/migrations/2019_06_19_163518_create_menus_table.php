@@ -3,8 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Turbine\Menus\Enums\MenuTemplateEnum;
-use Turbine\Menus\Enums\MenuTypeEnum;
+use App\Turbine\Menus\Enums\MenuTemplateEnum;
+use App\Turbine\Menus\Enums\MenuTypeEnum;
 
 class CreateMenusTable extends Migration
 {

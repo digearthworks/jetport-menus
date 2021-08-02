@@ -4,18 +4,17 @@ namespace Database\Seeders;
 
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
-use Turbine\Icons\Models\Icon;
-use Turbine\Menus\Enums\MenuItemTargetEnum;
-use Turbine\Menus\Enums\MenuItemTemplateEnum;
-use Turbine\Menus\Enums\MenuItemTypeEnum;
-use Turbine\Menus\Enums\MenuTemplateEnum;
-use Turbine\Menus\Enums\MenuTypeEnum;
-use Turbine\Menus\Models\InternalIframe;
-use Turbine\Menus\Models\InternalLink;
-use Turbine\Menus\Models\Menu;
-use Turbine\Menus\Models\MenuItem;
-use Turbine\Menus\Models\PageLink;
-use Turbine\Pages\Models\Page;
+use App\Turbine\Menus\Enums\MenuItemTargetEnum;
+use App\Turbine\Menus\Enums\MenuItemTemplateEnum;
+use App\Turbine\Menus\Enums\MenuItemTypeEnum;
+use App\Turbine\Menus\Enums\MenuTemplateEnum;
+use App\Turbine\Menus\Enums\MenuTypeEnum;
+use App\Turbine\Menus\Models\InternalIframe;
+use App\Turbine\Menus\Models\InternalLink;
+use App\Turbine\Menus\Models\Menu;
+use App\Turbine\Menus\Models\MenuItem;
+use App\Turbine\Menus\Models\PageLink;
+use App\Turbine\Pages\Models\Page;
 
 class MenuSeeder extends Seeder
 {

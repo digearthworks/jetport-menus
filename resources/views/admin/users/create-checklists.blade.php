@@ -1,5 +1,5 @@
 <!-- Only shows if type is admin -->
-<div x-cloak x-show="userType === '{{ \Turbine\Auth\Enums\UserTypeEnum::admin() }}'">
+<div x-cloak x-show="userType === '{{ \App\Turbine\Auth\Enums\UserTypeEnum::admin() }}'">
 
     @include('admin.roles.admin-checklist')
 
@@ -10,7 +10,7 @@
 </div>
 
 <!-- Only shows if type is user -->
-<div x-cloak x-show="userType === '{{ \Turbine\Auth\Enums\UserTypeEnum::user() }}'">
+<div x-cloak x-show="userType === '{{ \App\Turbine\Auth\Enums\UserTypeEnum::user() }}'">
 
     @include('admin.roles.user-checklist')
 

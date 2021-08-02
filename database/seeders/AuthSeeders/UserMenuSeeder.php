@@ -4,8 +4,8 @@ namespace Database\Seeders\AuthSeeders;
 
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
-use Turbine\Auth\Models\User;
-use Turbine\Menus\Models\MenuItem;
+use App\Turbine\Auth\Models\User;
+use App\Turbine\Menus\Models\MenuItem;
 
 /**
  * Class UserRoleTableSeeder.

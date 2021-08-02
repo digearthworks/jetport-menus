@@ -6,12 +6,12 @@ use Database\Factories\Concerns\GetsIcons;
 use HeaderX\BukuIcons\Models\Icon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
-use Turbine\Menus\Enums\MenuItemTargetEnum;
-use Turbine\Menus\Enums\MenuItemTemplateEnum;
-use Turbine\Menus\Enums\MenuItemTypeEnum;
-use Turbine\Menus\Models\Menu;
-use Turbine\Menus\Models\MenuItem;
-use Turbine\Pages\Models\Page;
+use App\Turbine\Menus\Enums\MenuItemTargetEnum;
+use App\Turbine\Menus\Enums\MenuItemTemplateEnum;
+use App\Turbine\Menus\Enums\MenuItemTypeEnum;
+use App\Turbine\Menus\Models\Menu;
+use App\Turbine\Menus\Models\MenuItem;
+use App\Turbine\Pages\Models\Page;
 
 class MenuItemFactory extends Factory
 {
