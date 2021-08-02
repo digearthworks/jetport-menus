@@ -2,7 +2,7 @@
 
 namespace App\Turbine\Facades;
 
-use Illuminate\App\TurbineFacades\Facade;
+use Illuminate\Support\Facades\Facade;
 use Support\Blink as TurbineBlink;
 
 /**
