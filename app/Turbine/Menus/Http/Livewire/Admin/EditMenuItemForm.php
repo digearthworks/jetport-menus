@@ -59,7 +59,7 @@ class EditMenuItemForm extends BaseEditForm
     {
         $params = (array) json_decode($params);
 
-        if (!is_impersonating()) {
+        if (! is_impersonating()) {
             $this->authorize('onlysuperadmincandothis');
         }
 
@@ -94,7 +94,7 @@ class EditMenuItemForm extends BaseEditForm
 
     public function updateMenu(UpdateMenuItemAction $updateMenuItemAction)
     {
-        if (!is_impersonating()) {
+        if (! is_impersonating()) {
             $this->authorize('is_admin');
         }
 
@@ -131,7 +131,6 @@ class EditMenuItemForm extends BaseEditForm
 
     public function setUpSelects()
     {
-
         if ($this->state['type'] === MenuItemTypeEnum::page_link()->value) {
             $this->state['page_id'] = $this->state['page_id'] ? $this->state['page_id'] : Page::first()->id;
         }
@@ -150,7 +149,7 @@ class EditMenuItemForm extends BaseEditForm
     }
 
     public function setUpDropdowns()
-    { 
+    {
         if ($this->state['type'] != MenuItemTypeEnum::menu_link() && $this->state['type'] != MenuItemTypeEnum::page_link()) {
             $this->showLinkInput = true;
             $this->showPageDropdown = false;
