@@ -64,4 +64,14 @@ class CreateMenuItemTest extends TestCase
             ->call('createMenuItem')
             ->assertHasErrors(['handle']);
     }
+
+    /** @test */
+    public function create_menu_item_requires_name()
+    {
+        $this->loginAsAdmin();
+
+        Livewire::test(CreateMenuItemForm::class)
+            ->call('createMenuItem')
+            ->assertHasErrors(['name']);
+    }
 }

@@ -20,6 +20,7 @@ class SaveAsMenuItemAction
     public function __invoke(array $data, MenuItem $menuItem) : MenuItem
     {
         Validator::make($data, [
+            'name' => ['string', 'required'],
             'type' => [new EnumRule(MenuItemTypeEnum::class)],
             'template' => [new EnumRule(MenuItemTemplateEnum::class)],
             'target' => [new EnumRule(MenuItemTargetEnum::class)],

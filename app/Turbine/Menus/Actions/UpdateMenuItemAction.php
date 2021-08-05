@@ -26,6 +26,7 @@ class UpdateMenuItemAction
         $data = $this->filterData($data);
 
         Validator::make($data, [
+            'name' => ['string', 'required'],
             'type' => [new EnumRule(MenuItemTypeEnum::class)],
             'template' => [new EnumRule(MenuItemTemplateEnum::class)],
             'target' => [new EnumRule(MenuItemTargetEnum::class)],
