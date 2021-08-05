@@ -40,7 +40,7 @@
 
         @else
             <x-navbar-menu-item>
-                <x-navbar-item-link href="{{ $item->uri }}" target="{{ $menuItem->target }}" :active="requestPathIs($item->uri)">
+                <x-navbar-item-link href="{{ $item->uri }}" target="{{ $item->target }}" :active="requestPathIs($item->uri)">
                     <li class="list-none">
                         {{ svg($item->icon->name ?? 'carbon-no-image-32', 'w-4 h-4') }}
                     </li>
