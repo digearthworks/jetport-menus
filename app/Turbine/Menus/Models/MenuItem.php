@@ -46,7 +46,6 @@ class MenuItem extends Model implements Sortable, HasPath
 
     protected $guarded = [];
 
-
     protected $casts = [
         'type' => MenuItemTypeEnum::class,
         'template' => MenuItemTemplateEnum::class,
