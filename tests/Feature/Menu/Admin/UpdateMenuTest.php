@@ -30,7 +30,7 @@ class UpdateMenuTest extends TestCase
                 'name' => 'test',
                 'handle' => 'test',
                 'uri' => 'test',
-                'type' => MenuItemTypeEnum::menu_item(),
+                'type' => MenuItemTypeEnum::menu_item()->value,
                 'template' => 'default',
                 'target' => '_self',
                 'active' => '1',

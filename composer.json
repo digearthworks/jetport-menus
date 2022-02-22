@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.3|^8.0|^8.1",
         "actb/blade-github-octicons": "^4.0",
         "andreiio/blade-iconoir": "^1.0",
         "andreiio/blade-remix-icon": "^1.0",

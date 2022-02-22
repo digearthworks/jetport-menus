@@ -1,12 +1,12 @@
 <x-turbine-auth::livewire-tables.table>
     <x-slot name="head">
-        @if (count($bulkActions))
+        @if (isset($bulkActions) && count($bulkActions))
             <x-turbine-auth::livewire-tables.table.heading>
                 <div class="flex rounded-md shadow-sm">
                     <input
                         wire:model="selectPage"
                         type="checkbox"
-                        class="rounded-md shadow-sm border-gray-300 block transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                        class="block transition duration-150 ease-in-out border-gray-300 rounded-md shadow-sm sm:text-sm sm:leading-5"
                     />
                 </div>
             </x-turbine-auth::livewire-tables.table.heading>
@@ -39,7 +39,7 @@
                 :url="method_exists($this, 'getTableRowUrl') ? $this->getTableRowUrl($row) : null"
                 :class="$index % 2 === 0 ? 'bg-white' . (method_exists($this, 'getTableRowUrl') ? ' hover:bg-gray-100' : '') : 'bg-gray-50' . (method_exists($this, 'getTableRowUrl') ? ' hover:bg-gray-100' : '')"
             >
-                @if (count($bulkActions))
+                @if (isset($bulkActions) && count($bulkActions))
                     <x-turbine-auth::livewire-tables.table.cell>
                         <div class="flex rounded-md shadow-sm">
                             <input
@@ -48,7 +48,7 @@
                                 value="{{ $row->{$primaryKey} }}"
                                 onclick="event.stopPropagation();return true;"
                                 type="checkbox"
-                                class="rounded-md shadow-sm border-gray-300 block transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                class="block transition duration-150 ease-in-out border-gray-300 rounded-md shadow-sm sm:text-sm sm:leading-5"
                             />
                         </div>
                     </x-turbine-auth::livewire-tables.table.cell>
@@ -58,13 +58,13 @@
             </x-turbine-auth::livewire-tables.table.row>
         @empty
             <x-turbine-auth::livewire-tables.table.row>
-                <x-turbine-auth::livewire-tables.table.cell :colspan="count($bulkActions) ? count($columns) + 1 : count($columns)">
-                    <div class="flex justify-center items-center space-x-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <x-turbine-auth::livewire-tables.table.cell :colspan="(isset($bulkActions) && count($bulkActions)) ? count($columns) + 1 : count($columns)">
+                    <div class="flex items-center justify-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                         </svg>
 
-                        <span class="font-medium py-8 text-gray-400 text-xl">@lang($emptyMessage)</span>
+                        <span class="py-8 text-xl font-medium text-gray-400">@lang($emptyMessage)</span>
                     </div>
                 </x-turbine-auth::livewire-tables.table.cell>
             </x-turbine-auth::livewire-tables.table.row>
