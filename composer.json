@@ -34,7 +34,6 @@
         "fakerphp/faker": "^1.14",
         "fideloper/proxy": "^4.4",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.3",
         "headerx/buku-icons": "^0.18.0",
         "headerx/laravel-adminer-plugins": "^0.15.0",
