@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePermissionTables extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -133,4 +133,4 @@ class CreatePermissionTables extends Migration
         Schema::connection(config('turbine.auth.connection', env('DB_CONNECTION')))->drop($tableNames['roles']);
         Schema::connection(config('turbine.auth.connection', env('DB_CONNECTION')))->drop($tableNames['permissions']);
     }
-}
+};
