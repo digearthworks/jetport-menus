@@ -14,7 +14,7 @@
         "@tailwindcss/forms": "^0.3.1",
         "@tailwindcss/typography": "^0.4.0",
         "alpinejs": "^3.0.6",
-        "axios": "^0.21",
+        "axios": "^0.25",
         "grapesjs": "^0.17.19",
         "grapesjs-plugin-ckeditor": "^0.0.10",
         "grapesjs-preset-webpage": "^0.1.11",
