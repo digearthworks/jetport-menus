@@ -63,7 +63,8 @@
         "spatie/laravel-permission": "^4.2",
         "spatie/laravel-query-builder": "^3.4",
         "spatie/laravel-route-attributes": "^1.4",
-        "wildside/userstamps": "^2.1"
+        "wildside/userstamps": "^2.1",
+        "league/flysystem-aws-s3-v3": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
