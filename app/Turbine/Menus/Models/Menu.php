@@ -59,7 +59,6 @@ class Menu extends Model implements Sortable
         return new MenuQueryBuilder($query);
     }
 
-    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $cascadeDeletes = ['menuItems'];
 
