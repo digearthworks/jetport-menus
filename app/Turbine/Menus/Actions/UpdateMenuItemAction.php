@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Turbine\Menus\Actions;
 
@@ -41,7 +41,6 @@ class UpdateMenuItemAction
             'page_id' => ['int', 'nullable', Rule::exists('pages', 'id')],
             'parent_id' => ['int', 'nullable', Rule::exists('menu_items', 'id')],
         ])->validateWithBag('createMenuItemForm');
-
 
         DB::beginTransaction();
 

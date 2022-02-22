@@ -52,7 +52,6 @@ class CreateMenuAction
             DB::rollBack();
 
             throw $e;
-
             // dd($e->getMessage());
             Log::error($e->getMessage());
 

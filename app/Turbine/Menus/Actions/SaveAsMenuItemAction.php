@@ -35,7 +35,6 @@ class SaveAsMenuItemAction
             'parent_id' => ['int', 'nullable', Rule::exists('menu_items', 'id')],
         ])->validateWithBag('createMenuItemForm');
 
-
         DB::beginTransaction();
 
         try {
@@ -44,8 +43,8 @@ class SaveAsMenuItemAction
                 'template' => $data['template'] ?? $menuItem->template,
                 'target' => $data['target'] ?? $menuItem->target,
                 'route' => $data['route'] ?? $menuItem->route,
-                'name' => (isset($data['name']) && $data['name'] === $menuItem->name) ? $menuItem->name . '-copy' : ($data['name'] ?? $menuItem->name . '-copy'),
-                'handle' => (isset($data['handle']) && $data['handle'] === $menuItem->handle) ? $menuItem->handle . '-copy' : ($data['handle'] ?? $menuItem->handle . '-copy'),
+                'name' => (isset($data['name']) && $data['name'] === $menuItem->name) ? $menuItem->name.'-copy' : ($data['name'] ?? $menuItem->name.'-copy'),
+                'handle' => (isset($data['handle']) && $data['handle'] === $menuItem->handle) ? $menuItem->handle.'-copy' : ($data['handle'] ?? $menuItem->handle.'-copy'),
                 'uri' => $data['uri'] ?? $menuItem->uri,
                 'active' => $data['active'] ?? $menuItem->active,
                 'title' => $data['title'] ?? $menuItem->title,
@@ -62,8 +61,8 @@ class SaveAsMenuItemAction
                 foreach ($menuItem->allChildren as $child) {
                     $clone = $child->replicate();
                     $clone->parent_id = $newMenuItem->id;
-                    $clone->name = $child->name . '-copy';
-                    $clone->handle = $child->handle . '-copy';
+                    $clone->name = $child->name.'-copy';
+                    $clone->handle = $child->handle.'-copy';
                     $clone->uuid = Str::Uuid();
                     $clone->save();
                 }

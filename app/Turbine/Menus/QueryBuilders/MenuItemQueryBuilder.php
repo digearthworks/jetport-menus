@@ -11,7 +11,7 @@ class MenuItemQueryBuilder extends Builder
     {
         $search = is_array($search) ? $search : [$search];
 
-        $fields = ['children' => ['name', 'uri', 'handle' , 'type'], 'name', 'uri', 'handle', 'type'];
+        $fields = ['children' => ['name', 'uri', 'handle', 'type'], 'name', 'uri', 'handle', 'type'];
 
         // orWhereHas will use joins, so we'll start with fields foreach
         foreach ($fields as $relation => $field) {

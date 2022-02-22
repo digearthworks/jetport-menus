@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
-use Database\Factories\Concerns\GetsIcons;
-use HeaderX\BukuIcons\Models\Icon;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Turbine\Menus\Enums\MenuTemplateEnum;
 use App\Turbine\Menus\Enums\MenuTypeEnum;
 use App\Turbine\Menus\Models\Menu;
+use Database\Factories\Concerns\GetsIcons;
+use HeaderX\BukuIcons\Models\Icon;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MenuFactory extends Factory
 {

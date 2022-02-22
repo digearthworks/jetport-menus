@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
 {
-
-        /**
+    /**
      * The database schema.
      *
      * @var \Illuminate\Database\Schema\Builder

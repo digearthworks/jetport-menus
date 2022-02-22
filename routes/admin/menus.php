@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Turbine\Menus\Http\Controllers\Admin\AdminMenuController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/menus', AdminMenuController::class)
     // ->middleware('password.confirm')

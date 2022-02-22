@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Turbine\Concerns;
 
 use App\Turbine\Query\CachingBuilder;

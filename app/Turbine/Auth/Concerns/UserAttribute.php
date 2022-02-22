@@ -18,7 +18,7 @@ trait UserAttribute
      */
     public function setSortAttribute($sort): void
     {
-        $this->attributes['sort'] = $this->menu_id . str_replace($this->menu_id, '', $sort);
+        $this->attributes['sort'] = $this->menu_id.str_replace($this->menu_id, '', $sort);
     }
 
     /**

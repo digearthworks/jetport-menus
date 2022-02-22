@@ -35,7 +35,7 @@ class PageTemplate extends Model implements Sortable
 
     public function scopeSearch($query, $term)
     {
-        return $query->where('name', 'like', $term . '%');
+        return $query->where('name', 'like', $term.'%');
     }
 
     public function page()

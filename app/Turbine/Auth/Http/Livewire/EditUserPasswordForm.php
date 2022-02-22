@@ -46,7 +46,7 @@ class EditUserPasswordForm extends Component
 
         $resetsUserPasswords->reset($this->model, $this->state);
 
-        $this->emit('refreshWithSuccess', 'Successfully changed password for ' . $this->model->name);
+        $this->emit('refreshWithSuccess', 'Successfully changed password for '.$this->model->name);
         $this->editingUserPassword = false;
     }
 

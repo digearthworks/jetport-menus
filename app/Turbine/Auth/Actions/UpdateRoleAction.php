@@ -19,7 +19,7 @@ class UpdateRoleAction
     {
         Validator::make($data, [
             'type' => [new EnumRule(UserTypeEnum::class)],
-            'name' => [ Rule::unique('roles')->ignore($role->id)],
+            'name' => [Rule::unique('roles')->ignore($role->id)],
             'permissions' => ['array'],
             'menus' => ['array'],
         ])->validateWithBag('updateRoleForm');

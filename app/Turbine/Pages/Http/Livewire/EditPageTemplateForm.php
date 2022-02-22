@@ -96,12 +96,11 @@ class EditPageTemplateForm extends BaseEditForm
             'meta' => ['array', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
-
         $copy = $this->model->replicate();
 
         try {
             $copy->forcefill([
-                'name' => $this->state['name'] === $this->model->name ? $this->model->name . '-copy' : $this->state['name'],
+                'name' => $this->state['name'] === $this->model->name ? $this->model->name.'-copy' : $this->state['name'],
                 'html' => $this->state['html'] ?? $this->model->html,
                 'css' => $this->state['css'] ?? $this->model->css,
                 'meta' => $this->state['meta'] ?? $this->model->meta,
@@ -109,7 +108,6 @@ class EditPageTemplateForm extends BaseEditForm
         } catch (Exception $error) {
             Log::error($error->getMessage());
         }
-
 
         $this->emit('refreshWithSuccess', 'Page Saved!');
         $this->editingResource = false;

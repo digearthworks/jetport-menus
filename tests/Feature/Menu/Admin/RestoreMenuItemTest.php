@@ -40,7 +40,6 @@ class RestoreMenuItemTest extends TestCase
         $this->assertSoftDeleted('menu_items', ['id' => $child->id]);
         $this->assertSoftDeleted('menu_items', ['id' => $parent->id]);
 
-
         Livewire::test(RestoreMenuItemDialog::class)
             ->set('modelId', $parent->id)
             ->set('withTrashed', true)
@@ -62,7 +61,6 @@ class RestoreMenuItemTest extends TestCase
 
         $this->assertSoftDeleted('menu_items', ['id' => $parent->id]);
         $this->assertSoftDeleted('menu_items', ['id' => $child->id]);
-
 
         Livewire::test(RestoreMenuItemDialog::class)
             ->set('modelId', $child->id)

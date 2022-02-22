@@ -13,6 +13,7 @@ use Laravel\Passport\Passport;
 class AuthServiceProvider extends ServiceProvider implements RegistersAuthLivewire
 {
     use RegistersAuthLivewireComponents;
+
     /**
      * The policy mappings for the application.
      *

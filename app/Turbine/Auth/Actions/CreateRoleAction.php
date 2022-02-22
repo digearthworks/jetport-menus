@@ -32,7 +32,6 @@ class CreateRoleAction
         } catch (Exception $e) {
             DB::rollBack();
 
-
             if (app()->environment(['local', 'testing'])) {
                 throw $e;
             }
@@ -43,7 +42,6 @@ class CreateRoleAction
         DB::commit();
 
         event(new RoleCreated($role));
-
 
         return $role;
     }

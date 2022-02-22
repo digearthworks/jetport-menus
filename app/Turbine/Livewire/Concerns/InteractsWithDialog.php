@@ -11,17 +11,17 @@ trait InteractsWithDialog
         if (count($params)) {
             $this->dialogWithParams($verb, $params, $resourceId);
         } else {
-            $this->emit($verb . 'Dialog', $resourceId);
+            $this->emit($verb.'Dialog', $resourceId);
         }
     }
 
     public function confirm(string $verb, $resourceId = null, string $params = null): void
     {
-        $this->emit('confirm' . ucfirst($verb), $resourceId);
+        $this->emit('confirm'.ucfirst($verb), $resourceId);
     }
 
     private function dialogWithParams(string $verb, array $params, $resourceId = null): void
     {
-        $this->emit($verb . 'Dialog', $resourceId, json_encode($params));
+        $this->emit($verb.'Dialog', $resourceId, json_encode($params));
     }
 }

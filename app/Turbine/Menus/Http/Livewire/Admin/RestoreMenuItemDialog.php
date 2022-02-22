@@ -18,7 +18,6 @@ class RestoreMenuItemDialog extends BaseRestoreDialog
 
         $this->confirmingRestore = false;
 
-
         $this->emit('refreshWithSuccess', 'Menu Restored');
         $this->emit('refresh-navigation-menu');
         $this->editingResource = false;

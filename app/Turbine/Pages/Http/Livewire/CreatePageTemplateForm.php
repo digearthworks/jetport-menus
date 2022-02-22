@@ -48,7 +48,7 @@ class CreatePageTemplateForm extends BaseCreateForm
 
         $this->flashBanner('Template Created.');
 
-        return redirect()->route('admin.pages.templates.edit', [ 'template' => $template]);
+        return redirect()->route('admin.pages.templates.edit', ['template' => $template]);
     }
 
     /**

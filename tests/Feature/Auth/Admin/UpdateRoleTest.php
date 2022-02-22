@@ -22,7 +22,6 @@ class UpdateRoleTest extends TestCase
 
         $role = Role::factory()->create();
 
-
         // Todo: Create Permission Factory
         $permission = Permission::first();
 

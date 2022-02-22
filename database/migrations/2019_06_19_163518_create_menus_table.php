@@ -1,14 +1,13 @@
 <?php
 
+use App\Turbine\Menus\Enums\MenuTemplateEnum;
+use App\Turbine\Menus\Enums\MenuTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Turbine\Menus\Enums\MenuTemplateEnum;
-use App\Turbine\Menus\Enums\MenuTypeEnum;
 
 class CreateMenusTable extends Migration
 {
-
     /**
      * The database schema.
      *

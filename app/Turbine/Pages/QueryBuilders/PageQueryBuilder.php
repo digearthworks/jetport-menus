@@ -9,8 +9,8 @@ class PageQueryBuilder extends Builder
     public function search($term): self
     {
         return $this->where(function ($query) use ($term) {
-            $query->where('title', 'like', '%' . $term . '%')
-                ->orWhere('slug', 'like', '%' . $term . '%');
+            $query->where('title', 'like', '%'.$term.'%')
+                ->orWhere('slug', 'like', '%'.$term.'%');
         });
     }
 

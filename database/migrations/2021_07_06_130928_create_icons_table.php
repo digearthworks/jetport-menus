@@ -6,14 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateIconsTable extends Migration
 {
-
     /**
      * The database schema.
      *
      * @var \Illuminate\Database\Schema\Builder
      */
     protected $schema;
-    
+
     /**
      * Create a new migration instance.
      *
@@ -45,9 +44,9 @@ class CreateIconsTable extends Migration
             $table->timestamps();
         });
     }
-    
+
     public function down()
     {
         $this->schema->dropIfExists('icons');
     }
-};
+}

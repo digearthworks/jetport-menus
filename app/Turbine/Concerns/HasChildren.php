@@ -33,7 +33,7 @@ trait HasChildren
             self::$parentBootMethods[] = 'boot';
 
             foreach (class_uses_recursive(self::class) as $trait) {
-                self::$parentBootMethods[] = 'boot' . class_basename($trait);
+                self::$parentBootMethods[] = 'boot'.class_basename($trait);
             }
 
             self::$parentBootMethods = array_flip(self::$parentBootMethods);
@@ -112,7 +112,7 @@ trait HasChildren
         $instance = $this->newRelatedInstance($related);
 
         if (is_null($foreignKey) && $instance->hasParent) {
-            $foreignKey = Str::snake($instance->getClassNameForRelationships()) . '_' . $instance->getKeyName();
+            $foreignKey = Str::snake($instance->getClassNameForRelationships()).'_'.$instance->getKeyName();
         }
 
         if (is_null($relation)) {
@@ -184,7 +184,7 @@ trait HasChildren
             $attributes[$this->getInheritanceColumn()]->value ?? $attributes[$this->getInheritanceColumn()]
         );
 
-        return new $className((array)$attributes);
+        return new $className((array) $attributes);
     }
 
     /**

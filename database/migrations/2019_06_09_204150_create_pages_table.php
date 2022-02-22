@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePagesTable extends Migration
 {
-
     /**
      * The database schema.
      *

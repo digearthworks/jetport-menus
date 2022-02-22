@@ -10,7 +10,6 @@ use Throwable;
  */
 class GeneralException extends Exception
 {
-
     /**
      * @var
      */
@@ -46,7 +45,6 @@ class GeneralException extends Exception
     {
 
         // All instances of GeneralException redirect back with a flash message
-
 
         if (app()->environment(['local', 'testing'])) {
             dd($this->message);

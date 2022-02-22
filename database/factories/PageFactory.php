@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Turbine\Pages\Models\Page;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PageFactory extends Factory
 {

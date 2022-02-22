@@ -14,7 +14,7 @@ class MenuLinkTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->get('/' . config('turbine.menus.route_prefix') . '/test-page');
+        $response = $this->get('/'.config('turbine.menus.route_prefix').'/test-page');
 
         $response->assertNotFound();
 
@@ -34,7 +34,7 @@ class MenuLinkTest extends TestCase
 
         $uri = MenuItem::find($menuLink->id)->uri;
 
-        $this->assertEquals('/' . config('turbine.menus.route_prefix') . '/test-page', $uri);
+        $this->assertEquals('/'.config('turbine.menus.route_prefix').'/test-page', $uri);
 
         $response = $this->get($uri);
 

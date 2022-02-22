@@ -22,7 +22,7 @@ class DeletePageTest extends TestCase
 
         $this->assertSoftDeleted('pages', ['id' => $page->id]);
 
-        $response = $this->get('/pages/' . $page->slug);
+        $response = $this->get('/pages/'.$page->slug);
         $response->assertStatus(404);
     }
 }

@@ -2,16 +2,16 @@
 
 namespace Database\Factories;
 
-use Database\Factories\Concerns\GetsIcons;
-use HeaderX\BukuIcons\Models\Icon;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Arr;
 use App\Turbine\Menus\Enums\MenuItemTargetEnum;
 use App\Turbine\Menus\Enums\MenuItemTemplateEnum;
 use App\Turbine\Menus\Enums\MenuItemTypeEnum;
 use App\Turbine\Menus\Models\Menu;
 use App\Turbine\Menus\Models\MenuItem;
 use App\Turbine\Pages\Models\Page;
+use Database\Factories\Concerns\GetsIcons;
+use HeaderX\BukuIcons\Models\Icon;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 class MenuItemFactory extends Factory
 {
