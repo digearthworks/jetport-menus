@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePasswordResetsTable extends Migration
+return new class extends Migration
 {
     /**
      * The database schema.
@@ -56,4 +56,4 @@ class CreatePasswordResetsTable extends Migration
     {
         $this->schema->dropIfExists('password_resets');
     }
-}
+};

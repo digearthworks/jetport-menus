@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMenuItemsTable extends Migration
+return new class extends Migration
 {
     /**
      * The database schema.
@@ -99,4 +99,4 @@ class CreateMenuItemsTable extends Migration
     {
         $this->schema->dropIfExists('menu_items');
     }
-}
+};
