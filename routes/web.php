@@ -26,26 +26,20 @@ Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
  *
  * These routes can only be accessed by users with type `admin`
  */
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
+Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     includeRouteFiles(__DIR__.'/admin/');
 });
 
 /*
  *  Menu Routes
  */
-Route::group([
-    'prefix' => config('turbine.menus.route_prefix'),
-    'as' => 'menus.',
-], function () {
+Route::prefix(config('turbine.menus.route_prefix'))->name('menus.')->group(function () {
     includeRouteFiles(__DIR__.'/menus/');
 });
 
 /*
  *  Page Routes
  */
-Route::group([
-    'prefix' => config('turbine.pages.route_prefix'),
-    'as' => 'pages.',
-], function () {
+Route::prefix(config('turbine.pages.route_prefix'))->name('pages.')->group(function () {
     includeRouteFiles(__DIR__.'/pages/');
 });
