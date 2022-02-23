@@ -27,7 +27,7 @@ class RoleFactory extends Factory
     {
         return [
             'type' => $this->faker->randomElement(UserTypeEnum::toValues()),
-            'name' => $this->faker->word,
+            'name' => $this->faker->word(),
         ];
     }
 }
