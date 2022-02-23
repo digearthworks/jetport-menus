@@ -44,11 +44,11 @@ class AdminNavigationMenu extends Component
          *
          * */
         foreach ($this->menus as $menu) {
-            $this->setHandleState($menu->handle . '-navbar');
+            $this->setHandleState($menu->handle.'-navbar');
             foreach ($menu->children as $child) {
-                $this->setHandleState($child->handle . '-navbar');
+                $this->setHandleState($child->handle.'-navbar');
                 foreach ($child->children as $levelThree) {
-                    $this->setHandleState($levelThree->handle . '-navbar');
+                    $this->setHandleState($levelThree->handle.'-navbar');
                 }
             }
         }

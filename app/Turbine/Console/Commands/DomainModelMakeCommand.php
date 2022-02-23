@@ -8,6 +8,7 @@ use Illuminate\Foundation\Console\ModelMakeCommand;
 class DomainModelMakeCommand extends ModelMakeCommand
 {
     use GeneratesDomainClass;
+
     /**
      * The name and signature of the console command.
      *

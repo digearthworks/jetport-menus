@@ -32,6 +32,7 @@ class Page extends Model implements Sortable, HasPath
     use HasIterativeQuickSort;
     use HasUuid;
     use Userstamps;
+
     // CachesQueries,
     use SoftDeletes;
     use Sluggable;
@@ -61,7 +62,7 @@ class Page extends Model implements Sortable, HasPath
 
     public function getPath()
     {
-        return '/' . config('turbine.pages.route_prefix') . '/' . $this->slug;
+        return '/'.config('turbine.pages.route_prefix').'/'.$this->slug;
     }
 
     public function template()

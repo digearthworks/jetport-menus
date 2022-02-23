@@ -22,7 +22,7 @@ class ExternalIframeUriCast implements CastsAttributes
     {
         $prefix = config('iframes.external_iframe_prefix');
 
-        return '/' . $prefix . config('iframes.external_link_query') . $this->getCleanUri($value);
+        return '/'.$prefix.config('iframes.external_link_query').$this->getCleanUri($value);
     }
 
     /**

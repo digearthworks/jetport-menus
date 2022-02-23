@@ -20,7 +20,7 @@ class InternalLinkUriCast implements CastsAttributes
      */
     public function get($model, $key, $value = null, $attributes = [])
     {
-        return '/' . $this->getCleanUri($value ?? '');
+        return '/'.$this->getCleanUri($value ?? '');
     }
 
     /**

@@ -25,7 +25,7 @@ class MenuCheck
                 is_impersonating() &&
                 ! in_array($request->menuItem->slug, $request->user()->getAllMenuItems()->pluck('slug')->toArray())
             ) {
-                $this->flashDangerBanner($request->user()->name . ' Does not have access to this menu.');
+                $this->flashDangerBanner($request->user()->name.' Does not have access to this menu.');
             }
 
             return $next($request);
@@ -38,7 +38,6 @@ class MenuCheck
         ) {
             return $next($request);
         }
-
 
         return redirect()
             ->route('index')

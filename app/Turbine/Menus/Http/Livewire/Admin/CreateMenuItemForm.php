@@ -48,7 +48,6 @@ class CreateMenuItemForm extends BaseCreateForm
 
     public $showPageDropdown = false;
 
-
     public $data;
 
     public $iconPreview;
@@ -65,7 +64,6 @@ class CreateMenuItemForm extends BaseCreateForm
         if (isset($params['attach_for_user']) && $params['attach_for_user']) {
             $this->state['attach_for_user'] = true;
         }
-
 
         if (isset($params['item']) && $params['item']) {
             $this->state['type'] = MenuItemTypeEnum::internal_link();

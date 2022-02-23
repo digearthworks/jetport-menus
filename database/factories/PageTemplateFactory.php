@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Turbine\Pages\Models\Page;
 use App\Turbine\Pages\Models\PageTemplate;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PageTemplateFactory extends Factory
 {

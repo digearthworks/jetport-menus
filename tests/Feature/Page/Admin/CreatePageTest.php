@@ -48,16 +48,16 @@ class CreatePageTest extends TestCase
         $this->assertDatabaseHas(
             'pages',
             [
-                    'title' => 'test page',
-                    'slug' => 'test-page',
-                    'html' => '<p>this is a test</p>',
-                    'layout' => 'layouts.guest',
-                    'active' => 1,
-                ]
+                'title' => 'test page',
+                'slug' => 'test-page',
+                'html' => '<p>this is a test</p>',
+                'layout' => 'layouts.guest',
+                'active' => 1,
+            ]
         );
 
         $this->withoutExceptionHandling();
-        $response = $this->get('/pages/'. Page::where('slug', 'test-page')->first()->slug);
+        $response = $this->get('/pages/'.Page::where('slug', 'test-page')->first()->slug);
 
         $response->assertOk();
     }

@@ -16,6 +16,6 @@ trait GetsAuthConnection
 
     public function getFullTableName()
     {
-        return $this->getConnection()->getTablePrefix() . $this->getTable();
+        return $this->getConnection()->getTablePrefix().$this->getTable();
     }
 }

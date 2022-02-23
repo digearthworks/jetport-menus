@@ -28,9 +28,9 @@ class DeleteMenuItemTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $parent = MenuItem::factory()->create(['parent_id' => null, 'active' => true ]);
+        $parent = MenuItem::factory()->create(['parent_id' => null, 'active' => true]);
 
-        $child = MenuItem::factory()->create(['parent_id' => $parent->id, 'active' => true ]);
+        $child = MenuItem::factory()->create(['parent_id' => $parent->id, 'active' => true]);
 
         Livewire::test(DeleteMenuItemDialog::class)
            ->set('modelId', $parent->id)

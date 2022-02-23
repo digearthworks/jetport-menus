@@ -28,6 +28,6 @@ class MenuModelMakeCommand extends TurbineModelMakeCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace. '\\Menus\\Models';
+        return $rootNamespace.'\\Menus\\Models';
     }
 }

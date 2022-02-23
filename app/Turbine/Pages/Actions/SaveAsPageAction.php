@@ -29,13 +29,12 @@ class SaveAsPageAction
             'meta' => ['array', 'nullable'],
         ])->validateWithBag('editMenuForm');
 
-
         $copy = $page->replicate();
 
         try {
             $copy->forcefill([
                 'title' => $data['title'] ?? $page->title,
-                'slug' => $data['slug'] === $page->slug ? $page->slug . '-copy' : $data['slug'],
+                'slug' => $data['slug'] === $page->slug ? $page->slug.'-copy' : $data['slug'],
                 'html' => $data['html'] ?? $page->html,
                 'css' => $data['css'] ?? $page->css,
                 'template_id' => $data['template_id'] ?? $page->template_id,

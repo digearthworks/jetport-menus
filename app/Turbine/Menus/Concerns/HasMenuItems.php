@@ -154,12 +154,12 @@ trait HasMenuItems
         return $menuItems->sortBy('sort')->values();
     }
 
-    public function getAllMenuItemsAttribute(): \Illuminate\Support\Collection
+    public function getAllMenuItemsAttribute(): Collection
     {
         return $this->getAllMenuItems();
     }
 
-    public function getMenuItemsViaRolesAttribute(): \Illuminate\Support\Collection
+    public function getMenuItemsViaRolesAttribute(): Collection
     {
         return $this->getMenuItemsViaRoles();
     }

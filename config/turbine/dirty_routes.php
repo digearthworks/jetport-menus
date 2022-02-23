@@ -6,7 +6,6 @@ return [
      * All of the values listed here will be trimmed from
      * dynamic menu links, to prevent them being applied twice.
      */
-
     'pages_prefix' => '/pages/',
 
     'legacies' => 'legacy',

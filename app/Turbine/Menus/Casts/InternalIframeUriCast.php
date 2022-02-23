@@ -22,7 +22,7 @@ class InternalIframeUriCast implements CastsAttributes
     {
         $prefix = config('iframes.internal_iframe_prefix');
 
-        return '/' . $prefix .'/'. $this->getCleanUri($value);
+        return '/'.$prefix.'/'.$this->getCleanUri($value);
     }
 
     /**

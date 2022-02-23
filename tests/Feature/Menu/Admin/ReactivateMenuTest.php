@@ -61,7 +61,6 @@ class ReactivateMenuTest extends TestCase
         $this->assertDatabaseHas('menu_items', ['id' => $parent->id, 'active' => 0]);
         $this->assertDatabaseHas('menu_items', ['id' => $child->id, 'active' => 0]);
 
-
         Livewire::test(ReactivateMenuItemDialog::class)
             ->set('modelId', $child->id)
             ->call('reactivateMenuItem');

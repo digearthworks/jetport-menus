@@ -33,11 +33,10 @@ trait RegistersMenusLivewireComponents
         Livewire::component('turbine.menus.admin.create-menu-item-button', CreateMenuItemButton::class);
         Livewire::component('turbine.menus.admin.icon-select', IconSelect::class);
 
-        
         Livewire::component('turbine.menus.admin.admin-navigation-menu', AdminNavigationMenu::class);
         Livewire::component('turbine.menus.admin.admin-sidebar-menu', AdminSidebarMenu::class);
         Livewire::component('turbine.menus.admin.admin-sidebar-toggler', AdminSidebarToggler::class);
-        
+
         Livewire::component('turbine.menus.dashboard-menu', DashboardMenu::class);
         Livewire::component('turbine.menus.main-menu', MainMenu::class);
 

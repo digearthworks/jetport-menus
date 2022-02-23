@@ -29,7 +29,7 @@ trait HasParent
             $instance = $query->getModel();
 
             if ($instance->parentHasHasChildrenTrait()) {
-                $query->where($instance->getTable() . '.' . $instance->getInheritanceColumn(), $instance->classToAlias(get_class($instance)));
+                $query->where($instance->getTable().'.'.$instance->getInheritanceColumn(), $instance->classToAlias(get_class($instance)));
             }
         });
     }
@@ -61,7 +61,7 @@ trait HasParent
      */
     public function getForeignKey()
     {
-        return Str::snake(class_basename($this->getParentClass())) . '_' . $this->primaryKey;
+        return Str::snake(class_basename($this->getParentClass())).'_'.$this->primaryKey;
     }
 
     /**

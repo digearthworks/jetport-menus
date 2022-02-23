@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\Traits\DisableForeignKeys;
-use Illuminate\Database\Seeder;
 use App\Turbine\Menus\Enums\MenuItemTargetEnum;
 use App\Turbine\Menus\Enums\MenuItemTemplateEnum;
 use App\Turbine\Menus\Enums\MenuItemTypeEnum;
@@ -15,6 +13,8 @@ use App\Turbine\Menus\Models\Menu;
 use App\Turbine\Menus\Models\MenuItem;
 use App\Turbine\Menus\Models\PageLink;
 use App\Turbine\Pages\Models\Page;
+use Database\Seeders\Traits\DisableForeignKeys;
+use Illuminate\Database\Seeder;
 
 class MenuSeeder extends Seeder
 {
@@ -69,7 +69,6 @@ class MenuSeeder extends Seeder
         //         'icon_id' => 'fas fa-tachometer-alt',
         //     ]),
 
-
         // ]);
 
         $dashboard = $userMenu->menuItems()->create([
@@ -102,7 +101,7 @@ class MenuSeeder extends Seeder
             'handle' => 'guest_links',
             'active' => true,
             'title' => 'Guest Links',
-            'icon_id' => 'no image'
+            'icon_id' => 'no image',
         ]);
 
         $guestLinks = $guest->pageLinks()->saveMany([
@@ -215,7 +214,6 @@ class MenuSeeder extends Seeder
             ]),
         ]);
 
-
         $system = $adminMenu->menuItems()->create([
             'type' => MenuItemTypeEnum::menu_link(),
             'template' => MenuItemTemplateEnum::default(),
@@ -249,7 +247,6 @@ class MenuSeeder extends Seeder
                 'icon_id' => 'iconpark-log',
             ]),
         ]);
-
 
         MenuItem::setNewOrder([
             $dashboard->id,

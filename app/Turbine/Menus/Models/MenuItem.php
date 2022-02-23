@@ -98,7 +98,7 @@ class MenuItem extends Model implements Sortable, HasPath
 
     public function getPath()
     {
-        return '/' . config('turbine.menus.route_prefix') . '/' . $this->slug;
+        return '/'.config('turbine.menus.route_prefix').'/'.$this->slug;
     }
 
     /**
@@ -145,7 +145,7 @@ class MenuItem extends Model implements Sortable, HasPath
     {
         $name = $this->icon->name ?? 'carbon-no-image-32';
 
-        return "<div class=\"flex\">" . svg($name, 'w-4 h-4')->toHtml() . "<u><a href=\"{$this->uri}\">{$this->uri}</a></u></div>";
+        return '<div class="flex">'.svg($name, 'w-4 h-4')->toHtml()."<u><a href=\"{$this->uri}\">{$this->uri}</a></u></div>";
     }
 
     public function getNameWithArtAttribute(): string
@@ -178,27 +178,27 @@ class MenuItem extends Model implements Sortable, HasPath
 
     public function children()
     {
-        return $this->hasMany(MenuItem::class, 'parent_id', 'id')->with('children', 'icon', 'parentItem', 'page', 'menu')->onlyActive()->ordered();
+        return $this->hasMany(self::class, 'parent_id', 'id')->with('children', 'icon', 'parentItem', 'page', 'menu')->onlyActive()->ordered();
     }
 
     public function allChildren()
     {
-        return $this->hasMany(MenuItem::class, 'parent_id', 'id')->with('children', 'icon', 'parentItem', 'page', 'menu')->ordered();
+        return $this->hasMany(self::class, 'parent_id', 'id')->with('children', 'icon', 'parentItem', 'page', 'menu')->ordered();
     }
 
     public function authChildren()
     {
-        return $this->hasMany(MenuItem::class, 'parent_id', 'id')->whereIn('id', Auth::user()->getAllMenuItems()->pluck('id')->toArray())->with('authChildren', 'icon', 'parentItem', 'page')->ordered();
+        return $this->hasMany(self::class, 'parent_id', 'id')->whereIn('id', Auth::user()->getAllMenuItems()->pluck('id')->toArray())->with('authChildren', 'icon', 'parentItem', 'page')->ordered();
     }
 
     public function links()
     {
-        return $this->hasMany(MenuItem::class, 'parent_id', 'id')->whereIn('type', Arr::except($this->childTypes, ['menu_item']));
+        return $this->hasMany(self::class, 'parent_id', 'id')->whereIn('type', Arr::except($this->childTypes, ['menu_item']));
     }
 
     public function iframes()
     {
-        return $this->hasMany(MenuItem::class, 'parent_id', 'id')->whereIn('type', Arr::except($this->childTypes, ['menu_item', 'local_links', 'external_link', 'page_link']));
+        return $this->hasMany(self::class, 'parent_id', 'id')->whereIn('type', Arr::except($this->childTypes, ['menu_item', 'local_links', 'external_link', 'page_link']));
     }
 
     public function internalLink()
@@ -228,7 +228,7 @@ class MenuItem extends Model implements Sortable, HasPath
 
     public function parentItem()
     {
-        return $this->belongsTo(MenuItem::class, 'parent_id', 'id');
+        return $this->belongsTo(self::class, 'parent_id', 'id');
     }
 
     public function menu()

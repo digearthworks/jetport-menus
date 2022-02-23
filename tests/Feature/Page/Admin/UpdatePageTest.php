@@ -37,7 +37,7 @@ class UpdatePageTest extends TestCase
         ]);
 
         $this->withoutExceptionHandling();
-        $response = $this->get('/pages/' . $page->fresh()->slug);
+        $response = $this->get('/pages/'.$page->fresh()->slug);
         $response->assertOk();
         $response->assertSee('</p>updated html</p>', false);
     }

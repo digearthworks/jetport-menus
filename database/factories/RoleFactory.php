@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Turbine\Auth\Enums\UserTypeEnum;
 use App\Turbine\Auth\Models\Role;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * Class RoleFactory.

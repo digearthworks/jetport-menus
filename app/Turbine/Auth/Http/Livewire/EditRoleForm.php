@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class EditRoleForm extends BaseEditForm
 {
-
     /**
      * The update form state.
      *

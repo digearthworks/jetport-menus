@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Turbine\Pages\Models\Page;
 use App\Turbine\Pages\Models\PageTemplate;
+use Illuminate\Database\Seeder;
 
 class PageSeeder extends Seeder
 {
@@ -28,7 +28,7 @@ class PageSeeder extends Seeder
             'css' => file_get_contents(base_path('resources/dist/welcome.css')),
             'layout' => 'layouts.blank',
             'active' => 1,
-            'template_id' => PageTemplate::query()->where('name' , 'welcome_dist')->first()->id,
+            'template_id' => PageTemplate::query()->where('name', 'welcome_dist')->first()->id,
         ]);
 
         Page::factory()->create([

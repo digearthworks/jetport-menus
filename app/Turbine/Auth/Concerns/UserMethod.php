@@ -55,10 +55,10 @@ trait UserMethod
     }
 
     /**
-    *  Find whether the model has active clients
-    *
-    * @return bool
-    */
+     *  Find whether the model has active clients
+     *
+     * @return bool
+     */
     public function hasActiveClients()
     {
         return $this->clients->where('revoked', 0)->count() > 0;

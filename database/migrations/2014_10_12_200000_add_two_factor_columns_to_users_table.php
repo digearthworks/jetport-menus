@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class AddTwoFactorColumnsToUsersTable extends Migration
 {
-
     /**
      * The database schema.
      *
@@ -33,6 +32,7 @@ class AddTwoFactorColumnsToUsersTable extends Migration
     {
         return config('database.default');
     }
+
     /**
      * Run the migrations.
      *

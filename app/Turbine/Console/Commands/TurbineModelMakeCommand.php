@@ -8,6 +8,7 @@ use Illuminate\Foundation\Console\ModelMakeCommand;
 class TurbineModelMakeCommand extends ModelMakeCommand
 {
     use GeneratesTurbineClass;
+
     /**
      * The name and signature of the console command.
      *

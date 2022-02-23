@@ -11,6 +11,6 @@ trait HasPath
      */
     public function path(): string
     {
-        return '/' . ($this->uri_prefix ?? Str::slug($this->table)) . '/' . Str::slug($this->getKey());
+        return '/'.($this->uri_prefix ?? Str::slug($this->table)).'/'.Str::slug($this->getKey());
     }
 }

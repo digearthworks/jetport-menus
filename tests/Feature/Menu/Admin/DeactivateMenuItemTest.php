@@ -28,9 +28,9 @@ class DeactivateMenuItemTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $parent = MenuItem::factory()->create(['parent_id' => null, 'active' => 1 ]);
+        $parent = MenuItem::factory()->create(['parent_id' => null, 'active' => 1]);
 
-        $child = MenuItem::factory()->create(['parent_id' => $parent->id, 'active' => 1 ]);
+        $child = MenuItem::factory()->create(['parent_id' => $parent->id, 'active' => 1]);
 
         $this->assertDatabaseHas('menu_items', ['id' => $parent->id, 'active' => 1]);
         $this->assertDatabaseHas('menu_items', ['id' => $child->id, 'active' => 1]);

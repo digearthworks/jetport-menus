@@ -7,7 +7,6 @@ use App\Turbine\Livewire\BaseCreateForm;
 
 class CreateRoleForm extends BaseCreateForm
 {
-
     /**
      * The create form state.
      *

@@ -31,7 +31,6 @@ trait RegistersAuthLivewireComponents
 
         Livewire::component('turbine.auth.create-role-button', CreateRoleButton::class);
 
-
         Livewire::component('turbine.auth.users-table', UsersTable::class);
 
         Livewire::component('turbine.auth.create-user-form', CreateUserForm::class);
@@ -43,7 +42,7 @@ trait RegistersAuthLivewireComponents
         Livewire::component('turbine.auth.deactivate-user-dialog', DeactivateUserDialog::class);
         Livewire::component('turbine.auth.clear-user-session-dialog', ClearUserSessionDialog::class);
         Livewire::component('turbine.auth.reactivate-user-dialog', ReactivateUserDialog::class);
-        
+
         Livewire::component('turbine.auth.create-user-button', CreateUserButton::class);
     }
 }

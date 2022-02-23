@@ -15,7 +15,7 @@ class UpdateMenuTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $menuItem = MenuItem::factory()->create(['name' => 'fresh' ]);
+        $menuItem = MenuItem::factory()->create(['name' => 'fresh']);
 
         // dd($menuItem);
 

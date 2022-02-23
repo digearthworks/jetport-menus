@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Turbine\Livewire\Concerns;
 
 /**
