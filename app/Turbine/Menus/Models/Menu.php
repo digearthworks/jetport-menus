@@ -59,7 +59,6 @@ class Menu extends Model implements Sortable
         return new MenuQueryBuilder($query);
     }
 
-
     protected $cascadeDeletes = ['menuItems'];
 
     protected $cascadeRestores = ['menuItems'];
