@@ -10,7 +10,7 @@
     <x-article-stacked class="w-full overflow-hidden text-gray-500 bg-white cursor-pointer hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50">
 
         <div class="w-24 h-24 ml-auto mr-auto picture-box">
-            {{ svg($iconPreview ?? 'carbon-no-image-32') }}
+            {{ svg($iconPreview ?? 'heroicon-o-x' ) }}
         </div>
 
         <x-slot name="caption">

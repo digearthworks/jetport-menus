@@ -26,3 +26,4 @@ node_modules
 .php-cs-fixer.cache
 resources/legacy
 installer.bash
+devpkg
