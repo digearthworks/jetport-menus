@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\Actions;
 
-use App\Turbine\Auth\Events\User\UserStatusChanged;
 use App\Models\User;
+use App\Turbine\Auth\Events\User\UserStatusChanged;
 use App\Turbine\Exceptions\GeneralException;
 
 class ChangeUserStatusAction

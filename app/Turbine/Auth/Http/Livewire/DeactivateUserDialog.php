@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\Http\Livewire;
 
-use App\Turbine\Auth\Actions\ChangeUserStatusAction;
 use App\Models\User;
+use App\Turbine\Auth\Actions\ChangeUserStatusAction;
 use App\Turbine\Livewire\BaseDeactivateDialog;
 
 class DeactivateUserDialog extends BaseDeactivateDialog

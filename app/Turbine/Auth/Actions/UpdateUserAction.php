@@ -2,9 +2,9 @@
 
 namespace App\Turbine\Auth\Actions;
 
+use App\Models\User;
 use App\Turbine\Auth\Enums\UserTypeEnum;
 use App\Turbine\Auth\Events\User\UserUpdated;
-use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;

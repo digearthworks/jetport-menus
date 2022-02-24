@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\Http\Livewire;
 
-use App\Turbine\Auth\Enums\UserTypeEnum;
 use App\Models\User;
+use App\Turbine\Auth\Enums\UserTypeEnum;
 use App\Turbine\Livewire\BaseDataTable;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;

@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\Actions;
 
-use App\Turbine\Auth\Events\User\UserRestored;
 use App\Models\User;
+use App\Turbine\Auth\Events\User\UserRestored;
 use App\Turbine\Exceptions\GeneralException;
 
 class RestoreUserAction

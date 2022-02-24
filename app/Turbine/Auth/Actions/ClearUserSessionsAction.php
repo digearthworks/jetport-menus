@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\Actions;
 
-use App\Turbine\Auth\Events\User\UserUpdated;
 use App\Models\User;
+use App\Turbine\Auth\Events\User\UserUpdated;
 use App\Turbine\Exceptions\GeneralException;
 use Exception;
 use Illuminate\Support\Facades\Auth;

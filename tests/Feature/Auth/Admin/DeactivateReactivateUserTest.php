@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Auth\Admin;
 
+use App\Models\User;
 use App\Turbine\Auth\Events\User\UserStatusChanged;
 use App\Turbine\Auth\Http\Livewire\DeactivateUserDialog;
 use App\Turbine\Auth\Http\Livewire\ReactivateUserDialog;
-use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 use Tests\TestCase;

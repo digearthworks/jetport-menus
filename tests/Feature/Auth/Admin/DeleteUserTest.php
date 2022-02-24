@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Auth\Admin;
 
+use App\Models\User;
 use App\Turbine\Auth\Events\User\UserDeleted;
 use App\Turbine\Auth\Http\Livewire\DeleteUserDialog;
 use App\Turbine\Auth\Http\Livewire\RestoreUserDialog;
-use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 use Tests\TestCase;

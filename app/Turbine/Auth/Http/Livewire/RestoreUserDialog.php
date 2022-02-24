@@ -2,8 +2,8 @@
 
 namespace App\Turbine\Auth\Http\Livewire;
 
-use App\Turbine\Auth\Actions\RestoreUserAction;
 use App\Models\User;
+use App\Turbine\Auth\Actions\RestoreUserAction;
 use App\Turbine\Livewire\BaseRestoreDialog;
 
 class RestoreUserDialog extends BaseRestoreDialog
