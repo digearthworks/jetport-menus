@@ -3,7 +3,7 @@
 namespace App\Turbine\Menus\Models;
 
 use App\Turbine\Auth\Models\Role;
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use App\Turbine\Concerns\CachesQueries;
 use App\Turbine\Concerns\CascadeDeactivates;
 use App\Turbine\Concerns\CascadeRestores;

@@ -2,7 +2,7 @@
 
 namespace App\Turbine\Auth\Actions;
 
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use App\Turbine\Exceptions\GeneralException;
 use Exception;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

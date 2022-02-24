@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Api;
 
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use HeaderX\JetstreamPassport\Http\Livewire\OAuthClientManager;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Jetstream\Features;

@@ -3,7 +3,7 @@
 namespace App\Turbine\Auth\Actions;
 
 use App\Turbine\Auth\Enums\UserTypeEnum;
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 
 class UpdateUserTypeAction
 {

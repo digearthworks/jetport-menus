@@ -4,7 +4,7 @@ namespace App\Turbine\Auth\Actions;
 
 use App\Turbine\Auth\Enums\UserTypeEnum;
 use App\Turbine\Auth\Events\User\UserCreated;
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

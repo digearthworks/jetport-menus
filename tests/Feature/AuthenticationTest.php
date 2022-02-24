@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Providers\RouteServiceProvider;
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

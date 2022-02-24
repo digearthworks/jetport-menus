@@ -3,7 +3,7 @@
 namespace App\Turbine\Auth\Http\Livewire;
 
 use App\Turbine\Auth\Actions\RestoreUserAction;
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use App\Turbine\Livewire\BaseRestoreDialog;
 
 class RestoreUserDialog extends BaseRestoreDialog

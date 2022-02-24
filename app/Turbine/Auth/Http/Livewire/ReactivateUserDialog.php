@@ -3,7 +3,7 @@
 namespace App\Turbine\Auth\Http\Livewire;
 
 use App\Turbine\Auth\Actions\ChangeUserStatusAction;
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use App\Turbine\Livewire\BaseReactivateDialog;
 
 class ReactivateUserDialog extends BaseReactivateDialog

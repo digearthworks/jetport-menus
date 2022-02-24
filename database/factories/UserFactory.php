@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Turbine\Auth\Enums\UserTypeEnum;
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 

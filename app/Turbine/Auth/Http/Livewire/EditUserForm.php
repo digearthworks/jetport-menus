@@ -3,7 +3,7 @@
 namespace App\Turbine\Auth\Http\Livewire;
 
 use App\Turbine\Auth\Actions\UpdateUserAction;
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use App\Turbine\Livewire\BaseEditForm;
 use Illuminate\Support\Facades\Auth;
 

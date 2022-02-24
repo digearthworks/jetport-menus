@@ -10,7 +10,6 @@ use App\Turbine\Auth\Concerns\UserMethod;
 use App\Turbine\Auth\Enums\UserTypeEnum;
 use App\Turbine\Auth\QueryBuilders\UserQueryBuilder;
 use App\Turbine\Concerns\CachesQueries;
-use App\Turbine\Concerns\HasChildren;
 use App\Turbine\Concerns\HasUuid;
 use App\Turbine\Menus\Concerns\HasMenuItems;
 use Database\Factories\UserFactory;
@@ -29,7 +28,6 @@ use Wildside\Userstamps\Userstamps;
 class User extends Authenticatable
 {
     use GetsAuthConnection;
-    use HasChildren;
     use HasApiTokens;
     use HasFactory;
     use HasMenuItems;
@@ -60,11 +58,6 @@ class User extends Authenticatable
     ];
 
     protected $table = 'users';
-
-    protected $childTypes = [
-        'admin' => Admin::class,
-        'user' => self::class,
-    ];
 
     /**
      * The attributes that should be hidden for arrays.

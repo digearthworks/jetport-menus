@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Api;
 
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use HeaderX\JetstreamPassport\Http\Livewire\ApiTokenManager;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;

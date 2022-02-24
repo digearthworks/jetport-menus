@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\AuthSeeders;
 
+use App\Models\Admin;
 use App\Turbine\Auth\Events\User\UserUpdated;
-use App\Turbine\Auth\Models\Admin;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
 use ReflectionException;

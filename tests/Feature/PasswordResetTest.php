@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
@@ -15,8 +15,8 @@ class PasswordResetTest extends TestCase
 
     public function test_reset_password_link_screen_can_be_rendered()
     {
-        if (! Features::enabled(Features::updatePasswords())) {
-            return $this->markTestSkipped('Password updates are not enabled.');
+        if (! Features::enabled(Features::resetPasswords())) {
+            return $this->markTestSkipped('Password resets are not enabled.');
         }
 
         $response = $this->get('/forgot-password');
@@ -26,8 +26,8 @@ class PasswordResetTest extends TestCase
 
     public function test_reset_password_link_can_be_requested()
     {
-        if (! Features::enabled(Features::updatePasswords())) {
-            return $this->markTestSkipped('Password updates are not enabled.');
+        if (! Features::enabled(Features::resetPasswords())) {
+            return $this->markTestSkipped('Password resets are not enabled.');
         }
 
         Notification::fake();

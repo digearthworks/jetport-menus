@@ -2,7 +2,7 @@
 
 namespace App\Turbine\Auth\Actions;
 
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 
 class UpdateUserMenusAction
 {

@@ -2,7 +2,7 @@
 
 namespace App\Turbine\Auth\Events\User;
 
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use Illuminate\Queue\SerializesModels;
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Turbine\Auth\Models;
+namespace App\Models;
 
 use App\Turbine\Concerns\CachesQueries;
 use App\Turbine\Concerns\HasParent;

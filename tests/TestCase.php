@@ -3,7 +3,7 @@
 namespace Tests;
 
 use App\Turbine\Auth\Models\Role;
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use Database\Seeders\AuthSeeder;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Turbine\Auth\Models\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Jetstream\Http\Livewire\UpdatePasswordForm;

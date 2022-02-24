@@ -3,8 +3,8 @@
 namespace Database\Seeders\AuthSeeders;
 
 use App\Turbine\Auth\Enums\UserTypeEnum;
-use App\Turbine\Auth\Models\Admin;
-use App\Turbine\Auth\Models\User;
+use App\Models\Admin;
+use App\Models\User;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
 
